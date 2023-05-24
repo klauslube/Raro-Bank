@@ -1,0 +1,45 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "spec/**/*_spec.rb"
+    - "test/**/*"
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "config/**/*"
+    - "bin/*"
+    - "vendor/*"
+    - "node_modules/*"
+    - "tmp/*"
+    - "log/*"
+    - "coverage/*"
+    - "config/initializers/*"
+    - "config/environments/*"
+    - "config/application.rb"
+    - "**/spec/fixtures/*"
+  TargetRubyVersion: 3.1.2
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 50
+
+Rails/FilePath:
+  Exclude:
+    - "spec/rails_helper.rb"
