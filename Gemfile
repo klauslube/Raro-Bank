@@ -60,6 +60,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'htmlbeautifier'
+  gem 'overcommit'
 end
 
 group :development do
