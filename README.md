@@ -4,3 +4,4 @@
 - [Iniciando o projeto](.gitlab/starting-project.md)
 - [Configurando o ambiente com Docker](.gitlab/docker-instructions.md)
 - [Diagrama Entidade-Relacionamento (Der)](.gitlab/DiagramaRelacional-RaroBank.svg)
+- [Diagrama Lógico Relacional](.gitlab/diagrama-relacional-logico.svg)
