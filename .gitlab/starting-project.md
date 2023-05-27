@@ -199,6 +199,9 @@ end
       - "**/spec/fixtures/*"
     TargetRubyVersion: 3.1.2
 
+  Style/FrozenStringLiteralComment:
+    Enabled: false
+
   Style/Documentation:
     Enabled: false
 
@@ -242,12 +245,12 @@ Executar
 ```ruby
 # instalar dependecias do ruby
 bundle install
+./bin/setup
 # criar/rodar migrations/gerar seed do bd
 rails db:create
 rails db:migrate
 rails db:seed
 # instalar dependencias de javascript
-yarn install
 # iniciar servidor
 ./bin/dev
 ```
