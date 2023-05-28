@@ -29,5 +29,15 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
+# config/locales/en.yml
+
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              no_letter: "Password must have at least 1 letter"
+              no_number: "Password must have at least 1 number"
+              no_special: "Password must have at least 1 special character"
