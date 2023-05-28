@@ -214,6 +214,24 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Callbacks' do
+    describe 'check if last admin' do
+      let!(:admin_user) { create(:user, role: :admin) }
+
+      context 'when user is the last admin' do
+        it 'does not allow deletion' do
+          expect { admin_user.destroy }.not_to change(User, :count)
+          expect(admin_user.errors[:base]).to include('Cannot delete the last admin user.')
+        end
+      end
+
+      context 'when user is not the last admin' do
+        let!(:another_admin_user) { create(:user, role: :admin) }
+
+        it 'allows deletion' do
+          expect { admin_user.destroy }.to change(User, :count).by(-1)
+        end
+      end
+    end
   end
 
   describe 'Relations' do
