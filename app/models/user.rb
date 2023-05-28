@@ -23,6 +23,8 @@ class User < ApplicationRecord
   scope :unconfirmed_email, -> { where(confirmed_at: nil) }
   scope :confirmed_email, -> { where.not(confirmed_at: nil) }
 
+  before_destroy :check_if_last_admin
+
   private
 
   def strong_password
@@ -31,5 +33,12 @@ class User < ApplicationRecord
     errors.add(:password, :no_letter) unless password =~ /[a-zA-Z]/
     errors.add(:password, :no_number) unless password =~ /\d/
     errors.add(:password, :no_special) unless password =~ /[!@#$%^&*()\-_=+{};:,<.>]/
+  end
+
+  def check_if_last_admin
+    return unless role == 'admin' && User.admin.count == 1
+
+    errors.add(:base, 'Cannot delete the last admin user.')
+    throw(:abort)
   end
 end
