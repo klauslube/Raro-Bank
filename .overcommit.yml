@@ -37,8 +37,6 @@ PreCommit:
   TextWidth:
     enabled: true
     max_width: 80
-
-PrePush:
   RSpec:
     enabled: true
     command: ['bundle', 'exec', 'rspec']
