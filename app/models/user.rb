@@ -17,6 +17,12 @@ class User < ApplicationRecord
 
   validate :strong_password
 
+  scope :by_cpf, ->(cpf) { where(cpf:) }
+  scope :by_name, ->(name) { where(name:) }
+  scope :name_contains, ->(contain) { where('name ILIKE ?', "%#{contain}%") }
+  scope :unconfirmed_email, -> { where(confirmed_at: nil) }
+  scope :confirmed_email, -> { where.not(confirmed_at: nil) }
+
   private
 
   def strong_password
