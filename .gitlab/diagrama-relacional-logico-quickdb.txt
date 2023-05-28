@@ -6,8 +6,6 @@ CPF string(11) UNIQUE
 email string
 password string
 role ENUM
-active? boolean
-
 
 Classrooms
 -
@@ -17,13 +15,11 @@ name string UNIQUE
 start_date date
 end_date date
 
-
 Accounts
 -
 id string(16) PK
 user_id int FK - Users.id
 balance decimal
-
 
 Transactions
 -
@@ -33,7 +29,6 @@ receiver_id int FK >0- Accounts.id
 status ENUM
 token string UNIQUE
 amount decimal
-
 
 Investiments
 -
