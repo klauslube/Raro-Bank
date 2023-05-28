@@ -131,6 +131,17 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Validations' do
+    subject (:user) { build(:user) }
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :cpf }
+    it { should validate_presence_of :email }
+    it { should validate_presence_of :password }
+    it { should validate_length_of(:name).is_at_least(3).is_at_most(255) }
+    it { should validate_length_of(:cpf).is_equal_to(11) }
+    it { should validate_uniqueness_of(:cpf).case_insensitive }
+    it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should validate_length_of(:password).is_at_least(8) }
+    it { should validate_numericality_of(:cpf) }
   end
 
   describe 'Scopes' do
