@@ -145,6 +145,72 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Scopes' do
+    context 'when searching by cpf' do
+      subject (:user) { build(:user) }
+      it 'should return the correct user' do
+        user.save
+        expect(User.by_cpf(user.cpf)).to include(user)
+      end
+
+      it 'should return an empty user list when not found' do
+        expect(User.by_cpf('00000000000')).to be_empty
+      end
+
+      it 'should return an empty array when CPF is an empty string' do
+        expect(User.by_cpf('')).to be_empty
+      end
+    end
+
+    context 'when searching by name' do
+      subject (:user) { build(:user) }
+      it 'should return the correct user' do
+        user.save
+        expect(User.by_name(user.name)).to include(user)
+      end
+
+      it 'should return an empty user list when not found' do
+        expect(User.by_name('')).to be_empty
+      end
+    end
+
+    context 'when searching with name contains' do
+      subject (:user) { build(:user, name: 'Ana Carolina') }
+      it 'should return the correct user' do
+        user.save
+        expect(User.name_contains('Car')).to include(user)
+        expect(User.name_contains('Ana')).to include(user)
+        expect(User.name_contains('car')).to include(user)
+      end
+
+      it 'should return an empty user list when not found' do
+        expect(User.name_contains('')).to be_empty
+      end
+    end
+
+    context 'when searching unconfirmed email' do
+      subject (:user) { build(:user) }
+      it 'should return the correct user' do
+        user.save
+        expect(User.unconfirmed_email).to include(user)
+      end
+
+      it 'should return an empty user list when not found' do
+        expect(User.unconfirmed_email).to be_empty
+      end
+    end
+
+    context 'when searching confirmed email' do
+      subject (:user) { build(:user) }
+      it 'should return the correct user confirmed' do
+        user.confirmed_at = Time.now
+        user.save
+        expect(User.confirmed_email).to include(user)
+      end
+
+      it 'should return an empty user list when not found' do
+        expect(User.confirmed_email).to be_empty
+      end
+    end
   end
 
   describe 'Callbacks' do
