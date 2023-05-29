@@ -25,4 +25,8 @@ RSpec.describe Investment do
     }
   end
 
+  describe 'Associations' do
+    it { is_expected.to belong_to(:approver).class_name('User') }
+  end
+
 end

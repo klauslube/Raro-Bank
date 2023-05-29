@@ -4,7 +4,7 @@ class CreateInvestments < ActiveRecord::Migration[7.0]
       t.string :name, null: false, limit: 30
       t.decimal :minimum_amount, null:false, precision: 9, scale: 2
       t.decimal :income, null: false, precision: 9, scale: 4
-      t.boolean :premium, null: false, defult: false
+      t.boolean :premium, null: false, default: false
       t.decimal :profit, null: false, precision: 9, scale: 2
       t.date :expiration_date, null: false
 
