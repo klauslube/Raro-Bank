@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :account, dependent: :destroy
+  belongs_to :classroom, optional: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
