@@ -30,7 +30,7 @@ status ENUM
 token string UNIQUE
 amount decimal
 
-Investiments
+Investments
 -
 id int PK
 name string
@@ -41,9 +41,9 @@ profit decimal
 expiration_date date
 creator_id int FK -< Users.id
 
-User_Investiments
+User_Investments
 -
 id int PK
 user_id int FK >-< Users.id
-investiment_id int FK >-< Investiments.id
+investment_id int FK >-< Investments.id
 initial_amount decimal
