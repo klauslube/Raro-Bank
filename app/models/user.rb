@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+  has_many :user_investments, dependent: :destroy
+
   enum :role, {
     free: 1,
     premium: 2,
