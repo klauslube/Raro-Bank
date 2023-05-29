@@ -3,6 +3,8 @@ FactoryBot.define do
     amount { Faker::Number.decimal(l_digits: 7, r_digits: 2) }
     token { Faker::Alphanumeric.unique.alpha(number: 10) }
     status { :started }
+    association :sender, factory: :account
+    association :receiver, factory: :account
 
     trait :status_started do
       status { :started }
