@@ -21,8 +21,18 @@ RSpec.describe Transaction do
         .is_greater_than(0)
     }
 
-    it { 
+    it {
       is_expected.to validate_uniqueness_of(:token)
+    }
+  end
+
+  describe 'Associations' do
+    it { 
+      is_expected.to belong_to(:sender).class_name('Account')
+    }
+
+    it { 
+      is_expected.to belong_to(:receiver).class_name('Account')
     }
   end
 
