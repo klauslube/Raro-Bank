@@ -235,5 +235,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Relations' do
+    it { is_expected.to have_many(:user_investments).dependent(:destroy) }
   end
 end

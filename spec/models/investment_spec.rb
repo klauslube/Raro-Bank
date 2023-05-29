@@ -27,6 +27,8 @@ RSpec.describe Investment do
 
   describe 'Associations' do
     it { is_expected.to belong_to(:approver).class_name('User') }
+    it { is_expected.to have_many(:user_investments).class_name('UserInvestment').dependent(:destroy) }
+    it { is_expected.to have_many(:users).through(:user_investments) }
   end
 
 end
