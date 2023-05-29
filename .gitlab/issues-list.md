@@ -1,0 +1,26 @@
+# Lista de Issues
+
+- [x] Realizar protótipo de view no Figma
+- [x] Iniciar projeto do ruby on rails com postgres, tailwind e etc
+- [x] Elaborar as issues necessárias
+- [x] Elaborar diagrama entidade relacionamento
+- [x] Elaborar diagrama lógico relacional
+- [x] Implementar model User
+- [x] Implementar model Classroom
+- [x] Implementar model Account
+- [x] Implementar model Investiment
+- [x] Implementar model User Investiment
+- [x] Implementar model Transaction
+- [ ] Implementar Controller e View User
+- [ ] Aplicar estilo tela de User: Login, Cadastro, Esqueci a senha
+- [ ] Implementar Controller e View Classroom
+- [ ] Implementar Controller e View Account
+- [ ] Implementar Controller e View Investiment
+- [ ] Implementar Controller e View User Investiment
+- [ ] Implementar Controller e View Transaction
+- [ ] Gerar seeds
+- [ ] Criar helpers de estilização
+- [x] Configurar Dockerfile
+- [ ] Detalhar view no Figma
+- [ ] Implementar navbar
+- [ ] Implementar i18n
