@@ -14,6 +14,12 @@
 # https://github.com/sds/overcommit#configuration
 #
 # Uncomment the following lines to make the configuration take effect.
+CommitMsg:
+  CapitalizedSubject:
+    enabled: false
+  MessageFormat:
+    enabled: true
+    on_fail: warn
 
 PreCommit:
   RuboCop:
@@ -22,7 +28,7 @@ PreCommit:
     problem_on_unmodified_line: ignore # run RuboCop only on modified code
   RSpec:
     enabled: true
-    command: ["bundle", "exec", "rspec", "spec"]
+    command: ['bundle', 'exec', 'rspec']
     on_warn: fail
   BundleInstall:
     enabled: true
@@ -31,7 +37,7 @@ PreCommit:
     enabled: false
   ForbiddenBranches:
     enabled: true
-    branch_patterns: ["main"]
+    branch_patterns: ['main']
   TextWidth:
     enabled: true
     max_width: 80
