@@ -56,7 +56,7 @@ RSpec.describe Classroom, type: :model do
 
     it 'should be invalid when end_date is before start_date' do
       classroom.start_date = Date.today
-      classroom.end_date = Date.yesterday
+      classroom.end_date = Date.today - 1
       classroom.save
       expect(classroom).to be_invalid
       expect(classroom.errors).to include(:end_date)
