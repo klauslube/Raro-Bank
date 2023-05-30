@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe 'Relations' do
+    it { should belong_to(:classroom).optional }
+  end
+
   describe 'Model' do
     subject (:user) { build(:user) }
 

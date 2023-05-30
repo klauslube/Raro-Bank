@@ -38,6 +38,10 @@ en:
         user:
           attributes:
             password:
-              no_letter: "Password must have at least 1 letter"
-              no_number: "Password must have at least 1 number"
-              no_special: "Password must have at least 1 special character"
+              no_letter: 'Password must have at least 1 letter'
+              no_number: 'Password must have at least 1 number'
+              no_special: 'Password must have at least 1 special character'
+        classroom:
+          attributes:
+            end_date:
+              :end_date_after: 'must be after start date'
