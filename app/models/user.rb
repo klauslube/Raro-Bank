@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one :account, dependent: :destroy
   belongs_to :classroom, optional: true
 
   devise :database_authenticatable, :registerable,
@@ -23,6 +24,7 @@ class User < ApplicationRecord
   scope :unconfirmed_email, -> { where(confirmed_at: nil) }
   scope :confirmed_email, -> { where.not(confirmed_at: nil) }
 
+  after_create :create_account
   before_destroy :check_if_last_admin
 
   private
@@ -40,5 +42,9 @@ class User < ApplicationRecord
 
     errors.add(:base, 'Cannot delete the last admin user.')
     throw(:abort)
+  end
+
+  def create_account
+    build_account(balance: 0).save
   end
 end
