@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  layout :set_layout
+
+  def set_layout
+    if admin_controller?
+      'admin'
+    else
+      'application'
+    end
+  end
+
+  def admin_controller?
+    controller_path.start_with?('admin/')
+  end
+
   protected
 
   def authenticate_admin!
