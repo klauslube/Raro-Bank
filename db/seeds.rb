@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
 # Create super user admin
-User.create! name: 'User Admin', cpf: '00011122233', email: 'useradmin@rarobank.com', password: 'r@robank1', role: 3
+admin = User.new name: 'User Admin', cpf: '00011100011', email: 'admin@rarobank.com', password: 'r@robank123', role: 3
+admin.skip_confirmation!
+admin.save!
+
+# Create free user
+free = User.new name: 'User Free', cpf: '00022200011', email: 'free@rarobank.com', password: 'r@robank123', role: 1
+free.skip_confirmation!
+free.save!
+
+# Create premium user
+premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rarobank.com', password: 'r@robank123', role: 2
+premium.skip_confirmation!
+premium.save!
