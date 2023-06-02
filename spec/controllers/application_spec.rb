@@ -273,16 +273,16 @@ RSpec.describe ApplicationController, type: :controller do
     context 'when current user is a admin user' do
       let(:user) { create(:user_confirmed, role: :admin) }
 
-      it 'should redirect to home' do
+      before :each do
         sign_in user
         get :index
+      end
+
+      it 'should redirect to home' do
         expect(response).to redirect_to('/')
       end
 
       it 'should respond status 302' do
-        sign_in user
-        get :index
-
         expect(response).not_to have_http_status(:ok)
         expect(response).to have_http_status(302)
       end
