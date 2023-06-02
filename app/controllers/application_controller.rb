@@ -1,16 +1,12 @@
-# frozen_string_literal: true
-
 class ApplicationController < ActionController::Base
   layout :set_layout
 
   private
 
   def set_layout
-    if admin_controller?
-      'admin'
-    else
-      'application'
-    end
+    return 'admin' if admin_controller?
+
+    'application'
   end
 
   def admin_controller?
