@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_free_or_premium_user!
-    return if current_user && (current_user.free? || current_user.premium?)
+    return if current_user&.free? || current_user&.premium?
 
     flash[:alert] = :not_a_free_or_premium_user
     redirect_to root_path
