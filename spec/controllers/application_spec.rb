@@ -7,6 +7,28 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
+  describe '#set_admin_authentication!' do
+    context 'when admin controller' do
+      before { allow(controller).to receive(:admin_controller?).and_return(true) }
+      let (:user) { create(:user, role: :admin) }
+
+      it 'should calls authenticate admin' do
+        sign_in user
+        get :index
+        expect(controller.send(:set_admin_authentication!)).to eq(:authenticate_admin!)
+      end
+    end
+
+    context 'when not admin controller' do
+      before { allow(controller).to receive(:admin_controller?).and_return(false) }
+
+      it 'should not calls authenticate admin' do
+        get :index
+        expect(controller.send(:set_admin_authentication!)).not_to eq(:authenticate_admin!)
+      end
+    end
+  end
+
   describe '#set_layout' do
     context 'when admin controller' do
       before { allow(controller).to receive(:admin_controller?).and_return(true) }
@@ -81,7 +103,7 @@ RSpec.describe ApplicationController, type: :controller do
       end
 
       it 'should sets the flash alert message' do
-        expect(flash[:alert]).to eq("You need to sign in or sign up before continuing.")
+        expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
       end
 
       it 'should redirect do home ' do
@@ -212,7 +234,6 @@ RSpec.describe ApplicationController, type: :controller do
       end
 
       it 'should respond status 302' do
-
         expect(response).not_to have_http_status(:ok)
         expect(response).to have_http_status(302)
       end
@@ -287,6 +308,5 @@ RSpec.describe ApplicationController, type: :controller do
         expect(response).to have_http_status(302)
       end
     end
-
   end
 end
