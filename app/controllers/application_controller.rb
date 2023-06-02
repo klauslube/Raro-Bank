@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
+  before_action :set_admin_authentication!
   layout :set_layout
 
   private
+
+  def set_admin_authentication!
+    :authenticate_admin! if admin_controller?
+  end
 
   def set_layout
     return 'admin' if admin_controller?
