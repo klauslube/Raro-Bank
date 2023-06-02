@@ -31,5 +31,17 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         expect(response).to render_template(:show)
       end
     end 
+
+    context '#new' do
+      it 'should respond with 20' do
+        get :new
+        expect(response).to have_http_status(200)
+      end
+
+      it 'renders the new template' do
+        get :new
+        expect(response).to render_template(:new)
+      end
+    end
   end
 end
