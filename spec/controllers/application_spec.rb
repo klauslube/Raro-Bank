@@ -57,27 +57,30 @@ RSpec.describe ApplicationController, type: :controller do
     context 'when current user is signed in' do
       let(:user) { create(:user_confirmed) }
 
-      it 'should respond status 200' do
+      before :each do
         sign_in user
         get :index
+      end
+
+      it 'should respond status 200' do
         expect(response).to have_http_status(:ok)
       end
 
       it 'should does not redirect' do
-        sign_in user
-        get :index
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'when current user is not signed in' do
-      it 'should redirects to new_user_session_path' do
+      before :each do
         get :index
+      end
+
+      it 'should redirects to new_user_session_path' do
         expect(response).to redirect_to('/users/sign_in')
       end
 
       it 'should sets the flash alert message' do
-        get :index
         expect(flash[:alert]).to eq("You need to sign in or sign up before continuing.")
       end
 
@@ -110,17 +113,16 @@ RSpec.describe ApplicationController, type: :controller do
     context 'when current user is not an admin' do
       let(:user) { create(:user_confirmed) }
 
-      before do
+      before :each do
         sign_in user
+        get :index
       end
 
       it 'should redirects to root_path' do
-        get :index
         expect(response).to redirect_to('/')
       end
 
       it 'should sets the flash alert message' do
-        get :index
         expect(flash[:alert]).to eq(:not_an_admin)
       end
     end
