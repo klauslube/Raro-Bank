@@ -21,29 +21,29 @@
 - [x] Implementar Controller e View User Investment
 - [x] Implementar Controller e View Transaction
 - [x] Configurar Dockerfile
-- [ ] [Implementar regras de negócio da uma transação](#implementar-regras-de-negócio-da-uma-transação)
-- [ ] [Implementar token de validação de transações](#implementar-token-de-validação-de-transações)
-- [ ] [Implementar envio de email para usuários recebem transações](#implementar-envio-de-email-para-usuários-participantes-de-transações)
-- [ ] [Implementar campo de filtragem para listas de investimentos](#implementar-campo-de-filtragem-para-listas-de-investimentos)
-- [ ] [Implementar integração com API de investimentos do Banco Central](#implementar-integração-com-api-de-investimentos-do-banco-central)
-- [ ] [Implementar regras de negócio de um investimento](#implementar-regras-de-negócio-de-um-investimento)
-- [ ] [Implementar jobs para gerir e atualizar investimentos em vigência](#implementar-job-para-gerir-e-atualizar-investimentos-em-vigência)
-- [ ] [Gerar seeds que alimentam o banco de dados](#gerar-seeds-que-alimentam-o-banco-de-dados)
-- [ ] [Detalhar view no Figma](#detalhar-view-no-figma)
-- [ ] [Implementar estilo no layout Application](#implementar-estilo-no-layout-application)
-- [ ] [Implementar estilo no layout Admin](#implementar-estilo-no-layout-admin)
-- [ ] Aplicar estilo de tela de User não logado: Login
-- [ ] Aplicar estilo de tela de User não logado: Cadastro
-- [ ] Aplicar estilo de tela de User não logado: Recuperar Senha
-- [ ] Aplicar estilo de tela de User logado: Home
-- [ ] Aplicar estilo de tela de User logado: Investment
-- [ ] Aplicar estilo de tela de User logado: Transactions
-- [ ] Aplicar estilo de tela de User logado: Edição de Perfil
-- [ ] Aplicar estilo de tela de Admin: Home, Edição de Perfil
-- [ ] Aplicar estilo de tela de Admin: Users
-- [ ] Aplicar estilo de tela de Admin: Classrooms
-- [ ] Aplicar estilo de tela de Admin: Investment
-- [ ] Aplicar estilo de tela de Admin: Cadastro de saldo
+- [x] [Implementar regras de negócio da uma transação](#implementar-regras-de-negócio-da-uma-transação)
+- [x] [Implementar token de validação de transações](#implementar-token-de-validação-de-transações)
+- [x] [Implementar envio de email para usuários recebem transações](#implementar-envio-de-email-para-usuários-participantes-de-transações)
+- [x] [Implementar campo de filtragem para listas de investimentos](#implementar-campo-de-filtragem-para-listas-de-investimentos)
+- [x] [Implementar integração com API de investimentos do Banco Central](#implementar-integração-com-api-de-investimentos-do-banco-central)
+- [x] [Implementar regras de negócio de um investimento](#implementar-regras-de-negócio-de-um-investimento)
+- [x] [Implementar jobs para gerir e atualizar investimentos em vigência](#implementar-job-para-gerir-e-atualizar-investimentos-em-vigência)
+- [x] [Gerar seeds que alimentam o banco de dados](#gerar-seeds-que-alimentam-o-banco-de-dados)
+- [x] [Detalhar view no Figma](#detalhar-view-no-figma)
+- [x] [Implementar estilo no layout Application](#implementar-estilo-no-layout-application)
+- [x] [Implementar estilo no layout Admin](#implementar-estilo-no-layout-admin)
+- [x] Aplicar estilo de tela de User não logado: Login
+- [x] Aplicar estilo de tela de User não logado: Cadastro
+- [x] Aplicar estilo de tela de User não logado: Recuperar Senha
+- [x] Aplicar estilo de tela de User logado: Home
+- [x] Aplicar estilo de tela de User logado: Investment
+- [x] Aplicar estilo de tela de User logado: Transactions
+- [x] Aplicar estilo de tela de User logado: Edição de Perfil
+- [x] Aplicar estilo de tela de Admin: Home, Edição de Perfil
+- [x] Aplicar estilo de tela de Admin: Users
+- [x] Aplicar estilo de tela de Admin: Classrooms
+- [x] Aplicar estilo de tela de Admin: Investment
+- [x] Aplicar estilo de tela de Admin: Cadastro de saldo
 - [ ] Implementar estilo de notificações
 - [ ] Implementar página de erros: 404/500
 
