@@ -47,6 +47,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     context '#create' do
       let(:valid_attributes) { attributes_for(:investment) }
       let(:invalid_attributes) { attributes_for(:investment, name: nil) }
+
       it 'creates a new investment' do
         expect {
           post :create, params: { investment: valid_attributes }
@@ -56,6 +57,12 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
       it 'returns status 302 if investment is created' do
         post :create, params: { investment: valid_attributes }
         expect(response).to have_http_status(302)
+      end
+
+      it 'try to create with invalid attributes' do
+        expect {
+          post :create, params: { investment: invalid_attributes }
+        }.not_to change(Investment, :count)
       end
     end
   end
