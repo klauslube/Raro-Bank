@@ -85,6 +85,7 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'guard-rspec'
   gem 'shoulda-matchers'
   gem 'simplecov'
 end
