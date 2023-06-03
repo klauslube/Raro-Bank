@@ -33,7 +33,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end 
 
     context '#new' do
-      it 'should respond with 20' do
+      it 'should respond with 200' do
         get :new
         expect(response).to have_http_status(200)
       end
@@ -41,6 +41,21 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
       it 'renders the new template' do
         get :new
         expect(response).to render_template(:new)
+      end
+    end
+
+    context '#create' do
+      let(:valid_attributes) { attributes_for(:investment) }
+      let(:invalid_attributes) { attributes_for(:investment, name: nil) }
+      it 'creates a new investment' do
+        expect {
+          post :create, params: { investment: valid_attributes }
+        }.to change(Investment, :count).by(1)
+      end
+
+      it 'returns status 302 if investment is created' do
+        post :create, params: { investment: valid_attributes }
+        expect(response).to have_http_status(302)
       end
     end
   end
