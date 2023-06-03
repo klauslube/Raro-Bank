@@ -13,9 +13,5 @@ FactoryBot.define do
     trait :premium do
       premium { true }
     end
-
-    # after(:build) do |investment|
-    #   investment.approver_id = investment.approver.id
-    # end
   end
 end
