@@ -54,15 +54,26 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         }.to change(Investment, :count).by(1)
       end
 
-      it 'returns status 302 if investment is created' do
+      it 'show success notice when investment is created' do
         post :create, params: { investment: valid_attributes }
-        expect(response).to have_http_status(302)
+        expect(flash[:notice]).to match(/Investment was successfully created./)
       end
+
+      # it 'redirects to the investment when create success' do
+      #   post :create, params: { investment: valid_attributes }
+      #   expect(response).to redirect_to(investment)
+      # end
 
       it 'try to create with invalid attributes' do
         expect {
           post :create, params: { investment: invalid_attributes }
         }.not_to change(Investment, :count)
+      end
+
+      it 'renders :new with status :unprocessable_entity when save fails' do
+        post :create, params: { investment: invalid_attributes }
+        expect(response).to render_template(:new)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
