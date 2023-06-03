@@ -4,6 +4,8 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
   describe "Authenticated as admin user" do
     let(:admin) { create(:user_confirmed, role: :admin) }
     let(:investment) { create(:investment)}
+    let(:valid_attributes) { attributes_for(:investment) }
+    let(:invalid_attributes) { attributes_for(:investment, name: nil) }
     before :each do
       sign_in admin
     end
@@ -45,8 +47,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#create' do
-      let(:valid_attributes) { attributes_for(:investment) }
-      let(:invalid_attributes) { attributes_for(:investment, name: nil) }
+    
 
       it 'creates a new investment' do
         expect {
@@ -60,7 +61,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
       end
 
       # it 'redirects to the investment when create success' do
-      #   post :create, params: { investment: valid_attributes }
+      #   post :create, params: { id: investment.id, investment: valid_attributes }
       #   expect(response).to redirect_to(investment)
       # end
 
@@ -73,6 +74,31 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
       it 'renders :new with status :unprocessable_entity when save fails' do
         post :create, params: { investment: invalid_attributes }
         expect(response).to render_template(:new)
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context '#update' do
+      it 'updates a investment' do
+        updated_name = Faker::Lorem.word
+        put :update, params: { id: investment.id, investment: { name: updated_name } }
+        investment.reload
+        expect(investment.name).to eq(updated_name)
+      end
+
+      it 'shows success notice when investment is updated' do
+        put :update, params: { id: investment.id, investment: valid_attributes }
+        expect(flash[:notice]).to eq('Investment was successfully updated.')
+      end
+      
+      it 'redirects to the investment when update success' do
+        put :update, params: { id: investment.id, investment: valid_attributes }
+        expect(response).to redirect_to(investment)
+      end
+      
+      it 'renders :edit with status :unprocessable_entity when update fails' do
+        put :update, params: { id: investment.id, investment: invalid_attributes }
+        expect(response).to render_template(:edit)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
