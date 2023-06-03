@@ -23,15 +23,15 @@
 - [x] Configurar Dockerfile
 - [ ] [Implementar regras de negócio da uma transação](#implementar-regras-de-negócio-da-uma-transação)
 - [ ] [Implementar token de validação de transações](#implementar-token-de-validação-de-transações)
-- [ ] [Implementar envio de email para usuários recebem transações](#implementar-envio-de-email-para-usuários-recebem-transações)
+- [ ] [Implementar envio de email para usuários recebem transações](#implementar-envio-de-email-para-usuários-participantes-de-transações)
 - [ ] [Implementar campo de filtragem para listas de investimentos](#implementar-campo-de-filtragem-para-listas-de-investimentos)
 - [ ] [Implementar integração com API de investimentos do Banco Central](#implementar-integração-com-api-de-investimentos-do-banco-central)
-- [ ] [Implementar regras de negócio da um investimento](#implementar-regras-de-negócio-da-um-investimento)
+- [ ] [Implementar regras de negócio de um investimento](#implementar-regras-de-negócio-de-um-investimento)
 - [ ] [Implementar jobs para gerir e atualizar investimentos em vigência](#implementar-job-para-gerir-e-atualizar-investimentos-em-vigência)
 - [ ] [Gerar seeds que alimentam o banco de dados](#gerar-seeds-que-alimentam-o-banco-de-dados)
 - [ ] [Detalhar view no Figma](#detalhar-view-no-figma)
-- [ ] Implementar estilo no layout Application - Estrutura, navbar e etc
-- [ ] Implementar estilo no layout Admin - Estrutura, navbar e etc
+- [ ] [Implementar estilo no layout Application](#implementar-estilo-no-layout-application)
+- [ ] [Implementar estilo no layout Admin](#implementar-estilo-no-layout-admin)
 - [ ] Aplicar estilo de tela de User não logado: Login
 - [ ] Aplicar estilo de tela de User não logado: Cadastro
 - [ ] Aplicar estilo de tela de User não logado: Recuperar Senha
@@ -40,10 +40,10 @@
 - [ ] Aplicar estilo de tela de User logado: Transactions
 - [ ] Aplicar estilo de tela de User logado: Edição de Perfil
 - [ ] Aplicar estilo de tela de Admin: Home, Edição de Perfil
-- [ ] Aplicar estilo de tela de Admin: CRUD de Users
-- [ ] Aplicar estilo de tela de Admin: CRUD de Classrooms
-- [ ] Aplicar estilo de tela de Admin: CRUD de Investment
-- [ ] Aplicar estilo de tela de Admin: Cadastro de saldo para User/Users/Classroom
+- [ ] Aplicar estilo de tela de Admin: Users
+- [ ] Aplicar estilo de tela de Admin: Classrooms
+- [ ] Aplicar estilo de tela de Admin: Investment
+- [ ] Aplicar estilo de tela de Admin: Cadastro de saldo
 - [ ] Implementar estilo de notificações
 - [ ] Implementar página de erros: 404/500
 
@@ -86,7 +86,7 @@ Implementar as regras de negócio da uma transação, como por exemplo, o sistem
 
 OBS: Analisar o enunciado para verificar se há mais regras de negócio.
 
-### Implementar envio de email para usuários recebem transações
+### Implementar envio de email para usuários participantes de transações
 
 Implementar um mailer capaz de enviar um email para os usuários que enviam e recebem transações. Aplicação de envio de email deve ser feita em background e de forma automática. Estilo deverá ser aplicado.
 
@@ -116,17 +116,17 @@ OBS: Analisar/Revisar/Sugerir novos campos de filtragem.
 
 Utilizando a gem [Faraday](https://github.com/lostisland/faraday) ou [rest-client](https://github.com/rest-client/rest-client) e a API [Dados Abertos do Banco Central](https://dadosabertos.bcb.gov.br/dataset/11-taxa-de-juros---selic/resource/b73edc07-bbac-430c-a2cb-b1639e605fa8), implementar uma integração com a API de investimentos do Banco Central. A integração deve ser capaz de buscar a taxa SELIC atual;
 
-Além disse deve ser implementado um job que atualiza a taxa SELIC diariamente no nosso banco de dados. Para isso, deverá ser utilizado a gem [Sidekiq](https://github.com/sidekiq/sidekiq) ou [Whenever](https://github.com/javan/whenever).
+Além disso, deve ser implementado um job que atualiza os indicadores diariamente no nosso banco de dados. Para isso, deverá ser utilizado a gem [Sidekiq](https://github.com/sidekiq/sidekiq) ou [Whenever](https://github.com/javan/whenever).
 
 A nível de modelagem, deverá ser criado um model para armazenar a taxa SELIC, que deve ser atualizado diariamente.
 
 **Trecho do enunciado:**
 
-> O sistema deve permitir a um público de usuários administradores o cadastro de produtos de investimentos, que aceitam aplicações em _Pauloedas_. Estes produtos deverão ser indexados por indicadores reais, como SELIC, CDI, IPCA… Você precisará consultar a API para buscar os valores de cada indicador, a fim de calcular para o seu cliente os valores a serem recebidos nos investimentos. Este recurso deverá estar presente no valor parcial do investimento e no momento do saque dos valores. Estes indicadores deverão ser buscados através de um job, responsável por capturar na API os valores dos indicadores diários e armazená-los no banco."
+> O sistema deve permitir a um público de usuários administradores o cadastro de produtos de investimentos, que aceitam aplicações em `_rarocoins`\_. Estes produtos deverão ser indexados por indicadores reais, como SELIC, CDI, IPCA… Você precisará consultar a API para buscar os valores de cada indicador, a fim de calcular para o seu cliente os valores a serem recebidos nos investimentos. Este recurso deverá estar presente no valor parcial do investimento e no momento do saque dos valores. Estes indicadores deverão ser buscados através de um job, responsável por capturar na API os valores dos indicadores diários e armazená-los no banco."
 
-### Implementar regras de negócio da um investimento
+### Implementar regras de negócio de um investimento
 
-Implementar as regras de negócio da um investimento, como por exemplo, o usuário:
+Implementar e checar as regras de negócio de um investimento, para que no fim, o usuário:
 
 - Deve realizar investimentos a partir de uma lista de investimentos disponíveis, de acordo com sua modalidade: `free` ou `premium`;
 - Deve poder retirar, a qualquer momento, o valor investido, com os devidos rendimentos, de acordo com a modalidade do investimento. Não considerar a incidência de impostos ou taxas bancárias;
@@ -160,7 +160,7 @@ Utilizando a gem [Faker](https://github.com/faker-ruby/faker), gerar seeds que a
 
 ### Detalhar view no Figma
 
-Detalhar view no Figma, com o objetivo de facilitar a implementação das views. Deve visar a melhor experiência do usuário, com foco na usabilidade.
+Detalhar views no Figma, com o objetivo de facilitar a implementação a estilização e implementações das views. Deve visar a melhor experiência do usuário, com foco na usabilidade.
 
 Foi separado dois ambientes na aplicação, um para o usuário comum (free ou premium) e outro para o usuário admin.
 
@@ -178,15 +178,15 @@ Foi separado dois ambientes na aplicação, um para o usuário comum (free ou pr
     - Deve ser possível adicionar alunos a uma turma;
   - Formulário de edição de turma com possibilidade de exclusão de turma;
     - Devem ser possíveis adicionar e remover alunos de uma turma;
-- _Usuários_:
+- _Users_:
   - Listagem de usuários;
   - Detalhes de um usuário;
-  - Formulário de cadastro de usuário;
-    - Deve ser possível adicionar um usuário a uma turma;
-    - Deve ser possível conceder privilégios de `admin`;
-  - Formulário de edição de usuário com possibilidade de exclusão de usuário;
-    - Devem ser possíveis adicionar e remover um usuário de uma turma;
+  - Formulário de edição limitada de usuário com possibilidade de:
+    - Deve ser possível adicionar/remover um usuário a uma turma;
     - Deve ser possível conceder/remover privilégios de `admin`, a não ser que seja o último usuário `admin` do sistema;
+- _Deposit_:
+  - Deve poder adicionar `rarocoins` na conta de um usuário específico;
+  - Deve poder adicionar `rarocoins` na conta de todos os usuários de uma turma específica;
 
 **Layout USUÁRIO**:
 
@@ -211,3 +211,28 @@ Foi separado dois ambientes na aplicação, um para o usuário comum (free ou pr
   - Transferências;
 
 \*: Avaliar a necessidade de implementar.
+
+#### Estruturar estilo no layout Admin
+
+Implementar estrutura do espaço administrativo, seguindo o layout definido no [figma](https://www.figma.com/file/9Qh0FAv4BoUbGXp8jrJRqT/RaroBank?type=design&node-id=0-1&t=jmcZAzVcD5TiKnrf-0).
+
+- Deve ser utilizado o [Tailwind UI](https://tailwindui.com/) para facilitar a implementação do layout;
+- Nesse momento, estilizar areas como por exemplo: o menu, o cabeçalho, o rodapé, etc. Levar em conta todo o contexto que não envolva as páginas e formulários, e sim o layout geral da aplicação do administrador;
+- Deve-se utilizar de _helpers_ para organização e futura manutenção do código CSS;
+- Não é necessário implementar a lógica de funcionamento, apenas a estrutura visual;
+
+#### Estruturar estilo no layout Application
+
+Implementar estrutura do espaço de usuário, seguindo o layout definido no [figma](https://www.figma.com/file/9Qh0FAv4BoUbGXp8jrJRqT/RaroBank?type=design&node-id=0-1&t=jmcZAzVcD5TiKnrf-0).
+
+- Deve ser utilizado o [Tailwind UI](https://tailwindui.com/) para facilitar a implementação do layout;
+- Nesse momento, estilizar areas como por exemplo: o menu, o cabeçalho, o rodapé, etc. Levar em conta todo o contexto que não envolva as páginas e formulários, e sim o layout geral da aplicação do usuário `free` ou `premium`;
+- Deve-se utilizar de _helpers_ para organização e futura manutenção do código CSS;
+- Não é necessário implementar a lógica de funcionamento, apenas a estrutura visual;
+
+#### Aplicar estilo de tela de User não logado: Login
+
+- Implementar estilo da tela de login, seguindo o layout definido no [figma](https://www.figma.com/file/9Qh0FAv4BoUbGXp8jrJRqT/RaroBank?type=design&node-id=0-1&t=jmcZAzVcD5TiKnrf-0).
+- Deve ser utilizado o [Tailwind UI](https://tailwindui.com/) para facilitar a implementação do layout;
+- Deve-se utilizar de _helpers_ para organização e futura manutenção do código CSS;
+- Não é necessário implementar a lógica de funcionamento, apenas a estrutura visual;
