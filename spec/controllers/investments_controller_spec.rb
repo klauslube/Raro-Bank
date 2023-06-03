@@ -47,8 +47,6 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#create' do
-    
-
       it 'creates a new investment' do
         expect {
           post :create, params: { investment: valid_attributes }
