@@ -61,7 +61,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
       end
 
       # it 'redirects to the investment when create success' do
-      #   post :create, params: { id: investment.id, investment: valid_attributes }
+      #   post :create, params: { investment: valid_attributes }
       #   expect(response).to redirect_to(investment)
       # end
 
@@ -100,6 +100,24 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         put :update, params: { id: investment.id, investment: invalid_attributes }
         expect(response).to render_template(:edit)
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context '#destroy' do
+      # it 'destroys an investment' do
+      #   post :create, params: { investment: valid_attributes }
+
+      #   delete :destroy, params: { id: investment.id }
+      # end
+      
+      it 'shows success notice after successful deletion' do
+        delete :destroy, params: { id: investment.id }
+        expect(flash[:notice]).to match(/Investment was successfully deleted./)
+      end
+    
+      it 'redirects to admin_investment_path after successful deletion' do
+        delete :destroy, params: { id: investment.id }
+        expect(response).to redirect_to(admin_investment_path)
       end
     end
   end
