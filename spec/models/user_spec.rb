@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'Relations' do
     it { should belong_to(:classroom).optional }
+    it { should have_many(:user_investments) }
   end
 
   describe 'Model' do
