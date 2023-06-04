@@ -11,6 +11,7 @@ module Admin
 
     def new
       @investment = Investment.new
+      @approver_id = current_user.id
     end
 
     def edit; end
@@ -18,13 +19,13 @@ module Admin
     def create
       @investment = Investment.new(investment_params)
 
-      return redirect_to @investment, notice: 'Investment was successfully created.' if @investment.save
+      return redirect_to admin_investments_path, notice: 'Investment was successfully created.' if @investment.save
 
       render :new, status: :unprocessable_entity
     end
 
     def update
-      return redirect_to @investment, notice: 'Investment was successfully updated.' if @investment.update(investment_params)
+      return redirect_to admin_investment_url(@investment), notice: 'Investment was successfully updated.' if @investment.update(investment_params)
 
       render :edit, status: :unprocessable_entity
     end
