@@ -2,14 +2,14 @@
 
 Rails.application.routes.draw do
   # Routes for devise user authentication
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   # Authenticated routes
   authenticated :user do
     # Routes for admin user (role: admin)
     constraints(RoleConstraint.new([:admin])) do
       root to: "admin#index", as: :admin_root #TODO: implement /admin route to redirect to admin#index
-      get '/admin', to: 'admin#index'
+      get "/admin", to: "admin#index"
 
       namespace :admin do
         resources :classrooms
