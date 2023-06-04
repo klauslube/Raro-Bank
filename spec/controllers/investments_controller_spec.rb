@@ -58,10 +58,11 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         expect(flash[:notice]).to match(/Investment was successfully created./)
       end
 
-      # it 'redirects to the investment when create success' do
-      #   post :create, params: { investment: valid_attributes }
-      #   expect(response).to redirect_to(investment)
-      # end
+      it 'redirects to the investment when create success' do
+        post :create, params: { investment: valid_attributes }
+        investment = Investment.last
+        expect(response).to redirect_to(admin_investment_path(investment))
+      end
 
       it 'try to create with invalid attributes' do
         expect {
@@ -89,10 +90,13 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         expect(flash[:notice]).to eq('Investment was successfully updated.')
       end
       
-      # it 'redirects to the investment when update success' do
-      #   put :update, params: { id: investment.id, investment: valid_attributes }
-      #   expect(response).to redirect_to(investment)
-      # end
+      it 'redirects to the investment when update success' do
+        updated_name = Faker::Lorem.word
+        post :create, params: { investment: valid_attributes }
+        investment = Investment.last
+        put :update, params: { id: investment.id, investment: { name: updated_name } }
+        expect(response).to redirect_to(admin_investment_path(investment))
+      end
       
       it 'renders :edit with status :unprocessable_entity when update fails' do
         put :update, params: { id: investment.id, investment: invalid_attributes }
@@ -102,11 +106,11 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#destroy' do
-      # it 'destroys an investment' do
-      #   post :create, params: { investment: valid_attributes }
-
-      #   delete :destroy, params: { id: investment.id }
-      # end
+      it 'destroys an investment' do
+        post :create, params: { investment: valid_attributes }
+        investment = Investment.last
+        delete :destroy, params: { id: investment.id }
+      end
       
       it 'shows success notice after successful deletion' do
         delete :destroy, params: { id: investment.id }
