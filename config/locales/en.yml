@@ -32,6 +32,9 @@
 # config/locales/en.yml
 
 en:
+  transactions:
+    create:
+      success: "Your transfer has been created!"
   activerecord:
     errors:
       models:
