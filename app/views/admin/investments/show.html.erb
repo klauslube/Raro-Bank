@@ -1,0 +1,33 @@
+<div class="px-4 sm:px-0">
+  <h3 class="text-base font-semibold leading-7 text-gray-900">Investment Data</h3>
+</div>
+<div class="mt-6 border-t border-gray-100">
+  <dl class="divide-y divide-gray-100">
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <dt class="text-sm font-medium leading-6 text-gray-900">Name</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @investment.name%></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <dt class="text-sm font-medium leading-6 text-gray-900">Minimum amount</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @investment.minimum_amount  %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <dt class="text-sm font-medium leading-6 text-gray-900">Expiration Date</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @investment.expiration_date %></dd>
+    </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <dt class="text-sm font-medium leading-6 text-gray-900">Income</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @investment.income %></dd>
+    </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <dt class="text-sm font-medium leading-6 text-gray-900">Category</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @investment.premium %></dd>
+    </div>
+  </dl>
+</div>
+
+<div class="flex gap-3">
+  <%= link_to "Edit", edit_admin_investment_path(@investment) %>
+  <%= button_to "Delete", @investment, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+  <%= link_to "Back", admin_investments_path %>
+</div>
