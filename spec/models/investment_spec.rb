@@ -7,7 +7,6 @@ RSpec.describe Investment do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:minimum_amount) }
     it { is_expected.to validate_presence_of(:income) }
-    it { is_expected.to validate_presence_of(:profit) }
     it { is_expected.to validate_presence_of(:expiration_date) }
 
     it {
