@@ -19,7 +19,7 @@ module Admin
     def create
       @investment = Investment.new(investment_params)
 
-      return redirect_to admin_investments_path, notice: 'Investment was successfully created.' if @investment.save
+      return redirect_to admin_investment_url(@investment), notice: 'Investment was successfully created.' if @investment.save
 
       render :new, status: :unprocessable_entity
     end
