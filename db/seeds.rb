@@ -15,6 +15,6 @@ premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rar
 premium.skip_confirmation!
 premium.save!
 
-investment = Investment.new name: 'Selic', minimum_amount: 100, income: 0.1, premium: true, profit: 110, expiration_date: DateTime.tomorrow, approver_id: '7f49e628-01d5-4c94-b196-9e322ed03479'
-investment.skip_confirmation!
+investment = Investment.new name: 'Selic', minimum_amount: 100, income: 0.1, premium: true, expiration_date: DateTime.tomorrow, approver_id: admin.id
+# investment.skip_confirmation!
 investment.save!
