@@ -1,0 +1,54 @@
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Minimum Amount</th>
+      <th scope="col">Expiration Date</th>
+      <th scope="col">Index</th>
+      <th scope="col">Category</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @investments.each do |investment| %>
+      <%= form_with(model: @user_investment, data: { turbo: false }) do |form| %>
+        <% if @user_investment.errors.any? %>
+          <h3> <%= pluralize(@user_investment.errors.count, "errors") %> prohibited this user investment from being saved:</h3>
+          <div>
+            <ul role="list">
+              <% @user_investment.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <tr>
+          <td>
+            <%= form.hidden_field :investment_id, value: investment.id %>
+            <%= investment.id %>
+          </td>
+          <td><%= investment.name %></td>
+          <td><%= investment.minimum_amount %></td>
+          <td><%= investment.expiration_date %></td>
+          <td><%= investment.income %></td>
+          <td>
+            <% if current_user.role == 'free' %>
+              <%= investment.premium == false %>
+            <% else %>
+              <%= investment.premium %>
+            <% end %> 
+          </td>
+          <td>
+            <div>
+              <%= form.label :initial_amount, 'Initial Amount' %>
+              <%= form.number_field :initial_amount %>
+              <%= form.hidden_field :user_id, value: current_user.id %>
+            </div>
+            <%= form.submit "Comprar" %>      
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
