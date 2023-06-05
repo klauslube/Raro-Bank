@@ -12,6 +12,9 @@
   </thead>
   <tbody>
     <% @investments.each do |investment| %>
+      <% if current_user.role == 'free' %>
+        <% next if investment.premium %>
+      <% end %>
       <%= form_with(model: @user_investment, data: { turbo: false }) do |form| %>
         <% if @user_investment.errors.any? %>
           <h3> <%= pluralize(@user_investment.errors.count, "errors") %> prohibited this user investment from being saved:</h3>
@@ -33,11 +36,7 @@
           <td><%= investment.expiration_date %></td>
           <td><%= investment.income %></td>
           <td>
-            <% if current_user.role == 'free' %>
-              <%= investment.premium == false %>
-            <% else %>
-              <%= investment.premium %>
-            <% end %> 
+            <%= investment.premium ? 'Free' : 'Premium'%>
           </td>
           <td>
             <div>
