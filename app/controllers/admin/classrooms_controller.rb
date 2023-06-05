@@ -1,6 +1,6 @@
 module Admin
   class ClassroomsController < ApplicationController
-    before_action :set_classroom, only: %i[show edit update destroy]
+    before_action :fetch_classroom, only: %i[show edit update destroy]
 
     # GET /admin/classrooms or /admin/classrooms.json
     def index
@@ -22,50 +22,35 @@ module Admin
     def create
       @classroom = Classroom.new(classroom_params)
 
-      respond_to do |format|
-        if @classroom.save
-          format.html { redirect_to admin_classroom_url(@classroom), notice: 'Classroom was successfully created.' }
-          format.json { render :show, status: :created, location: @classroom }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @classroom.errors, status: :unprocessable_entity }
-        end
-      end
+      return redirect_to admin_classroom_url(@classroom), notice: t(".success") if @classroom.save
+
+      render :new, status: :unprocessable_entity
     end
 
     # PATCH/PUT /admin/classrooms/1 or /admin/classrooms/1.json
     def update
-      respond_to do |format|
-        if @classroom.update(admin_classroom_params)
-          format.html { redirect_to admin_classroom_url(@classroom), notice: 'Classroom was successfully updated.' }
-          format.json { render :show, status: :ok, location: @classroom }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @classroom.errors, status: :unprocessable_entity }
-        end
-      end
+      return redirect_to admin_classroom_url(@classroom), notice: t(".success") if @classroom.update(classroom_params)
+
+      render :edit, status: :unprocessable_entity
     end
 
     # DELETE /admin/classrooms/1 or /admin/classrooms/1.json
     def destroy
-      @classroom.destroy
+      return redirect_to admin_classrooms_url, notice: t(".success") if @classroom.destroy
 
-      respond_to do |format|
-        format.html { redirect_to admin_classrooms_url, notice: 'Classroom was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      render :edit, status: :unprocessable_entity
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_classroom
+    def fetch_classroom
       @classroom = Classroom.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def classroom_params
-      params.fetch(:classroom).permit(:name, :start_date, :end_date)
+      params.fetch(:classroom).permit(:name, :start_date, :end_date, user_ids: [])
     end
   end
 end
