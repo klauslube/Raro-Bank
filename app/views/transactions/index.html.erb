@@ -1,4 +1,4 @@
-<%= link_to 'Nova transferência', new_transaction_path, class: temp_button %>
+<%= link_to 'Nova transferência', new_transaction_path %>
 
 <table>
   <thead>
@@ -13,7 +13,7 @@
     <tr>
       <td class='py-1'><%= transaction.amount %></td>
       <td class='py-1'><%= transaction.status %></td>
-      <td class='py-1'><%= link_to 'Detalhes', transaction_path(transaction), class: temp_button %></td>
+      <td class='py-1'><%= link_to 'Detalhes', transaction_path(transaction) %></td>
     </tr>
     <% end %>
   </tbody>
