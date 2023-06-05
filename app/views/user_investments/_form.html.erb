@@ -35,16 +35,14 @@
           <td><%= investment.minimum_amount %></td>
           <td><%= investment.expiration_date %></td>
           <td><%= investment.income %></td>
-          <td>
-            <%= investment.premium ? 'Premium' : 'Free'%>
-          </td>
+          <td><%= investment.premium ? 'Premium' : 'Free'%></td>
           <td>
             <div>
               <%= form.label :initial_amount, 'Initial Amount' %>
               <%= form.number_field :initial_amount %>
               <%= form.hidden_field :user_id, value: current_user.id %>
             </div>
-            <%= form.submit "Comprar" %>      
+            <%= form.submit "Buy" %>      
           </td>
         </tr>
       <% end %>
