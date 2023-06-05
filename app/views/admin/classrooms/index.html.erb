@@ -10,22 +10,23 @@
   <table >
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Data Inicio</th>
-        <th>Data Fim</th>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
       </tr>
     </thead>
     <tbody>
       <% @classrooms.each do |classroom| %>
-        <%= render partial: 'admin/classrooms/classroom', locals: { classroom: classroom }  %>
         <tr>
           <td><%= classroom.name %></td>
           <td><%= classroom.start_date.strftime('%d/%m/%Y') %></td>
           <td><%= classroom.end_date.strftime('%d/%m/%Y') %></td>
           <td>
             <div>
-              <%= link_to "Editar", edit_admin_classroom_path(classroom.id)%>
-              <%= button_to "Deletar", admin_classroom_path(classroom), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure you want to delete this classroom?"} %>
+              <%= link_to "Details", admin_classroom_path(classroom), method: :show %>
+
+              <%= link_to "Edit", edit_admin_classroom_path(classroom)%>
+              <%= button_to "Delete", admin_classroom_path(classroom), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure you want to delete this classroom?"} %>
             </div>
           </td>
         </tr>
