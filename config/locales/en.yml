@@ -38,15 +38,15 @@ en:
         user:
           attributes:
             password:
-              no_letter: "Password must have at least 1 letter"
-              no_number: "Password must have at least 1 number"
-              no_special: "Password must have at least 1 special character"
+              no_letter: 'must have at least 1 letter'
+              no_number: 'must have at least 1 number'
+              no_special: 'must have at least 1 special character'
             role:
-              not_a_free_user: "Denied access. This action is only allowed for free users."
-              not_a_premium_user: "Denied access. This action is only allowed for premium users."
-              not_an_admin: "Denied access. This action is only allowed for admins."
-              not_a_free_or_premium_user: "Denied access. This action is only allowed for free or premium users."
+              not_a_free_user: 'Denied access. This action is only allowed for free users.'
+              not_a_premium_user: 'Denied access. This action is only allowed for premium users.'
+              not_an_admin: 'Denied access. This action is only allowed for admins.'
+              not_a_free_or_premium_user: 'Denied access. This action is only allowed for free or premium users.'
         classroom:
           attributes:
             end_date:
-              :end_date_after: "must be after start date"
+              :end_date_after: 'must be after start date'

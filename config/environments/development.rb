@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -16,18 +16,28 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  ## DEVISE SECTION
+
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for mailcatcher gem
+  config.action_mailer.smtp_settings =
+    { address: "127.0.0.1",
+      port: 1025 }
+  config.action_mailer.raise_delivery_errors = false
+
   # Enable server timing
   config.server_timing = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -62,7 +72,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Devise configuration
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
