@@ -12,7 +12,7 @@
       <th scope="col">Index</th>
       <th scope="col">Category</th>
       <th scope="col">Profit</th> 
-      <th scope="col"></th>
+      <th scope="col">Purchase Date</th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +25,7 @@
         <td><%= inv.investment.income %></td>
         <td><%= inv.investment.premium ? 'Free' : 'Premium' %> 
         <td><%= inv.profit || 0 %></td>
+        <td><%= inv.created_at.strftime('%d/%m/%y') %></td>
         <td><%= button_to "Rescue!", inv, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></td>
         </td>
       </tr>
