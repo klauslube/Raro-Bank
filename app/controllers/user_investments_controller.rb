@@ -1,12 +1,10 @@
 class UserInvestmentsController < ApplicationController
   before_action :authenticate_free_or_premium_user!
-  before_action :fetch_user_investment, only: %i[show edit update destroy]
+  before_action :fetch_user_investment, only: %i[edit update destroy]
 
   def index
     @user_investments = UserInvestment.where(user_id: current_user.id)
   end
-
-  def show; end
 
   def new
     @user_investment = UserInvestment.new
