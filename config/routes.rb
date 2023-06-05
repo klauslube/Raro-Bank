@@ -2,14 +2,14 @@
 
 Rails.application.routes.draw do
   # Routes for devise user authentication
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   # Authenticated routes
   authenticated :user do
     # Routes for admin user (role: admin)
     constraints(RoleConstraint.new([:admin])) do
       root to: "admin#index", as: :admin_root #TODO: implement /admin route to redirect to admin#index
-      get '/admin', to: 'admin#index'
+      get "/admin", to: "admin#index"
 
       namespace :admin do
         resources :classrooms
@@ -37,10 +37,6 @@ Rails.application.routes.draw do
     get "*path", to: redirect("/")
 
     # except for the ones below
-    get "/users/sign_in", to: "devise/sessions#new", as: :new_user_session_path
-    post "/users/sign_in", to: "devise/sessions#create", as: :user_session_path
-    get "/users/sign_up", to: "devise/registrations#new", as: :new_user_registration_path
-    post "/users", to: "devise/registrations#create", as: :user_registration_path
     get "/users/password/new", to: "devise/passwords#new", as: :new_user_password_path
     get "/users/password/edit", to: "devise/passwords#edit", as: :edit_user_password_path
     patch "/users/password", to: "devise/passwords#update", as: :user_password_path
