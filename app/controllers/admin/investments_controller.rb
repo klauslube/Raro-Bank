@@ -38,7 +38,7 @@ module Admin
     private
 
     def investment_params
-      params.require(:investment).permit(:name, :minimum_amount, :income, :premium, :profit, :expiration_date, :approver_id)
+      params.require(:investment).permit(:name, :minimum_amount, :indicator_id, :premium, :profit, :expiration_date, :approver_id)
     end
 
     def fetch_investment
