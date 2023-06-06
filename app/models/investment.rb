@@ -4,7 +4,7 @@ class Investment < ApplicationRecord
   has_many :users, through: :user_investments
 
   validates :name, presence: true, length: { minimum: 1, maximum: 15 }
-  validates :minimum_amount, :profit, presence: true, numericality: { greater_than: 0 }
+  validates :minimum_amount, presence: true, numericality: { greater_than: 0 }
   validates :income, :expiration_date, presence: true
   validates :premium, inclusion: [true, false]
 end

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       root to: "home#index" #TODO: implement home#index
 
       resources :transactions
-      resources :investments
+      resources :user_investments
     end
   end
 
