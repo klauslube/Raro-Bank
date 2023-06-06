@@ -20,7 +20,7 @@ module Admin
 
     # POST /admin/classrooms or /admin/classrooms.json
     def create
-      @classroom = Classroom.new(classroom_params)
+      @classroom = Classroom.new(admin_classroom_params)
 
       return redirect_to admin_classroom_url(@classroom), notice: t(".success") if @classroom.save
 
@@ -29,7 +29,7 @@ module Admin
 
     # PATCH/PUT /admin/classrooms/1 or /admin/classrooms/1.json
     def update
-      return redirect_to admin_classroom_url(@classroom), notice: t(".success") if @classroom.update(classroom_params)
+      return redirect_to admin_classroom_url(@classroom), notice: t(".success") if @classroom.update(admin_classroom_params)
 
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ module Admin
     def destroy
       return redirect_to admin_classrooms_url, notice: t(".success") if @classroom.destroy
 
-      render :edit, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
 
     private
@@ -49,7 +49,7 @@ module Admin
     end
 
     # Only allow a list of trusted parameters through.
-    def classroom_params
+    def admin_classroom_params
       params.fetch(:classroom).permit(:name, :start_date, :end_date, user_ids: [])
     end
   end
