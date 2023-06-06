@@ -18,8 +18,7 @@ CommitMsg:
   CapitalizedSubject:
     enabled: false
   MessageFormat:
-    enabled: true
-    on_fail: warn
+    enabled: false
 
 PreCommit:
   RuboCop:
