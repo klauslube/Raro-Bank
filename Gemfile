@@ -56,6 +56,9 @@ gem 'bootsnap', require: false
 # User authentication
 gem 'devise'
 
+# Rest Http Request
+gem 'rest-client'
+
 group :development, :test do
   # Environment variables
   gem 'dotenv-rails'
