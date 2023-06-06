@@ -17,4 +17,14 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+# every 1.day, at: '9:00 am' do
+#   runner 'IndicatorService.import_indicators'
+# end
+
+set :output, "log/cron_log.log"
+every 1.minute do
+  runner 'IndicatorService.import_indicators'
+end
+
+
 # Learn more: http://github.com/javan/whenever
