@@ -13,8 +13,11 @@ Rails.application.routes.draw do
 
       namespace :admin do
         resources :classrooms
-        resources :users
         resources :investments
+        resources :users, only: %i[index edit update] do
+          get "/edit", to: "users#edit", as: :edit
+          patch "", to: "users#update", as: :update
+        end
       end
     end
 
