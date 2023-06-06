@@ -16,21 +16,21 @@ class UserInvestmentsController < ApplicationController
   def create
     @user_investment = UserInvestment.new(user_investment_params)
 
-    return redirect_to user_investments_path, notice: 'User investment was successfully created.' if @user_investment.save
+    return redirect_to user_investments_path, notice: t('.success') if @user_investment.save
 
     @investments = Investment.all
     render :new, status: :unprocessable_entity
   end
 
   def update
-    return redirect_to investment_url(@user_investment), notice: 'User investment was successfully updated.' if @user_investment.update(investment_params)
+    return redirect_to investment_url(@user_investment), notice: t('.success') if @user_investment.update(investment_params)
 
     render :edit, status: :unprocessable_entity
   end
 
   def destroy
     @user_investment.destroy
-    redirect_to user_investments_path, notice: 'User investment was successfully deleted.'
+    redirect_to user_investments_path, notice: t('.success')
   end
 
   private

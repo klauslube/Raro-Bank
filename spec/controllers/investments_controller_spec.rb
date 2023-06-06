@@ -55,7 +55,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
 
       it 'show success notice when investment is created' do
         post :create, params: { investment: valid_attributes }
-        expect(flash[:notice]).to match(/Investment was successfully created./)
+        expect(flash[:notice]).to match(/Investment was successfully created/)
       end
 
       it 'redirects to the investment when create success' do
@@ -87,7 +87,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
 
       it 'shows success notice when investment is updated' do
         put :update, params: { id: investment.id, investment: valid_attributes }
-        expect(flash[:notice]).to eq('Investment was successfully updated.')
+        expect(flash[:notice]).to eq('Investment was successfully updated')
       end
       
       it 'redirects to the investment when update success' do
@@ -114,7 +114,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
       
       it 'shows success notice after successful deletion' do
         delete :destroy, params: { id: investment.id }
-        expect(flash[:notice]).to match(/Investment was successfully deleted./)
+        expect(flash[:notice]).to match(/Investment was successfully destroyed/)
       end
     
       it 'redirects to admin_investment_path after successful deletion' do

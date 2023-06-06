@@ -19,20 +19,20 @@ module Admin
     def create
       @investment = Investment.new(investment_params)
 
-      return redirect_to admin_investment_url(@investment), notice: 'Investment was successfully created.' if @investment.save
+      return redirect_to admin_investment_url(@investment), notice: t('.success') if @investment.save
 
       render :new, status: :unprocessable_entity
     end
 
     def update
-      return redirect_to admin_investment_url(@investment), notice: 'Investment was successfully updated.' if @investment.update(investment_params)
+      return redirect_to admin_investment_url(@investment), notice: t('.success') if @investment.update(investment_params)
 
       render :edit, status: :unprocessable_entity
     end
 
     def destroy
       @investment.destroy
-      redirect_to admin_investment_path, notice: 'Investment was successfully deleted.'
+      redirect_to admin_investment_path, notice: t('.success')
     end
 
     private

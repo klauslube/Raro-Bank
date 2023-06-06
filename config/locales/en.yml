@@ -50,3 +50,21 @@ en:
           attributes:
             end_date:
               :end_date_after: "must be after start date"
+  admin:
+    investments: 
+      create:
+        success: 'Investment was successfully created'
+      update:
+        success: 'Investment was successfully updated'
+      destroy:
+        success: 'Investment was successfully destroyed'
+  user_investments: 
+    create:
+      success: 'User investment was successfully created'
+    update:
+      success: 'User investment was successfully updated'
+    destroy:
+      success: 'User investment was successfully destroyed'
+
+
+
