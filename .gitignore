@@ -40,3 +40,4 @@ db/schema.rb
 
 coverage
 .rufo
+Gemfile.lock
