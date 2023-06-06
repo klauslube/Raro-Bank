@@ -32,6 +32,14 @@
 # config/locales/en.yml
 
 en:
+  admin:
+    classrooms:
+      create:
+        success: 'Your classroom has been created!'
+      update:
+        success: 'Your classroom has been updated!'
+      destroy:
+        success: 'Your classroom has been deleted!'
   transactions:
     create:
       success: "Your transfer has been created!"
@@ -52,22 +60,19 @@ en:
         classroom:
           attributes:
             end_date:
-              :end_date_after: "must be after start date"
+              :end_date_after: 'must be after start date'
   admin:
-    investments: 
+    investments:
       create:
         success: 'Investment was successfully created'
       update:
         success: 'Investment was successfully updated'
       destroy:
         success: 'Investment was successfully destroyed'
-  user_investments: 
+  user_investments:
     create:
       success: 'User investment was successfully created'
     update:
       success: 'User investment was successfully updated'
     destroy:
       success: 'User investment was successfully destroyed'
-
-
-

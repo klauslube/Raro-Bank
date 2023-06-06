@@ -1,0 +1,7 @@
+<%= render @classroom %>
+
+<div>
+  <%= link_to "Edit this classroom", edit_admin_classroom_path(@classroom) %> |
+  <%= link_to "Back to classrooms", admin_classrooms_path %>
+  <%= button_to "Destroy this classroom", admin_classroom_path(@classroom), method: :delete %>
+</div>
