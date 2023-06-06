@@ -17,7 +17,6 @@
     <div>
       <%= form.label :name, 'Name' %>
       <%= form.text_field :name %>
-    </div>
 
     <div>
       <%= form.label :minimum_amount, 'Minimum Amount' %>
@@ -30,8 +29,10 @@
     </div>
 
     <div>
-      <%= form.label :income, 'Index' %>
-      <%= form.number_field :income, min: 0 %>  
+      <%= form.label 'Index' %>
+      <%# <%= form.number_field :income, min: 0 %> 
+      <%= form.collection_select(:indicator_id, Indicator.all, :id, :name_with_rate, { prompt: 'Selecione...' }) %>
+
     </div>
 
     <div>
