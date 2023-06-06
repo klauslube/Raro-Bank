@@ -1,0 +1,36 @@
+<h1>Classrooms</h1>
+
+<% if @classrooms.blank? %>
+  <p> There are no classrooms yet. </p>
+<% end %>
+
+<div id="classrooms">
+  <table >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @classrooms.each do |classroom| %>
+        <tr>
+          <td><%= classroom.name %></td>
+          <td><%= classroom.start_date.strftime('%d/%m/%Y') %></td>
+          <td><%= classroom.end_date.strftime('%d/%m/%Y') %></td>
+          <td>
+            <div>
+              <%= link_to "Details", admin_classroom_path(classroom), method: :show %>
+
+              <%= link_to "Edit", edit_admin_classroom_path(classroom)%>
+              <%= button_to "Delete", admin_classroom_path(classroom), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure you want to delete this classroom?"} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to  "New classroom", new_admin_classroom_path %>

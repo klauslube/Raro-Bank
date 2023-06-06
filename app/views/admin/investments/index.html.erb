@@ -1,0 +1,39 @@
+<div>
+  <div>
+    <%= link_to "New Investment", new_admin_investment_path(@investment) %>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Minimum Amount</th>
+        <th scope="col">Expiration Date</th>
+        <th scope="col">Index</th>
+        <th scope="col">Category</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @investments.each do |investment| %>
+      <tr>
+        <td><%= investment.id %></td>
+        <td><%= investment.name %></td>
+        <td><%= investment.minimum_amount %></td>
+        <td><%= investment.expiration_date %></td>
+        <td><%= investment.income %></td>
+        <td>
+          <% if investment.premium %>
+            Free
+          <% else %>
+            Premium
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Details", admin_investment_path(investment) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

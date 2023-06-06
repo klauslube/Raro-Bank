@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+require "sidekiq/web"
 
 Rails.application.routes.draw do
   # Routes for devise user authentication
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       root to: "home#index" #TODO: implement home#index
 
       resources :transactions
-      resources :investments
+      resources :user_investments
     end
   end
 
@@ -45,4 +45,5 @@ Rails.application.routes.draw do
     patch "/users/password", to: "devise/passwords#update", as: :user_password_path
     post "/users/password", to: "devise/passwords#create"
   end
+  mount Sidekiq::Web => "/sidekiq"
 end
