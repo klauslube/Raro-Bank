@@ -26,8 +26,9 @@ class IndicatorService
   end
 
   def self.save_indicator(name, date, rate)
-    indicator = Indicator.find_or_initialize_by(name: name.to_s.upcase, date:)
+    indicator = Indicator.find_or_initialize_by(name: name.to_s.upcase)
     indicator.rate = rate
+    indicator.rate_date = date
     indicator.save
   end
 end
