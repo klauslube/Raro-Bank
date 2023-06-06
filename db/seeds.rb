@@ -14,3 +14,12 @@ free.save!
 premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rarobank.com', password: 'r@robank123', role: 2
 premium.skip_confirmation!
 premium.save!
+
+# Create classroom
+20.times do
+  name = Faker::Educator.course_name
+  start_date = Faker::Date.between(from: 1.year.ago, to: Date.today)
+  end_date = Faker::Date.between(from: start_date, to: start_date + 1.year)
+
+  Classroom.create!(name:, start_date:, end_date:)
+end
