@@ -6,6 +6,6 @@ class Investment < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 1, maximum: 15 }
   validates :minimum_amount, presence: true, numericality: { greater_than: 0 }
-  validates :expiration_date, presence: true
+  validates :expiration_date, :start_date, presence: true
   validates :premium, inclusion: [true, false]
 end
