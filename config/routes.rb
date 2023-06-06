@@ -21,8 +21,9 @@ Rails.application.routes.draw do
     # Routes for other users (role: free, premium)
     constraints(RoleConstraint.new([:free, :premium])) do
       root to: "home#index" #TODO: implement home#index
-
-      resources :transactions
+      
+      resources :accounts, only: %i[index]
+      resources :transactions, only: %i[index show new create]
       resources :user_investments
     end
   end
