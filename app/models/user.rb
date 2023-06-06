@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :account, dependent: :destroy
+  has_many :investments, foreign_key: :approver_id, dependent: :nullify
   has_many :user_investments, dependent: :destroy
   belongs_to :classroom, optional: true
 
@@ -22,12 +23,22 @@ class User < ApplicationRecord
   scope :by_cpf, ->(cpf) { where(cpf:) }
   scope :by_name, ->(name) { where(name:) }
   scope :by_email, ->(email) { where(email:) }
+  scope :all_except_current_user, ->(user) { where.not(id: user) }
   scope :all_except_admins, -> { where.not(role: :admin) }
   scope :name_contains, ->(contain) { where('name ILIKE ?', "%#{contain}%") }
   scope :unconfirmed_email, -> { where(confirmed_at: nil) }
   scope :confirmed_email, -> { where.not(confirmed_at: nil) }
+  scope :approvers, -> { joins(:investments).where(investments: { approver_id: pluck(:id) }).distinct }
 
   after_create :create_account
+  before_destroy :check_if_last_admin
+
+  def check_if_last_admin
+    return unless role == 'admin' && User.admin.count == 1
+
+    errors.add(:notice, 'Cannot delete the last admin user.')
+    throw(:abort)
+  end
 
   private
 
