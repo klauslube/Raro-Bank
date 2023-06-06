@@ -83,6 +83,7 @@ group :development do
   gem 'rubocop-rspec', require: false
   gem 'sidekiq', '~> 7.1'
   gem 'solargraph'
+  gem 'whenever', require: false
 end
 
 group :test do
