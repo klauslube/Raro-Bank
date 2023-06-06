@@ -4,11 +4,10 @@
 #   describe 'Validation definitions' do
 #     subject(:investment) { build(:investment) }
 
-#     it { is_expected.to validate_presence_of(:name) }
-#     it { is_expected.to validate_presence_of(:minimum_amount) }
-#     it { is_expected.to validate_presence_of(:income) }
-#     it { is_expected.to validate_presence_of(:profit) }
-#     it { is_expected.to validate_presence_of(:expiration_date) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:minimum_amount) }
+    it { is_expected.to validate_presence_of(:income) }
+    it { is_expected.to validate_presence_of(:expiration_date) }
 
 #     it {
 #       expect(investment).to allow_value(%w[true false]).for(:premium)

@@ -4,8 +4,9 @@ FactoryBot.define do
     minimum_amount { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
     income { Faker::Number.decimal(l_digits: 4) }
     premium { false }
-    profit { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
     expiration_date { Faker::Date.forward(days: 30) }
+    approver_id { FactoryBot.create(:user, role: :admin).id }
+
     association :approver, factory: :user
 
     trait :premium do

@@ -1,4 +1,3 @@
----
 include:
 - "**/*.rb"
 exclude:
@@ -10,7 +9,6 @@ require: []
 domains: []
 reporters:
 - rubocop
-- require_not_found
 formatter:
   rubocop:
     cops: safe
@@ -18,5 +16,6 @@ formatter:
     only: []
     extra_args: []
 require_paths: []
-plugins: []
+plugins: 
+- solargraph-rails
 max_files: 5000

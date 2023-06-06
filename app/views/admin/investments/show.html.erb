@@ -1,0 +1,38 @@
+<div>
+  <h3>Investment Data</h3>
+</div>
+<div>
+  <dl>
+    <div>
+      <dt>Name</dt>
+      <dd><%= @investment.name%></dd>
+    </div>
+    <div>
+      <dt>Minimum amount</dt>
+      <dd><%= @investment.minimum_amount  %></dd>
+    </div>
+    <div>
+      <dt>Expiration Date</dt>
+      <dd><%= @investment.expiration_date %></dd>
+    </div>
+      <div>
+      <dt>Income</dt>
+      <dd><%= @investment.income %></dd>
+    </div>
+      <div>
+      <dt>Category</dt>
+      <dd> 
+        <% if @investment.premium %>
+          Free
+        <% else %>
+          Premium
+        <% end %></dd>
+    </div>
+  </dl>
+</div>
+
+<div>
+  <%= link_to "Edit", edit_admin_investment_path(@investment) %>
+  <%= button_to "Delete", admin_investments_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+  <%= link_to "Back", admin_investments_path %>
+</div>

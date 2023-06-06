@@ -1,0 +1,48 @@
+<%= form_with(model: @investment, url: admin_investments_path) do |form| %>
+  <% if @investment.errors.any? %>
+      <h3> <%= pluralize(@investment.errors.count, "errors") %> prohibited this investment from being saved:</h3>
+      <div>
+        <ul role="list">
+          <% @investment.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <div>
+    <%= form.hidden_field :approver_id, value: @approver_id %>
+
+    <h2>Investment Register Form</h2>
+    <div>
+      <%= form.label :name, 'Name' %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :minimum_amount, 'Minimum Amount' %>
+      <%= form.number_field :minimum_amount, min: 0 %>
+    </div>
+
+    <div>
+      <%= form.label :expiration_date, 'Expiration Date' %>
+      <%= form.date_field :expiration_date %>
+    </div>
+
+    <div>
+      <%= form.label :income, 'Index' %>
+      <%= form.number_field :income, min: 0 %>  
+    </div>
+
+    <div>
+      <%= form.label :premium, 'Category' %>
+      <%= form.radio_button :premium, true %> <%= form.label :premium, 'Premium' %>
+      <%= form.radio_button :premium, false %> <%= form.label :premium, 'Free' %>
+    </div>
+
+    <div>
+      <%= link_to "Cancel", admin_investments_path %>
+      <%= form.submit 'Submit' %>
+    </div>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 class AddApproverToInvestments < ActiveRecord::Migration[7.0]
   def change
-    add_reference :investments, :approver, foreign_key: { to_table: :users }, type: :uuid
+    add_reference :investments, :approver, foreign_key: { to_table: :users }, type: :uuid, after: :expiration_date
   end
 end
