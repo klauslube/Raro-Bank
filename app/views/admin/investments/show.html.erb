@@ -33,6 +33,6 @@
 
 <div class="flex gap-3">
   <%= link_to "Edit", edit_admin_investment_path(@investment) %>
-  <%= button_to "Delete", @investment, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+  <%= button_to "Delete", admin_investments_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
   <%= link_to "Back", admin_investments_path %>
 </div>
