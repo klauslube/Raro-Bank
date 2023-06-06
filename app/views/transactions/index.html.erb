@@ -1,0 +1,20 @@
+<%= link_to 'Nova transferência', new_transaction_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Valor</th>
+      <th>Status</th>
+      <th>Detalhes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+    <tr>
+      <td class='py-1'><%= transaction.amount %></td>
+      <td class='py-1'><%= transaction.status %></td>
+      <td class='py-1'><%= link_to 'Detalhes', transaction_path(transaction) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
