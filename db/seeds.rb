@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Create super user admin
 admin = User.new name: 'User Admin', cpf: '00011100011', email: 'admin@rarobank.com', password: 'r@robank123', role: 3
 admin.skip_confirmation!
@@ -27,7 +25,7 @@ end
 # Create investments
 20.times do
   name = Faker::Lorem.characters(number: 1..5).upcase
-  minimum_amount = Faker::Number.number(digits: 1) * 100
+  minimum_amount = Faker::Number.number(digits: 2) * 100
   income = Faker::Number.decimal(l_digits: 2)
   premium = Faker::Boolean.boolean
   expiration_date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
