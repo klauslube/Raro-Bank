@@ -22,7 +22,7 @@ class IndicatorService
   end
 
   def self.calculate_rate(rate, name)
-    name == 'ipca' ? ((rate / 100) / 30).to_f : (rate / 100).to_f
+    name == :ipca ? (rate / 100) / 30 : rate / 100
   end
 
   def self.save_indicator(name, date, rate)
