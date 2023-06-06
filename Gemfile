@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -83,6 +81,7 @@ group :development do
 
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'sidekiq', '~> 7.1'
   gem 'solargraph'
 end
 
