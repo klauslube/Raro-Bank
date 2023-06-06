@@ -191,19 +191,17 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'when getting all users except admins' do
+    context "when getting all users except admins" do
       subject (:admin) { create(:user, :admin) }
       subject (:free_user) { create(:user, :free) }
       subject (:premium_user) { create(:user, :premium) }
 
-
-
-      it 'should return all users except admins' do
+      it "should return all users except admins" do
         users = User.all_except_admins
         expect(users).to match_array([free_user, premium_user])
       end
 
-      it 'should not return the admin' do
+      it "should not return the admin" do
         users = User.all_except_admins
         expect(users).not_to include(admin)
       end
@@ -245,6 +243,56 @@ RSpec.describe User, type: :model do
 
       it "should return an empty user list when not found" do
         expect(User.confirmed_email).to be_empty
+      end
+    end
+
+    context "when getting all users except admins" do
+      subject (:admin) { create(:user, :admin) }
+      subject (:free_user) { create(:user, :free) }
+      subject (:premium_user) { create(:user, :premium) }
+
+      it "should return all users except admins" do
+        users = User.all_except_admins
+        expect(users).to match_array([free_user, premium_user])
+      end
+
+      it "should not return the admin" do
+        users = User.all_except_admins
+        expect(users).not_to include(admin)
+      end
+    end
+
+    context "when getting all users except current user" do
+      subject (:user) { create(:user) }
+      subject (:other_user) { create(:user) }
+
+      it "should return all users except current user" do
+        users = User.all_except_current_user(user)
+        expect(users).to match_array([other_user])
+      end
+
+      it "should not return the current user" do
+        users = User.all_except_current_user(user)
+        expect(users).not_to include(user)
+      end
+    end
+
+    describe "#approvers" do
+      it "returns a list of unique users with investments" do
+        user1 = create(:user)
+        user2 = create(:user)
+        user = create(:user)
+
+        investment1 = create(:investment, approver: user1)
+        investment2 = create(:investment, approver: user2)
+        investment3 = create(:investment, approver: user2)
+
+        approvers = User.approvers.to_a
+
+        expect(approvers).to include(user1)
+        expect(approvers).to include(user2)
+        expect(approvers).not_to include(user)
+        expect(approvers.size).to eq(2)
       end
     end
   end
