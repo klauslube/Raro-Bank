@@ -3,7 +3,7 @@
 <ol>
   <%= form_with model: @transaction, data: { turbo: false } do |form| %>
     <li><%= form.number_field :amount, step: 0.01, placeholder: 'Digite valor da transferência...' %></li>
-    <li><%= form.text_field :receiver_cpf, value: @receiver_cpf, placeholder: 'Digite um CPF...' %></li>
+    <li><%= form.text_field :receiver_cpf, placeholder: 'Digite um CPF...', value: @receiver_cpf || transaction&.receiver&.user&.cpf %></li>
     <li><%= form.text_field :token, placeholder: 'Código de confirmação...' %></li>
     <%= form.submit 'Enviar' %>
     <%= link_to 'Cancelar', transactions_path %>

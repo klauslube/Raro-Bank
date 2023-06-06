@@ -11,6 +11,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @receiver_cpf = params[:receiver_cpf]
   end
 
   # def edit; end
