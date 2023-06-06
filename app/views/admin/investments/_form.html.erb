@@ -25,12 +25,11 @@
 
     <div>
       <%= form.label :expiration_date, 'Expiration Date' %>
-      <%= form.date_field :expiration_date %>
+      <%= form.date_field :expiration_date, min: Date.today %>
     </div>
 
     <div>
       <%= form.label 'Index' %>
-      <%# <%= form.number_field :income, min: 0 %> 
       <%= form.collection_select(:indicator_id, Indicator.all, :id, :name_with_rate, { prompt: 'Selecione...' }) %>
 
     </div>
