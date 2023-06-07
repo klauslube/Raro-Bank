@@ -22,7 +22,7 @@
         <td><%= inv.investment.name %></td>
         <td><%= inv.investment.minimum_amount %></td>
         <td><%= inv.investment.expiration_date %></td>
-        <td><%= inv.investment.income %></td>
+        <td><%= inv.investment.indicator.rate %></td> 
         <td><%= inv.investment.premium ? 'Premium' : 'Free' %> 
         <td><%= inv.profit || 0 %></td>
         <td><%= inv.created_at.strftime('%d/%m/%y') %></td>
