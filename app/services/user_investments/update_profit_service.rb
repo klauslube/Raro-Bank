@@ -20,7 +20,7 @@ module UserInvestments
     end
 
     def scan_numbers_in_name(name)
-      numbers = name.scan(/\d+/).map(&:to_i)
+      numbers = name.scan(/\d+(?:\.\d+)?/).map(&:to_f)
       numbers.sum
     end
   end
