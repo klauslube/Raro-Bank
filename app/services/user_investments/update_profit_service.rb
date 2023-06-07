@@ -12,8 +12,16 @@ module UserInvestments
 
     def update_investment_profit
       investment = UserInvestment.find(@user_investment_id)
-      profit = investment.initial_amount + (investment.initial_amount * investment.investment.indicator.rate)
+      total_return = scan_numbers_in_name(investment.investment.name)
+      daily_return = investment.investment.indicator.rate + (total_return / 100.0)
+
+      profit = investment.initial_amount + (investment.initial_amount * daily_return)
       investment.update(profit:)
+    end
+
+    def scan_numbers_in_name(name)
+      numbers = name.scan(/\d+/).map(&:to_i)
+      numbers.sum
     end
   end
 end
