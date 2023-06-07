@@ -8,6 +8,9 @@ module Users
     # GET /resource/sign_up
 
     # GET /resource/edit
+    def edit
+      redirect_to admin_edit_path if current_user.admin?
+    end
 
     # POST /resource
 
