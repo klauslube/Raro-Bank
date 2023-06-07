@@ -1,16 +1,7 @@
 <h2>Edit </h2>
 
 <%= form_for(@admin, url: admin_update_path, html: { method: :patch }) do |form| %>
-  <% if @admin.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
-      <ul>
-        <% @admin.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: 'shared/errors', locals: { object: @admin } %>
 
   <div class="field">
     <%= form.label :name %><br />
