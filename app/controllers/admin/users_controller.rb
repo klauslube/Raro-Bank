@@ -13,34 +13,34 @@ module Admin
 
     def update
       if @user.update_without_password(admin_user_params)
-        redirect_to admin_users_path, notice: "Usuário atualizado com sucesso!"
+        redirect_to admin_users_path, notice: t('.success')
       else
-        render :edit, alert: "Não foi possível atualizar o usuário!", status: :unprocessable_entity
+        render :edit, alert: t('.failure'), status: :unprocessable_entity
       end
     end
 
     def edit_admin; end
 
     def update_admin
-      if @admin.update(admin_user_params)
-        redirect_to admin_users_path, notice: "Usuário atualizado com sucesso!"
+      if @admin.update_with_password(admin_user_params)
+        redirect_to admin_users_path, notice: t('.success')
       else
-        render :edit_admin, alert: "Não foi possível atualizar o usuário!"
+        render :edit_admin, alert: t('.failure'), status: :unprocessable_entity
       end
     end
 
     def destroy_admin
       if current_user.destroy
-        redirect_to root_path, notice: "Usuário administrador excluído com sucesso!"
+        redirect_to root_path, notice: t('.success')
       else
-        render :edit_admin, alert: "Não foi possível excluir o usuário administrador."
+        render :edit_admin, alert: t('.failure'), status: :unprocessable_entity
       end
     end
 
     private
 
     def admin_user_params
-      params.require(:user).permit(:classroom_id, :role, :name, :cpf, :email, :password, :password_confirmation)
+      params.require(:user).permit(:classroom_id, :role, :name, :cpf, :email, :password, :password_confirmation, :current_password)
     end
 
     def fetch_user
@@ -55,7 +55,7 @@ module Admin
     def check_if_is_the_last_admin
       return unless User.admin.count == 1
 
-      redirect_to root_path, alert: "Não é possível excluir o último usuário administrador."
+      redirect_to root_path, alert: t('.last_admin')
     end
   end
 end
