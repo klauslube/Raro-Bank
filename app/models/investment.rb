@@ -8,4 +8,14 @@ class Investment < ApplicationRecord
   validates :minimum_amount, presence: true, numericality: { greater_than: 0 }
   validates :expiration_date, :start_date, presence: true
   validates :premium, inclusion: [true, false]
+
+  validate :end_date_after_start_date
+
+  private
+
+  def expiration_date_after_start_date
+    return unless start_date && expiration_date
+
+    errors.add(:expiration_date, :end_date_after) if expiration_date < start_date
+  end
 end
