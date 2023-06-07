@@ -22,12 +22,13 @@ class IndicatorService
   end
 
   def self.calculate_rate(rate, name)
-    name == 'ipca' ? ((rate / 100) / 30).to_f : (rate / 100).to_f
+    name == :ipca ? (rate / 100) / 30 : rate / 100
   end
 
   def self.save_indicator(name, date, rate)
-    indicator = Indicator.find_or_initialize_by(name: name.to_s.upcase, date:)
+    indicator = Indicator.find_or_initialize_by(name: name.to_s.upcase, rate_date: Date.current)
     indicator.rate = rate
+    indicator.rate_date = date
     indicator.save
   end
 end

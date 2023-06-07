@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
       namespace :admin do
         resources :classrooms
-        resources :investments
+        resources :investments, only: %i[index new create show destroy]
 
         # Routes for admin user (role: admin) to manage other users accounts
         resources :users, only: %i[index edit update] do
@@ -32,7 +32,8 @@ Rails.application.routes.draw do
     constraints(RoleConstraint.new([:free, :premium])) do
       root to: "home#index" #TODO: implement home#index
 
-      resources :transactions
+      resources :accounts, only: %i[index]
+      resources :transactions, only: %i[index show new create]
       resources :user_investments
     end
   end
