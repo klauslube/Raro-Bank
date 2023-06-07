@@ -9,7 +9,7 @@ class Investment < ApplicationRecord
   validates :expiration_date, :start_date, presence: true
   validates :premium, inclusion: [true, false]
 
-  validate :end_date_after_start_date
+  validate :expiration_date_after_start_date
 
   private
 
