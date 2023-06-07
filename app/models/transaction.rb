@@ -5,6 +5,10 @@ class Transaction < ApplicationRecord
   validates :token, presence: true, uniqueness: true
   validates :status, presence: { in: %i[started authenticated pending completed canceled] }
   validates :amount, presence: true, numericality: { greater_than: 0 }
+  validate :check_sender_balance
+  validate :check_transfer_yourself
+
+  after_commit :update_balance
 
   enum :status, {
     started: 1,
@@ -14,9 +18,6 @@ class Transaction < ApplicationRecord
     canceled: 20
   }, scopes: true, default: :started
 
-  validate :check_sender_balance
-  validate :check_transfer_yourself
-
   private
 
   def check_sender_balance
@@ -25,5 +26,9 @@ class Transaction < ApplicationRecord
 
   def check_transfer_yourself
     errors.add(:receiver_id, "You can't send a transaction to yourself") if receiver_id == sender_id
+  end
+
+  def update_balance
+    Transactions::UpdateBalanceJob.perform_now(id)
   end
 end
