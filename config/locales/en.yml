@@ -78,3 +78,4 @@ en:
         investments:
           attributes:
             expiration_date:
+              expiration_date_after: 'must be after start date'
