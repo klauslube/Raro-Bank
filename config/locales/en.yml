@@ -53,10 +53,10 @@ en:
     update:
       success: 'User investment was successfully updated'
     destroy:
-      success: 'User investment was successfully destroyed'      
+      success: 'User investment was successfully destroyed'
   transactions:
     create:
-      success: "Your transfer has been created!"
+      success: 'Your transfer has been created!'
   activerecord:
     errors:
       models:
@@ -74,8 +74,8 @@ en:
         classroom:
           attributes:
             end_date:
-              :end_date_after: 'must be after start date'
-        investment:
+              end_date_after: 'must be after start date'
+        investments:
           attributes:
             expiration_date:
-              :end_date_after: 'must be after start date'
+              expiration_date_after: 'must be after start date'

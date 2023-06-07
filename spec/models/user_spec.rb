@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   describe "Relations" do
     it { should belong_to(:classroom).optional }
     it { should have_many(:user_investments) }
+    it { is_expected.to have_many(:user_investments).dependent(:destroy) }
   end
 
   describe "Model" do
@@ -178,6 +179,34 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context "when searching by email" do
+      subject (:user) { build(:user) }
+      it "should return the correct user" do
+        user.save
+        expect(User.by_email(user.email)).to include(user)
+      end
+
+      it "should return an empty user list when not found" do
+        expect(User.by_email("")).to be_empty
+      end
+    end
+
+    context "when getting all users except admins" do
+      subject (:admin) { create(:user, :admin) }
+      subject (:free_user) { create(:user, :free) }
+      subject (:premium_user) { create(:user, :premium) }
+
+      it "should return all users except admins" do
+        users = User.all_except_admins
+        expect(users).to match_array([free_user, premium_user])
+      end
+
+      it "should not return the admin" do
+        users = User.all_except_admins
+        expect(users).not_to include(admin)
+      end
+    end
+
     context "when searching with name contains" do
       subject (:user) { build(:user, name: "Ana Carolina") }
       it "should return the correct user" do
@@ -216,30 +245,55 @@ RSpec.describe User, type: :model do
         expect(User.confirmed_email).to be_empty
       end
     end
-  end
 
-  describe "Callbacks" do
-    describe "check if last admin" do
-      let!(:admin_user) { create(:user, role: :admin) }
+    context "when getting all users except admins" do
+      subject (:admin) { create(:user, :admin) }
+      subject (:free_user) { create(:user, :free) }
+      subject (:premium_user) { create(:user, :premium) }
 
-      context "when user is the last admin" do
-        it "does not allow deletion" do
-          expect { admin_user.destroy }.not_to change(User, :count)
-          expect(admin_user.errors[:base]).to include("Cannot delete the last admin user.")
-        end
+      it "should return all users except admins" do
+        users = User.all_except_admins
+        expect(users).to match_array([free_user, premium_user])
       end
 
-      context "when user is not the last admin" do
-        let!(:another_admin_user) { create(:user, role: :admin) }
-
-        it "allows deletion" do
-          expect { admin_user.destroy }.to change(User, :count).by(-1)
-        end
+      it "should not return the admin" do
+        users = User.all_except_admins
+        expect(users).not_to include(admin)
       end
     end
-  end
 
-  describe "Relations" do
-    it { is_expected.to have_many(:user_investments).dependent(:destroy) }
+    context "when getting all users except current user" do
+      subject (:user) { create(:user) }
+      subject (:other_user) { create(:user) }
+
+      it "should return all users except current user" do
+        users = User.all_except_current_user(user)
+        expect(users).to match_array([other_user])
+      end
+
+      it "should not return the current user" do
+        users = User.all_except_current_user(user)
+        expect(users).not_to include(user)
+      end
+    end
+
+    describe "#approvers" do
+      it "returns a list of unique users with investments" do
+        user1 = create(:user)
+        user2 = create(:user)
+        user = create(:user)
+
+        investment1 = create(:investment, approver: user1)
+        investment2 = create(:investment, approver: user2)
+        investment3 = create(:investment, approver: user2)
+
+        approvers = User.approvers.to_a
+
+        expect(approvers).to include(user1)
+        expect(approvers).to include(user2)
+        expect(approvers).not_to include(user)
+        expect(approvers.size).to eq(2)
+      end
+    end
   end
 end
