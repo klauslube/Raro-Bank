@@ -22,9 +22,11 @@
 # end
 
 set :output, "log/cron_log.log"
-every 1.minute do
-  runner 'IndicatorService.import_indicators'
-end
+set :environment, 'development'
 
+every 1.day, at: '8:00 am' do
+  rake 'indicators:import_indicators'
+  only: [:monday, :tuesday, :wednesday, :thursday, :friday]
+end
 
 # Learn more: http://github.com/javan/whenever
