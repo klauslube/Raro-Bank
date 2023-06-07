@@ -32,14 +32,6 @@
 # config/locales/en.yml
 
 en:
-  admin:
-    classrooms:
-      create:
-        success: 'Your classroom has been created!'
-      update:
-        success: 'Your classroom has been updated!'
-      destroy:
-        success: 'Your classroom has been deleted!'
   transactions:
     create:
       success: "Your transfer has been created!"
@@ -49,30 +41,48 @@ en:
         user:
           attributes:
             password:
-              no_letter: 'must have at least 1 letter'
-              no_number: 'must have at least 1 number'
-              no_special: 'must have at least 1 special character'
+              no_letter: "must have at least 1 letter"
+              no_number: "must have at least 1 number"
+              no_special: "must have at least 1 special character"
             role:
-              not_a_free_user: 'Denied access. This action is only allowed for free users.'
-              not_a_premium_user: 'Denied access. This action is only allowed for premium users.'
-              not_an_admin: 'Denied access. This action is only allowed for admins.'
-              not_a_free_or_premium_user: 'Denied access. This action is only allowed for free or premium users.'
+              not_a_free_user: "Denied access. This action is only allowed for free users."
+              not_a_premium_user: "Denied access. This action is only allowed for premium users."
+              not_an_admin: "Denied access. This action is only allowed for admins."
+              not_a_free_or_premium_user: "Denied access. This action is only allowed for free or premium users."
         classroom:
           attributes:
             end_date:
-              :end_date_after: 'must be after start date'
+              :end_date_after: "must be after start date"
   admin:
     investments:
       create:
-        success: 'Investment was successfully created'
+        success: "Investment was successfully created"
       update:
-        success: 'Investment was successfully updated'
+        success: "Investment was successfully updated"
       destroy:
-        success: 'Investment was successfully destroyed'
+        success: "Investment was successfully destroyed"
+    classrooms:
+      create:
+        success: "Your classroom has been created!"
+      update:
+        success: "Your classroom has been updated!"
+      destroy:
+        success: "Your classroom has been deleted!"
+    users:
+      update:
+        success: "User updated successfully."
+        failure: "Failed to update user."
+      update_admin:
+        success: "Admin updated successfully."
+        failure: "Failed to update admin user."
+      destroy_admin:
+        success: "Admin user deleted successfully."
+        failure: "Failed to delete admin user."
+      last_admin: "Cannot delete the last admin user."
   user_investments:
     create:
-      success: 'User investment was successfully created'
+      success: "User investment was successfully created"
     update:
-      success: 'User investment was successfully updated'
+      success: "User investment was successfully updated"
     destroy:
-      success: 'User investment was successfully destroyed'
+      success: "User investment was successfully destroyed"
