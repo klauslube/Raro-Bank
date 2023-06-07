@@ -15,6 +15,7 @@
       <% if current_user.role == 'free' %>
         <% next if investment.premium %>
       <% end %>
+      <% next if investment.expiration_date < Date.current %>
       <%= form_with(model: @user_investment, data: { turbo: false }) do |form| %>
         <% if @user_investment.errors.any? %>
           <h3> <%= pluralize(@user_investment.errors.count, "errors") %> prohibited this user investment from being saved:</h3>
