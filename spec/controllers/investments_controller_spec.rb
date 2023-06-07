@@ -48,7 +48,6 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
 
     context '#create' do
       it 'creates a new investment' do
-        # binding.break
         expect {
           post :create, params: { investment: valid_attributes }
         }.to change(Investment, :count).by(1)
