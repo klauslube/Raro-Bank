@@ -3,6 +3,7 @@
 :timeout: 30
 :queues:
   - default
+  - api
 
 development:
   :concurrency: 5

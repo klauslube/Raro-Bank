@@ -59,7 +59,7 @@ gem 'rest-client'
 
 group :development, :test do
   # Environment variables
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'byebug'
   gem 'debug', platforms: %i[mri mingw x64_mingw]

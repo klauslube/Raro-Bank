@@ -17,7 +17,6 @@
     <div>
       <%= form.label :name, 'Name' %>
       <%= form.text_field :name %>
-    </div>
 
     <div>
       <%= form.label :minimum_amount, 'Minimum Amount' %>
@@ -25,13 +24,19 @@
     </div>
 
     <div>
-      <%= form.label :expiration_date, 'Expiration Date' %>
-      <%= form.date_field :expiration_date %>
+      <%= form.label :start_date, 'Start Date' %>
+      <%= form.date_field :start_date, min: Date.current %>
     </div>
 
     <div>
-      <%= form.label :income, 'Index' %>
-      <%= form.number_field :income, min: 0 %>  
+      <%= form.label :expiration_date, 'Expiration Date' %>
+      <%= form.date_field :expiration_date, min: Date.current %>
+    </div>
+
+    <div>
+      <%= form.label 'Index' %>
+      <%= form.collection_select(:indicator_id, Indicator.all, :id, :name_with_rate, { prompt: 'Selecione...' }) %>
+
     </div>
 
     <div>
