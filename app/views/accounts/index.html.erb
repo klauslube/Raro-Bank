@@ -1,0 +1,20 @@
+<strong>Balance</strong> <%= current_user.account.balance %><hr>
+<strong>Owner</strong> <%= current_user.account.user.name %><hr>
+
+<strong>Receivers</strong>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.account.sender_transactions.each do |transaction| %>
+    <tr>
+      <td><%= link_to transaction.receiver.user.name.titleize, new_transaction_path(receiver_cpf: transaction.receiver.user.cpf) %></td>
+      <td><%= transaction.amount %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

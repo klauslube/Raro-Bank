@@ -12,12 +12,16 @@
       <dd><%= @investment.minimum_amount  %></dd>
     </div>
     <div>
+      <dt>Start Date</dt>
+      <dd><%= @investment.start_date %></dd>
+    </div>
+    <div>
       <dt>Expiration Date</dt>
       <dd><%= @investment.expiration_date %></dd>
     </div>
       <div>
-      <dt>Income</dt>
-      <dd><%= @investment.income %></dd>
+      <dt>Rate</dt>
+      <dd><%= @investment.indicator.rate %></dd>
     </div>
       <div>
       <dt>Category</dt>
@@ -32,7 +36,6 @@
 </div>
 
 <div>
-  <%= link_to "Edit", edit_admin_investment_path(@investment) %>
-  <%= button_to "Delete", admin_investments_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+  <%= button_to "Delete", admin_investment_path(@investment), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
   <%= link_to "Back", admin_investments_path %>
 </div>

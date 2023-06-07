@@ -17,4 +17,16 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+# every 1.day, at: '9:00 am' do
+#   runner 'IndicatorService.import_indicators'
+# end
+
+set :output, "log/cron_log.log"
+set :environment, 'development'
+
+every 1.day, at: '8:00 am' do
+  rake 'indicators:import_indicators'
+  only: [:monday, :tuesday, :wednesday, :thursday, :friday]
+end
+
 # Learn more: http://github.com/javan/whenever
