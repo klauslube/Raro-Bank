@@ -16,7 +16,7 @@ premium.save!
 # Create classrooms
 20.times do
   name = Faker::Educator.course_name
-  start_date = Faker::Date.between(from: 1.year.ago, to: Date.today)
+  start_date = Faker::Date.between(from: 1.year.ago, to: Time.zone.today)
   end_date = Faker::Date.between(from: start_date, to: start_date + 1.year)
 
   Classroom.create!(name:, start_date:, end_date:)
@@ -28,7 +28,7 @@ end
   minimum_amount = Faker::Number.number(digits: 2) * 100
   income = Faker::Number.decimal(l_digits: 2)
   premium = Faker::Boolean.boolean
-  expiration_date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
+  expiration_date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
   approver_id = admin.id
 
   Investment.create!(name:, minimum_amount:, income:, premium:, expiration_date:, approver_id:)
