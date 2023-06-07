@@ -62,7 +62,7 @@
 
 ### Implementar token de validação de transações
 
-Utilizando JWT, implementar um token para validar uma transação por um token enviado por email. Todos os níveis necessários (MVC) devem ser implementados.
+Implementar um token para validar uma transação por um token enviado por email. Todos os níveis necessários (MVC) devem ser implementados.
 
 **Trecho do enunciado:**
 
@@ -94,7 +94,7 @@ Implementar um mailer capaz de enviar um email para os usuários que enviam e re
 
 > "Notificação de transferência para os usuários que fazem e recebem as transferências. Será necessário enviar um e-mail para estes usuários para contemplar a notificação."
 
-OBS: Analisar a adição de um link que o envia para essa transferência.
+OBS: Analisar a adição de um link que leva para o histórico da conta de quem recebeu uma transferência.
 
 ### Implementar campo de filtragem para listas de investimentos
 
@@ -118,7 +118,7 @@ Utilizando a gem [Faraday](https://github.com/lostisland/faraday) ou [rest-clien
 
 Além disso, deve ser implementado um job que atualiza os indicadores diariamente no nosso banco de dados. Para isso, deverá ser utilizado a gem [Sidekiq](https://github.com/sidekiq/sidekiq) ou [Whenever](https://github.com/javan/whenever).
 
-A nível de modelagem, deverá ser criado um model para armazenar a taxa SELIC, que deve ser atualizado diariamente.
+Deverá ser criada uma nova entidade para guardar as informações que serão buscadas na API do Banco Central.
 
 **Trecho do enunciado:**
 
@@ -236,3 +236,14 @@ Implementar estrutura do espaço de usuário, seguindo o layout definido no [fig
 - Deve ser utilizado o [Tailwind UI](https://tailwindui.com/) para facilitar a implementação do layout;
 - Deve-se utilizar de _helpers_ para organização e futura manutenção do código CSS;
 - Não é necessário implementar a lógica de funcionamento, apenas a estrutura visual;
+
+#### Aplicar estilo de tela de Admin: Classrooms
+
+- Além da utilização de classes _Tailwind_ e _helpers_, deve ser utilizado _hotwire_ ou _stimulus_ para:
+  - adição dinâmica de _users_ a uma turma;
+  - exclusão dinâmica de _users_ de uma turma.
+
+#### Aplicar estilo de tela de Admin: Transferências
+
+- Além da utilização de classes _Tailwind_ e _helpers_, deve ser utilizado _hotwire_ ou _stimulus_ para:
+  - exibição dinâmica de contatos com quem já foi realizada uma transferência.
