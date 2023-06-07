@@ -25,12 +25,12 @@
 
     <div>
       <%= form.label :start_date, 'Start Date' %>
-      <%= form.date_field :start_date, min: Date.today %>
+      <%= form.date_field :start_date, min: Date.current %>
     </div>
 
     <div>
       <%= form.label :expiration_date, 'Expiration Date' %>
-      <%= form.date_field :expiration_date, min: Date.today %>
+      <%= form.date_field :expiration_date, min: Date.current %>
     </div>
 
     <div>
