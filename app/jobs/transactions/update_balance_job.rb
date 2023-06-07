@@ -15,12 +15,12 @@ module Transactions
       current_time = Time.now.in_time_zone('America/Fortaleza')
       weekday = current_time.wday
       hour = current_time.hour
-      weekday >= 1 && weekday <= 5 && hour >= 7 && hour < 18
+      weekday >= 1 && weekday <= 5 && hour >= 8 && hour < 18
     end
 
     def next_business_day(transaction)
       next_transfer_day = find_next_transfer_day
-      next_transfer_time = next_transfer_day.beginning_of_day + 7.hours
+      next_transfer_time = next_transfer_day.beginning_of_day + 8.hours
       self.class.set(wait_until: next_transfer_time).perform_later(transaction.id)
     end
 
