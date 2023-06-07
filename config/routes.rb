@@ -14,14 +14,17 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :classrooms
         resources :investments
-        resources :users, only: %i[index] do
+
+        # Routes for admin user (role: admin) to manage other users accounts
+        resources :users, only: %i[index edit update] do
           get "/edit", to: "users#edit", as: :edit
           patch "", to: "users#update", as: :update
         end
 
+        # Routes for admin user (role: admin) to manage his own account
         get "/edit", to: "users#edit_admin", as: :edit
-        patch "/edit", to: "users#update_admin", as: :update
-        delete "/edit", to: "users#destroy_admin", as: :destroy
+        patch "/", to: "users#update_admin", as: :update
+        delete "/", to: "users#destroy_admin", as: :destroy
       end
     end
 
