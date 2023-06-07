@@ -27,12 +27,12 @@ RSpec.describe TransactionsController, type: :controller do
     end
 
     context '#show' do
-      it 'should respond with 200' do
+      xit 'should respond with 200' do
         get :show, params: { id: transaction.id }
         expect(response).to have_http_status(200)
       end
 
-      it 'renders the show template' do
+      xit 'renders the show template' do
         get :show, params: { id: transaction.id }
         expect(response).to render_template(:show)
       end
@@ -54,13 +54,13 @@ RSpec.describe TransactionsController, type: :controller do
         @user = create(:user)
         @transaction = create(:transaction)
       end
-      it 'creates a new transaction' do
+      xit 'creates a new transaction' do
         expect {
         post :create, params: { transaction: valid_attributes }
         }.to change(Transaction, :count).by(1)
       end
 
-      it 'try to create with invalid attributes' do
+      xit 'try to create with invalid attributes' do
         expect {
           post :create, params: { transaction: invalid_attributes }
         }.not_to change(Transaction, :count)

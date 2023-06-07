@@ -14,11 +14,16 @@ class Transaction < ApplicationRecord
     canceled: 20
   }, scopes: true, default: :started
 
-  before_commit :check_sender_balance
+  validate :check_sender_balance
+  validate :check_transfer_yourself
 
   private
 
   def check_sender_balance
     errors.add(:amount, 'Insufficient balance for the transaction') if sender.balance < amount.to_f
+  end
+
+  def check_transfer_yourself
+    errors.add(:receiver_id, "You can't send a transaction to yourself") if receiver_id == sender_id
   end
 end
