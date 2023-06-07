@@ -13,4 +13,12 @@ class Transaction < ApplicationRecord
     completed: 15,
     canceled: 20
   }, scopes: true, default: :started
+
+  before_commit :check_sender_balance
+
+  private
+
+  def check_sender_balance
+    errors.add(:amount, 'Insufficient balance for the transaction') if sender.balance < amount.to_f
+  end
 end
