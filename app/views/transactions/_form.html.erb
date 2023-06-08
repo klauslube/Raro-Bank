@@ -1,4 +1,4 @@
-<%= render 'shared/errors', target: @transaction %>
+<%= render 'shared/errors', object: @transaction %>
 
 <ol>
   <%= form_with model: @transaction, data: { turbo: false } do |form| %>
@@ -9,4 +9,3 @@
     <%= link_to 'Cancelar', transactions_path %>
   <% end %>
 </ol>
-
