@@ -10,6 +10,7 @@ class Transaction < ApplicationRecord
   validate :check_transfer_yourself
 
   after_create :generate_token
+  after_create :token_countdown
   after_commit :update_balance
   after_commit :new_transfer
 
@@ -25,6 +26,10 @@ class Transaction < ApplicationRecord
 
   def generate_token
     build_token(code: SecureRandom.random_number(1_000_000).to_s.rjust(6, '0').to_i).save
+  end
+
+  def token_countdown
+    Transactions::TokenUpdateJob.set(wait: 5.minutes).perform_later
   end
 
   def check_sender_balance
