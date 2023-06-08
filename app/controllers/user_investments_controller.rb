@@ -1,6 +1,7 @@
 class UserInvestmentsController < ApplicationController
   before_action :authenticate_free_or_premium_user!
   before_action :fetch_user_investment, only: %i[show edit update destroy]
+  # before_action :fetch_investment, only: %i[new]
 
   def index
     @user_investments = UserInvestment.where(user_id: current_user.id)
@@ -10,18 +11,23 @@ class UserInvestmentsController < ApplicationController
   def show; end
 
   def new
-    @user_investment = UserInvestment.new
     @investment = Investment.find(params[:investment_id])
+    @user_investment = UserInvestment.new
+    @balance = current_user.account.balance
   end
 
   def edit; end
 
   def create
     @user_investment = UserInvestment.new(user_investment_params)
-    return redirect_to user_investments_path, notice: t('.success') if @user_investment.save
 
-    @investments = Investment.all
-    render :new, status: :unprocessable_entity
+    if @user_investment.save
+      @user_investment.update_account_balance
+
+      redirect_to user_investments_path, notice: t('.success')
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -43,5 +49,9 @@ class UserInvestmentsController < ApplicationController
 
   def fetch_user_investment
     @user_investment = UserInvestment.find(params[:id])
+  end
+
+  def fetch_investment
+    @investment = Investment.find(params[:investment_id])
   end
 end
