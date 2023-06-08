@@ -6,7 +6,11 @@ module.exports = {
     "./app/javascript/**/*.js",
     "./node_modules/flowbite/**/*.js",
   ],
-  plugins: [require("flowbite/plugin"), require("@tailwindcss/forms")],
+  plugins: [
+    require("flowbite/plugin"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+  ],
   theme: {
     colors: {
       primary: {
@@ -30,6 +34,10 @@ module.exports = {
         500: "#cbdb2c",
         600: "#b1bf21",
       },
+    },
+    fontFamily: {
+      app: ["Poppins", "sans-serif"],
+      admin: ["Titillium Web", "sans-serif"],
     },
   },
 };
