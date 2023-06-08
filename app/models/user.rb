@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   has_one :account, dependent: :destroy
   belongs_to :classroom, optional: true
+  has_many :user_investments, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
-  has_many :user_investments, dependent: :destroy
+  delegate :balance, to: :account
 
   enum :role, {
     free: 1,
@@ -17,7 +18,6 @@ class User < ApplicationRecord
   validates :cpf, length: { is: 11 }, uniqueness: true, numericality: { only_integer: true }
   validates :name, length: { minimum: 3, maximum: 255 }
   validates :cpf, length: { is: 11 }
-
   validate :strong_password
 
   scope :by_cpf, ->(cpf) { where(cpf:) }
