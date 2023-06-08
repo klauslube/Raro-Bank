@@ -1,7 +1,7 @@
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, url: user_password_path, html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
 
   <div class="field">
     <%= f.label :email %><br />

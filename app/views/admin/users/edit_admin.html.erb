@@ -1,7 +1,7 @@
 <h2>Edit </h2>
 
 <%= form_for(@admin, url: admin_update_path, html: { method: :patch }) do |form| %>
-  <%= render partial: 'shared/errors', locals: { object: @admin } %>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: @admin } %>
 
   <div class="field">
     <%= form.label :name %><br />
