@@ -30,7 +30,7 @@ class TransactionsController < ApplicationController
 
   def transaction_params
     params.require(:transaction).permit(
-      %i[amount status token sender_id receiver_id]
+      %i[amount status token_code sender_id receiver_id]
     )
   end
 
