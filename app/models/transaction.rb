@@ -29,6 +29,6 @@ class Transaction < ApplicationRecord
   end
 
   def update_balance
-    Transactions::UpdateBalanceJob.perform_now(id)
+    Transactions::UpdateBalanceJob.perform_later(id)
   end
 end
