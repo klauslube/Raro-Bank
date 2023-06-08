@@ -24,7 +24,7 @@
 set :output, "log/cron_log.log"
 set :environment, 'development'
 
-every 1.day, at: '5:00 am' do
+every 1.day, at: '8:00 am' do
   rake 'indicators:import_indicators'
 end
 
