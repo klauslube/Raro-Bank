@@ -5,6 +5,7 @@ class UserInvestment < ApplicationRecord
   validates :initial_amount, presence: true, numericality: { greater_than: 0 }
   validate :initial_amount_enough?
   validate :premium_investment_available?
+  # validate :balance_account_enough?
 
   after_commit :update_investment_profit, on: :create
 
@@ -21,6 +22,11 @@ class UserInvestment < ApplicationRecord
   end
 
   def initial_amount_enough?
-    errors.add(:initial_amount, 'needs to be more than minimum amount') if initial_amount < investment.minimum_amount
+    errors.add(:initial_amount, 'needs to be more than minimum amount') if investment&.minimum_amount && initial_amount < investment.minimum_amount
+  end
+
+  def balance_account_enough?
+    # binding.break
+    errors.add(:base, 'Balance is not enough') if user.account.balance < initial_amount
   end
 end
