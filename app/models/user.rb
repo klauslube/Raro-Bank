@@ -1,11 +1,13 @@
 class User < ApplicationRecord
   has_one :account, dependent: :destroy
-  has_many :investments, foreign_key: :approver_id, dependent: :nullify, inverse_of: :approver
-  has_many :user_investments, dependent: :destroy
   belongs_to :classroom, optional: true
+  has_many :user_investments, dependent: :destroy
+  has_many :investments, foreign_key: :approver_id, dependent: :nullify, inverse_of: :approver
 
-  devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :validatable, :trackable, :confirmable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :trackable, :confirmable
+
+  delegate :balance, to: :account
 
   enum :role, {
     free: 1,
