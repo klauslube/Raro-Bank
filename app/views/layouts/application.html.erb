@@ -11,9 +11,12 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <h1>LAYOUT APP</h1>
+
+    <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
+    <%= render partial: "shared/notifications/error", locals: { message: flash[:alert] } %>
+
     <%= yield %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
   </body>
 </html>
