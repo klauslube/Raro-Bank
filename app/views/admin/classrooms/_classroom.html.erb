@@ -1,9 +1,35 @@
 <div id="<%= dom_id classroom %>">
-  <p><strong>Nome:</strong> <%= classroom.name %></p>
-  <p><strong>Data de Início:</strong> <%= classroom.start_date.strftime('%d/%m/%Y') %></p>
-  <p><strong>Data de Término:</strong> <%= classroom.end_date.strftime('%d/%m/%Y') %></p>
-
-  <% classroom.users.each do |user| %>
-    <%= user.name %>
-  <% end %>
-</div>
+  <div >
+    <table >
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= classroom.name %></td>
+          <td><%= classroom.start_date.strftime('%d/%m/%Y') %></td>
+          <td><%= classroom.end_date.strftime('%d/%m/%Y') %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div >
+    <table >
+      <thead>
+        <tr>
+          <th>Students</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% classroom.users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
