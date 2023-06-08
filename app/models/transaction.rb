@@ -1,13 +1,15 @@
 class Transaction < ApplicationRecord
   belongs_to :sender, class_name: 'Account'
   belongs_to :receiver, class_name: 'Account'
+  has_one :token, dependent: :destroy
 
-  validates :token, presence: true, uniqueness: true
+  validates :token_code, presence: true
   validates :status, presence: { in: %i[started authenticated pending completed canceled] }
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validate :check_sender_balance
   validate :check_transfer_yourself
 
+  after_create :generate_token
   after_commit :update_balance
   after_commit :new_transfer
 
@@ -21,6 +23,10 @@ class Transaction < ApplicationRecord
 
   private
 
+  def generate_token
+    build_token(code: SecureRandom.random_number(1_000_000).to_s.rjust(6, '0').to_i).save
+  end
+
   def check_sender_balance
     errors.add(:amount, 'Insufficient balance for the transaction') if sender.balance < amount.to_f
   end
@@ -30,7 +36,7 @@ class Transaction < ApplicationRecord
   end
 
   def update_balance
-    Transactions::UpdateBalanceJob.perform_now(id)
+    Transactions::UpdateBalanceJob.perform_later(id)
   end
 
   def new_transfer
