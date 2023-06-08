@@ -13,6 +13,9 @@
   <body class="bg-slate-600">
     <h1>LAYOUT ADMIN</h1>
 
+    <div class="text-red-500">
+    <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-6 h-6 text-red-400 hover:text-red-800' %>
+  </div>
     <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
     <%= render partial: "shared/notifications/error", locals: { message: flash[:alert] } %>
 
