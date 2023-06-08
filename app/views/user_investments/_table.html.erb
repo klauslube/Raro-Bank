@@ -1,7 +1,5 @@
 <h1>User Investments</h1>
-<div>
-  <%= link_to "New Investment", new_user_investment_path(@user_investment) %>
-</div>
+<%= link_to 'Investments Catalog', catalogs_path %>
 <table>
   <thead>
     <tr>
@@ -16,17 +14,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @user_investments.each do |inv| %>
+    <% @user_investments.each do |investment| %>
       <tr>
-        <td><%= inv.id %></td>
-        <td><%= inv.investment.name %></td>
-        <td><%= inv.investment.minimum_amount %></td>
-        <td><%= inv.investment.expiration_date %></td>
-        <td><%= inv.investment.indicator.rate %></td> 
-        <td><%= inv.investment.premium ? 'Premium' : 'Free' %> 
-        <td><%= inv.profit || 0 %></td>
-        <td><%= inv.created_at.strftime('%d/%m/%y') %></td>
-        <td><%= button_to "Rescue!", inv, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></td>
+        <td><%= investment.id %></td>
+        <td><%= investment.investment.name %></td>
+        <td><%= investment.investment.minimum_amount %></td>
+        <td><%= investment.investment.expiration_date %></td>
+        <td><%= investment.investment.indicator.rate %></td> 
+        <td><%= investment.investment.premium ? 'Premium' : 'Free' %> 
+        <td><%= investment.profit || 0 %></td>
+        <td><%= investment.created_at.strftime('%d/%m/%y') %></td>
+        <td><%= link_to "Detalhes", user_investment_path(investment) %></td>
         </td>
       </tr>
     <% end %>

@@ -1,53 +1,44 @@
-<table>
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Minimum Amount</th>
-      <th scope="col">Expiration Date</th>
-      <th scope="col">Index</th>
-      <th scope="col">Category</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @investments.each do |investment| %>
-      <% if current_user.role == 'free' %>
-        <% next if investment.premium %>
-      <% end %>
-      <% next if investment.expiration_date < Date.current %>
-      <% next if investment.start_date > Date.current %>
-      <%= form_with(model: @user_investment, data: { turbo: false }) do |form| %>
-        <% if @user_investment.errors.any? %>
-          <h3> <%= pluralize(@user_investment.errors.count, "errors") %> prohibited this user investment from being saved:</h3>
-          <div>
-            <ul role="list">
-              <% @user_investment.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
+<%= form_with(model: @user_investment, data: { turbo: false }) do |form| %>
+  <% if @user_investment.errors.any? %>
+    <h3><%= pluralize(@user_investment.errors.count, "error") %> prohibited this user investment from being saved:</h3>
+    <div>
+      <ul role="list">
+        <% @user_investment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
         <% end %>
-        <tr>
-          <td>
-            <%= form.hidden_field :investment_id, value: investment.id %>
-            <%= investment.id %>
-          </td>
-          <td><%= investment.name %></td>
-          <td><%= investment.minimum_amount %></td>
-          <td><%= investment.expiration_date %></td>
-          <td><%= investment.indicator.rate %></td>
-          <td><%= investment.premium ? 'Premium' : 'Free'%></td>
-          <td>
-            <div>
-              <%= form.label :initial_amount, 'Initial Amount' %>
-              <%= form.number_field :initial_amount %>
-              <%= form.hidden_field :user_id, value: current_user.id %>
-            </div>
-            <%= form.submit "Buy" %>      
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.hidden_field :investment_id, value: @investment.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :profit, value: 0 %>
+    <div>
+      <%= label_tag :name, 'Name' %>
+      <%= @investment.name %>
+    </div>
+    <div>
+      <%= label_tag :minimum_amount, 'Minimum Amount' %>
+      <%= @investment.minimum_amount %>
+    </div>
+    <div>
+      <%= label_tag :expiration_date, 'Expiration Date' %>
+      <%= @investment.expiration_date %>
+    </div>
+    <div>
+      <%= label_tag 'Index' %>
+      <%= @investment.indicator.rate %>
+    </div>
+    <div>
+      <%= label_tag 'Category' %>
+      <%= @investment.premium ? 'Premium' : 'Free'%>
+    </div>
+    <div>
+      <%= form.label :initial_amount, 'Initial Amount' %>
+      <%= form.number_field :initial_amount, min: @investment.minimum_amount %>
+    </div>
+    <div>
+      <%= form.submit "Invest" %>
+    </div>
+  </div>
+<% end %>
