@@ -1,15 +1,15 @@
 # Create super user admin
-admin = User.new name: "User Admin", cpf: "00011100011", email: "admin@rarobank.com", password: "r@robank123", role: 3
+admin = User.new name: 'User Admin', cpf: '00011100011', email: 'admin@rarobank.com', password: 'r@robank123', role: 3
 admin.skip_confirmation!
 admin.save!
 
 # Create free user
-free = User.new name: "User Free", cpf: "00022200011", email: "free@rarobank.com", password: "r@robank123", role: 1
+free = User.new name: 'User Free', cpf: '00022200011', email: 'free@rarobank.com', password: 'r@robank123', role: 1
 free.skip_confirmation!
 free.save!
 
 # Create premium user
-premium = User.new name: "User Premium", cpf: "00033300011", email: "premium@rarobank.com", password: "r@robank123", role: 2
+premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rarobank.com', password: 'r@robank123', role: 2
 premium.skip_confirmation!
 premium.save!
 
@@ -22,14 +22,25 @@ premium.save!
   Classroom.create!(name:, start_date:, end_date:)
 end
 
+# Create inidcatores
+indicators = []
+5.times do
+  rate = Faker::Number.decimal(l_digits: 2, r_digits: 6)
+  name = Faker::Lorem.word
+  rate_date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
+
+  indicator = Indicator.create!(rate:, name:, rate_date:)
+  indicators << indicator
+end
+
 # Create investments
 20.times do
   name = Faker::Lorem.characters(number: 1..5).upcase
   minimum_amount = Faker::Number.number(digits: 2) * 100
-  income = Faker::Number.decimal(l_digits: 2)
+  indicator_id = indicators.sample.id
   premium = Faker::Boolean.boolean
   expiration_date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
   approver_id = admin.id
 
-  Investment.create!(name:, minimum_amount:, income:, premium:, expiration_date:, approver_id:)
+  Investment.create!(name:, minimum_amount:, indicator_id:, premium:, expiration_date:, approver_id:)
 end
