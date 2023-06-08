@@ -9,6 +9,7 @@ class Transaction < ApplicationRecord
   validate :check_transfer_yourself
 
   after_commit :update_balance
+  after_commit :new_transfer
 
   enum :status, {
     started: 1,
@@ -29,6 +30,10 @@ class Transaction < ApplicationRecord
   end
 
   def update_balance
-    Transactions::UpdateBalanceJob.perform_later(id)
+    Transactions::UpdateBalanceJob.perform_now(id)
+  end
+
+  def new_transfer
+    TransactionMailer.notify(self).deliver_now
   end
 end
