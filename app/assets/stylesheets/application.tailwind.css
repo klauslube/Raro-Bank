@@ -74,4 +74,17 @@
   .icon-button {
     @apply text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out;
   }
+
+  /* Menu dropdown */
+  .menu-dropdown-container {
+    @apply relative;
+  }
+
+  .menu-dropdown {
+    @apply transition transform origin-top-right absolute right-0 bg-white min-w-fit flex flex-col items-end justify-start p-2 border-primary-300 rounded-md shadow-2xl ring-1 ring-black ring-opacity-5;
+  }
+
+  .menu-dropdown-item {
+    @apply flex justify-center items-center gap-2 px-4 py-2 text-sm text-base text-primary-600 hover:text-primary-300;
+  }
 }
