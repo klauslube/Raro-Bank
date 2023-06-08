@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Notifications */
+@layer components {
+  .notification-container {
+    @apply transition transform duration-1000 absolute bottom-6 right-6 flex items-center w-full max-w-sm p-4 mb-4 text-gray-600 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800;
+  }
+}
