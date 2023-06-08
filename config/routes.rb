@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   authenticated :user do
     # Routes for admin user (role: admin)
     constraints(RoleConstraint.new([:admin])) do
-      root to: "admin#index", as: :admin_root #TODO: implement /admin route to redirect to admin#index
-      get "/admin", to: "admin#index"
+      root to:  "admin/investments#index", as: :admin_root
+      get "/admin", to: "admin/investments#index"
 
       namespace :admin do
         resources :classrooms
