@@ -10,16 +10,24 @@
 @layer components {
   /* Notifications */
   .notification-container {
-    @apply transition transform duration-1000 absolute bottom-6 right-6 flex items-center w-full max-w-sm p-4 mb-4 text-gray-600 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800;
+    @apply transition transform duration-1000 absolute bottom-6 right-6 flex items-center w-full max-w-sm p-4 mb-4 text-primary-600 bg-white rounded-lg shadow dark:text-primary-400 dark:bg-primary-800;
   }
 
   /* Inputs */
   .input-label {
-    @apply block ml-2 text-sm font-medium leading-6 text-gray-900;
+    @apply block ml-2 text-sm font-medium leading-6 text-primary-900;
   }
 
   .input-field {
-    @apply block w-full m-1 border-2 border-gray-300 rounded-md shadow-sm focus:border-primary-600 focus:ring-primary-600 sm:text-sm;
+    @apply block w-full m-1 border-2 border-primary-300 rounded-md shadow-sm focus:border-primary-600 focus:ring-primary-600 sm:text-sm;
+  }
+
+  .select-field {
+    @apply block w-full rounded-md border-0 m-1 p-2 text-primary-900 shadow-sm ring-1 ring-inset ring-primary-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6;
+  }
+
+  .checkbox-field {
+    @apply ml-1 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600;
   }
 
   /* Inputs with icon inside */
@@ -37,5 +45,33 @@
 
   .input-inside-button {
     @apply text-gray-700 hover:text-gray-500 transition ease-in-out duration-150;
+  }
+
+  /* Navbar */
+  .menu-item {
+    @apply text-2xl font-bold capitalize text-primary-100;
+  }
+
+  .menu-item:hover {
+    @apply underline decoration-2 underline-offset-8 transition duration-150 ease-in-out;
+  }
+
+  .menu-item-active {
+    @apply text-2xl font-bold capitalize text-primary-100 underline decoration-2 underline-offset-8;
+  }
+
+  .menu-button {
+    @apply flex items-center px-2 py-1 gap-2 bg-primary-300 border-2 border-primary-300  rounded-md text-base font-bold uppercase transition duration-150 ease-in-out;
+  }
+  .menu-button:hover {
+    @apply bg-primary-600 border-2 border-primary-300 text-primary-100;
+  }
+
+  .menu-button-active {
+    @apply flex items-center px-2 py-1 gap-2 bg-primary-600 border-2 border-primary-300  rounded-md text-base font-bold uppercase text-primary-100;
+  }
+
+  .icon-button {
+    @apply text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out;
   }
 }
