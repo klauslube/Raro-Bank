@@ -1,21 +1,23 @@
 class UserInvestmentsController < ApplicationController
   before_action :authenticate_free_or_premium_user!
-  before_action :fetch_user_investment, only: %i[edit update destroy]
+  before_action :fetch_user_investment, only: %i[show edit update destroy]
 
   def index
     @user_investments = UserInvestment.where(user_id: current_user.id)
+    @investments = Investment.all
   end
+
+  def show; end
 
   def new
     @user_investment = UserInvestment.new
-    @investments = Investment.all
+    @investment = Investment.find(params[:investment_id])
   end
 
   def edit; end
 
   def create
     @user_investment = UserInvestment.new(user_investment_params)
-
     return redirect_to user_investments_path, notice: t('.success') if @user_investment.save
 
     @investments = Investment.all

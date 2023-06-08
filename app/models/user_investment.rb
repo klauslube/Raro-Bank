@@ -10,7 +10,6 @@ class UserInvestment < ApplicationRecord
   private
 
   def update_investment_profit
-    # binding.break
     UserInvestments::UpdateProfitJob.perform_later(id)
   end
 
