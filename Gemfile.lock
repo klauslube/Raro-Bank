@@ -135,6 +135,9 @@ GEM
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     iniparse (1.5.0)
+    inline_svg (1.9.0)
+      activesupport (>= 3.0)
+      nokogiri (>= 1.6)
     io-console (0.6.0)
     irb (1.6.4)
       reline (>= 0.3.0)
@@ -385,6 +388,7 @@ DEPENDENCIES
   faker
   guard-rspec
   htmlbeautifier
+  inline_svg
   jbuilder
   jsbundling-rails
   overcommit

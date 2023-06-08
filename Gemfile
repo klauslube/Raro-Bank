@@ -57,6 +57,9 @@ gem 'devise'
 # Rest Http Request
 gem 'rest-client'
 
+# Icons svg inline
+gem 'inline_svg'
+
 group :development, :test do
   # Environment variables
   gem 'dotenv-rails', require: 'dotenv/rails-now'
