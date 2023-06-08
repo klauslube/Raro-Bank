@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="font-app">
     <h1>LAYOUT APP</h1>
 
     <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
