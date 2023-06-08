@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import NotificationsController from "./notifications_controller"
 application.register("notifications", NotificationsController)
+
+import PasswordVisibilityController from "./password_visibility_controller"
+application.register("password-visibility", PasswordVisibilityController)

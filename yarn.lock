@@ -752,6 +752,11 @@ stimulus-notification@^2.2.0:
   dependencies:
     stimulus-use "^0.51.1"
 
+stimulus-password-visibility@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/stimulus-password-visibility/-/stimulus-password-visibility-2.1.1.tgz#b366223c7650704507a38a3e5d126e8474abad3e"
+  integrity sha512-FnscC06Ux7mgfJo9s7OceOQ59yU1Tm8sWByG89hnMPcWvYSX/1yx3wFxNOgKhtxaDPdvtb+ERgmv6F9JvPJc7w==
+
 stimulus-use@^0.51.1:
   version "0.51.3"
   resolved "https://registry.yarnpkg.com/stimulus-use/-/stimulus-use-0.51.3.tgz#d7ac671aff8d0db253296dec89d38aa6f4b27e2a"
