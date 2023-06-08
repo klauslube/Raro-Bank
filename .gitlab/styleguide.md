@@ -52,3 +52,18 @@ Os erros de notice e alert foram configurados nos dois layout para utilizarem a 
 ```
 
 Para que fosse possível editar alguns estilos gerais, foi extraído classe `container-notifications` para o arquivo `application.tailwind.css`. Aqui a documentação do tailwind fala um pouco mais sobre como pode ele pode reutilizável: [Tailwind CSS - Extracting Components](https://tailwindcss.com/docs/extracting-components).
+
+## Ícones
+
+Os ícones do projeto foram retirados do [heroicons](https://heroicons.com/), que é uma biblioteca de ícones open source que trabalha juntamente com o Tailwind. Pra usar:
+
+1. Escolher o ícone desejado no site, ao passar o mouse você copiar-lo como svg;
+2. Navegue para dentro da pasta `./app/assets/images/icons`, lá terá a pasta com formato do seu ícone: "solid" ou "outline";
+3. Dentro dessa pasta, crie um arquivo cole o conteúdo svg lá;
+4. Salvar com seu respectivo nomee com extensão `.svg'.
+
+Utilizado a gem [inline-svg](https://github.com/jamesmartin/inline_svg) para que possa ser adicionado o ícone e o estilo dele ser altera na mesma linha, como no exemplo abaixo:
+
+```ruby
+<%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-6 h-6 text-red-400 hover:text-red-800' %>
+```
