@@ -13,9 +13,6 @@
   </thead>
   <tbody>
     <% @investments.each do |investment| %>
-      <% if current_user.role == 'free' %>
-        <% next if investment.premium %>
-      <% end %>
       <% next if investment.expiration_date < Date.current %>
       <% next if investment.start_date > Date.current %>
       <tr>
@@ -26,7 +23,11 @@
         <td><%= investment.minimum_amount %></td>
         <td><%= investment.start_date %></td>
         <td><%= investment.expiration_date %></td>
-        <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
+          <% if current_user.role == 'free' && investment.premium %>
+            <td><span> Not available for free users </span></td>
+          <% else %>
+            <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

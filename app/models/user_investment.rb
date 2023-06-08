@@ -4,6 +4,7 @@ class UserInvestment < ApplicationRecord
 
   validates :initial_amount, presence: true, numericality: { greater_than: 0 }
   validate :initial_amount_enough?
+  validate :premium_investment_available?
 
   after_commit :update_investment_profit, on: :create
 
@@ -11,6 +12,12 @@ class UserInvestment < ApplicationRecord
 
   def update_investment_profit
     UserInvestments::UpdateProfitJob.perform_later(id)
+  end
+
+  def premium_investment_available?
+    return unless user && user.role == 'free' && investment && investment.premium
+
+    errors.add(:base, 'Premium investments are not available for free users')
   end
 
   def initial_amount_enough?
