@@ -30,11 +30,11 @@
       >
         <%= link_to admin_edit_path, class: 'menu-dropdown-item font-normal' do %>
           <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-4 h-4' %>
-          <span>Conta</span>
+          <span><%= t('view.links.account') %></span>
         <% end %>
         <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item font-bold' do %>
-          <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'w-4 h-4' %>
-          <span>Logout</span>
+          <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'min-w-4 min-h-4' %>
+          <span class="wrap-nowrap"><%= t('view.links.logout') %></span>
         <% end %>
       </div>
     </div>
