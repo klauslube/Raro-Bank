@@ -10,7 +10,11 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="font-app">
+  <body class="min-h-full flex flex-col justify-between">
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
+
     <h1>LAYOUT APP</h1>
 
     <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
