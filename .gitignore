@@ -40,5 +40,6 @@ db/schema.rb
 
 coverage
 .rufo
-
+Gemfile.lock
 /config/credentials/production.key
+dump.rdb

@@ -16,6 +16,11 @@
     <%= form.date_field :end_date, class: "input-field" %>
   </div>
 
+  <div class="field">
+    <%= form.label :user_ids %>
+    <%= form.select :user_ids, User.all_except_admins.order(:name).pluck(:name, :id), {}, { multiple: true, data: { controller: 'slim' } } %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import DropdownController from "./dropdown_controller"
-application.register("dropdown", DropdownController)
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -15,3 +12,9 @@ application.register("notifications", NotificationsController)
 
 import PasswordVisibilityController from "./password_visibility_controller"
 application.register("password-visibility", PasswordVisibilityController)
+
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
+import SlimController from "./slim_controller"
+application.register("slim", SlimController)

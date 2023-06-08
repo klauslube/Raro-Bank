@@ -29,7 +29,7 @@ module Admin
     end
 
     def destroy
-      return redirect_to admin_classrooms_url, notice: t('.success') if @classroom.destroy
+      return redirect_to admin_classrooms_path, notice: t('.success') if @classroom.destroy
 
       render :index, status: :unprocessable_entity
     end
