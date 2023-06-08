@@ -34,6 +34,13 @@ primary: {
         500: "#cbdb2c",
         600: "#b1bf21",
       },
+
+```
+
+Para utilizar nas classes utilitárias do Tailwind, utilizar o prefixo `text-` e o nome da cor com o número no sufixo , por exemplo:
+
+```html
+<p class="text-primary-500">Raro bank</p>
 ```
 
 ## Notificações
