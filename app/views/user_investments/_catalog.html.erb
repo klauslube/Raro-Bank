@@ -1,0 +1,33 @@
+<h1>Catalog Investments</h1>
+<table>
+  <thead>
+    <tr>
+       <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Index</th>
+      <th scope="col">Minimum Amount</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Expiration Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @investments.each do |investment| %>
+      <% if current_user.role == 'free' %>
+        <% next if investment.premium %>
+      <% end %>
+      <% next if investment.expiration_date < Date.current %>
+      <% next if investment.start_date > Date.current %>
+      <tr>
+        <td><%= investment.id %></td>
+        <td><%= investment.name %></td>
+        <td><%= investment.premium ? 'Premium' : 'Free' %> 
+        <td><%= investment.indicator.rate %></td> 
+        <td><%= investment.minimum_amount %></td>
+        <td><%= investment.start_date %></td>
+        <td><%= investment.expiration_date %></td>
+        <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
