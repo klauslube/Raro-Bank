@@ -67,3 +67,17 @@ Utilizado a gem [inline-svg](https://github.com/jamesmartin/inline_svg) para que
 ```ruby
 <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-6 h-6 text-red-400 hover:text-red-800' %>
 ```
+
+## Fontes
+
+As fontes utilizadas no projeto são:
+
+- [Poppins](https://fonts.google.com/specimen/Poppins?query=poppins)
+- [Titillium Web](https://fonts.google.com/specimen/Titillium+Web?query=titillium+web)
+
+O projeto já está carregando ambas as fontes, cada uma no seu respectivo layout. Mas para utilizar as fontes de forma isolada nas classes utilitárias do Tailwind, utilizar o prefixo `font-` e o nome da fonte, por exemplo:
+
+```html
+<p class="font-admin">Raro bank Administrativo</p>
+<p class="font-app">Raro bank</p>
+```
