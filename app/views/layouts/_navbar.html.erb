@@ -20,14 +20,14 @@
           data-transition-leave-from="opacity-100 scale-100"
           data-transition-leave-to="opacity-0 scale-95"
         >
-          <%= link_to edit_user_registration_path, class: 'menu-dropdown-item font-normal' do %>
-            <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-4 h-4' %>
-            <span><%= t('view.links.account') %></span>
-          <% end %>
-          <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item font-bold' do %>
-            <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'min-w-4 min-h-4' %>
-            <span class="wrap-nowrap"><%= t('view.links.logout') %></span>
-          <% end %>
+        <%= link_to edit_user_registration_path, class: 'menu-dropdown-item font-normal' do %>
+          <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-4 h-4' %>
+          <span><%= t('view.links.account') %></span>
+        <% end %>
+        <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item font-bold' do %>
+          <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'min-w-4 min-h-4' %>
+          <span class="wrap-nowrap"><%= t('view.links.logout') %></span>
+        <% end %>
       </div>
     </div>
   </div>

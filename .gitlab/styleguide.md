@@ -51,25 +51,25 @@ Foi utilizado o visual do [flowbite toast](https://flowbite.com/docs/components/
 - **error**: para notificações de erro;
 - **form_error**: para notificações que referencia a erros de formulário.
 
-Os erros de notice e alert foram configurados nos dois layout para utilizarem a notificação, já de erro de formulário é um pouco diferente das outras duas, pois ela precisa ser configurada no formulário, adicionado a seguinte linha:
+Os erros de notice e alert foram configurados nos dois layout para utilizarem a notificação, já de erro de formulário é um pouco diferente das outras duas, pois ele precisa ser configurado no formulário, adicionando a seguinte linha:
 
 ```ruby
   # @objet é o objeto que está sendo utilizado no formulário, então precisa trocar pelo nome do objeto
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @objet } %>
 ```
 
-Para que fosse possível editar alguns estilos gerais, foi extraído classe `container-notifications` para o arquivo `application.tailwind.css`. Aqui a documentação do tailwind fala um pouco mais sobre como pode ele pode reutilizável: [Tailwind CSS - Extracting Components](https://tailwindcss.com/docs/extracting-components).
+Para que fosse possível editar alguns estilos gerais, foi extraída a classe `container-notifications` para o arquivo `application.tailwind.css`. Aqui a documentação do tailwind fala um pouco mais sobre como pode ele pode ser reutilizável: [Tailwind CSS - Extracting Components](https://tailwindcss.com/docs/extracting-components).
 
 ## Ícones
 
 Os ícones do projeto foram retirados do [heroicons](https://heroicons.com/), que é uma biblioteca de ícones open source que trabalha juntamente com o Tailwind. Pra usar:
 
-1. Escolher o ícone desejado no site, ao passar o mouse você copiar-lo como svg;
-2. Navegue para dentro da pasta `./app/assets/images/icons`, lá terá a pasta com formato do seu ícone: "solid" ou "outline";
-3. Dentro dessa pasta, crie um arquivo cole o conteúdo svg lá;
-4. Salvar com seu respectivo nomee com extensão `.svg'.
+1. Escolher o ícone desejado no site: ao passar o mouse pode ser copiado como svg;
+2. Navegar para dentro da pasta `./app/assets/images/icons`, lá terá a pasta com formato do seu ícone: "solid" ou "outline";
+3. Dentro dessa pasta, crie um arquivo e cole o conteúdo svg lá;
+4. Salvar com seu respectivo nome e extensão `.svg'.
 
-Utilizado a gem [inline-svg](https://github.com/jamesmartin/inline_svg) para que possa ser adicionado o ícone e o estilo dele ser altera na mesma linha, como no exemplo abaixo:
+Foi adicionada a gem [inline-svg](https://github.com/jamesmartin/inline_svg), pois caso seja necessário, o ícone pode ser estilizado inline, utilizando as classes do Tailwind, como no exemplo abaixo:
 
 ```ruby
 <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-6 h-6 text-red-400 hover:text-red-800' %>
@@ -82,7 +82,7 @@ As fontes utilizadas no projeto são:
 - [Poppins](https://fonts.google.com/specimen/Poppins?query=poppins)
 - [Titillium Web](https://fonts.google.com/specimen/Titillium+Web?query=titillium+web)
 
-O projeto já está carregando ambas as fontes, cada uma no seu respectivo layout. Mas para utilizar as fontes de forma isolada nas classes utilitárias do Tailwind, utilizar o prefixo `font-` e o nome da fonte, por exemplo:
+O projeto já está carregando ambas as fontes, cada uma no seu respectivo layout. Mas para utilizar as fontes de forma isolada (caso venha a ser necessário) nas classes utilitárias do Tailwind, utilizar o prefixo `font-` e o nome da fonte, por exemplo:
 
 ```html
 <p class="font-admin">Raro bank Administrativo</p>
