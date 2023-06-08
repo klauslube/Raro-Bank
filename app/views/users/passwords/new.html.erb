@@ -4,8 +4,8 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, class: "input-label" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field" %>
   </div>
 
   <div class="actions">

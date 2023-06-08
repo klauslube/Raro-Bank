@@ -2,19 +2,27 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, class: "input-label" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div data-controller="password-visibility" class="input-container">
+    <%= f.label :password, class: "input-label"%>
+
+    <div class="input-group">
+      <%= f.password_field :password, autocomplete: "current-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+
+      <button type="button" data-action="password-visibility#toggle">
+        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
+        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
+      </button>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :remember_me, class: "input-label" %>
     </div>
   <% end %>
 
