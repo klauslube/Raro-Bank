@@ -1,3 +1,4 @@
+<%= render 'shared/errors', object: @transaction %>
 <h1>Transaction #<%= @transaction.id %></h1>
 <%= form_with model: @transaction, data: { turbo: false } do |form| %>
   <li><%= form.label :token_code, style: "Authentication code" %></li>

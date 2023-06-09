@@ -7,8 +7,6 @@ class TransactionsController < ApplicationController
     @transactions = current_user.account.sender_transactions.order(created_at: :asc)
   end
 
-  # def show; end
-
   def new
     @transaction = Transaction.new
     @receiver_cpf = params[:receiver_cpf]
@@ -23,12 +21,12 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    return redirect_to transactions_path, notice: t('.success') if @transaction.update(transaction_params)
-
-    render :edit
+    if token_authenticated? && @transaction.update(transaction_params)
+      redirect_to transactions_path, notice: t('.success')
+    else
+      render :edit
+    end
   end
-
-  # def destroy; end
 
   def resend_email
     @transaction = Transaction.find(params[:id])
@@ -36,6 +34,17 @@ class TransactionsController < ApplicationController
   end
 
   private
+
+  def token_authenticated?
+    token = Token.find_by(code: params[:transaction][:token_code], active: true)
+    if @transaction.token.code == token&.code
+      @transaction.authenticated!
+      true
+    else
+      @transaction.errors.add(:token_code, 'Authentication code is invalid.')
+      false
+    end
+  end
 
   def transaction_params
     params.require(:transaction).permit(
