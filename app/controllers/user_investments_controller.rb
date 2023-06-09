@@ -4,7 +4,8 @@ class UserInvestmentsController < ApplicationController
   before_action :fetch_investment, only: %i[new create]
 
   def index
-    @user_investments = UserInvestment.where(user_id: current_user.id)
+    @q = UserInvestment.ransack(params[:q])
+    @user_investments = @q.result.where(user_id: current_user.id)
     @investments = Investment.all
   end
 

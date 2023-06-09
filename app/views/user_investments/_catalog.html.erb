@@ -1,4 +1,11 @@
 <h1>Catalog Investments</h1>
+
+<%= search_form_for @s do |f| %>
+  <%= f.label :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium_cont, 'Search by ...' %>
+  <%= f.search_field :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium_cont %>
+  <%= f.submit 'Search' %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -14,7 +21,7 @@
   <tbody>
     <% @investments.each do |investment| %>
       <% next if investment.expiration_date < Date.current %>
-      <% next if investment.start_date > Date.current %>
+      <%# <% next if investment.start_date > Date.current %> 
       <tr>
         <td><%= investment.id %></td>
         <td><%= investment.name %></td>
