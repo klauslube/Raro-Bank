@@ -1,5 +1,5 @@
 module Admin
-  class TransactionsController < ApplicationController
+  class DepositsController < ApplicationController
     before_action :fetch_amount, only: %i[create]
     before_action :fetch_classroom, only: %i[create fetch_classroom_users_accounts]
     before_action :fetch_classroom_users_accounts, only: %i[create]
@@ -12,11 +12,14 @@ module Admin
       receivers = []
       errors = []
 
-      if @classroom_users.present?
+      if @classroom_users.present? && @classroom_users.size > 1
         receivers = @classroom_users
-      else
+      elsif params[:transaction][:receiver_cpf].present?
         receiver = fetch_receiver
         receivers << receiver
+      else
+        redirect_to admin_deposits_path, alert: t('.receiver_error')
+        return
       end
 
       receivers.each do |receiver_account|

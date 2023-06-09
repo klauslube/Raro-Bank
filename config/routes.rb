@@ -15,9 +15,9 @@ Rails.application.routes.draw do
         resources :classrooms
         resources :investments, only: %i[index new create show destroy]
 
-        # Route for admin to deposit money in user account
-        get '/deposits', to: 'transactions#new', as: :deposit
-        post '/deposits', to: 'transactions#create'
+        # Route for admin to deposit money in users account
+        get '/deposits', to: 'deposits#new', as: :deposit
+        post '/deposits', to: 'deposits#create'
 
         # Routes for admin user (role: admin) to manage other users accounts
         resources :users, only: %i[index edit update] do
