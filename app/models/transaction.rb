@@ -29,7 +29,13 @@ class Transaction < ApplicationRecord
   private
 
   def generate_token
-    build_token(code: SecureRandom.random_number(1_000_000).to_s.rjust(6, '0').to_i).save
+    loop do
+      new_code = rand(100_000..999_999)
+      if Token.tokens_actives.where(code: new_code).blank?
+        build_token(code: new_code).save
+        break
+      end
+    end
   end
 
   def token_countdown
