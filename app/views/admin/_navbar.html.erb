@@ -9,7 +9,7 @@
     <%= link_to :users, admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
   </div>
   <div class="flex justify-end items-center gap-4 min-w-[120px]">
-    <%= link_to admin_users_path, class: "menu-button" do %>
+    <%= link_to admin_deposits_path , class: "menu-button" do %>
       <%= inline_svg_tag 'icons/solid/plus-small.svg', class: 'w-4 h-4' %>
       <span class="pr-2">
         Saldo
