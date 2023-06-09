@@ -1,9 +1,9 @@
 module Admin
   class DepositsController < ApplicationController
-    before_action :fetch_amount, only: %i[create]
+    before_action :fetch_amount, only: [:create]
     before_action :fetch_classroom, only: %i[create fetch_classroom_users_accounts]
-    before_action :fetch_classroom_users_accounts, only: %i[create]
-    before_action :fetch_receivers, only: %i[create]
+    before_action :fetch_classroom_users_accounts, only: [:create]
+    before_action :fetch_receivers, only: [:create]
 
     def new
       @transaction = Transaction.new
@@ -13,6 +13,7 @@ module Admin
       errors = []
 
       @receivers.each do |receiver_account|
+        add_admin_balance(@amount)
         transaction = Transaction.new(sender: current_user.account, receiver: receiver_account, amount: @amount, token: generate_token)
         errors << transaction.errors.full_messages.to_sentence unless transaction.save
       end
@@ -21,6 +22,7 @@ module Admin
         redirect_to admin_root_path, notice: t('.success')
       else
         flash[:alert] = t('.failure') + "- receiver: #{receiver_account} -" + errors.join(' ')
+        redirect_to admin_deposits_path
       end
     end
 
@@ -38,7 +40,6 @@ module Admin
       return if @classroom.nil?
 
       @classroom_users = @classroom.users.map(&:account)
-      return @classroom_users unless @classroom_users.empty?
     end
 
     def fetch_receivers
@@ -48,10 +49,9 @@ module Admin
         @receivers = @classroom_users
       elsif params[:transaction][:receiver_cpf].present?
         receiver = fetch_receiver_by_cpf
-        @receivers << receiver
+        @receivers << receiver if receiver
       else
         redirect_to admin_deposits_path, alert: t('.receiver_error')
-        nil
       end
     end
 
@@ -59,18 +59,21 @@ module Admin
       receiver_cpf = params[:transaction][:receiver_cpf]
       receiver = User.find_by(cpf: receiver_cpf)&.account
 
-      return receiver unless receiver.nil?
+      redirect_to admin_deposits_path, alert: t('.cpf_error') unless receiver
 
-      redirect_to admin_deposits_path, alert: t('.cpf_error')
-      nil
+      receiver
     end
 
     def fetch_amount
       @amount = params[:transaction][:amount].to_f
 
-      return @amount unless @amount < 1
+      return unless @amount < 1
 
       redirect_to admin_deposits_path, alert: t('.amount_error')
+    end
+
+    def add_admin_balance(amount)
+      current_user.account.update(balance: amount)
     end
   end
 end
