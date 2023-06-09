@@ -1,15 +1,15 @@
 ADICIONAR SALDO
-<%= form_with(model: @transaction, url: admin_deposits_path) do |form| %>
+<%= form_with(model: @transaction, url: admin_deposits_path, data: { controller: 'deposit' }) do |form| %>
   <%= render partial: 'shared/errors', locals: { object: @transaction } %>
 
   <div class="field_with_errors">
     <%= form.label :receiver_cpf %>
-    <%= form.text_field :receiver_cpf, placeholder: 'Digite um CPF' %>
+    <%= form.text_field :receiver_cpf, placeholder: 'Digite um CPF',data: { deposit_target: 'cpfField', action: 'input->deposit#cpfValueChanged' } %>
   </div>
 
   <div>
     <%= form.label :classroom_id %>
-    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { include_blank: 'Nenhuma turma selecionada' } %>
+    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { include_blank: 'Nenhuma turma selecionada', data: { deposit_target: 'classroomField', action: 'change->deposit#classroomValueChanged' } } %>
   </div>
 
   <div class="field">
