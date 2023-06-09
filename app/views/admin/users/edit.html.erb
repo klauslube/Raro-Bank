@@ -1,16 +1,16 @@
 <h1>Edit User</h1>
 
 <%= form_for(@user, url: admin_user_path(@user), method: :patch) do |form| %>
-  <%= render partial: 'shared/errors', locals: { object: @user } %>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: @user } %>
 
   <div class="field">
-    <%= form.label :role %>
-    <%= form.select :role, User.roles.keys, { include_blank: false, selected: @user.role || 'free' } %>
+    <%= form.label :role, class: "input-label" %>
+    <%= form.select :role, User.roles.keys.map { |role| [role.humanize, role] }, { include_blank: false, selected: @user.role || 'free'}, { class: 'select-field' } %>
   </div>
 
   <div>
-    <%= form.label :classroom_id %>
-    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { include_blank: 'Nenhuma turma selecionada' } %>
+    <%= form.label :classroom_id, class: "input-label" %>
+    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { class: 'select-field' } %>
   </div>
 
   <% form.hidden_field :name, value: @user.name %>

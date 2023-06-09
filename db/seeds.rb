@@ -13,6 +13,18 @@ premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rar
 premium.skip_confirmation!
 premium.save!
 
+# Create only free users
+100.times do
+  name = Faker::Name.name
+  cpf = Faker::IDNumber.brazilian_citizen_number
+  email = Faker::Internet.email
+  password = 'r@robank123'
+
+  user = User.new(name:, cpf:, email:, password:)
+  user.skip_confirmation!
+  user.save!
+end
+
 # Create classrooms
 20.times do
   name = Faker::Educator.course_name
@@ -20,27 +32,4 @@ premium.save!
   end_date = Faker::Date.between(from: start_date, to: start_date + 1.year)
 
   Classroom.create!(name:, start_date:, end_date:)
-end
-
-# Create inidcatores
-indicators = []
-5.times do
-  rate = Faker::Number.decimal(l_digits: 2, r_digits: 6)
-  name = Faker::Lorem.word
-  rate_date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
-
-  indicator = Indicator.create!(rate:, name:, rate_date:)
-  indicators << indicator
-end
-
-# Create investments
-20.times do
-  name = Faker::Lorem.characters(number: 1..5).upcase
-  minimum_amount = Faker::Number.number(digits: 2) * 100
-  indicator_id = indicators.sample.id
-  premium = Faker::Boolean.boolean
-  expiration_date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
-  approver_id = admin.id
-
-  Investment.create!(name:, minimum_amount:, indicator_id:, premium:, expiration_date:, approver_id:)
 end
