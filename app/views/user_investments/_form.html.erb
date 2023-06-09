@@ -1,49 +1,37 @@
-<%= form_with(model: @user_investment, data: { turbo: false }) do |form| %>
-  <% if @user_investment.errors.any? %>
-    <h3><%= pluralize(@user_investment.errors.count, "error") %> prohibited this user investment from being saved:</h3>
-    <div>
-      <ul role="list">
-        <% @user_investment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render 'shared/errors', object: @user_investment %>
+
+<div>
+  <%= label_tag :name, 'Name' %>
+  <%= @investment.name %>
+</div>
+<div>
+  <%= label_tag :minimum_amount, 'Minimum Amount' %>
+  <%= @investment.minimum_amount %>
+</div>
+<div>
+  <%= label_tag :expiration_date, 'Expiration Date' %>
+  <%= @investment.expiration_date %>
+</div>
+<div>
+  <%= label_tag 'Index' %>
+  <%= @investment.indicator.rate %>
+</div>
+<div>
+  <%= label_tag 'Category' %>
+  <%= @investment.premium ? 'Premium' : 'Free'%>
+</div>
+<div>
+  <%= label_tag 'Balance Account:' %>
+  <%= current_user.account.balance %>
+</div>
+
+<%= form_with(model: @user_investment, url: user_investments_path(investment_id: @investment.id), data: { turbo: false }) do |form| %>
   <div>
-    <%= form.hidden_field :investment_id, value: @investment.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.hidden_field :profit, value: 0 %>
-    <div>
-      <%= label_tag :name, 'Name' %>
-      <%= @investment.name %>
-    </div>
-    <div>
-      <%= label_tag :minimum_amount, 'Minimum Amount' %>
-      <%= @investment.minimum_amount %>
-    </div>
-    <div>
-      <%= label_tag :expiration_date, 'Expiration Date' %>
-      <%= @investment.expiration_date %>
-    </div>
-    <div>
-      <%= label_tag 'Index' %>
-      <%= @investment.indicator.rate %>
-    </div>
-    <div>
-      <%= label_tag 'Category' %>
-      <%= @investment.premium ? 'Premium' : 'Free'%>
-    </div>
-    <div>
-      <%= form.label :initial_amount, 'Initial Amount' %>
-      <%= form.number_field :initial_amount, min: @investment.minimum_amount %>
-    </div>
-    <div>
-      <%= label_tag @balance, 'Balance Account:' %>
-      <%= @balance %>
-    </div>
-    <div>
-      <%= form.submit "Invest" %>
-       <%= link_to "Voltar", catalogs_path %>
-    </div>
+    <%= form.label :initial_amount, 'Initial Amount' %>
+    <%= form.number_field :initial_amount %>
+  </div>
+  <div>
+    <%= form.submit "Invest" %>
+    <%= link_to "Voltar", catalogs_path %>
   </div>
 <% end %>

@@ -20,7 +20,7 @@
         <td><%= @user_investment.investment.expiration_date %></td>
         <td><%= @user_investment.investment.indicator.rate %></td> 
         <td><%= @user_investment.investment.premium ? 'Premium' : 'Free' %> 
-        <td><%= @user_investment.profit || 0 %></td>
+        <td><%= @user_investment.profit %></td>
         <td><%= @user_investment.created_at.strftime('%d/%m/%y') %></td>
       </tr>
   </tbody>
