@@ -26,6 +26,11 @@ class TransactionsController < ApplicationController
 
   # def destroy; end
 
+  def resend_email
+    @transaction = Transaction.find(params[:id])
+    @transaction.resend_email
+  end
+
   private
 
   def transaction_params

@@ -33,7 +33,11 @@ Rails.application.routes.draw do
       root to: "home#index" #TODO: implement home#index
 
       resources :accounts, only: %i[index]
-      resources :transactions, only: %i[index show new create]
+      resources :transactions, only: %i[index show new create] do
+        member do
+          post :resend_email
+        end
+      end
       resources :user_investments
     end
   end

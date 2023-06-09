@@ -22,6 +22,10 @@ class Transaction < ApplicationRecord
     canceled: 20
   }, scopes: true, default: :started
 
+  def resend_email
+    new_transfer
+  end
+
   private
 
   def generate_token
