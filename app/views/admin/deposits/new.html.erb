@@ -9,7 +9,7 @@ ADICIONAR SALDO
 
   <div>
     <%= form.label :classroom_id %>
-    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { include_blank: 'Nenhuma turma selecionada', data: { deposit_target: 'classroomField', action: 'change->deposit#classroomValueChanged' } } %>
+    <%= form.collection_select :classroom_id, Classroom.with_users, :id, :name, { prompt: "Select a Classroom" }, { include_blank: 'Nenhuma turma selecionada', data: { deposit_target: 'classroomField', action: 'change->deposit#classroomValueChanged' } } %>
   </div>
 
   <div class="field">
