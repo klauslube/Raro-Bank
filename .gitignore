@@ -43,3 +43,4 @@ coverage
 Gemfile.lock
 /config/credentials/production.key
 dump.rdb
+yarn-error.log
