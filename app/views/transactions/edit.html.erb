@@ -1,0 +1,8 @@
+<h1>Transaction #<%= @transaction.id %></h1>
+<%= form_with model: @transaction, data: { turbo: false } do |form| %>
+  <li><%= form.label :token_code, style: "Authentication code" %></li>
+  <li><%= form.number_field :token_code, required: true, placeholder: '123456...' %>
+  <hr>
+  <%= form.submit 'Confirm' %>
+  <%= link_to 'Back', transactions_path %>
+<% end %>

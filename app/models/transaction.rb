@@ -3,7 +3,6 @@ class Transaction < ApplicationRecord
   belongs_to :receiver, class_name: 'Account'
   has_one :token, dependent: :destroy
 
-  validates :token_code, presence: true
   validates :status, presence: { in: %i[started authenticated pending completed canceled] }
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validate :check_sender_balance

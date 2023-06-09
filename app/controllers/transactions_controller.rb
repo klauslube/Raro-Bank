@@ -1,28 +1,32 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_free_or_premium_user!
-  before_action :fetch_transaction, only: %i[show]
+  before_action :fetch_transaction, only: %i[edit update]
   before_action :fetch_receiver, only: %i[create]
 
   def index
     @transactions = current_user.account.sender_transactions.order(created_at: :asc)
   end
 
-  def show; end
+  # def show; end
 
   def new
     @transaction = Transaction.new
     @receiver_cpf = params[:receiver_cpf]
   end
 
-  # def edit; end
+  def edit; end
 
   def create
-    return redirect_to transactions_path, notice: t('.success') if @transaction.save
+    return redirect_to edit_transaction_path(@transaction), notice: t('.success') if @transaction.save
 
     render :new
   end
 
-  # def update; end
+  def update
+    return redirect_to transactions_path, notice: t('.success') if @transaction.update(transaction_params)
+
+    render :edit
+  end
 
   # def destroy; end
 

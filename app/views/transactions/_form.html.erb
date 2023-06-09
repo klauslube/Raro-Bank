@@ -1,12 +1,11 @@
 <%= render 'shared/errors', object: @transaction %>
-<hr><strong><%= current_user.name %> | <%= current_user.balance %> RaraCoins </strong>
-<ol>
-  <%= form_with model: @transaction, data: { turbo: false } do |form| %>
-    <li><%= form.number_field :amount, step: 0.01, placeholder: 'Digite valor da transferência...' %></li>
-    <li><%= form.text_field :receiver_cpf, value: @receiver_cpf, placeholder: 'Digite um CPF...' %></li>
-    <li><%= form.number_field :token_code, placeholder: 'Código de confirmação...' %></li>
-    <hr>
-    <%= form.submit 'Enviar' %>
-    <%= link_to 'Cancelar', transactions_path %>
-  <% end %>
-</ol>
+<hr><%= current_user.name %><br>
+<%= number_with_precision(current_user.account.balance, precision: 2) %> RaraCoins
+
+<%= form_with model: @transaction, data: { turbo: false } do |form| %>
+  <li><%= form.number_field :amount, step: 0.01, placeholder: 'Amount...' %></li>
+  <li><%= form.text_field :receiver_cpf, value: @receiver_cpf, placeholder: 'CPF receiver...' %></li>
+  <hr>
+  <%= form.submit 'Next' %>
+  <%= link_to 'Cancel', transactions_path %>
+<% end %>
