@@ -4,6 +4,11 @@ module Transactions
       update_tokens_status
     end
 
+    def destroy_inative_tokens
+      tokens = Token.where(active: false)
+      tokens.destroy_all
+    end
+
     private
 
     def update_tokens_status
