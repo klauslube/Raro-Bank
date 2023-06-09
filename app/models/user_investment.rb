@@ -10,8 +10,11 @@ class UserInvestment < ApplicationRecord
   after_commit :update_investment_profit, on: :create
 
   def update_account_balance
-    # binding.break
     user.account.update(balance: user.account.balance - initial_amount)
+  end
+
+  def update_account_balance_after_rescue
+    user.account.update(balance: user.account.balance + profit)
   end
 
   private
@@ -31,7 +34,6 @@ class UserInvestment < ApplicationRecord
   end
 
   def balance_account_enough?
-    # binding.break
     errors.add(:base, 'Balance is not enough') if user.account.balance < initial_amount
   end
 end
