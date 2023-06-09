@@ -16,16 +16,6 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  ## DEVISE SECTION
-
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  config.action_mailer.delivery_method = :smtp
-  # SMTP settings for mailcatcher gem
-  config.action_mailer.smtp_settings =
-    { address: "127.0.0.1",
-      port: 1025 }
-  config.action_mailer.raise_delivery_errors = false
-
   # Enable server timing
   config.server_timing = true
 
@@ -71,9 +61,6 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Devise configuration
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -82,4 +69,15 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # SMTP settings for mailcatcher gem
+  host = ENV.fetch('HOST', 'localhost')
+  port = ENV.fetch('PORT', '3000').to_i
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: host, port: 1025 }
+  # rubocop:disable Style/HashSyntax
+  config.action_mailer.default_url_options = { host: host, port: port }
+  # rubocop:enable Style/HashSyntax
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 end
