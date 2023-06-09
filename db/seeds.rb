@@ -13,23 +13,14 @@ premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rar
 premium.skip_confirmation!
 premium.save!
 
-# Create only free users
-100.times do
-  name = Faker::Name.name
-  cpf = Faker::IDNumber.brazilian_citizen_number
-  email = Faker::Internet.email
-  password = 'r@robank123'
+investment = Investment.new name: 'CDI', minimum_amount: 200, start_date: Date.current, expiration_date: Date
+             .tomorrow, premium: true, approver_id: admin.id, indicator_id: 1
+investment.save!
 
-  user = User.new(name:, cpf:, email:, password:)
-  user.skip_confirmation!
-  user.save!
-end
+investment2 = Investment.new name: 'SELIC', minimum_amount: 100, start_date: Date.current, expiration_date: Date
+              .tomorrow, premium: true, approver_id: admin.id, indicator_id: 2
+investment2.save!
 
-# Create classrooms
-20.times do
-  name = Faker::Educator.course_name
-  start_date = Faker::Date.between(from: 1.year.ago, to: Time.zone.today)
-  end_date = Faker::Date.between(from: start_date, to: start_date + 1.year)
-
-  Classroom.create!(name:, start_date:, end_date:)
-end
+investment3 = Investment.new name: 'IPCA', minimum_amount: 300, start_date: Date.current, expiration_date: Date
+              .tomorrow, premium: false, approver_id: admin.id, indicator_id: 3
+investment3.save!

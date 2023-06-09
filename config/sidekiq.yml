@@ -3,8 +3,8 @@
 :timeout: 30
 :queues:
   - default
-  - api
-  - transactions
+  - investments
+
 development:
   :concurrency: 5
 production:
