@@ -56,7 +56,9 @@ en:
       success: 'User investment was successfully destroyed'
   transactions:
     create:
-      success: 'Your transfer has been created!'
+      success: 'Please confirm your transfer.'
+    update:
+      success: 'Your transfer has been updated!'
   activerecord:
     errors:
       models:
