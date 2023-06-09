@@ -1,6 +1,5 @@
 module Admin
   class DepositsController < ApplicationController
-    before_action :fetch_amount, only: [:create]
     before_action :fetch_classroom, only: %i[create fetch_classroom_users_accounts]
     before_action :fetch_classroom_users_accounts, only: [:create]
     before_action :fetch_receivers, only: [:create]
@@ -10,18 +9,20 @@ module Admin
     end
 
     def create
+      amount = params[:transaction][:amount].to_f
+      sender = current_user.account
       errors = []
 
-      @receivers.each do |receiver_account|
-        add_admin_balance(@amount)
-        transaction = Transaction.new(sender: current_user.account, receiver: receiver_account, amount: @amount)
+      @receivers.each do |receiver|
+        add_admin_balance(amount)
+        transaction = Transaction.new(sender:, receiver:, amount:)
         errors << transaction.errors.full_messages.to_sentence unless transaction.save_without_token!
       end
 
       if errors.empty?
         redirect_to admin_root_path, notice: t('.success')
       else
-        flash[:alert] = t('.failure') + "- receiver: #{receiver_account} -" + errors.join(' ')
+        flash[:alert] = t('.failure') + "- receiver: #{receiver} -" + errors.join(' ')
         redirect_to admin_deposits_path
       end
     end
@@ -41,7 +42,7 @@ module Admin
     def fetch_receivers
       @receivers = []
 
-      if @classroom_users.present? && @classroom_users.size > 0
+      if @classroom_users.present? && @classroom_users.size.positive?
         @receivers = @classroom_users
       elsif params[:transaction][:receiver_cpf].present?
         receiver = fetch_receiver_by_cpf
@@ -58,14 +59,6 @@ module Admin
       redirect_to admin_deposits_path, alert: t('.cpf_error') unless receiver
 
       receiver
-    end
-
-    def fetch_amount
-      @amount = params[:transaction][:amount].to_f
-
-      return unless @amount < 1
-
-      redirect_to admin_deposits_path, alert: t('.amount_error')
     end
 
     def add_admin_balance(amount)

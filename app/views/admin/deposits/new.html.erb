@@ -14,10 +14,10 @@ ADICIONAR SALDO
 
   <div class="field">
     <%= form.label :amount %>
-    <%= form.number_field :amount, step: 0.01, min: 1, placeholder: 'Digite valor da transferência' %>
+    <%= form.number_field :amount, step: 0.01, min: 1, placeholder: 'Digite valor da transferência', data: { deposit_target: 'amountField', action: 'change->deposit#amountValueChanged' } %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Adicionar saldo', data: { deposit_target: 'submitButton' } %>
   </div>
 <% end %>
