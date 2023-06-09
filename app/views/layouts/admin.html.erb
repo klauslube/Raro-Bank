@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-primary-200 font-admin">
   <head>
-    <title>RaroAcademyBank</title>
+    <title>RaroBank  - Admnistrativo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet"/>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="bg-slate-600">
-    <h1>LAYOUT ADMIN</h1>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="min-h-full flex flex-col justify-between">
+    <% if user_signed_in? %>
+      <%= render 'admin/navbar' %>
+    <% end %>
+
+    <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
+    <%= render partial: "shared/notifications/error", locals: { message: flash[:alert] } %>
+
     <%= yield %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
   </body>
 </html>

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-primary-200 font-app">
   <head>
     <title>RaroAcademyBank</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,10 +12,17 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="min-h-full flex flex-col justify-between">
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
+
     <h1>LAYOUT APP</h1>
+
+    <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
+    <%= render partial: "shared/notifications/error", locals: { message: flash[:alert] } %>
+
     <%= yield %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
   </body>
 </html>

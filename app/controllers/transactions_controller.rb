@@ -1,36 +1,54 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_free_or_premium_user!
-  before_action :fetch_transaction, only: %i[show]
+  before_action :fetch_transaction, only: %i[edit update]
   before_action :fetch_receiver, only: %i[create]
 
   def index
     @transactions = current_user.account.sender_transactions.order(created_at: :asc)
   end
 
-  def show; end
-
   def new
     @transaction = Transaction.new
     @receiver_cpf = params[:receiver_cpf]
   end
 
-  # def edit; end
+  def edit; end
 
   def create
-    return redirect_to transactions_path, notice: t('.success') if @transaction.save
+    return redirect_to edit_transaction_path(@transaction), notice: t('.success') if @transaction.save
 
     render :new
   end
 
-  # def update; end
+  def update
+    if token_authenticated? && @transaction.update(transaction_params)
+      redirect_to transactions_path, notice: t('.success')
+    else
+      render :edit
+    end
+  end
 
-  # def destroy; end
+  def resend_email
+    @transaction = Transaction.find(params[:id])
+    @transaction.resend_email
+  end
 
   private
 
+  def token_authenticated?
+    token = Token.find_by(code: params[:transaction][:token_code], active: true)
+    if @transaction.token.code == token&.code
+      @transaction.authenticated!
+      true
+    else
+      @transaction.errors.add(:token_code, 'Authentication code is invalid.')
+      false
+    end
+  end
+
   def transaction_params
     params.require(:transaction).permit(
-      %i[amount status token sender_id receiver_id]
+      %i[amount status token_code sender_id receiver_id]
     )
   end
 
