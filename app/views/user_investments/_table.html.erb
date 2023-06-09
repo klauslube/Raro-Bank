@@ -24,6 +24,7 @@
         <td><%= investment.investment.indicator.rate %></td> 
         <td><%= investment.investment.premium ? 'Premium' : 'Free' %> 
         <td><%= investment.profit %></td>
+        <td><%= investment.initial_amount %></td>
         <td><%= investment.created_at.strftime('%d/%m/%y') %></td>
         <td><%= link_to "Detalhes", user_investment_path(investment) %></td>
         </td>

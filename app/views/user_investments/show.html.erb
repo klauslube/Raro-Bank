@@ -8,7 +8,8 @@
       <th scope="col">Expiration Date</th>
       <th scope="col">Index</th>
       <th scope="col">Category</th>
-      <th scope="col">Profit</th> 
+      <th scope="col">Profit</th>
+      <th scope="col">Initial amount</th>
       <th scope="col">Purchase Date</th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
         <td><%= @user_investment.investment.indicator.rate %></td> 
         <td><%= @user_investment.investment.premium ? 'Premium' : 'Free' %> 
         <td><%= @user_investment.profit %></td>
+        <td><%= @user_investment.initial_amount %></td>
         <td><%= @user_investment.created_at.strftime('%d/%m/%y') %></td>
       </tr>
   </tbody>

@@ -19,7 +19,7 @@ module UserInvestments
     def calculate_daily_profit
       total_return = scan_numbers_in_name(@user_investment.investment.name)
       daily_return = @user_investment.investment.indicator.rate + (total_return / 100.0)
-      @user_investment.initial_amount + (@user_investment.initial_amount * daily_return)
+      @user_investment.initial_amount * daily_return
     end
 
     def scan_numbers_in_name(name)
