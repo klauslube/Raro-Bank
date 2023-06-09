@@ -87,4 +87,22 @@
   .menu-dropdown-item {
     @apply flex min-w-fit justify-center items-center gap-2 px-4 py-2 text-base text-primary-600 hover:text-primary-300;
   }
+
+  /* LAYOUT USERS */
+  /* Navbar */
+  .user-context-item {
+    @apply flex min-w-fit justify-center items-center gap-2 px-4 py-2 text-base font-admin font-bold text-primary-700 hover:text-primary-300;
+  }
+
+  .user-menu-item {
+    @apply text-2xl font-bold capitalize text-primary-100;
+  }
+
+  .user-menu-item:hover {
+    @apply underline decoration-2 decoration-secondary-500 underline-offset-8 transition duration-150 ease-in-out;
+  }
+
+  .user-menu-item-active {
+    @apply text-2xl font-bold capitalize text-primary-100 underline decoration-2 decoration-secondary-500 underline-offset-8;
+  }
 }
