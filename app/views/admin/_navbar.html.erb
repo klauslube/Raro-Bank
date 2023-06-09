@@ -4,9 +4,9 @@
     ' %>
   <% end %>
   <div class="flex gap-4">
-    <%= link_to :classroom, admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classrooms')}" %>
-    <%= link_to :investiments, admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investiments')}" %>
-    <%= link_to :users, admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
+    <%= link_to t('view.links.classrooms'), admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classrooms')}" %>
+    <%= link_to t('view.links.investments'), admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investiments')}" %>
+    <%= link_to t('view.links.users'), admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
   </div>
   <div class="flex justify-end items-center gap-4 min-w-[120px]">
     <%= link_to admin_users_path, class: "menu-button" do %>
