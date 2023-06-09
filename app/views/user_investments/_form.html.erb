@@ -38,7 +38,12 @@
       <%= form.number_field :initial_amount, min: @investment.minimum_amount %>
     </div>
     <div>
+      <%= label_tag @balance, 'Balance Account:' %>
+      <%= @balance %>
+    </div>
+    <div>
       <%= form.submit "Invest" %>
+       <%= link_to "Voltar", catalogs_path %>
     </div>
   </div>
 <% end %>
