@@ -14,8 +14,8 @@ module Admin
 
       @receivers.each do |receiver_account|
         add_admin_balance(@amount)
-        transaction = Transaction.new(sender: current_user.account, receiver: receiver_account, amount: @amount, token: generate_token)
-        errors << transaction.errors.full_messages.to_sentence unless transaction.save
+        transaction = Transaction.new(sender: current_user.account, receiver: receiver_account, amount: @amount)
+        errors << transaction.errors.full_messages.to_sentence unless transaction.save_without_token!
       end
 
       if errors.empty?
@@ -27,10 +27,6 @@ module Admin
     end
 
     private
-
-    def generate_token
-      SecureRandom.hex(10)
-    end
 
     def fetch_classroom
       @classroom = Classroom.find_by(id: params[:transaction][:classroom_id])
@@ -45,7 +41,7 @@ module Admin
     def fetch_receivers
       @receivers = []
 
-      if @classroom_users.present? && @classroom_users.size > 1
+      if @classroom_users.present? && @classroom_users.size > 0
         @receivers = @classroom_users
       elsif params[:transaction][:receiver_cpf].present?
         receiver = fetch_receiver_by_cpf
