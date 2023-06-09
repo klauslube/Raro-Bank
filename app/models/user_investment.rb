@@ -14,7 +14,7 @@ class UserInvestment < ApplicationRecord
   end
 
   def update_account_balance_after_rescue
-    user.account.update(balance: user.account.balance + profit)
+    user.account.update(balance: user.account.balance + profit + initial_amount)
   end
 
   private
