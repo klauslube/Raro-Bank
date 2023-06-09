@@ -32,10 +32,6 @@ RSpec.describe Admin::DepositsController, type: :controller do
         post :create, params: { transaction: { classroom_id: classroom.id, amount: amount, receiver_cpf: cpf } }
       end
 
-      # it 'creates transactions for receivers' do
-      #   debugger
-      #   expect(Transaction).to have_received(:new).with(sender: user.account, receiver: receivers.first, amount: amount, token: token)
-      # end
 
       it 'saves the transactions' do
         expect(response).to redirect_to(admin_root_path)
@@ -48,9 +44,6 @@ RSpec.describe Admin::DepositsController, type: :controller do
         post :create, params: { transaction: { classroom_id: nil, amount: 1, receiver_cpf: nil } }
       end
 
-      # it 'does not create any transactions' do
-      #   expect(Transaction).not_to have_received(:new)
-      # end
 
       it 'redirects to admin deposits path' do
         expect(response).to redirect_to(admin_deposits_path)
