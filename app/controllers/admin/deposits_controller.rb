@@ -3,26 +3,16 @@ module Admin
     before_action :fetch_amount, only: %i[create]
     before_action :fetch_classroom, only: %i[create fetch_classroom_users_accounts]
     before_action :fetch_classroom_users_accounts, only: %i[create]
+    before_action :fetch_receivers, only: %i[create]
 
     def new
       @transaction = Transaction.new
     end
 
     def create
-      receivers = []
       errors = []
 
-      if @classroom_users.present? && @classroom_users.size > 1
-        receivers = @classroom_users
-      elsif params[:transaction][:receiver_cpf].present?
-        receiver = fetch_receiver
-        receivers << receiver
-      else
-        redirect_to admin_deposits_path, alert: t('.receiver_error')
-        return
-      end
-
-      receivers.each do |receiver_account|
+      @receivers.each do |receiver_account|
         transaction = Transaction.new(sender: current_user.account, receiver: receiver_account, amount: @amount, token: generate_token)
         errors << transaction.errors.full_messages.to_sentence unless transaction.save
       end
@@ -51,7 +41,21 @@ module Admin
       return @classroom_users unless @classroom_users.empty?
     end
 
-    def fetch_receiver
+    def fetch_receivers
+      @receivers = []
+
+      if @classroom_users.present? && @classroom_users.size > 1
+        @receivers = @classroom_users
+      elsif params[:transaction][:receiver_cpf].present?
+        receiver = fetch_receiver_by_cpf
+        @receivers << receiver
+      else
+        redirect_to admin_deposits_path, alert: t('.receiver_error')
+        nil
+      end
+    end
+
+    def fetch_receiver_by_cpf
       receiver_cpf = params[:transaction][:receiver_cpf]
       receiver = User.find_by(cpf: receiver_cpf)&.account
 
