@@ -1,6 +1,6 @@
 class UserInvestmentsController < ApplicationController
   before_action :authenticate_free_or_premium_user!
-  before_action :fetch_user_investment, only: %i[show edit update destroy]
+  before_action :fetch_user_investment, only: %i[show destroy]
   # before_action :fetch_investment, only: %i[new]
 
   def index
@@ -16,8 +16,6 @@ class UserInvestmentsController < ApplicationController
     @balance = current_user.account.balance
   end
 
-  def edit; end
-
   def create
     @user_investment = UserInvestment.new(user_investment_params)
 
@@ -30,14 +28,11 @@ class UserInvestmentsController < ApplicationController
     end
   end
 
-  def update
-    return redirect_to investment_url(@user_investment), notice: t('.success') if @user_investment.update(investment_params)
 
-    render :edit, status: :unprocessable_entity
-  end
 
   def destroy
-    @user_investment.destroy
+    @user_investment.update_account_balance_after_rescue if @user_investment.destroy
+
     redirect_to user_investments_path, notice: t('.success')
   end
 
