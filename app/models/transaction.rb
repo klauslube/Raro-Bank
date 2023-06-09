@@ -10,6 +10,7 @@ class Transaction < ApplicationRecord
 
   after_create :generate_token
   after_create :token_countdown
+  after_create :cancel_transfer_countdown
   after_commit :update_balance
   after_commit :new_transfer
 
@@ -39,6 +40,10 @@ class Transaction < ApplicationRecord
 
   def token_countdown
     Transactions::TokenUpdateJob.set(wait: 5.minutes).perform_later
+  end
+
+  def cancel_transfer_countdown
+    Transactions::CancelTransferJob.set(wait: 6.minutes).perform_later(id)
   end
 
   def check_sender_balance
