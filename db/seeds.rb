@@ -15,12 +15,12 @@ premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rar
 premium.skip_confirmation!
 premium.save!
 
-investment = Investment.new name: 'SELIC', minimum_amount: 100, start_date: Date.current, expiration_date: Date
-             .tomorrow, premium: true, approver_id: admin.id, indicator_id: 2
+investment = Investment.new name: 'CDI', minimum_amount: 200, start_date: Date.current, expiration_date: Date
+             .tomorrow, premium: true, approver_id: admin.id, indicator_id: 1
 investment.save!
 
-investment2 = Investment.new name: 'CDI', minimum_amount: 200, start_date: Date.current, expiration_date: Date
-              .tomorrow, premium: true, approver_id: admin.id, indicator_id: 1
+investment2 = Investment.new name: 'SELIC', minimum_amount: 100, start_date: Date.current, expiration_date: Date
+              .tomorrow, premium: true, approver_id: admin.id, indicator_id: 2
 investment2.save!
 
 investment3 = Investment.new name: 'IPCA', minimum_amount: 300, start_date: Date.current, expiration_date: Date
