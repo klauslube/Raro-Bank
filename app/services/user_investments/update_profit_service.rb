@@ -2,6 +2,7 @@ module UserInvestments
   class UpdateProfitService
     def initialize(user_investment_id)
       @user_investment_id = user_investment_id
+      @user_investment = UserInvestment.find(@user_investment_id)
     end
 
     def call
@@ -11,12 +12,14 @@ module UserInvestments
     private
 
     def update_investment_profit
-      investment = UserInvestment.find(@user_investment_id)
-      total_return = scan_numbers_in_name(investment.investment.name)
-      daily_return = investment.investment.indicator.rate + (total_return / 100.0)
+      daily_profit = calculate_daily_profit
+      @user_investment.update(profit: daily_profit)
+    end
 
-      profit = investment.initial_amount + (investment.initial_amount * daily_return)
-      investment.update(profit:)
+    def calculate_daily_profit
+      total_return = scan_numbers_in_name(@user_investment.investment.name)
+      daily_return = @user_investment.investment.indicator.rate + (total_return / 100.0)
+      @user_investment.initial_amount + (@user_investment.initial_amount * daily_return)
     end
 
     def scan_numbers_in_name(name)
