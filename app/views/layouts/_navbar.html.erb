@@ -3,7 +3,7 @@
     <%= inline_svg_tag 'logo-user.svg', class: 'w-[120px] text-primary-100 hover:opacity-80 transition duration-200 ease-in-out' %>
   <% end %>
   <div class="flex gap-10">
-    <%= link_to t('view.links.catalog'), user_investments_path, class: "user-menu-item#{'-active' if request.path.include?('/catolog')}" %>
+    <%= link_to t('view.links.catalog'), catalogs_path, class: "user-menu-item#{'-active' if request.path.include?('/catolog')}" %>
     <%= link_to t('view.links.transactions'), transactions_path, class: "user-menu-item#{'-active' if request.path.include?('/transactions')}" %>
     <%= link_to t('view.links.investments'), new_user_investment_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
   </div>

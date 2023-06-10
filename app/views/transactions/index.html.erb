@@ -1,19 +1,19 @@
-<%= link_to 'Nova transferência', new_transaction_path %>
+<%= link_to 'New transfer', new_transaction_path %>
 
 <table>
   <thead>
     <tr>
-      <th>Valor</th>
+      <th>Value</th>
       <th>Status</th>
-      <th>Detalhes</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @transactions.each do |transaction| %>
     <tr>
       <td class='py-1'><%= transaction.amount %></td>
-      <td class='py-1'><%= transaction.status %></td>
-      <td class='py-1'><%= link_to 'Detalhes', transaction_path(transaction) %></td>
+      <td class='py-1'><%= transaction.status.titleize %></td>
+      <td class='py-1'><%= link_to 'Confirm', edit_transaction_path(transaction) %></td>
     </tr>
     <% end %>
   </tbody>

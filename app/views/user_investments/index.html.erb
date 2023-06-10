@@ -1,1 +1,5 @@
-<%= render 'table', investments: @user_investments %>
+<% if request.path == catalogs_path %>
+  <%= render 'catalog', investments: @investments, user_investment: @user_investment %>
+<% else %>
+  <%= render 'table', user_investments: @user_investments %>
+<% end %>

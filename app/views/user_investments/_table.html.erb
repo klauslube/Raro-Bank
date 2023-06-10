@@ -1,7 +1,23 @@
 <h1>User Investments</h1>
-<div>
-  <%= link_to "New Investment", new_user_investment_path(@user_investment) %>
-</div>
+<%= link_to 'Investments Catalog', catalogs_path %>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
+  <%= f.search_field :investment_minimum_amount_gteq %>
+
+  <%= f.label :investment_indicator_rate_gteq, 'Valor indexador:' %>
+  <%= f.search_field :investment_indicator_rate_gteq %>
+
+  <%= f.label :investment_premium_eq, 'Premium:' %>
+  <%= f.check_box :investment_premium_eq %>
+
+  <%= f.label :investment_expiration_date_eq, 'Data de Vencimento:' %>
+  <%= f.date_field :investment_expiration_date_eq %>
+
+  <%= f.submit %>
+  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -11,23 +27,24 @@
       <th scope="col">Expiration Date</th>
       <th scope="col">Index</th>
       <th scope="col">Category</th>
-      <th scope="col">Profit</th> 
+      <th scope="col">Profit</th>
+      <th scope="col">Initial amount</th>
       <th scope="col">Purchase Date</th>
     </tr>
   </thead>
   <tbody>
-    <% @user_investments.each do |inv| %>
+    <% @user_investments.each do |investment| %>
       <tr>
-        <td><%= inv.id %></td>
-        <td><%= inv.investment.name %></td>
-        <td><%= inv.investment.minimum_amount %></td>
-        <td><%= inv.investment.expiration_date %></td>
-        <td><%= inv.investment.income %></td>
-        <td><%= inv.investment.premium ? 'Premium' : 'Free' %> 
-        <td><%= inv.profit || 0 %></td>
-        <td><%= inv.created_at.strftime('%d/%m/%y') %></td>
-        <td><%= button_to "Rescue!", inv, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></td>
-        </td>
+        <td><%= investment.id %></td>
+        <td><%= investment.investment.name %></td>
+        <td><%= investment.investment.minimum_amount %></td>
+        <td><%= investment.investment.expiration_date %></td>
+        <td><%= investment.investment.indicator.rate %></td> 
+        <td><%= investment.investment.premium ? 'Premium' : 'Free' %> 
+        <td><%= investment.profit %></td>
+        <td><%= investment.initial_amount %></td>
+        <td><%= investment.created_at.strftime('%d/%m/%y') %></td>
+        <td><%= link_to "Detalhes", user_investment_path(investment) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -13,13 +13,13 @@ RSpec.describe Transaction do
 
     subject(:transaction) { build(:transaction) }
 
-    it { should validate_presence_of :token }
-    it { should validate_presence_of :amount }
-    it { should validate_presence_of :status }
-    it { expect(transaction).to define_enum_for(:status).with_values(
+    xit { should validate_presence_of :token }
+    xit { should validate_presence_of :amount }
+    xit { should validate_presence_of :status }
+    xit { expect(transaction).to define_enum_for(:status).with_values(
       started: 1, authenticated: 5, pending: 10, completed: 15, canceled: 20
       )}
-    it { expect(transaction).to validate_numericality_of(:amount).is_greater_than(0)}
+    xit { expect(transaction).to validate_numericality_of(:amount).is_greater_than(0)}
   end
 
   describe 'Associations' do

@@ -6,6 +6,7 @@ class Classroom < ApplicationRecord
 
   validate :end_date_after_start_date
 
+  scope :with_users, -> { joins(:users).distinct }
   scope :by_name, ->(name) { where(name:) }
   scope :name_contains, ->(contain) { where('name ILIKE ?', "%#{contain}%") }
   scope :active, -> { where('start_date <= ? AND end_date >= ?', Time.zone.today, Time.zone.today) }
