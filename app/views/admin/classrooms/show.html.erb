@@ -1,7 +1,7 @@
 <%= render @classroom %>
 
 <div>
-  <%= link_to "Edit this classroom", edit_admin_classroom_path(@classroom) %> |
-  <%= link_to "Back to classrooms", admin_classrooms_path %>
-  <%= button_to "Destroy this classroom", admin_classroom_path(@classroom), method: :delete %>
+  <%= link_to t('.edit_classroom'), edit_admin_classroom_path(@classroom) %> |
+  <%= link_to t('.back'), admin_classrooms_path %>
+  <%= button_to t('.delete_classroom'), admin_classroom_path(@classroom), method: :delete %>
 </div>

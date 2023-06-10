@@ -1,16 +1,16 @@
-<h1>Classrooms</h1>
+<h1><%= t('.classroom') %></h1>
 
 <% if @classrooms.blank? %>
-  <p> There are no classrooms yet. </p>
+  <p> <%= t('.no_classrooms') %> </p>
 <% end %>
 
 <div id="classrooms">
   <table >
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>End Date</th>
+        <th><%= t('.name') %></th>
+        <th><%= t('.start_date') %></th>
+        <th><%= t('.end_date') %></th>
       </tr>
     </thead>
     <tbody>
@@ -21,10 +21,10 @@
           <td><%= classroom.end_date.strftime('%d/%m/%Y') %></td>
           <td>
             <div>
-              <%= link_to "Details", admin_classroom_path(classroom), method: :show %>
+              <%= link_to t('.details'), admin_classroom_path(classroom), method: :show %>
 
-              <%= link_to "Edit", edit_admin_classroom_path(classroom)%>
-              <%= button_to "Delete", admin_classroom_path(classroom), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure you want to delete this classroom?"} %>
+              <%= link_to t('.edit'), edit_admin_classroom_path(classroom)%>
+              <%= button_to t('.delete'), admin_classroom_path(classroom), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure you want to delete this classroom?"} %>
             </div>
           </td>
         </tr>
@@ -33,4 +33,4 @@
   </table>
 </div>
 
-<%= link_to  "New classroom", new_admin_classroom_path %>
+<%= link_to t('.new_classroom'), new_admin_classroom_path %>
