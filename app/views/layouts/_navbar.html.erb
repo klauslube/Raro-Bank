@@ -3,8 +3,8 @@
     <%= inline_svg_tag 'logo-user.svg', class: 'w-[120px] text-primary-100 hover:opacity-80 transition duration-200 ease-in-out' %>
   <% end %>
   <div class="flex gap-10">
-    <%= link_to t('view.links.catalog'), user_investments_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
-    <%= link_to t('view.links.transactions'), transactions_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
+    <%= link_to t('view.links.catalog'), user_investments_path, class: "user-menu-item#{'-active' if request.path.include?('/catolog')}" %>
+    <%= link_to t('view.links.transactions'), transactions_path, class: "user-menu-item#{'-active' if request.path.include?('/transactions')}" %>
     <%= link_to t('view.links.investments'), new_user_investment_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
   </div>
   <div class="flex justify-end items-center gap-6 min-w-[120px]">
@@ -34,8 +34,8 @@
           <%= inline_svg_tag 'icons/outline/cog-8-tooth.svg', class: 'min-w- min-h-4' %>
         <% end %>
         <%= button_to destroy_user_session_path, method: :delete, class: "user-context-item" do %>
-          <span class="text-xl"><%= t('view.links.logout') %></span>
-          <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: "min-w-4 min-h-4" %>
+          <span><%= t('view.links.logout') %></span>
+          <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: "min-w-4 min-h-4 ml-2" %>
         <% end %>
 
       </div>
