@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name email cpf role]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[classroom investment]
+  end
+
   has_one :account, dependent: :destroy
   belongs_to :classroom, optional: true
   has_many :user_investments, dependent: :destroy

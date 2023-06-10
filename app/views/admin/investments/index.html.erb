@@ -44,12 +44,7 @@
         <td><%= investment.start_date %></td>
         <td><%= investment.expiration_date %></td>
         <td><%= investment.indicator.rate %></td>
-        <td>
-          <% if investment.premium %>
-            Free
-          <% else %>
-            Premium
-          <% end %>
+        <td><%= investment.premium ? 'Premium' : 'Free' %>
         </td>
         <td>
           <%= link_to "Details", admin_investment_path(investment) %>
