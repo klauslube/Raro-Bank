@@ -56,3 +56,7 @@ Metrics/AbcSize:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
+
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'
