@@ -91,14 +91,14 @@
   /* LAYOUT USERS */
   /* Navbar */
   .user-menu-dropdown {
-    @apply transition transform origin-top-right absolute right-0 px-6 py-4 mt-4 bg-white flex flex-col items-end justify-start p-2 border-primary-400 border-2 rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 opacity-90;
+    @apply transition transform origin-top-right absolute right-0 px-6 py-4 mt-4 bg-white flex flex-col items-end justify-start p-2 border-primary-400 border-2 rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 ease-in-out duration-150;
   }
   .user-context-item {
-    @apply flex min-w-fit justify-center items-center gap-2 px-4 py-2 text-base font-admin font-bold text-primary-700;
+    @apply flex min-w-fit justify-center items-center gap-2 px-4 py-2 text-base font-admin font-bold text-primary-700 decoration-secondary-600;
   }
 
   .user-context-item:hover {
-    @apply underline decoration-2 underline-offset-8 transition duration-150 ease-in-out text-primary-500 cursor-pointer;
+    @apply underline decoration-2 decoration-secondary-600 underline-offset-8 transition duration-150 ease-in-out text-primary-500 cursor-pointer;
   }
 
   .user-menu-item {
@@ -111,5 +111,21 @@
 
   .user-menu-item-active {
     @apply text-2xl font-bold capitalize text-primary-100 underline decoration-2 decoration-secondary-500 underline-offset-8;
+  }
+
+  /* Cards */
+  .user-card-container {
+    @apply flex justify-center items-center rounded-2xl ring-2 ring-primary-300 ring-opacity-50 p-8 bg-white gap-4 shadow-lg transition ease-in-out duration-300;
+  }
+
+  .user-card-container:hover {
+    @apply ring-4 ring-opacity-100 ring-secondary-600 opacity-90;
+  }
+  .user-card-icon {
+    @apply p-4 w-16 h-16 bg-primary-600 rounded-xl;
+  }
+
+  .user-card-text {
+    @apply text-xl text-primary-600 font-medium w-36;
   }
 }
