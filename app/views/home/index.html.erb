@@ -1,1 +1,28 @@
 <%= render 'home/article' %>
+
+<section class="mb-10">
+  <h3 class="text-primary-600 font-bold text-center mt-4 text-2xl p-4"><%= t('views.home.title') %></h3>
+  <div class="flex flex-row justify-center items-center space-x-10 h-full py-4 px-32">
+
+    <%= link_to transactions_path, class:'user-card-container' do %>
+      <span class="user-card-icon">
+        <%= inline_svg_tag 'icons/solid/list.svg', class: 'w-full h-full text-white' %>
+      </span>
+      <span class="user-card-text"><%= t('views.links.extract') %></span>
+    <% end %>
+    <%= link_to admin_investments_path, class:'user-card-container' do %>
+      <span class="user-card-icon">
+        <%= inline_svg_tag 'icons/solid/list.svg', class: 'w-full h-full text-white' %>
+      </span>
+      <span class="user-card-text"><%= t('views.links.invest') %></span>
+    <% end %>
+    <%= link_to new_transaction_path, class:'user-card-container' do %>
+      <span class="user-card-icon">
+        <%= inline_svg_tag 'icons/solid/list.svg', class: 'w-full h-full text-white' %>
+      </span>
+      <span class="user-card-text"><%= t('views.links.transfer') %></span>
+    <% end %>
+
+  </div>
+</div>
+</section>
