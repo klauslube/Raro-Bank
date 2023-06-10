@@ -1,0 +1,40 @@
+pt-BR:
+  admin:
+    investments:
+      index:
+        name: Nome
+        minimum_amount: Valor mínimo
+        start_date: Data inicial
+        expiration_date: Data de expiração
+        index: Indexador
+        category: Categoria
+        free: Free
+        premium: Premium
+        details: Detalhes
+        new_investment: Novo investimento
+      form:
+        investment_registration: Cadastro de investimentos
+        name: Nome
+        minimum_amount: Valor mínimo
+        start_date: Data inicial
+        expiration_date: Data de expiração
+        index: Indexador
+        category: Categoria
+        cancel: Cancelar
+        submit: Salvar
+        select_field: Selecionar...
+      show:
+        investment_data: Detalhes do investimento
+        name: Nome
+        minimum_amount: Valor mínimo
+        start_date: Data inicial
+        expiration_date: Data de expiração
+        rate: Taxa
+        category: Categoria
+        back: Voltar
+        delete: Apagar
+        confirm_pop: Tem certeza ?
+      create:
+        success: Investimento cadastrado com sucesso
+      destroy:
+        success: Investimento deletado !
