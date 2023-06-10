@@ -12,14 +12,16 @@ module UserInvestments
     private
 
     def update_investment_profit
-      daily_profit = calculate_daily_profit
-      @user_investment.update(profit: daily_profit)
+      @user_investment.reload
+      return if Date.current <= @user_investment.created_at.to_date
+
+      @user_investment.profit += @user_investment.profit * calculate_daily_profit
+      @user_investment.save
     end
 
     def calculate_daily_profit
       total_return = scan_numbers_in_name(@user_investment.investment.name)
-      daily_return = @user_investment.investment.indicator.rate + (total_return / 100.0)
-      @user_investment.initial_amount * daily_return
+      @user_investment.investment.indicator.rate * (total_return / 100.0)
     end
 
     def scan_numbers_in_name(name)

@@ -7,6 +7,7 @@ class UserInvestment < ApplicationRecord
   validate :premium_investment_available?
   validate :balance_account_enough?
 
+  before_create :set_initial_profit
   after_commit :update_investment_profit, on: :create
 
   def update_account_balance
@@ -14,7 +15,7 @@ class UserInvestment < ApplicationRecord
   end
 
   def update_account_balance_after_rescue
-    user.account.update(balance: user.account.balance + profit + initial_amount)
+    user.account.update(balance: user.account.balance + profit)
   end
 
   private
@@ -30,10 +31,14 @@ class UserInvestment < ApplicationRecord
   end
 
   def initial_amount_enough?
-    errors.add(:initial_amount, 'needs to be more than minimum amount') if initial_amount < investment.minimum_amount
+    errors.add(:initial_amount, 'needs to be more than minimum amount') if initial_amount && initial_amount < investment.minimum_amount
   end
 
   def balance_account_enough?
-    errors.add(:base, 'Balance is not enough') if user.account.balance < initial_amount
+    errors.add(:base, 'Balance is not enough') if initial_amount && user.account.balance < initial_amount
+  end
+
+  def set_initial_profit
+    self.profit = initial_amount.to_f
   end
 end
