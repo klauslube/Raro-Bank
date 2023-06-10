@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'ransack'
 RSpec.describe Admin::InvestmentsController, type: :controller do
   describe "Authenticated as admin user" do
     let(:admin) { create(:user_confirmed, role: :admin) }
@@ -11,12 +11,12 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#index' do
-      xit 'should respond with 200' do
+      it 'should respond with 200' do
         get :index
         expect(response).to have_http_status(200)
       end
 
-      xit 'renders the index template' do
+      it 'renders the index template' do
         get :index
         expect(response).to render_template(:index)
       end

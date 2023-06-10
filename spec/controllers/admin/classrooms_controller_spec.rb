@@ -1,8 +1,8 @@
 require "rails_helper"
-
+require 'ransack'
 RSpec.describe Admin::ClassroomsController, type: :controller do
   describe "GET #index" do
-    xit "assigns all classrooms to @classrooms" do
+    it "assigns all classrooms to @classrooms" do
       classroom1 = create(:classroom)
       classroom2 = create(:classroom)
 
@@ -11,7 +11,7 @@ RSpec.describe Admin::ClassroomsController, type: :controller do
       expect(assigns(:classrooms)).to match_array([classroom1, classroom2])
     end
 
-    xit "renders the index template" do
+    it "renders the index template" do
       get :index
 
       expect(response).to render_template(:index)

@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'ransack'
 RSpec.describe Admin::UsersController, type: :controller do
   describe 'logged in as admin' do
     let(:admin) { create(:user_confirmed, role: :admin) }
@@ -16,20 +16,20 @@ RSpec.describe Admin::UsersController, type: :controller do
         get :index
       end
 
-      xit 'should assigns all users but current_user to @users' do
+      it 'should assigns all users but current_user to @users' do
         expect(assigns(:users)).to match_array([user, premium_user])
       end
 
-      xit 'should respond with 200' do
+      it 'should respond with 200' do
         expect(response).to have_http_status(200)
       end
 
-      xit 'should renders the index template' do
+      it 'should renders the index template' do
         get :index
         expect(response).to render_template(:index)
       end
 
-      xit 'should not include current_user' do
+      it 'should not include current_user' do
         expect(assigns(:users)).not_to include(admin)
       end
     end
