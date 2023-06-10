@@ -14,7 +14,7 @@ premium.skip_confirmation!
 premium.save!
 
 # Create only free users
-50.times do
+100.times do
   name = Faker::Name.name
   cpf = Faker::IDNumber.brazilian_citizen_number
   email = Faker::Internet.email
@@ -102,3 +102,5 @@ end
 
   puts { "Transaction #{transaction.id} created!" }
 end
+
+puts 'Seeds created!'
