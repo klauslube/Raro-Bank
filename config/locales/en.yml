@@ -88,3 +88,12 @@ en:
       investments: 'Investments'
       classrooms: 'Classrooms'
       users: 'Users'
+      invest: 'Invest'
+      transfer: 'Transfer'
+      extract: 'Extract'
+    home:
+      title: 'Start in the best way'
+    article:
+      title: 'Secure access to the best investments by becoming a student at Raro Academy'
+      subtitle: 'Students and alumni of our school have access to high-yield investments. Make your Raracoins count!'
+      more: 'Learn more'
