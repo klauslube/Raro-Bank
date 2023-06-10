@@ -1,0 +1,24 @@
+pt-BR:
+  transactions:
+    form:
+      next: Avançar
+      cancel: Cancelar
+      placeholder_amount: Digite um valor...
+      placeholder_receiver_cpf: Digite um CPF...
+    edit:
+      confirm: Confirmar
+      back: Voltar
+      transaction: Transação
+      placeholder_token_code: Digite código de autenticação...
+      resend_email: Renviar código
+    create:
+      success: Por favor confirme sua transferência
+    update:
+      success: Sua transferência foi atualizada
+      invalid_token: inválido
+    index:
+      new_transfer: Nova transferência
+      value: Valor
+      status_label: Status da transferência
+      confirm: Confirmar
+
