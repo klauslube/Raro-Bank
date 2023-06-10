@@ -10,81 +10,44 @@
 @layer components {
   /* Notifications */
   .notification-container {
-    @apply transition transform duration-1000 absolute bottom-6 right-6 flex items-center w-full max-w-sm p-4 mb-4 text-primary-600 bg-white rounded-lg shadow dark:text-primary-400 dark:bg-primary-800;
+    @apply absolute flex items-center w-full max-w-sm p-4 mb-4 transition duration-1000 transform bg-white rounded-lg shadow bottom-6 right-6 text-primary-600 dark:text-primary-400 dark:bg-primary-800;
   }
 
-  /* Inputs */
-  .input-label {
-    @apply block ml-2 text-sm font-medium leading-6 text-primary-900;
-  }
-
-  .input-field {
-    @apply block w-full m-1 border-2 border-primary-300 rounded-md shadow-sm focus:border-primary-600 focus:ring-primary-600 sm:text-sm;
-  }
-
-  .input-field:disabled {
-    @apply bg-gray-100 text-gray-500;
-  }
-
-  .select-field {
-    @apply block w-full rounded-md m-1 p-2 border-2 border-primary-300 shadow-sm focus:border-primary-600 focus:ring-primary-600 sm:text-sm sm:leading-6;
-  }
-
-  .checkbox-field {
-    @apply ml-1 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600;
-  }
-
-  /* Inputs with icon inside */
-  .input-container {
-    @apply w-full;
-  }
-
-  .input-group {
-    @apply w-full flex m-1 justify-between items-center border-2 gap-4 rounded-md border-gray-300 pr-4 bg-white shadow-sm focus-within:border-primary-600 focus-within:border-2;
-  }
-
-  .input-inside {
-    @apply block w-full border-0 focus:border-0 rounded-md focus:ring-0 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6;
-  }
-
-  .input-inside-button {
-    @apply text-gray-700 hover:text-gray-500 transition ease-in-out duration-150;
-  }
-
+  /* LAYOUT ADMIN */
   /* Navbar */
   .menu-item {
     @apply text-2xl font-bold capitalize text-primary-100;
   }
 
   .menu-item:hover {
-    @apply underline decoration-2 underline-offset-8 transition duration-150 ease-in-out;
+    @apply underline transition duration-150 ease-in-out decoration-2 underline-offset-8;
   }
 
   .menu-item-active {
-    @apply text-2xl font-bold capitalize text-primary-100 underline decoration-2 underline-offset-8;
+    @apply text-2xl font-bold underline capitalize text-primary-100 decoration-2 underline-offset-8;
   }
 
   .menu-button {
-    @apply flex items-center px-2 py-1 gap-2 bg-primary-300 border-2 border-primary-300 text-primary-600 rounded-md text-base font-bold uppercase transition duration-150 ease-in-out;
+    @apply flex items-center gap-2 px-2 py-1 text-base font-bold uppercase transition duration-150 ease-in-out border-2 rounded-md bg-primary-300 border-primary-300 text-primary-600;
   }
   .menu-button:hover {
-    @apply bg-primary-600 border-2 border-primary-300 text-primary-100;
+    @apply border-2 bg-primary-600 border-primary-300 text-primary-100;
   }
 
   .menu-button-active {
-    @apply flex items-center px-2 py-1 gap-2 bg-primary-600 border-2 border-primary-300  rounded-md text-base font-bold uppercase text-primary-100;
+    @apply flex items-center gap-2 px-2 py-1 text-base font-bold uppercase border-2 rounded-md bg-primary-600 border-primary-300 text-primary-100;
   }
 
   .icon-button {
-    @apply text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out;
+    @apply transition duration-200 ease-in-out text-primary-100 hover:text-primary-300;
   }
 
   .button-primary {
-    @apply w-full items-center p-3 m-1 border border-transparent text-base font-bold capitalize rounded-md shadow-sm text-primary-100 bg-primary-600  transition duration-150 ease-in-out;
+    @apply items-center w-full p-3 text-base font-bold capitalize transition duration-150 ease-in-out border border-transparent rounded-md shadow-sm text-primary-100 bg-primary-600;
   }
 
   .button-primary:hover {
-    @apply bg-primary-700 cursor-pointer;
+    @apply cursor-pointer bg-primary-700;
   }
 
   .button-primary:disabled {
@@ -97,24 +60,24 @@
   }
 
   .menu-dropdown {
-    @apply transition transform origin-top-right absolute right-0 bg-white flex flex-col items-end justify-start p-2 border-primary-300 rounded-md shadow-2xl ring-1 ring-black ring-opacity-5;
+    @apply absolute right-0 flex flex-col items-end justify-start p-2 transition origin-top-right transform bg-white rounded-md shadow-2xl border-primary-300 ring-1 ring-black ring-opacity-5;
   }
 
   .menu-dropdown-item {
-    @apply flex min-w-fit justify-center items-center gap-2 px-4 py-2 text-base text-primary-600 hover:text-primary-300;
+    @apply flex items-center justify-center gap-2 px-4 py-2 text-base min-w-fit text-primary-600 hover:text-primary-300;
   }
 
   /* LAYOUT USERS */
   /* Navbar */
   .user-menu-dropdown {
-    @apply transition transform origin-top-right absolute right-0 px-6 py-4 mt-4 bg-white flex flex-col items-end justify-start p-2 border-primary-400 border-2 rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 ease-in-out duration-150;
+    @apply absolute right-0 flex flex-col items-end justify-start p-2 px-6 py-4 mt-4 transition duration-150 ease-in-out origin-top-right transform bg-white border-2 rounded-md shadow-2xl border-primary-400 ring-1 ring-black ring-opacity-5;
   }
   .user-context-item {
-    @apply flex min-w-fit justify-center items-center gap-2 px-4 py-2 text-base font-admin font-bold text-primary-700 decoration-secondary-600;
+    @apply flex items-center justify-center gap-2 px-4 py-2 text-base font-bold min-w-fit font-admin text-primary-700 decoration-secondary-600;
   }
 
   .user-context-item:hover {
-    @apply underline decoration-2 decoration-secondary-600 underline-offset-8 transition duration-150 ease-in-out text-primary-500 cursor-pointer;
+    @apply underline transition duration-150 ease-in-out cursor-pointer decoration-2 decoration-secondary-600 underline-offset-8 text-primary-500;
   }
 
   .user-menu-item {
@@ -122,26 +85,107 @@
   }
 
   .user-menu-item:hover {
-    @apply underline decoration-2 decoration-secondary-500 underline-offset-8 transition duration-150 ease-in-out;
+    @apply underline transition duration-150 ease-in-out decoration-2 decoration-secondary-500 underline-offset-8;
   }
 
   .user-menu-item-active {
-    @apply text-2xl font-bold capitalize text-primary-100 underline decoration-2 decoration-secondary-500 underline-offset-8;
+    @apply text-2xl font-bold underline capitalize text-primary-100 decoration-2 decoration-secondary-500 underline-offset-8;
   }
 
   /* Cards */
   .user-card-container {
-    @apply flex justify-center items-center rounded-2xl ring-2 ring-primary-300 ring-opacity-50 p-8 bg-white gap-4 shadow-lg transition ease-in-out duration-300;
+    @apply flex items-center justify-center gap-4 p-8 transition duration-300 ease-in-out bg-white shadow-lg rounded-2xl ring-2 ring-primary-300 ring-opacity-50;
   }
 
   .user-card-container:hover {
     @apply ring-4 ring-opacity-100 ring-secondary-600 opacity-90;
   }
   .user-card-icon {
-    @apply p-4 w-16 h-16 bg-primary-600 rounded-xl;
+    @apply w-16 h-16 p-4 bg-primary-600 rounded-xl;
   }
 
   .user-card-text {
-    @apply text-xl text-primary-600 font-medium w-36;
+    @apply text-xl font-medium text-primary-600 w-36;
+  }
+  .users-form-container {
+    @apply flex flex-col gap-4 mx-auto font-admin w-96 text-primary-900;
+  }
+
+  .users-form-title-container {
+    @apply flex flex-col gap-4;
+  }
+
+  .users-form-title {
+    @apply text-4xl font-bold;
+  }
+
+  .users-form-subtitle {
+    @apply text-base font-medium;
+  }
+
+  .users-form-field {
+    @apply flex flex-col gap-2;
+  }
+
+  .users-input-label {
+    @apply block text-sm font-semibold leading-6;
+  }
+
+  .users-checkbox-field {
+    @apply w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600;
+  }
+
+  .users-form {
+    @apply text-sm;
+  }
+
+  .users-form-link {
+    @apply text-sm font-bold transition duration-150 ease-in-out text-primary-600;
+  }
+
+  .users-form-link:hover {
+    @apply underline text-primary-800 underline-offset-2 decoration-2;
+  }
+
+  .users-form-submit-container {
+    @apply flex justify-between items-center flex-1 px-3 py-2 bg-primary-600 rounded-md shadow-sm cursor-pointer text-base font-bold text-primary-100 transition duration-150 ease-in-out;
+  }
+
+  .users-form-submit-container:hover {
+    @apply bg-primary-700;
+  }
+
+  .users-form-submit {
+    @apply cursor-pointer;
+  }
+
+  /* Inputs */
+  .users-input-field {
+    @apply block w-full border-2 py-2 rounded-md shadow-sm border-gray-300 focus:border-primary-600 focus:ring-primary-600 sm:text-sm;
+  }
+
+  .users-input-field:disabled {
+    @apply text-gray-500 bg-gray-100;
+  }
+
+  .users-select-field {
+    @apply block w-full p-2 border-2 rounded-md shadow-sm border-primary-300 focus:border-primary-600 focus:ring-primary-600 sm:text-sm sm:leading-6;
+  }
+
+  /* Inputs with icon inside */
+  .users-input-container {
+    @apply w-full;
+  }
+
+  .users-input-group {
+    @apply flex items-center justify-between w-full gap-4 pr-4 bg-white border-2 border-gray-300 rounded-md shadow-sm focus-within:border-primary-600 focus-within:border-2;
+  }
+
+  .users-input-inside {
+    @apply block w-full text-gray-900 border-0 rounded-md focus:border-0 focus:ring-0 placeholder:text-gray-400 sm:text-sm sm:leading-6;
+  }
+
+  .users-input-inside-button {
+    @apply text-gray-700 transition duration-150 ease-in-out hover:text-gray-500;
   }
 }

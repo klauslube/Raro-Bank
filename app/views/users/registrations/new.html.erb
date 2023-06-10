@@ -4,29 +4,29 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
 
   <div class="field">
-    <%= f.label :name, class: "input-label" %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input-field" %>
+    <%= f.label :name, class: 'users-input-label' %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'users-input-field' %>
   </div>
 
   <div class="field">
-    <%= f.label :cpf, class: "input-label" %>
-    <%= f.text_field :cpf, autofocus: true, class: "input-field" %>
+    <%= f.label :cpf, class: 'users-input-label' %>
+    <%= f.text_field :cpf, autofocus: true, class: 'users-input-field' %>
   </div>
 
   <div class="field">
-    <%= f.label :email, class: "input-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field" %>
+    <%= f.label :email, class: 'users-input-label' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field' %>
   </div>
 
-  <div data-controller="password-visibility" class="input-container">
-    <%= f.label :password, class: "input-label" %><i>(leave blank if you don't want to change it)</i>
+  <div data-controller="password-visibility" class="users-input-container">
+    <%= f.label :password, class: 'users-input-label' %><i>(leave blank if you don't want to change it)</i>
 
-    <div class="input-group">
-      <%= f.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+    <div class="users-input-group">
+      <%= f.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
       <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
+        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
       </button>
     </div>
     <% if @minimum_password_length %>
@@ -35,21 +35,21 @@
     <% end %>
   </div>
 
-  <div data-controller="password-visibility" class="input-container">
-    <%= f.label :password_confirmation, class: "input-label" %>
+  <div data-controller="password-visibility" class="users-input-container">
+    <%= f.label :password_confirmation, class: 'users-input-label' %>
 
-    <div class="input-group">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+    <div class="users-input-group">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
       <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
+        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
       </button>
     </div>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'form-users-button' %>
   </div>
 <% end %>
 
