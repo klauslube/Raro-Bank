@@ -47,15 +47,26 @@ class Transaction < ApplicationRecord
   end
 
   def check_sender_balance
-    errors.add(:amount, 'Insufficient balance for the transaction') if sender.balance < amount.to_f
+    errors.add(:amount, :insufficient_balance) if sender.balance < amount.to_f
   end
 
   def check_transfer_yourself
-    errors.add(:receiver_id, "You can't send a transaction to yourself") if receiver_id == sender_id
+    errors.add(:receiver_id, :transfer_yourself) if receiver_id == sender_id
   end
 
   def update_balance
-    Transactions::UpdateBalanceJob.perform_later(id)
+    if within_transfer_hours?
+      Transactions::UpdateBalanceService.new(self).call
+    else
+      Transactions::UpdateBalanceJob.perform_later(id)
+    end
+  end
+
+  def within_transfer_hours?
+    current_time = Time.now.in_time_zone('America/Fortaleza')
+    weekday = current_time.wday
+    hour = current_time.hour
+    weekday >= 1 && weekday <= 5 && hour >= 8 && hour < 18
   end
 
   def new_transfer

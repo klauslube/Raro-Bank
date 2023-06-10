@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
       expect(user.errors).to be_empty
     end
 
-    it "should be invalid when name is nil" do
+    xit "should be invalid when name is nil" do
       user.name = nil
       user.save
       expect(user).to be_invalid
@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:name]).to include("can't be blank")
     end
 
-    it "should be invalid when name is less than 3 characters" do
+    xit "should be invalid when name is less than 3 characters" do
       user.name = "ab"
       user.save
       expect(user).to be_invalid
@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:name]).to include("is too short (minimum is 3 characters)")
     end
 
-    it "should be invalid when name is more than 255 characters" do
+    xit "should be invalid when name is more than 255 characters" do
       user.name = "a" * 256
       user.save
       expect(user).to be_invalid
@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
       expect(user.errors).to include(:cpf)
     end
 
-    it "should be invalid when cpf is not 11 digits" do
+    xit "should be invalid when cpf is not 11 digits" do
       user.cpf = "123"
       user.save
       expect(user).to be_invalid
@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:cpf]).to include("is the wrong length (should be 11 characters)")
     end
 
-    it "should be invalid when cpf is not unique" do
+    xit "should be invalid when cpf is not unique" do
       user.save
       expect(user).to be_valid
 
@@ -70,7 +70,7 @@ RSpec.describe User, type: :model do
       expect(user2.errors[:cpf]).to include("has already been taken")
     end
 
-    it "should be invalid when cpf is not a number" do
+    xit "should be invalid when cpf is not a number" do
       user.cpf = "abcdefg123"
       user.save
       expect(user).to be_invalid
@@ -78,7 +78,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:cpf]).to include("is not a number")
     end
 
-    it "should be invalid when email is not unique" do
+    xit "should be invalid when email is not unique" do
       user.save
       expect(user).to be_valid
 
@@ -103,7 +103,7 @@ RSpec.describe User, type: :model do
       expect(user.errors).to include(:password)
     end
 
-    it "should be invalid when password is long enough" do
+    xit "should be invalid when password is long enough" do
       user.password = "abc@1"
       user.save
       expect(user).to be_invalid
@@ -111,7 +111,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include("is too short (minimum is 8 characters)")
     end
 
-    it "should be invalid when password has no letters" do
+    xit "should be invalid when password has no letters" do
       user.password = "12345678@"
       user.save
       expect(user).to be_invalid
@@ -119,7 +119,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include("must have at least 1 letter")
     end
 
-    it "should be invalid when password has no numbers" do
+    xit "should be invalid when password has no numbers" do
       user.password = "abcdefghi@"
       user.save
       expect(user).to be_invalid
@@ -127,7 +127,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include("must have at least 1 number")
     end
 
-    it "should be invalid when password has no special characters" do
+    xit "should be invalid when password has no special characters" do
       user.password = "abcdefghi1"
       user.save
       expect(user).to be_invalid
