@@ -3,15 +3,21 @@ admin = User.new name: 'User Admin', cpf: '00011100011', email: 'admin@rarobank.
 admin.skip_confirmation!
 admin.save!
 
+puts 'Admin created!'
+
 # Create free user
 free = User.new name: 'User Free', cpf: '00022200011', email: 'free@rarobank.com', password: 'r@robank123', role: 1
 free.skip_confirmation!
 free.save!
 
+puts 'Free created!'
+
 # Create premium user
 premium = User.new name: 'User Premium', cpf: '00033300011', email: 'premium@rarobank.com', password: 'r@robank123', role: 2
 premium.skip_confirmation!
 premium.save!
+
+puts 'Premium created!'
 
 # Create only free users
 100.times do
@@ -24,7 +30,7 @@ premium.save!
   user.skip_confirmation!
   user.save!
 
-  puts { "User #{user.name} created!" }
+  puts "User #{user.name} created!"
 end
 
 users = User.all_except_admins
@@ -34,7 +40,7 @@ accounts = Account.not_admin
 accounts.each do |account|
   account.update(balance: 1000)
 
-  puts { "Account #{account.id} updated!" }
+  puts "Account #{account.id} updated!"
 end
 
 # Create classrooms with users free
@@ -52,7 +58,7 @@ end
 
   classroom.save!
 
-  puts { "Classroom #{classroom.name} created!" }
+  puts "Classroom #{classroom.name} created!"
 end
 
 # Create indicators
@@ -63,7 +69,7 @@ end
 
   indicator = Indicator.create!(name:, rate:, rate_date:)
 
-  puts { "Indicator #{indicator.name} created!" }
+  puts "Indicator #{indicator.name} created!"
 end
 
 indicators = Indicator.all
@@ -86,7 +92,7 @@ indicators = Indicator.all
 
   investment.save!
 
-  puts { "Investment #{investment.name} created!" }
+  puts "Investment #{investment.name} created!"
 end
 
 # Create transactions
@@ -100,7 +106,7 @@ end
   transaction = Transaction.new(amount:, sender:, receiver:)
   transaction.save_without_token!
 
-  puts { "Transaction #{transaction.id} created!" }
+  puts "Transaction between #{sender.user.name} and #{receiver.user.name} created!"
 end
 
 puts 'Seeds created!'
