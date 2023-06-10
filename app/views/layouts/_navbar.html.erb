@@ -1,7 +1,6 @@
-<nav class="bg-primary-600 h-24 px-16 flex justify-between items-center">
+<nav class="bg-primary-700 h-24 px-16 flex justify-between items-center">
   <%= link_to root_path do %>
-    <%= inline_svg_tag 'logo-user.svg', class: 'w-[120px] text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out"
-    ' %>
+    <%= inline_svg_tag 'logo-user.svg', class: 'w-[120px] text-primary-100 hover:opacity-80 transition duration-200 ease-in-out' %>
   <% end %>
   <div class="flex gap-10">
     <%= link_to t('view.links.catalog'), user_investments_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
@@ -19,7 +18,7 @@
       </button>
       <div
           data-dropdown-target="menu"
-          class="hidden menu-dropdown mt-4 px-10 py-4"
+          class="hidden user-menu-dropdown mt-6"
           data-transition-enter-from="opacity-0 scale-95"
           data-transition-enter-to="opacity-100 scale-100"
           data-transition-leave-from="opacity-100 scale-100"
@@ -43,10 +42,7 @@
     </div>
   </div>
 </nav>
-<div class="h-2 bg-secondary-500"></div>
-<div>
-  <p>Comece a movimentar a sua conta</p>
-  <div>
 
-  </div>
-</div>
+<% unless current_page?(root_path) %>
+  <div class="h-2 bg-secondary-500"></div>
+<% end %>
