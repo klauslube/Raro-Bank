@@ -2,6 +2,27 @@
   <div>
     <%= link_to "New Investment", new_admin_investment_path(@investment) %>
   </div>
+
+  <%= search_form_for @q, url: admin_investments_path do |f| %>
+    <%= f.label :name_cont, 'Nome:' %>
+    <%= f.search_field :name_cont %>
+
+    <%= f.label :minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
+    <%= f.search_field :minimum_amount_gteq %>
+
+    <%= f.label :indicator_rate_gteq, 'Valor indexador:' %>
+    <%= f.search_field :indicator_rate_gteq %>
+
+    <%= f.label :premium_eq, 'Premium:' %>
+    <%= f.check_box :premium_eq %>
+
+    <%= f.label :expiration_date_eq, 'Data de Vencimento:' %>
+    <%= f.date_field :expiration_date_eq %>
+
+    <%= f.submit %>
+    <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
+  <% end %>
+
   <table>
     <thead>
       <tr>
@@ -11,13 +32,13 @@
         <th scope="col">Data de vencimento</th>
         <th scope="col">Indexador</th>
         <th scope="col">Tipo</th>
+        <th scope="col">Premium</th>
         <th scope="col">+</th>
       </tr>
     </thead>
     <tbody>
     <% @investments.each do |investment| %>
       <tr>
-        <td><%= investment.id %></td>
         <td><%= investment.name %></td>
         <td><%= investment.minimum_amount %></td>
         <td><%= investment.start_date %></td>

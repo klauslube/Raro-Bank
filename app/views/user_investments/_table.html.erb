@@ -2,6 +2,9 @@
 <%= link_to 'Investments Catalog', catalogs_path %>
 
 <%= search_form_for @q do |f| %>
+  <%= f.label :investment_name_cont, 'Nome:' %>
+  <%= f.search_field :investment_name_cont %>
+
   <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
   <%= f.search_field :investment_minimum_amount_gteq %>
 
