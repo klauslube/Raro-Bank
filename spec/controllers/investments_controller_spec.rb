@@ -32,7 +32,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         get :show, params: { id: investment.id }
         expect(response).to render_template(:show)
       end
-    end 
+    end
 
     context '#new' do
       it 'should respond with 200' do
@@ -83,13 +83,13 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         investment = Investment.last
         delete :destroy, params: { id: investment.id }
       end
-      
-      xit 'shows success notice after successful deletion' do
+
+      it 'shows success notice after successful deletion' do
         delete :destroy, params: { id: investment.id }
         expect(flash[:notice]).to match(/Investment was successfully destroyed/)
       end
-    
-      xit 'redirects to admin_investment_path after successful deletion' do
+
+      it 'redirects to admin_investment_path after successful deletion' do
         delete :destroy, params: { id: investment.id }
         expect(response).to redirect_to(admin_investments_path)
       end

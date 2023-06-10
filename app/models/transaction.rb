@@ -26,6 +26,11 @@ class Transaction < ApplicationRecord
     new_transfer
   end
 
+  def save_without_token!
+    self.status = :authenticated
+    save!
+  end
+
   private
 
   def generate_token
