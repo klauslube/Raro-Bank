@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :amount, class:"input-label" %>
-    <%= form.number_field :amount, step: 0.01, min: 1, placeholder: 'Digite valor da transferência', data: { deposit_target: 'amountField', action: 'change->deposit#amountValueChanged' }, class: "input-field" %>
+    <%= form.number_field :amount, step: 0.01, min: 1, placeholder: 'Digite valor da transferência', data: { deposit_target: 'amountField', action: 'input->deposit#amountValueChanged' }, class: "input-field" %>
   </div>
 
   <div class="action">
