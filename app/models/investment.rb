@@ -1,4 +1,12 @@
 class Investment < ApplicationRecord
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name minimum_amount expiration_date premium]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[indicator user_investment]
+  end
+
   belongs_to :approver, class_name: 'User'
   belongs_to :indicator
   has_many :user_investments, class_name: 'UserInvestment', dependent: :destroy
