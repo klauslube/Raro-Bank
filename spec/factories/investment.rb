@@ -8,8 +8,8 @@ FactoryBot.define do
     approver_id { FactoryBot.create(:user, role: :admin).id }
     indicator_id { FactoryBot.create(:indicator).id }
 
-    association :approver, factory: :user
-    association :indicator, factory: :indicator, id: 1
+    approver factory: %i[user]
+    indicator factory: %i[indicator], id: 1
 
     trait :premium do
       premium { true }

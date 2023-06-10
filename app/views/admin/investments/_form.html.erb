@@ -1,14 +1,5 @@
 <%= form_with(model: @investment, url: admin_investments_path) do |form| %>
-  <% if @investment.errors.any? %>
-      <h3> <%= pluralize(@investment.errors.count, "errors") %> prohibited this investment from being saved:</h3>
-      <div>
-        <ul role="list">
-          <% @investment.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-  <% end %>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: @investment } %>
 
   <div>
     <%= form.hidden_field :approver_id, value: @approver_id %>

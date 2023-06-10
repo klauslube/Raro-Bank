@@ -1,0 +1,68 @@
+<h2>Edit </h2>
+
+<%= form_for(@admin, url: admin_update_path, html: { method: :patch }) do |form| %>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: @admin } %>
+
+  <div class="field">
+    <%= form.label :name, class: "input-label" %>
+    <%= form.text_field :name, autofocus: true, autocomplete: "name", class: "input-field" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpf, class: "input-label" %>
+    <%= form.text_field :cpf, autofocus: true, class: "input-field" %>
+  </div>
+
+  <div data-controller="password-visibility" class="input-container">
+    <%= form.label :password, class: "input-label" %><i>(leave blank if you don't want to change it)</i>
+
+    <div class="input-group">
+      <%= form.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+
+      <button type="button" data-action="password-visibility#toggle">
+        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
+        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
+      </button>
+    </div>
+    <% if @minimum_password_length %>
+
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div data-controller="password-visibility" class="input-container">
+    <%= form.label :password_confirmation, class: "input-label" %>
+
+    <div class="input-group">
+      <%= form.password_field :password_confirmation, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+
+      <button type="button" data-action="password-visibility#toggle">
+        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
+        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
+      </button>
+    </div>
+  </div>
+
+  <div data-controller="password-visibility" class="input-container">
+    <%= form.label :current_password, class: "input-label" %>
+
+    <div class="input-group">
+      <%= form.password_field :current_password, class: "input-field", autocomplete: "current-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+
+      <button type="button" data-action="password-visibility#toggle">
+        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
+        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
+      </button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<div>Unhappy? <%= button_to "Cancel my account", admin_destroy_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+<%= link_to "Back", :back %>

@@ -8,22 +8,36 @@ Rails.application.routes.draw do
   authenticated :user do
     # Routes for admin user (role: admin)
     constraints(RoleConstraint.new([:admin])) do
-      root to: "admin#index", as: :admin_root #TODO: implement /admin route to redirect to admin#index
-      get "/admin", to: "admin#index"
+      root to:  "admin/investments#index", as: :admin_root
+      get "/admin", to: "admin/investments#index"
 
       namespace :admin do
         resources :classrooms
-        resources :users
         resources :investments, only: %i[index new create show destroy]
+
+        # Routes for admin user (role: admin) to manage other users accounts
+        resources :users, only: %i[index edit update] do
+          get "/edit", to: "users#edit", as: :edit
+          patch "", to: "users#update", as: :update
+        end
+
+        # Routes for admin user (role: admin) to manage his own account
+        get "/edit", to: "users#edit_admin", as: :edit
+        patch "/", to: "users#update_admin", as: :update
+        delete "/", to: "users#destroy_admin", as: :destroy
       end
     end
 
     # Routes for other users (role: free, premium)
     constraints(RoleConstraint.new([:free, :premium])) do
       root to: "home#index" #TODO: implement home#index
-      
+
       resources :accounts, only: %i[index]
-      resources :transactions, only: %i[index show new create]
+      resources :transactions, except: %i[:destroy :show] do
+        member do
+          post :resend_email
+        end
+      end
       resources :user_investments
       get "/catalogs", to: "user_investments#index"
     end

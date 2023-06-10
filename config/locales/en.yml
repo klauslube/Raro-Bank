@@ -4,11 +4,11 @@
 #
 # To use the locales, use `I18n.t`:
 #
-#     I18n.t "hello"
+#     I18n.t 'hello'
 #
 # In views, this is aliased to just `t`:
 #
-#     <%= t("hello") %>
+#     <%= t('hello') %>
 #
 # To use a different locale, set it with `I18n.locale`:
 #
@@ -24,7 +24,7 @@
 # Instead, surround them with single quotes.
 #
 # en:
-#   "true": "foo"
+#   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
@@ -53,10 +53,12 @@ en:
     update:
       success: 'User investment was successfully updated'
     destroy:
-      success: 'User investment was successfully destroyed'      
+      success: 'User investment was successfully destroyed'
   transactions:
     create:
-      success: "Your transfer has been created!"
+      success: 'Please confirm your transfer.'
+    update:
+      success: 'Your transfer has been updated!'
   activerecord:
     errors:
       models:
@@ -74,8 +76,12 @@ en:
         classroom:
           attributes:
             end_date:
-              :end_date_after: 'must be after start date'
-        investment:
+              end_date_after: 'must be after start date'
+        investments:
           attributes:
             expiration_date:
-              :end_date_after: 'must be after start date'
+              expiration_date_after: 'must be after start date'
+  views:
+    links:
+      logout: 'Logout'
+      account: 'Account'
