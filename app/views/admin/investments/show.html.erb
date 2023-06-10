@@ -1,41 +1,41 @@
 <div>
-  <h3>Investment Data</h3>
-</div>
-<div>
-  <dl>
-    <div>
-      <dt>Name</dt>
-      <dd><%= @investment.name%></dd>
-    </div>
-    <div>
-      <dt>Minimum amount</dt>
-      <dd><%= @investment.minimum_amount  %></dd>
-    </div>
-    <div>
-      <dt>Start Date</dt>
-      <dd><%= @investment.start_date %></dd>
-    </div>
-    <div>
-      <dt>Expiration Date</dt>
-      <dd><%= @investment.expiration_date %></dd>
-    </div>
-      <div>
-      <dt>Rate</dt>
-      <dd><%= @investment.indicator.rate %></dd>
-    </div>
-      <div>
-      <dt>Category</dt>
-      <dd> 
+  <table>
+    <tr>
+      <th>Nome</th>
+      <td><%= @investment.name %></td>
+    </tr>
+    <tr>
+      <th>Valor mínimo</th>
+      <td><%= @investment.minimum_amount %></td>
+    </tr>
+    <tr>
+      <th>Data de estréia</th>
+      <td><%= @investment.start_date %></td>
+    </tr>
+    <tr>
+      <th>Data de vencimento</th>
+      <td><%= @investment.expiration_date %></td>
+    </tr>
+    <tr>
+      <th>Indexador</th>
+      <td><%= @investment.indicator.rate %></td>
+    </tr>
+    <tr>
+      <th>Tipo</th>
+      <td>
         <% if @investment.premium %>
           Free
         <% else %>
           Premium
-        <% end %></dd>
-    </div>
-  </dl>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  
+  <div>
+    <%= button_to "Excluir", admin_investment_path(@investment), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+    <%= link_to "Voltar a investimentos", admin_investments_path %>
+  </div>
+  
 </div>
 
-<div>
-  <%= button_to "Delete", admin_investment_path(@investment), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-  <%= link_to "Back", admin_investments_path %>
-</div>

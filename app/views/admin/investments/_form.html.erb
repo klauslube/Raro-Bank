@@ -3,42 +3,45 @@
 
   <div>
     <%= form.hidden_field :approver_id, value: @approver_id %>
-
-    <h2>Investment Register Form</h2>
-    <div>
-      <%= form.label :name, 'Name' %>
-      <%= form.text_field :name %>
-
-    <div>
-      <%= form.label :minimum_amount, 'Minimum Amount' %>
-      <%= form.number_field :minimum_amount, min: 0 %>
+    
+    <div class='flex'>
+    <p>Cadastrar investimento</p>
+    <p>Adicione um investimo ao catalógo. Lembre-se de marcar caso seja apenas para usuários premium!</p>
+    </div>
+    
+    <div class='flex'>
+      <%= form.label :name, 'Nome' %>
+      <%= form.text_field :name, placeholder: 'Digite o nome do investimento', class:  %>
     </div>
 
-    <div>
-      <%= form.label :start_date, 'Start Date' %>
+    <div class='flex'>
+      <%= form.label :minimum_amount, 'Valor mínimo' %>
+      <%= form.number_field :minimum_amount, min: 100, placeholder: '100,00' %>
+    </div>
+
+    <div class='flex'>
+      <%= form.label :start_date, 'Data de início' %>
       <%= form.date_field :start_date, min: Date.current %>
     </div>
 
-    <div>
-      <%= form.label :expiration_date, 'Expiration Date' %>
+    <div class='flex'>
+      <%= form.label :expiration_date, 'Data de vencimento' %>
       <%= form.date_field :expiration_date, min: Date.current + 1 %>
     </div>
 
-    <div>
-      <%= form.label 'Index' %>
+    <div class='flex'>
+      <%= form.label 'Indexador' %>
       <%= form.collection_select(:indicator_id, Indicator.all, :id, :name_with_rate, { prompt: 'Selecione...' }) %>
-
     </div>
 
     <div>
-      <%= form.label :premium, 'Category' %>
-      <%= form.radio_button :premium, true %> <%= form.label :premium, 'Premium' %>
-      <%= form.radio_button :premium, false %> <%= form.label :premium, 'Free' %>
+      <%= form.label :premium, 'Esse é um investimento premium?' %>
+      <%= form.check_box :premium %>
     </div>
 
     <div>
-      <%= link_to "Cancel", admin_investments_path %>
-      <%= form.submit 'Submit' %>
+      <%= link_to "Cancelar", admin_investments_path %>
+      <%= form.submit 'Salvar' %>
     </div>
   </div>
 <% end %>
