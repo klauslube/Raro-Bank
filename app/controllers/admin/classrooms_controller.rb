@@ -3,7 +3,8 @@ module Admin
     before_action :fetch_classroom, only: %i[show edit update destroy]
 
     def index
-      @classrooms = Classroom.all
+      @q = Classroom.ransack(params[:q])
+      @classrooms = @q.result(distinct: true)
     end
 
     def show; end
