@@ -1,15 +1,15 @@
 <h1>Catalog Investments</h1>
 
-<%= search_form_for @s do |f| %>
-  <%= f.label :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium_cont, 'Search by ...' %>
-  <%= f.search_field :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium_cont %>
-  <%= f.submit 'Search' %>
+<%= search_form_for @q, url: catalogs_path do |f| %>
+  <%= f.label :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium, 'Filtre por:' %>
+  <%= f.search_field :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium %>
+  <%= f.submit %>
 <% end %>
 
 <table>
   <thead>
     <tr>
-       <th scope="col">Id</th>
+      <th scope="col">Id</th>
       <th scope="col">Name</th>
       <th scope="col">Category</th>
       <th scope="col">Index</th>
@@ -19,22 +19,21 @@
     </tr>
   </thead>
   <tbody>
-    <% @investments.each do |investment| %>
-      <% next if investment.expiration_date < Date.current %>
-      <%# <% next if investment.start_date > Date.current %> 
+    <% @user_investments.each do |investment| %>
+      <% next if investment.investment.expiration_date < Date.current %>
       <tr>
         <td><%= investment.id %></td>
-        <td><%= investment.name %></td>
-        <td><%= investment.premium ? 'Premium' : 'Free' %> 
-        <td><%= investment.indicator.rate %></td> 
-        <td><%= investment.minimum_amount %></td>
-        <td><%= investment.start_date %></td>
-        <td><%= investment.expiration_date %></td>
-          <% if current_user.role == 'free' && investment.premium %>
-            <td><span> Not available for free users </span></td>
-          <% else %>
-            <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
-          <% end %>
+        <td><%= investment.investment.name %></td>
+        <td><%= investment.investment.premium ? 'Premium' : 'Free' %> 
+        <td><%= investment.investment.indicator.rate %></td> 
+        <td><%= investment.investment.minimum_amount %></td>
+        <td><%= investment.investment.start_date %></td>
+        <td><%= investment.investment.expiration_date %></td>
+        <% if current_user.role == 'free' && investment.investment.premium %>
+          <td><span> Not available for free users </span></td>
+        <% else %>
+          <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.investment.id) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

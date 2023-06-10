@@ -1,13 +1,24 @@
 <h1>User Investments</h1>
 <%= link_to 'Investments Catalog', catalogs_path %>
 
-<!--
 <%= search_form_for @q do |f| %>
-  <%= f.label :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium_cont, 'Search by ...' %>
-  <%= f.search_field :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium_cont %>
-  <%= f.submit 'Search' %>
+  <%= f.label :investment_name_cont, 'Nome do Investimento:' %>
+  <%= f.search_field :investment_name_cont %>
+
+  <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
+  <%= f.search_field :investment_minimum_amount_gteq %>
+
+  <%= f.label :investment_indicator_rate_gteq, 'Valor indexador:' %>
+  <%= f.search_field :investment_indicator_rate_gteq %>
+>
+  <%= f.label :investment_premium_eq, 'Premium:' %>
+  <%= f.check_box :investment_premium_eq %>
+
+  <%= f.label :investment_expiration_date_eq, 'Data de Vencimento:' %>
+  <%= f.date_field :investment_expiration_date_eq %>
+
+  <%= f.submit %>
 <% end %>
--->
 
 <table>
   <thead>
@@ -36,7 +47,6 @@
         <td><%= investment.initial_amount %></td>
         <td><%= investment.created_at.strftime('%d/%m/%y') %></td>
         <td><%= link_to "Detalhes", user_investment_path(investment) %></td>
-        </td>
       </tr>
     <% end %>
   </tbody>

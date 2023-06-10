@@ -4,11 +4,7 @@ class Investment < ApplicationRecord
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[indicator]
-  end
-
-  def indicator_rate
-    indicator&.rate
+    %w[indicator user_investment]
   end
 
   belongs_to :approver, class_name: 'User'
