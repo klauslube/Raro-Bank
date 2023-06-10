@@ -28,7 +28,7 @@
 <%= form_with(model: @user_investment, url: user_investments_path(investment_id: @investment.id), data: { turbo: false }) do |form| %>
   <div>
     <%= form.label :initial_amount, 'Initial Amount' %>
-    <%= form.number_field :initial_amount %>
+    <%= form.number_field :initial_amount, min: 0 %>
   </div>
   <div>
     <%= form.submit "Invest" %>
