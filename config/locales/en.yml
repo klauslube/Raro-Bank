@@ -47,6 +47,13 @@ en:
         success: 'Investment was successfully updated'
       destroy:
         success: 'Investment was successfully destroyed'
+    deposits:
+      create:
+        success: 'Your deposit was successfully created!'
+        failure: 'Your deposit was not created!'
+        cpf_error: 'Type a valid CPF'
+        amount_error: 'Type a valid amount'
+        receiver_error: 'Type a CPF or choose a class with users'
   user_investments:
     create:
       success: 'User investment was successfully created'
