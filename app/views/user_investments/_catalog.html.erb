@@ -1,9 +1,20 @@
 <h1>Catalog Investments</h1>
 
-<%= search_form_for @q, url: catalogs_path do |f| %>
-  <%= f.label :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium, 'Filtre por:' %>
-  <%= f.search_field :investment_name_or_investment_minimum_amount_or_investment_expiration_date_or_investment_premium %>
+<%= search_form_for @q, url: catalogs_path, method: :get do |f| %>
+  <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
+  <%= f.search_field :investment_minimum_amount_gteq %>
+
+  <%= f.label :investment_indicator_rate_gteq, 'Valor indexador:' %>
+  <%= f.search_field :investment_indicator_rate_gteq %>
+
+  <%= f.label :investment_premium_eq, 'Premium:' %>
+  <%= f.check_box :investment_premium_eq %>
+
+  <%= f.label :investment_expiration_date_eq, 'Data de Vencimento:' %>
+  <%= f.date_field :investment_expiration_date_eq %>
+
   <%= f.submit %>
+  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
 <% end %>
 
 <table>

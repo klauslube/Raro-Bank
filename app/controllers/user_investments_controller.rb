@@ -8,16 +8,9 @@ class UserInvestmentsController < ApplicationController
     @user_investments = @q.result(distinct: true).where(user_id: current_user.id)
   end
 
-  # def index
-  # @user_investments = UserInvestment.where(user_id: current_user.id)
-  # @q = Investment.ransack(params[:q])
-  # @investments = @q.result(distinct: true)
-  # end
-
   def show; end
 
   def new
-    # @investment = Investment.find(params[:investment_id])
     @user_investment = UserInvestment.new
   end
 
