@@ -1,32 +1,28 @@
-<h1>User Investments</h1>
+<h1><%= t('.investment_title') %></h1>
 <div>
-  <%= link_to "New Investment", new_user_investment_path(@user_investment) %>
+  <%= link_to t('.new_investment'), new_user_investment_path(@user_investment) %>
 </div>
 <table>
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Minimum Amount</th>
-      <th scope="col">Expiration Date</th>
-      <th scope="col">Index</th>
-      <th scope="col">Category</th>
-      <th scope="col">Profit</th> 
-      <th scope="col">Purchase Date</th>
+      <th scope="col"><%= t('.name') %></th>
+      <th scope="col"><%= t('.min_amount') %></th>
+      <th scope="col"><%= t('.expiration_date') %></th>
+      <th scope="col"><%= t('.category') %></th>
+      <th scope="col"><%= t('.profit') %></th> 
+      <th scope="col"><%= t('.purchase_date') %></th>
     </tr>
   </thead>
   <tbody>
     <% @user_investments.each do |inv| %>
       <tr>
-        <td><%= inv.id %></td>
         <td><%= inv.investment.name %></td>
         <td><%= inv.investment.minimum_amount %></td>
         <td><%= inv.investment.expiration_date %></td>
-        <td><%= inv.investment.income %></td>
         <td><%= inv.investment.premium ? 'Premium' : 'Free' %> 
         <td><%= inv.profit || 0 %></td>
         <td><%= inv.created_at.strftime('%d/%m/%y') %></td>
-        <td><%= button_to "Rescue!", inv, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></td>
+        <td><%= button_to t('.rescue'), inv, data: { turbo_confirm: t('.confirm_pop') }, method: :delete %></td>
         </td>
       </tr>
     <% end %>
