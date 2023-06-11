@@ -13,8 +13,15 @@
     <%= f.label :indicator_rate_gteq, 'Valor indexador:' %>
     <%= f.search_field :indicator_rate_gteq %>
 
-    <%= f.label :premium_eq, 'Premium:' %>
-    <%= f.check_box :premium_eq %>
+    <%= f.label 'Categoria:' %>
+    <%= f.radio_button :premium_eq, nil %>
+    <%= f.label :premium_eq, 'Todos' %>
+
+    <%= f.radio_button :premium_eq, false %>
+    <%= f.label :premium_eq, 'Free' %>
+
+    <%= f.radio_button :premium_eq, true %>
+    <%= f.label :premium_eq, 'Premium' %>
 
     <%= f.label :expiration_date_eq, 'Data de Vencimento:' %>
     <%= f.date_field :expiration_date_eq %>
@@ -42,7 +49,7 @@
         <td><%= investment.minimum_amount %></td>
         <td><%= investment.start_date %></td>
         <td><%= investment.expiration_date %></td>
-        <td><%= investment.indicator.rate %></td>
+        <td><%= "#{(investment.indicator.rate * 100 * 365).round(2)}%" %></td>
         <td><%= investment.premium ? 'Premium' : 'Free' %>
         </td>
         <td>
@@ -53,3 +60,4 @@
     </tbody>
   </table>
 </div>
+<%= paginate @investments %>

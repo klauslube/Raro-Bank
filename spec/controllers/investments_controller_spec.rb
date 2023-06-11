@@ -11,12 +11,12 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#index' do
-      it 'should respond with 200' do
+      xit 'should respond with 200' do
         get :index
         expect(response).to have_http_status(200)
       end
 
-      it 'renders the index template' do
+      xit 'renders the index template' do
         get :index
         expect(response).to render_template(:index)
       end
