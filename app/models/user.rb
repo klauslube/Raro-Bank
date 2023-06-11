@@ -38,7 +38,7 @@ class User < ApplicationRecord
   def check_if_last_admin
     return unless role == 'admin' && User.admin.count == 1
 
-    errors.add(:notice, 'Cannot delete the last admin user.')
+    errors.add(:notice, t('.last_admin'))
     throw(:abort)
   end
 

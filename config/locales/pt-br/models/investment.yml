@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      investment: Investimento
+    attributes:
+      investment:
+        name: Nome
+        minimum_amount: Valor mínimo
+        indicator_id: Indexador
+        start_date: Data inicial
+        expiration_date: Data de expiração
+        approver_id: Administrador
+

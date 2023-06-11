@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2><%= t('.sing_up') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
@@ -19,7 +19,7 @@
   </div>
 
   <div data-controller="password-visibility" class="input-container">
-    <%= f.label :password, class: "input-label" %><i>(leave blank if you don't want to change it)</i>
+    <%= f.label :password, class: "input-label" %><i>(<%= t('.leave_blank') %>)</i>
 
     <div class="input-group">
       <%= f.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
@@ -30,8 +30,7 @@
       </button>
     </div>
     <% if @minimum_password_length %>
-
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> <%= t('.min_caracters') %></em>
     <% end %>
   </div>
 
@@ -49,7 +48,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t('.sign_up') %>
   </div>
 <% end %>
 

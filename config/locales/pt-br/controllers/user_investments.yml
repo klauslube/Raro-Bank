@@ -1,0 +1,29 @@
+pt-BR:
+    user_investments:
+      table:
+        investment_title: Meus investimentos
+        new_investment: Novo investimento
+        name: Nome
+        min_amount: Valor mínimo
+        expiration_date: Data de expiração
+        index: Indexador
+        category: Categoria
+        profit: Lucro
+        purchase_date: Comprado em
+        rescue: Resgatar
+        confirm_pop: Tem certeza ?
+      form:
+        name: Nome
+        min_amount: Valor mínimo
+        expiration_date: Data de expiração
+        index: Indexador
+        category: Categoria
+        buy: Comprar
+        initial_amount: Valor inicial
+      
+      create:
+        success: Turma criada com sucesso
+      update:
+        success: Turma atualizada com sucesso
+      destroy:
+        success: Turma apagada com sucesso

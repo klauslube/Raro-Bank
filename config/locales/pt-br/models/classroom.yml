@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      classroom: Turma
+    attributes:
+      classroom:
+        name: Nome
+        start_date: Data inicial
+        end_date: Data final
+    errors:
+      models:
+        classroom:
+          attributes:
+            end_date:
+              end_date_after: não pode ser antes da inicial
