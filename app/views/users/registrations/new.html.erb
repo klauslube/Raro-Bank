@@ -60,5 +60,10 @@
       <span>Login</span>
       <div class='w-4 h-8'></div>
     <% end %>
+
+    <div class='flex items-end gap-2'>
+      <span class='text-sm'>Já tem uma conta?</span>
+      <%= link_to "Faça login!", new_user_session_path, class: "users-form-link" %>
+    </div>
   </div>
 <% end %>
