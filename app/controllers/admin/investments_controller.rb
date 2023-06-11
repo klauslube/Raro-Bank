@@ -4,7 +4,8 @@ module Admin
     before_action :fetch_investment, only: %i[show destroy]
 
     def index
-      @investments = Investment.all
+      @q = Investment.ransack(params[:q])
+      @investments = @q.result(distinct: true).order(:minimum_amount).page(params[:page]).per(15)
     end
 
     def show; end

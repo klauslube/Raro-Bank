@@ -1,5 +1,19 @@
 <h1><%= t('.classroom') %></h1>
 
+ <%= search_form_for @q, url: admin_classrooms_path do |f| %>
+    <%= f.label :name_cont, 'Nome:' %>
+    <%= f.search_field :name_cont %>
+
+    <%= f.label :start_date_eq, 'Data de Início:' %>
+    <%= f.date_field :start_date_eq %>
+
+    <%= f.label :end_date_eq, 'Data de Vencimento:' %>
+    <%= f.date_field :end_date_eq %>
+
+    <%= f.submit %>
+    <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
+  <% end %>
+
 <% if @classrooms.blank? %>
   <p> <%= t('.no_classrooms') %> </p>
 <% end %>
@@ -34,3 +48,4 @@
 </div>
 
 <%= link_to t('.new_classroom'), new_admin_classroom_path %>
+<%= paginate @classrooms %>

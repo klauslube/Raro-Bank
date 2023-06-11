@@ -1,4 +1,12 @@
 class Classroom < ApplicationRecord
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name start_date end_date]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[user]
+  end
+
   has_many :users, dependent: :restrict_with_error, after_add: :upgrade_user_role
 
   validates :name, :start_date, :end_date, presence: true
