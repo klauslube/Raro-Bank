@@ -1,9 +1,9 @@
 <section class="flex justify-between items-start px-16 py-8 bg-primary-700 gap-6 w-full">
   <div class="w-2/3 h-full">
-    <h3 class="text-4xl text-primary-200 font-bold leading-relaxed mt-2"><%= t('views.article.title') %></h3>
-    <p class="text-lg text-primary-300 w-4/5 mt-6"><%= t('views.article.subtitle') %></p>
+    <h3 class="text-4xl text-primary-200 font-bold leading-relaxed mt-2"><%= t('article.title') %></h3>
+    <p class="text-lg text-primary-300 w-4/5 mt-6"><%= t('article.subtitle') %></p>
     <%= link_to "https://www.raroacademy.com.br", target: "_blank", class: "flex items-center gap-4 mt-6 hover:opacity-50" do %>
-      <span class="text-lg text-primary-100 font-bold"><%= t('views.article.more') %></span>
+      <span class="text-lg text-primary-100 font-bold"><%= I18n.t('article.more') %></span>
       <%= inline_svg_tag 'icons/solid/arrow-right.svg', class: 'w-6 h-6 text-red-600' %>
     <% end %>
   </div>
