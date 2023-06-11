@@ -13,3 +13,6 @@ pt-BR:
           attributes:
             end_date:
               end_date_after: não pode ser antes da inicial
+            base:
+              restrict_dependent_destroy:
+                has_many: "Não é possível excluir essa turma, pois ainda existem alunos nela."

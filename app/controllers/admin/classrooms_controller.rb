@@ -30,9 +30,11 @@ module Admin
     end
 
     def destroy
-      return redirect_to admin_classrooms_path, notice: t('.success') if @classroom.destroy
-
-      render :index, status: :unprocessable_entity
+      if @classroom.destroy
+        redirect_to admin_classrooms_path, notice: t('.success')
+      else
+        redirect_to admin_classrooms_path, alert: t('.error')
+      end
     end
 
     private
