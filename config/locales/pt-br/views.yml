@@ -44,6 +44,8 @@ pt-BR:
       save: "Salvar"
       delete: "Deletar conta"
       delete_confirmation: "Tem certeza que deseja deletar sua conta?"
+      details: "Detalhes"
+      search: "Buscar"
     confirmations:
       title: "Reenviar confirmação"
       subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."
@@ -85,6 +87,10 @@ pt-BR:
     edit:
       title: "Editar turma"
       subtitle: "Atualize os dados dessa turma e gerencie os alunos que pertencem a ela."
+    show:
+      students: "Alunos"
+    index:
+      classroom: "Nome da turma"
   investments:
     form:
       name_placeholder: "Digite o nome do investimento"
@@ -107,3 +113,5 @@ pt-BR:
       title: "Investimento"
       subtitle: "Veja todos os detalhes do produto"
       users: "Usuários investidores"
+  others:
+    blank: "Nenhum registro encontrado"

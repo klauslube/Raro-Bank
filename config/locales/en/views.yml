@@ -44,6 +44,7 @@ en:
       save: "Save"
       delete: "Delete Account"
       delete_confirmation: "Are you sure you want to delete your account?"
+      details: "Details"
     confirmations:
       title: "Resend Confirmation"
       subtitle: "Unlock your access! Enter your email again to resend the confirmation link."
@@ -85,6 +86,10 @@ en:
     edit:
       title: "Edit Class"
       subtitle: "Update the information for this class and manage the students belonging to it."
+    show:
+      students: "Alunos"
+    index:
+      classroom: "Nome da turma"
   investments:
     form:
       name_placeholder: "Enter the investment name"
@@ -107,3 +112,5 @@ en:
       title: "Investment"
       subtitle: "See all the product details"
       users: "Investor Users"
+  others:
+    blank: "No data to display"
