@@ -71,11 +71,11 @@
     </div>
 
     <div class='flex justify-between items-center w-full gap-6'>
-      <div class='users-button-danger'>
+      <%= button_to registration_path(resource_name), method: :delete, class: 'users-button-danger', data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" } do %>
         <div class='w-4 h-8'></div>
-        <%= button_to "Deletar conta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+        Deletar conta
         <div class='w-4 h-8'></div>
-      </div>
+      <% end %>
       <%= f.button class: 'users-form-submit-container' do %>
         <div class='w-4 h-8'></div>
         <span>Salvar</span>
