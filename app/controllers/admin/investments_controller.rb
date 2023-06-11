@@ -5,7 +5,7 @@ module Admin
 
     def index
       @q = Investment.ransack(params[:q])
-      @investments = @q.result(distinct: true).order(:minimum_amount).page(params[:page]).per(10)
+      @investments = @q.result(distinct: true).order(:minimum_amount).page(params[:page]).per(15)
     end
 
     def show; end

@@ -11,6 +11,17 @@
   <%= f.label :classroom_name_cont, 'Turma:' %>
   <%= f.search_field :classroom_name_cont %>
 
+  <%= f.label :role_eq, 'Role:' %>
+  <%= f.radio_button :role_eq, '', checked: true %>
+  <%= f.label :role_eq, 'Todos' %>
+
+  <%= f.radio_button :role_eq, 1 %>
+  <%= f.label :role_eq, 'Free' %>
+
+  <%= f.radio_button :role_eq, 2 %>
+  <%= f.label :role_eq, 'Premium' %>
+
+
   <%= f.submit %>
   <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
 <% end %>
@@ -38,4 +49,4 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @users %>
