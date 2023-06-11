@@ -13,13 +13,13 @@
       <% end %>
       <%= link_to admin_investments_path, class:'user-card-container' do %>
         <span class="user-card-icon">
-          <%= inline_svg_tag 'icons/solid/list.svg', class: 'w-full h-full text-white' %>
+          <%= inline_svg_tag 'icons/solid/arrow-trending-up.svg', class: 'w-full h-full text-white' %>
         </span>
         <span class="user-card-text"><%= t('links.invest') %></span>
       <% end %>
       <%= link_to new_transaction_path, class:'user-card-container' do %>
         <span class="user-card-icon">
-          <%= inline_svg_tag 'icons/solid/list.svg', class: 'w-full h-full text-white' %>
+          <%= inline_svg_tag 'icons/solid/arrows-right-left.svg', class: 'w-full h-full text-white' %>
         </span>
         <span class="user-card-text"><%= t('links.transfer') %></span>
       <% end %>
