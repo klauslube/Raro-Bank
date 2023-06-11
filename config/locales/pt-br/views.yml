@@ -68,3 +68,19 @@ pt-BR:
       title: "Acesse a plataforma"
       subtitle: "Faça login ou registre-se para começar a fazer suas raracoins valerem!"
       submit: "Entrar"
+  classrooms:
+    form:
+      name_placeholder: "Digite o nome da turma"
+      date_placeholder: "Selecione a data"
+      start_date: "Data de início"
+      end_date: "Data de término"
+      name: "Nome"
+      register: "Cadastrar turma"
+      delete: "Deletar turma"
+      delete_confirmation: "Tem certeza que deseja deletar a turma?"
+    new:
+      title: "Cadastrar turma"
+      subtitle: "Adicione uma nova turma ao sistema."
+    edit:
+      title: "Editar turma"
+      subtitle: "Atualize os dados dessa turma e gerencie os alunos que pertencem a ela."
