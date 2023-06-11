@@ -5,35 +5,41 @@
         <strong><%= @investment.name %></stro>
       </p>
     </div>
-    <div class='admin-list-item'>
-      <span class='admin-details-subject'><%= t('.name') %></span>
-      <span class='admin-details-content'><%= @investment.name %></stro>
+
+    <div class='mb-4'>
+      <div class='admin-list-item'>
+        <span class='admin-details-subject'><%= t('.name') %></span>
+        <span class='admin-details-content'><%= @investment.name %></stro>
+      </div>
+      <div class='admin-list-item'>
+        <span class='admin-details-subject'><%= t('.minimum_amount') %></span>
+        <span class='admin-details-content'><%= number_to_currency(@investment.minimum_amount)  %></stro>
+      </div>
+      <div class='admin-list-item'>
+        <span class='admin-details-subject'><%= t('.start_date') %></span>
+        <span class='admin-details-content'><%= l(@investment.start_date, format: :default) %></stro>
+      </div>
+      <div class='admin-list-item'>
+        <span class='admin-details-subject'><%= t('.expiration_date') %></span>
+        <span class='admin-details-content'><%= l(@investment.expiration_date, format: :default) %></stro>
+      </div>
+      <div class='admin-list-item'>
+        <span class='admin-details-subject'><%= t('.rate') %></span>
+        <span class='admin-details-content'><%="#{(@investment.indicator.rate * 100 * 365).round(2)}%" %></stro>
+      </div>
+      <div class='admin-list-item'>
+        <span class='admin-details-subject'><%= t('.category') %></span>
+        <span class='admin-details-content'><%= @investment.premium ? 'Premium' : 'Free' %></stro>
+      </div>
+      <div class='admin-list-item'>
+        <span class='admin-details-subject'><%= t('investments.show.users') %></span>
+        <span class='admin-details-content'><%= Investment.invested_users_count(@investment.id).length %></stro>
+      </div>
     </div>
-    <div class='admin-list-item'>
-      <span class='admin-details-subject'><%= t('.minimum_amount') %></span>
-      <span class='admin-details-content'><%= number_to_currency(@investment.minimum_amount)  %></stro>
-    </div>
-    <div class='admin-list-item'>
-      <span class='admin-details-subject'><%= t('.start_date') %></span>
-      <span class='admin-details-content'><%= l(@investment.start_date, format: :default) %></stro>
-    </div>
-    <div class='admin-list-item'>
-      <span class='admin-details-subject'><%= t('.expiration_date') %></span>
-      <span class='admin-details-content'><%= l(@investment.expiration_date, format: :default) %></stro>
-    </div>
-    <div class='admin-list-item'>
-      <span class='admin-details-subject'><%= t('.rate') %></span>
-      <span class='admin-details-content'><%="#{(@investment.indicator.rate * 100 * 365).round(2)}%" %></stro>
-    </div>
-    <div class='admin-list-item'>
-      <span class='admin-details-subject'><%= t('.category') %></span>
-      <span class='admin-details-content'><%= @investment.premium ? 'Premium' : 'Free' %></stro>
-    </div>
-    <div class='admin-list-item'>
-      <span class='admin-details-subject'><%= t('investments.show.users') %></span>
-      <span class='admin-details-content'><%= Investment.invested_users_count(@investment.id).length %></stro>
-    </div>
-  <div>
-    <%= button_to t('.delete'), admin_investment_path(@investment), data: { turbo_confirm: t('.confirm_pop') }, method: :delete %>
-  </div>
+
+    <%= button_to admin_investment_path(@investment), method: :delete, class: 'users-button-danger', data: { confirm: t('investments.form.delete_confirmation'), turbo_confirm: t('investments.form.delete_confirmation') } do %>
+      <%= inline_svg_tag 'icons/solid/trash.svg', class: 'w-4 h-8 text-red-800' %>
+      <span><%= t('investments.form.delete') %></span>
+      <div class='w-4 h-8'></div>
+    <% end %>
 </div>

@@ -9,7 +9,7 @@ class Investment < ApplicationRecord
   validates :expiration_date, :start_date, presence: true
   validates :premium, inclusion: [true, false]
 
-  scope :invested_users_count, -> (investment_id) {
+  scope :invested_users_count, lambda { |investment_id|
     joins(:user_investments)
       .where(id: investment_id)
       .select('investments.id, COUNT(user_investments.id) AS invested_users_count')
