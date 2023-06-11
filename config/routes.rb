@@ -43,7 +43,7 @@ Rails.application.routes.draw do
         end
       end
       resources :user_investments
-      get "/catalogs", to: "user_investments#index"
+      get "/catalogs", to: "user_investments#catalogs"
     end
   end
 
