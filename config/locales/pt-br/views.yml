@@ -1,0 +1,44 @@
+pt-BR:
+  links:
+    logout: 'Sair'
+    account: 'Conta'
+    catalog: 'Catálogo'
+    transactions: 'Transações'
+    investments: 'Investimentos'
+    classrooms: 'Classrooms'
+    users: 'Usuarios'
+    invest: 'Investir'
+    transfer: 'Transferir'
+    extract: 'Extrato'
+  home:
+    title: 'Comece a movimentar sua conta'
+  article:
+    title: 'Garanta acesso aos melhores investimentos ao se tornar um aluno da Raro Academy'
+    subtitle: 'Alunos e ex-alunos da nossa escola possuem acesso a investimentos de alto rendimento. Faça suas raracoins valerem a pena!'
+    more: 'Veja mais'
+  users:
+    form:
+      email: 'E-mail'
+      email_placeholder: 'Digite seu e-mail'
+      password: 'Senha'
+      password_placeholder: 'Digite sua senha'
+      confirm_password: 'Confirme sua senha'
+      new_password: 'Nova senha'
+      confirm_new_password: 'Confirme sua nova senha'
+      confirm_new_password_placeholder: 'Digite a confirmação da sua nova senha'
+      new_password_placeholder: 'Digite sua nova senha'
+      password_rules: 'Utilize 8 caracteres entre letras, números e caracter especial'
+      remembered_password: 'Lembrou a senha?'
+      make_login: 'Faça login'
+    confirmations:
+      title: 'Reenviar confirmação'
+      subtitle: 'Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação.'
+    passwords:
+      new:
+        title: 'Esqueceu a senha?'
+        subtitle: 'Informe seu endereço de e-mail que nós enviaremos um código para alteração de senha.'
+        submit: 'Enviar e-mail'
+      edit:
+        title: 'Redefina sua senha'
+        subtitle: 'Informe a nova senha de acesso para completar o resgate da sua conta!'
+        submit: 'Alterar senha'
