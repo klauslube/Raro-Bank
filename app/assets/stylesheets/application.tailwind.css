@@ -88,6 +88,14 @@ select:-webkit-autofill:focus {
     @apply w-full flex justify-between items-center;
   }
 
+  .admin-details-subject {
+    @apply text-base font-bold capitalize;
+  }
+
+  .admin-details-content {
+    @apply text-base font-light;
+  }
+
   /* LAYOUT USERS */
   /* Navbar */
   .user-menu-dropdown {

@@ -1,6 +1,6 @@
 <%= form_with(model: @classroom, url: @classroom.persisted? ? admin_classroom_path(@classroom) : admin_classrooms_path, local: true) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @classroom } %>
-  <div class='users-form-container item'>
+  <div class='users-form-container item-center'>
     <div class='users-form-title-container'>
       <% if @classroom.persisted? %>
         <h1 class='users-form-title'><%= t('classrooms.edit.title') %></h1>
