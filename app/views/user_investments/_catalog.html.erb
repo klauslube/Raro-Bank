@@ -1,0 +1,53 @@
+<h1>Catalog Investments</h1>
+
+<%= search_form_for @q, url: catalogs_path, method: :get do |f| %>
+  <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
+  <%= f.search_field :investment_minimum_amount_gteq %>
+
+  <%= f.label :investment_indicator_rate_gteq, 'Valor indexador:' %>
+  <%= f.search_field :investment_indicator_rate_gteq %>
+
+  <%= f.label :investment_premium_eq, 'Premium:' %>
+  <%= f.check_box :investment_premium_eq %>
+
+  <%= f.label :investment_expiration_date_eq, 'Data de Vencimento:' %>
+  <%= f.date_field :investment_expiration_date_eq %>
+
+  <%= f.submit %>
+  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Index</th>
+      <th scope="col">Minimum Amount</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Expiration Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @investments.each do |investment| %>
+      <% next if investment.expiration_date < Date.current %>
+      <tr>
+        <td><%= investment.id %></td>
+        <td><%= investment.name %></td>
+        <td><%= investment.premium ? 'Premium' : 'Free' %> 
+        <td><%= investment.indicator.rate %></td> 
+        <td><%= investment.minimum_amount %></td>
+        <td><%= investment.start_date %></td>
+        <td><%= investment.expiration_date %></td>
+        <% if current_user.role == 'free' && investment.premium %>
+          <td><span> Not available for free users </span></td>
+        <% elsif investment.start_date <= Date.current %>
+          <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
+        <% else %>
+          <td><span>Investment starts on <%= investment.start_date %></span></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

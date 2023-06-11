@@ -15,9 +15,9 @@
   <body class="min-h-full flex flex-col justify-between">
     <% if user_signed_in? %>
       <%= render 'layouts/navbar' %>
+    <% else %>
+      <%= render 'layouts/header' %>
     <% end %>
-
-    <%# <h1>LAYOUT APP</h1> %>
 
     <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
     <%= render partial: "shared/notifications/error", locals: { message: flash[:alert] } %>

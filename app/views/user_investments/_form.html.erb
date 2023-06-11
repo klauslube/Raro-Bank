@@ -1,46 +1,37 @@
-<table>
-  <thead>
-    <tr>
-      <th scope="col"><%= t('.name') %></th>
-      <th scope="col"><%= t('.min_amount') %></th>
-      <th scope="col"><%= t('.expiration_date') %></th>
-      <th scope="col"><%= t('.index') %></th>
-      <th scope="col"><%= t('.category') %></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @investments.each do |investment| %>
-      <% if current_user.role == 'free' %>
-        <% next if investment.premium %>
-      <% end %>
-      <%= form_with(model: @user_investment, data: { turbo: false }) do |form| %>
-        <% if @user_investment.errors.any? %>
-          <h3> <%= pluralize(@user_investment.errors.count, "errors") %> prohibited this user investment from being saved:</h3>
-          <div>
-            <ul role="list">
-              <% @user_investment.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <tr>
-            <%= form.hidden_field :investment_id, value: investment.id %>
-          <td><%= investment.name %></td>
-          <td><%= investment.minimum_amount %></td>
-          <td><%= investment.expiration_date %></td>
-          <td><%= investment.premium ? 'Premium' : 'Free'%></td>
-          <td>
-            <div>
-              <%= form.label t('.initial_amount') %>
-              <%= form.number_field :initial_amount %>
-              <%= form.hidden_field :user_id, value: current_user.id %>
-            </div>
-            <%= form.submit t('.buy') %>      
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'shared/errors', object: @user_investment %>
+
+<div>
+  <%= label_tag t('.name') %>
+  <%= @investment.name %>
+</div>
+<div>
+  <%= label_tag t('.min_amount') %>
+  <%= @investment.minimum_amount %>
+</div>
+<div>
+  <%= label_tag t('.expiration_date') %>
+  <%= @investment.expiration_date %>
+</div>
+<div>
+  <%= label_tag 'Index' %>
+  <%= @investment.indicator.rate %>
+</div>
+<div>
+  <%= label_tag t('.category') %>
+  <%= @investment.premium ? 'Premium' : 'Free'%>
+</div>
+<div>
+  <%= label_tag 'Balance Account:' %>
+  <%= current_user.account.balance %>
+</div>
+
+<%= form_with(model: @user_investment, url: user_investments_path(investment_id: @investment.id), data: { turbo: false }) do |form| %>
+  <div>
+    <%= form.label t('.initial_amount') %>
+    <%= form.number_field :initial_amount, min: 0 %>
+  </div>
+  <div>
+    <%= form.submit t('.buy') %>
+    <%= link_to "Voltar", catalogs_path %>
+  </div>
+<% end %>

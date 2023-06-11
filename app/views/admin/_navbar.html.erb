@@ -1,12 +1,12 @@
-<nav class="bg-primary-600 h-24 px-16 flex justify-between items-center">
+<nav class="bg-primary-700 h-24 px-16 flex justify-between items-center">
   <%= link_to root_path do %>
-    <%= inline_svg_tag 'logo.svg', class: 'w-[120px] text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out"
-    ' %>
+    <%= inline_svg_tag 'logo.svg', class: 'w-[120px] text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out'
+    %>
   <% end %>
   <div class="flex gap-4">
-    <%= link_to :classroom, admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classrooms')}" %>
-    <%= link_to :investiments, admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investiments')}" %>
-    <%= link_to :users, admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
+    <%= link_to t('view.links.classrooms'), admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classrooms')}" %>
+    <%= link_to t('view.links.investments'), admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investiments')}" %>
+    <%= link_to t('view.links.users'), class: "menu-item#{'-active' if request.path.include?('/users')}" %>
     <%= link_to :deposits, admin_deposits_path, class: "menu-item#{'-active' if request.path.include?('/deposits')}"  %>
   </div>
   <div class="flex justify-end items-center gap-4 min-w-[120px]">

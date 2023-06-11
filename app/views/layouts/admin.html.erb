@@ -13,7 +13,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="min-h-full flex flex-col justify-between">
+  <body class="min-h-full flex flex-col justify-between pb-8">
     <% if user_signed_in? %>
       <%= render 'admin/navbar' %>
     <% end %>

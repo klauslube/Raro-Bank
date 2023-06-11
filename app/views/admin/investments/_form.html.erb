@@ -21,7 +21,7 @@
 
     <div>
       <%= form.label :expiration_date, t('.expiration_date') %>
-      <%= form.date_field :expiration_date, min: Date.current %>
+      <%= form.date_field :expiration_date, min: Date.current + 1 %>
     </div>
 
     <div>
