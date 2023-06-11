@@ -4,7 +4,7 @@ module Admin
 
     def index
       @q = Classroom.ransack(params[:q])
-      @classrooms = @q.result(distinct: true)
+      @classrooms = @q.result(distinct: true).order(:name).page(params[:page]).per(15)
     end
 
     def show; end
