@@ -18,3 +18,5 @@ pt-BR:
               no_letter: deve ter pelo menos uma letra
               no_number: deve ter pelo menos um número
               no_special: deve possuir pelo menos um caracter especial
+      messages:
+        record_invalid: "%{errors}"

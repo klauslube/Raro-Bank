@@ -43,11 +43,13 @@ accounts.each do |account|
   puts "Account #{account.id} updated!"
 end
 
+classe_names = ['JavaScript', 'Python', 'Java', 'Ruby on Rails', 'C++', 'PHP', 'Swift', 'Golang', 'Ruby', 'TypeScript', 'HTML/CSS', 'React', 'Angular', 'Vue.js', 'Node.js']
+
 # Create classrooms with users free
-20.times do
-  name = Faker::Educator.course_name
-  start_date = Faker::Date.between(from: 1.year.ago, to: Time.zone.today)
-  end_date = Faker::Date.between(from: start_date, to: start_date + 1.year)
+classe_names.each do |class_name|
+  name = class_name
+  start_date = Faker::Date.between(from: 1.year.ago, to: 1.year.from_now)
+  end_date = Faker::Date.between(from: start_date, to: start_date + 3.months)
 
   classroom = Classroom.new(name:, start_date:, end_date:)
 
@@ -61,16 +63,34 @@ end
   puts "Classroom #{classroom.name} created!"
 end
 
-# Create indicators
-# 5.times do
-#   name = Faker::Lorem.characters(number: 1..4).upcase
-#   rate = Faker::Number.decimal(l_digits: 2, r_digits: 6)
-#   rate_date = Faker::Date.between(from: 1.year.ago, to: Time.zone.today)
+# Create transactions
 
-#   indicator = Indicator.create!(name:, rate:, rate_date:)
+30.times do
+  amount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
+  sender = accounts.sample
+  accoutns_whithout_sender = accounts.where.not(id: sender.id)
+  receiver = accoutns_whithout_sender.sample
 
-#   puts "Indicator #{indicator.name} created!"
-# end
+  transaction = Transaction.new(amount:, sender:, receiver:)
+  transaction.save_without_token!
+
+  puts "Transaction between #{sender.user.name} and #{sender.user.name} created!"
+end
+
+# Create deposits
+
+20.times do
+  amount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
+  sender = admin.account
+  sender.balance += amount
+  receiver = accounts.sample
+
+  deposit = Transaction.new(sender:, receiver:, amount:)
+  deposit.save_without_token!
+
+  puts "Deposit #{deposit.id} created!"
+end
+
 IndicatorService.import_indicators
 indicators = Indicator.all
 available_names = Indicator.pluck(:name)
