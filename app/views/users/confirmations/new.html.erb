@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container item'>
     <div class='users-form-title-container'>
@@ -7,13 +7,13 @@
     </div>
 
     <div class='field'>
-      <%= f.label t('users.form.email'), class: 'users-input-label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: t('users.form.email_placeholder'), value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'users-input-field' %>
+      <%= form.label t('users.form.email'), class: 'users-input-label' %>
+      <%= form.email_field :email, autofocus: true, autocomplete: 'email', placeholder: t('users.form.email_placeholder'), value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'users-input-field' %>
     </div>
 
-    <%= f.button class: 'users-form-submit-container' do %>
+    <%= form.button class: 'users-form-submit-container' do %>
       <div class='w-4 h-8'></div>
-      <span> <%= f.submit t('.resend_confirm') %></span>
+      <span> <%= form.submit t('.resend_confirm') %></span>
       <div class='w-4 h-8'></div>
     <% end %>
   </div>

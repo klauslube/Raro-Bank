@@ -1,4 +1,4 @@
-<%= form_for(resource, url: user_password_path, html: { method: :post }) do |f| %>
+<%= form_for(resource, url: user_password_path, html: { method: :post }) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container'>
     <div class='users-form-title-container'>
@@ -7,11 +7,11 @@
     </div>
     <div class='users-form-container'>
       <div class="users-form-field">
-        <%= f.label t('users.form.email'), class: 'users-input-label' %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: t('users.form.email_placeholder') %>
+        <%= form.label t('users.form.email'), class: 'users-input-label' %>
+        <%= form.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: t('users.form.email_placeholder') %>
       </div>
 
-      <%= f.button class: 'users-form-submit-container' do %>
+      <%= form.button class: 'users-form-submit-container' do %>
         <div class='w-4 h-8'></div>
         <span><%= t('users.passwords.new.submit')%></span>
         <div class='w-4 h-8'></div>

@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
 
   <div class='users-form-container'>
@@ -9,30 +9,30 @@
 
     <div class='flex justify-between gap-1'>
       <div class="users-form-field">
-        <%= f.label :name, class: 'users-input-label' %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'users-input-field', placeholder: t('users.form.name_placeholder') %>
+        <%= form.label :name, class: 'users-input-label' %>
+        <%= form.text_field :name, autofocus: true, autocomplete: "name", class: 'users-input-field', placeholder: t('users.form.name_placeholder') %>
       </div>
 
       <div class="users-form-field">
         <div class='flex items-center justify-between'>
-          <%= f.label :cpf, class: 'users-input-label uppercase' %>
+          <%= form.label :cpf, class: 'users-input-label uppercase' %>
           <span class='text-xs'><%= t('users.form.cpf_rules') %></span>
         </div>
-        <%= f.text_field :cpf, autofocus: true, class: 'users-input-field', placeholder: t('users.form.cpf_placeholder') %>
+        <%= form.text_field :cpf, autofocus: true, class: 'users-input-field', placeholder: t('users.form.cpf_placeholder') %>
       </div>
     </div>
 
     <div class="users-form-field">
-      <%= f.label  t('users.form.email'), class: 'users-input-label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder:  t('users.form.email_placeholder') %>
+      <%= form.label  t('users.form.email'), class: 'users-input-label' %>
+      <%= form.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder:  t('users.form.email_placeholder') %>
     </div>
 
     <div class='flex justify-between gap-6'>
       <div data-controller="password-visibility" class="users-input-container">
-        <%= f.label :password, class: 'users-input-label' %>
+        <%= form.label :password, class: 'users-input-label' %>
 
         <div class="users-input-group">
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: t('users.form.password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+          <%= form.password_field :password, autocomplete: "new-password", placeholder: t('users.form.password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
           <button type="button" data-action="password-visibility#toggle">
             <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
@@ -42,10 +42,10 @@
       </div>
 
       <div data-controller="password-visibility" class="users-input-container">
-        <%= f.label :password_confirmation, class: 'users-input-label' %>
+        <%= form.label :password_confirmation, class: 'users-input-label' %>
 
         <div class="users-input-group">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('users.form.confirm_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+          <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('users.form.confirm_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
           <button type="button" data-action="password-visibility#toggle">
             <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
@@ -55,7 +55,7 @@
       </div>
     </div>
     <span class='text-xs'><%= t('users.form.password_rules') %></span>
-    <%= f.button class: 'users-form-submit-container' do %>
+    <%= form.button class: 'users-form-submit-container' do %>
       <div class='w-4 h-8'></div>
       <span><%= t('users.registrations.new.submit') %></span>
       <div class='w-4 h-8'></div>
