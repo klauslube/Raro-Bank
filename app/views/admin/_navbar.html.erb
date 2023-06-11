@@ -4,9 +4,9 @@
     %>
   <% end %>
   <div class="flex gap-4">
-    <%= link_to t('view.links.classrooms'), admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classroom')}" %>
-    <%= link_to t('view.links.investments'), admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investment')}" %>
-    <%= link_to t('view.links.users'), admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
+    <%= link_to t('links.classrooms'), admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classroom')}" %>
+    <%= link_to t('links.investments'), admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investment')}" %>
+    <%= link_to t('links.users'), admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
     <%= link_to :deposits, admin_deposits_path, class: "menu-item#{'-active' if request.path.include?('/deposits')}"  %>
   </div>
   <div class="flex justify-end items-center gap-4 min-w-[120px]">
@@ -30,11 +30,11 @@
         data-transition-leave-to="opacity-0 scale-95"
       >
         <%= link_to admin_edit_path, class: 'menu-dropdown-item' do %>
-          <span><%= t('view.links.account') %></span>
+          <span><%= t('links.account') %></span>
           <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-4 h-4' %>
         <% end %>
         <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item' do %>
-          <span class="wrap-nowrap"><%= t('view.links.logout') %></span>
+          <span class="wrap-nowrap"><%= t('links.logout') %></span>
           <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'min-w-4 min-h-4' %>
         <% end %>
       </div>
