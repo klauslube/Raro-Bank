@@ -10,7 +10,7 @@ class UserInvestmentsController < ApplicationController
 
   def catalogs
     @q = Investment.ransack(params[:q])
-    @investments = @q.result(distinct: true).order(:name).page(params[:page]).per(15)
+    @investments = @q.result(distinct: true).order(:name).page(params[:page]).per(10)
   end
 
   def show; end
