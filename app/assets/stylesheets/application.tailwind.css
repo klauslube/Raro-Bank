@@ -144,7 +144,7 @@ select:-webkit-autofill:focus {
   }
 
   .users-input-label {
-    @apply text- font-semibold leading-6;
+    @apply text-sm font-semibold leading-6;
   }
 
   .users-checkbox-field {
