@@ -2,8 +2,8 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container item'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'><%= t('.new_session_title') %></h1>
-      <p class='users-form-subtitle'>Faça login ou registre-se para começar a fazer suas raracoins valerem!</p>
+      <h1 class='users-form-title'><%= t('users.sessions.title') %></h1>
+      <p class='users-form-subtitle'><%= t('users.sessions.subtitle') %></p>
     </div>
 
     <div class="users-form-field">
@@ -36,15 +36,15 @@
 
     <%= f.button class: 'users-form-submit-container' do %>
       <%= inline_svg_tag 'icons/solid/lock-closed.svg', class: 'w-4 h-8 text-primary-800' %>
-      <span>Login</span>
+      <span><%= t('users.registrations.sessions.submit') %></span>
       <div class='w-4 h-8'></div>
     <% end %>
 
     <div class='flex items-end gap-1 text-sm justify-start'>
-      <span>Não tem uma conta?</span>
-      <%= link_to "Cadastre-se!", new_user_registration_path, class: "users-form-link" %>
+      <span><%=  t('users.form.not_have_account') %></span>
+      <%= link_to t('users.form.register'), new_user_registration_path, class: "users-form-link" %>
       <span>ou</span>
-      <%= link_to "Reenvie confirmação!", new_user_confirmation_path, class: "users-form-link" %>
+      <%= link_to t('users.form.resend_confirmation'), new_user_confirmation_path, class: "users-form-link" %>
     </div>
   <% end %>
 </div>
