@@ -8,6 +8,11 @@ class UserInvestmentsController < ApplicationController
     @user_investments = @q.result(distinct: true).where(user_id: current_user.id)
   end
 
+  def catalogs
+    @q = Investment.ransack(params[:q])
+    @investments = @q.result(distinct: true).order(:name).page(params[:page]).per(15)
+  end
+
   def show; end
 
   def new
