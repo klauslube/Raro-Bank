@@ -144,4 +144,21 @@
   .user-card-text {
     @apply text-xl text-primary-600 font-medium w-36;
   }
-}
+
+  /*Index transcation*/
+  .text-button-transfer {
+    @apply font-bold text-lg text-primary-600 mr-14 font-app pl-2
+  }
+
+  .confirm-button-transfer {
+    @apply my-6 mx-2 font-bold text-lg text-white px-2 bg-primary-600 m-2 rounded-lg h-9 flex items-center
+  }
+
+  .container-transfer {
+    @apply bg-white px-5 mx-16 mt-5 rounded-lg border border-primary-300 shadow-md flex h-20 items-center
+  }
+
+  .text-color{
+    @apply text-primary-600
+  }
+} 
