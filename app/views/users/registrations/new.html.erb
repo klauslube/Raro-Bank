@@ -1,56 +1,58 @@
-<h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
-
-  <div class="field">
-    <%= f.label :name, class: 'users-input-label' %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'users-input-field' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cpf, class: 'users-input-label' %>
-    <%= f.text_field :cpf, autofocus: true, class: 'users-input-field' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email, class: 'users-input-label' %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field' %>
-  </div>
-
-  <div data-controller="password-visibility" class="users-input-container">
-    <%= f.label :password, class: 'users-input-label' %><i>(leave blank if you don't want to change it)</i>
-
-    <div class="users-input-group">
-      <%= f.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
-
-      <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
-      </button>
+  <div class='users-form-container'>
+    <div class='users-form-title-container'>
+      <h1 class='users-form-title'>Cadastre-se</h1>
+      <p class='users-form-subtitle'>Registre-se agora para começar a fazer suas raracoins valerem</p>
     </div>
-    <% if @minimum_password_length %>
 
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div data-controller="password-visibility" class="users-input-container">
-    <%= f.label :password_confirmation, class: 'users-input-label' %>
-
-    <div class="users-input-group">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
-
-      <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
-      </button>
+    <div class="field">
+      <%= f.label :name, class: 'users-input-label' %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'users-input-field' %>
     </div>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up", class: 'form-users-button' %>
+    <div class="field">
+      <%= f.label :cpf, class: 'users-input-label' %>
+      <%= f.text_field :cpf, autofocus: true, class: 'users-input-field' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, class: 'users-input-label' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field' %>
+    </div>
+
+    <div data-controller="password-visibility" class="users-input-container">
+      <%= f.label :password, class: 'users-input-label' %><i>(leave blank if you don't want to change it)</i>
+
+      <div class="users-input-group">
+        <%= f.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+
+        <button type="button" data-action="password-visibility#toggle">
+          <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+          <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+        </button>
+      </div>
+      <% if @minimum_password_length %>
+
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div data-controller="password-visibility" class="users-input-container">
+      <%= f.label :password_confirmation, class: 'users-input-label' %>
+
+      <div class="users-input-group">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+
+        <button type="button" data-action="password-visibility#toggle">
+          <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+          <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+        </button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class: 'form-users-button' %>
+    </div>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
