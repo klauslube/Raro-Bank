@@ -10,7 +10,7 @@
 @layer components {
   /* Notifications */
   .notification-container {
-    @apply absolute flex items-center w-full max-w-sm p-4 mb-4 transition duration-1000 transform bg-white rounded-lg shadow bottom-6 right-6 text-primary-600 dark:text-primary-400 dark:bg-primary-800;
+    @apply absolute flex items-center w-full max-w-sm p-4 mb-4 transition duration-1000 transform bg-white shadow-lg rounded-lg bottom-6 right-6 text-primary-600 dark:text-primary-400 dark:bg-primary-800 border-2 border-primary-300 ring-1 ring-black ring-opacity-5;
   }
 
   /* LAYOUT ADMIN */

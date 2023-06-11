@@ -4,13 +4,13 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @user } %>
 
   <div class="field">
-    <%= form.label :role, class: "input-label" %>
-    <%= form.select :role, User.roles.keys.map { |role| [role.humanize, role] }, { include_blank: false, selected: @user.role || 'free'}, { class: 'select-field' } %>
+    <%= form.label :role, class: 'users-input-label' %>
+    <%= form.select :role, User.roles.keys.map { |role| [role.humanize, role] }, { include_blank: false, selected: @user.role || 'free'}, { class: 'users-select-field' } %>
   </div>
 
   <div>
-    <%= form.label :classroom_id, class: "input-label" %>
-    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { class: 'select-field' } %>
+    <%= form.label :classroom_id, class: 'users-input-label' %>
+    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { class: 'users-select-field' } %>
   </div>
 
   <% form.hidden_field :name, value: @user.name %>
