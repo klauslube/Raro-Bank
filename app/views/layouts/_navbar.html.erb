@@ -24,11 +24,10 @@
           data-transition-leave-from="opacity-100 scale-100"
           data-transition-leave-to="opacity-0 scale-95"
         >
-
-        <span class="user-context-item" >
+        <%= link_to transactions_path, class: "user-context-item" do %>
           <%= number_with_delimiter(current_user.balance, delimiter: '.', separator: ',') %>
           <%= inline_svg_tag 'icons/outline/current-dolar.svg', class: "min-w- min-h-4" %>
-        </span>
+        <% end %>
         <%= link_to edit_user_registration_path, class: "user-context-item" do %>
           <span><%= t('view.links.account') %></span>
           <%= inline_svg_tag 'icons/outline/cog-8-tooth.svg', class: 'min-w- min-h-4' %>

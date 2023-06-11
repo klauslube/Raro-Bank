@@ -86,7 +86,7 @@ select:-webkit-autofill:focus {
   /* LAYOUT USERS */
   /* Navbar */
   .user-menu-dropdown {
-    @apply absolute right-0 flex flex-col items-end justify-start p-2 px-6 py-4 mt-4 transition duration-150 ease-in-out origin-top-right transform bg-white border-2 rounded-md shadow-2xl border-primary-400 ring-1 ring-black ring-opacity-5;
+    @apply absolute right-0 flex flex-col items-end justify-start p-2 px-6 py-4 mt-4 transition duration-150 ease-in-out origin-top-right transform bg-white border-2 rounded-md shadow-2xl border-primary-300 border-opacity-80;
   }
   .user-context-item {
     @apply flex items-center justify-center gap-2 px-4 py-2 text-base font-bold min-w-fit font-admin text-primary-700 decoration-secondary-600;
@@ -124,7 +124,7 @@ select:-webkit-autofill:focus {
     @apply text-xl font-medium text-primary-600 w-36;
   }
   .users-form-container {
-    @apply flex flex-col gap-4 mx-auto font-admin w-96 text-primary-900;
+    @apply flex flex-col gap-3 mx-auto font-admin w-96 text-primary-900;
   }
 
   .users-form-title-container {
@@ -164,7 +164,7 @@ select:-webkit-autofill:focus {
   }
 
   .users-form-submit-container {
-    @apply flex justify-between items-center flex-1 px-3 py-2 bg-primary-600 rounded-md shadow-sm cursor-pointer text-base font-bold text-primary-100 transition duration-150 ease-in-out;
+    @apply flex justify-between items-center flex-1 px-3 py-2 bg-primary-600 rounded-md shadow-sm cursor-pointer text-base font-bold text-primary-100 transition duration-150 ease-in-out mt-2;
   }
 
   .users-form-submit-container:hover {
@@ -179,8 +179,20 @@ select:-webkit-autofill:focus {
     @apply border-2 border-primary-300;
   }
 
-  .users-form-submit {
-    @apply cursor-pointer;
+  .users-button-danger {
+    @apply flex justify-between items-center flex-1 px-3 py-2 bg-red-600 rounded-md shadow-sm cursor-pointer text-base font-bold text-red-100 transition duration-150 ease-in-out mt-2;
+  }
+
+  .users-button-danger:hover {
+    @apply bg-red-700;
+  }
+
+  .users-button-danger:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .users-button-danger:focus {
+    @apply border-2 border-red-300;
   }
 
   /* Inputs */
