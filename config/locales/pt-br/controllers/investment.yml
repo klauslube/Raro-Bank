@@ -22,7 +22,7 @@ pt-BR:
         category: Categoria
         cancel: Cancelar
         submit: Salvar
-        select_field: Selecionar...
+        select_field: Selecionar.
       show:
         investment_data: Detalhes do investimento
         name: Nome
