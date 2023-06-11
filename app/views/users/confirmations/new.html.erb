@@ -7,7 +7,7 @@
     </div>
 
     <div class='field'>
-      <%= f.label 'E-mail', class: 'users-input-label' %>
+      <%= f.label :email, class: 'users-input-label' %>
       <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Digite seu e-mail', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'users-input-field' %>
     </div>
 

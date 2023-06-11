@@ -10,7 +10,7 @@
 
   <div>
     <%= form.label t('.classroom'), class: 'users-input-label' %>
-    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { class: 'users-select-field' } %>
+    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: t('.select_field') }, { class: 'users-select-field' } %>
   </div>
 
   <% form.hidden_field :name, value: @user.name %>

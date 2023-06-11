@@ -1,10 +1,8 @@
-<h2><%= t('.title_edit') %></h2>
-
 <%= form_for(@admin, url: admin_update_path, html: { method: :patch }) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @admin } %>
   <div class='users-form-container'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'>Editar cadastro</h1>
+      <h1 class='users-form-title'>t('.title_edit')</h1>
     </div>
 
     <div class='users-form-field'>
