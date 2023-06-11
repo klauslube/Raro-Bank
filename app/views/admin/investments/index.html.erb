@@ -7,11 +7,11 @@
     <%= f.label :name_cont, 'Nome:' %>
     <%= f.search_field :name_cont %>
 
-    <%= f.label :minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
-    <%= f.search_field :minimum_amount_gteq %>
+    <%= f.label :minimum_amount_gteq, 'Valor Mínimo:' %>
+    <%= f.number_field :minimum_amount_gteq, min: 0 %>
 
     <%= f.label :indicator_rate_gteq, 'Valor indexador:' %>
-    <%= f.search_field :indicator_rate_gteq %>
+    <%= f.number_field :indicator_rate_gteq %>
 
     <%= f.label 'Categoria:' %>
     <%= f.radio_button :premium_eq, nil %>
