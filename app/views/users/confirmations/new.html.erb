@@ -2,7 +2,7 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container item'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'>Reenvie confirmação</h1>
+      <h1 class='users-form-title'><%= t('.resend_confirm_title') %></h1>
       <p class='users-form-subtitle'>Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação.</p>
     </div>
 
@@ -13,7 +13,7 @@
 
     <%= f.button class: 'users-form-submit-container' do %>
       <div class='w-4 h-8'></div>
-      <span>Reenvie e-mail</span>
+      <span> <%= f.submit t('.resend_confirm') %></span>
       <div class='w-4 h-8'></div>
     <% end %>
   </div>

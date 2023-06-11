@@ -2,26 +2,26 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @classroom } %>
 
   <div class="users-form-field">
-    <%= form.label :name, class: 'users-input-label' %>
+    <%= form.label t('.name'), class: 'users-input-label' %>
     <%= form.text_field :name, class: 'users-input-field' %>
   </div>
 
   <div class="users-form-field">
-    <%= form.label :start_date, class: 'users-input-label' %>
+    <%= form.label t('.start_date'), class: 'users-input-label' %>
     <%= form.date_field :start_date, class: 'users-input-field' %>
   </div>
 
-  <div class="users-form-field">
-    <%= form.label :end_date, class: 'users-input-label' %>
+  <div class='users-form-field'>
+    <%= form.label t('.end_date'), class: 'users-input-label' %>
     <%= form.date_field :end_date, class: 'users-input-field' %>
   </div>
 
-  <div class="users-form-field">
-    <%= form.label :user_ids %>
+  <div class='users-form-field'>
+    <%= form.label t('.users') %>
     <%= form.select :user_ids, User.all_except_admins.order(:name).pluck(:name, :id), {}, { multiple: true, data: { controller: 'slim' } } %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('.submit') %>
   </div>
 <% end %>

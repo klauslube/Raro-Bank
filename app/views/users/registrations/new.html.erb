@@ -3,7 +3,7 @@
 
   <div class='users-form-container'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'>Cadastre-se</h1>
+      <h1 class='users-form-title'><%= t('.sing_up') %></h1>
       <p class='users-form-subtitle'>Registre-se agora para começar a fazer suas raracoins valerem</p>
     </div>
 
@@ -27,43 +27,46 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: 'Digite seu e-mail' %>
     </div>
 
-    <div class='flex justify-between gap-6'>
-      <div data-controller="password-visibility" class="users-input-container">
-        <%= f.label :password, class: 'users-input-label' %>
+    <div data-controller="password-visibility" class="input-container">
+      <%= f.label :password, class: "input-label" %><i>(<%= t('.leave_blank') %>)</i>
 
-        <div class="users-input-group">
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Digite sua senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+      <div class="users-input-group">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Digite sua senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
-          <button type="button" data-action="password-visibility#toggle">
-            <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
-            <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
-          </button>
+        <button type="button" data-action="password-visibility#toggle">
+          <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
+          <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
+        </button>
+      </div>
+      <% if @minimum_password_length %>
+
+        <em><%= @minimum_password_length %> <%= t('.min_caracters') </em>
+      <% end %>
+        </div>
+
+        <div data-controller="password-visibility" class="users-input-container">
+          <%= f.label :password_confirmation, class: 'users-input-label' %>
+
+          <div class="users-input-group">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirme sua senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+
+            <button type="button" data-action="password-visibility#toggle">
+              <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+              <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+            </button>
+          </div>
         </div>
       </div>
+      <span class='text-xs'>Utilize 8 caracteres entre letras, números e caracter especial</span>
+      <%= f.button class: 'users-form-submit-container' do %>
+        <div class='w-4 h-8'></div>
+        <span>Cadastre</span>
+        <div class='w-4 h-8'></div>
+      <% end %>
 
-      <div data-controller="password-visibility" class="users-input-container">
-        <%= f.label :password_confirmation, class: 'users-input-label' %>
-
-        <div class="users-input-group">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirme sua senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
-
-          <button type="button" data-action="password-visibility#toggle">
-            <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
-            <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
-          </button>
-        </div>
+      <div class='flex items-end gap-2'>
+        <span class='text-sm'>Já tem uma conta?</span>
+        <%= link_to "Faça login!", new_user_session_path, class: "users-form-link" %>
       </div>
     </div>
-    <span class='text-xs'>Utilize 8 caracteres entre letras, números e caracter especial</span>
-    <%= f.button class: 'users-form-submit-container' do %>
-      <div class='w-4 h-8'></div>
-      <span>Cadastre</span>
-      <div class='w-4 h-8'></div>
-    <% end %>
-
-    <div class='flex items-end gap-2'>
-      <span class='text-sm'>Já tem uma conta?</span>
-      <%= link_to "Faça login!", new_user_session_path, class: "users-form-link" %>
-    </div>
-  </div>
-<% end %>
+  <% end %>

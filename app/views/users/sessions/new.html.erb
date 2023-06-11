@@ -2,7 +2,7 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container item'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'>Acesse a plataforma</h1>
+      <h1 class='users-form-title'><%= t('.new_session_title') %></h1>
       <p class='users-form-subtitle'>Faça login ou registre-se para começar a fazer suas raracoins valerem!</p>
     </div>
 
@@ -28,23 +28,9 @@
       <% if devise_mapping.rememberable? %>
         <div class="flex items-center gap-2">
           <%= f.check_box :remember_me, class: 'users-checkbox-field' %>
-          <%= f.label 'Lembre-se de mim', class: "users-input-label" %>
+          <%= f.label t('.remember_me'), class: "users-form-link" %>
+          <span>ou</span>
+          <%= link_to "Reenvie confirmação!", new_user_confirmation_path, class: "users-form-link" %>
         </div>
       <% end %>
-      <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "users-form-link" %>
     </div>
-
-    <%= f.button class: 'users-form-submit-container' do %>
-      <%= inline_svg_tag 'icons/solid/lock-closed.svg', class: 'w-4 h-8 text-primary-800' %>
-      <span>Login</span>
-      <div class='w-4 h-8'></div>
-    <% end %>
-
-    <div class='flex items-end gap-1 text-sm justify-start'>
-      <span>Não tem uma conta?</span>
-      <%= link_to "Cadastre-se!", new_user_registration_path, class: "users-form-link" %>
-      <span>ou</span>
-      <%= link_to "Reenvie confirmação!", new_user_confirmation_path, class: "users-form-link" %>
-    </div>
-  <% end %>
-</div>

@@ -2,7 +2,7 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'>Recupere sua senha</h1>
+      <h1 class='users-form-title'><%= t('.forgot_password_title') %></h1>
       <p class='users-form-subtitle'>Informe seu endereço de e-mail que nós enviaremos um código para alteração de senha</p>
     </div>
     <div class='users-form-container'>
@@ -18,7 +18,7 @@
       <% end %>
 
       <div class='flex items-end gap-1 text-sm justify-start'>
-        <span>Lembrou a senha?</span>
+        <span> <%= t('.reset_password_instructions') %></span>
         <%= link_to "Faça login!", new_user_session_path, class: "users-form-link" %>
       </div>
     </div>

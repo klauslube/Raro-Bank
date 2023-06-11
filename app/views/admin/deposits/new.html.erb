@@ -2,21 +2,21 @@
   <%= render partial: 'shared/errors', locals: { object: @transaction } %>
 
   <div>
-    <%= form.label :receiver_cpf, class:'users-input-label' %>
-    <%= form.text_field :receiver_cpf, placeholder: 'Digite um CPF',data: { deposit_target: 'cpfField', action: 'input->deposit#cpfValueChanged' }, class: 'input-field' %>
+    <%= form.label t('.receiver_cpf'), class:'users-input-label' %>
+    <%= form.text_field :receiver_cpf, placeholder: t('.receiver_cpf_placeholder'),data: { deposit_target: 'cpfField', action: 'input->deposit#cpfValueChanged' }, class: 'input-field' %>
   </div>
 
   <div>
-    <%= form.label :classroom_id, class:'users-input-label' %>
-    <%= form.collection_select :classroom_id, Classroom.with_users, :id, :name, { prompt: "Select a Classroom" }, { include_blank: 'Nenhuma turma selecionada', data: { deposit_target: 'classroomField', action: 'change->deposit#classroomValueChanged' }, class: 'users-select-field ' } %>
+    <%= form.label t('.classroom'), class:"users-input-label" %>
+    <%= form.collection_select :classroom_id, Classroom.with_users, :id, :name, { prompt: t('.select_field') }, { include_blank: true, data: { deposit_target: 'classroomField', action: 'change->deposit#classroomValueChanged' }, class: 'users-select-field ' } %>
   </div>
 
   <div>
-    <%= form.label :amount, class:'users-input-label' %>
-    <%= form.number_field :amount, step: 0.01, min: 1, placeholder: 'Digite valor da transferência', data: { deposit_target: 'amountField', action: 'input->deposit#amountValueChanged' }, class: 'users-input-field' %>
+    <%= form.label t('.amount'), class:"users-input-label" %>
+    <%= form.number_field :amount, step: 0.01, min: 1, placeholder: t('.deposit_amount_placeholder'), data: { deposit_target: 'amountField', action: 'input->deposit#amountValueChanged' }, class: "users-input-field" %>
   </div>
 
   <div class="action">
-    <%= form.submit 'Adicionar saldo', data: { deposit_target: 'submitButton' }, class: 'button-primary' %>
+    <%= form.submit t('.submit'), data: { deposit_target: 'submitButton' }, class: 'button-primary' %>
   </div>
 <% end %>

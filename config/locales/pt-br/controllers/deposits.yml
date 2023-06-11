@@ -1,0 +1,17 @@
+pt-BR:
+  admin:
+    deposits:
+      new:
+        receiver_cpf: CPF do aluno
+        receiver_cpf_placeholder: Digite um CPF
+        classroom: Turma
+        amount: Valor
+        deposit_amount_placeholder: Digite um valor para depositar
+        select_field: Escolha uma turma
+        submit: Enviar saldo
+      create:
+        receiver_error: Digite um CPF válido ou turma que tenha alunos.
+        cpf_error: Digite um CPF válido.
+        success: Saldo enviado com sucesso !
+        failure: O deposito não pode ser concluido.
+
