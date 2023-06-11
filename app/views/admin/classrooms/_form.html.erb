@@ -1,27 +1,41 @@
 <%= form_with(model: @classroom, url: @classroom.persisted? ? admin_classroom_path(@classroom) : admin_classrooms_path, local: true) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @classroom } %>
+  <div class='users-form-container item'>
+    <div class='users-form-title-container'>
+      <% if @classroom.persisted? %>
+        <h1 class='users-form-title'><%= t('classrooms.edit.title') %></h1>
+        <p class='users-form-subtitle'><%= t('classrooms.edit.subtitle') %></p>
+      <% else %>
+        <h1 class='users-form-title'><%= t('classrooms.new.title') %></h1>
+        <p class='users-form-subtitle'><%= t('classrooms.new.subtitle') %></p>
+      <% end %>
+      </div>
+    <div class="users-form-field">
+      <%= form.label t('.name'), class: 'users-input-label' %>
+      <%= form.text_field :name, class: 'users-input-field', placeholder: t('classrooms.form.name_placeholder') %>
+    </div>
 
-  <div class="users-form-field">
-    <%= form.label t('.name'), class: 'users-input-label' %>
-    <%= form.text_field :name, class: 'users-input-field' %>
-  </div>
+    <div class='flex justify-between gap-2'>
+      <div class="users-form-field">
+        <%= form.label t('classrooms.form.start_date'), class: 'users-input-label' %>
+        <%= form.date_field :start_date, class: 'users-input-field w-44', placeholder: t('classrooms.form.date_placeholder') %>
+      </div>
 
-  <div class="users-form-field">
-    <%= form.label t('.start_date'), class: 'users-input-label' %>
-    <%= form.date_field :start_date, class: 'users-input-field' %>
-  </div>
+      <div class='users-form-field'>
+        <%= form.label t('classrooms.form.end_date'), class: 'users-input-label' %>
+        <%= form.date_field :end_date, class: 'users-input-field w-44', placeholder: t('classrooms.form.date_placeholder') %>
+      </div>
+    </div>
 
-  <div class='users-form-field'>
-    <%= form.label t('.end_date'), class: 'users-input-label' %>
-    <%= form.date_field :end_date, class: 'users-input-field' %>
-  </div>
+    <div class='users-form-field'>
+      <%= form.label t('.users'), class: 'users-input-label' %>
+      <%= form.select :user_ids, User.all_except_admins.order(:name).pluck(:name, :id), {}, { multiple: true, class: 'users-multiselect-field', data: { controller: 'slim' } } %>
+    </div>
 
-  <div class='users-form-field'>
-    <%= form.label t('.users') %>
-    <%= form.select :user_ids, User.all_except_admins.order(:name).pluck(:name, :id), {}, { multiple: true, data: { controller: 'slim' } } %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit t('.submit') %>
+    <%= form.button class: 'users-form-submit-container' do %>
+      <div class='w-4 h-8'></div>
+      <span><%= t('classrooms.form.register') %></span>
+      <div class='w-4 h-8'></div>
+    <% end %>
   </div>
 <% end %>

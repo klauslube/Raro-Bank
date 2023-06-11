@@ -213,6 +213,10 @@ select:-webkit-autofill:focus {
     @apply block w-full p-2 border-2 rounded-md shadow-sm border-primary-300 focus:border-primary-600 focus:ring-primary-600 sm:text-sm sm:leading-6 border-opacity-50;
   }
 
+  .users-multiselect-field {
+    @apply border-2 p-2 rounded-md shadow-sm border-primary-300 focus:border-primary-600 focus:ring-primary-600 sm:text-sm sm:leading-6 border-opacity-50;
+  }
+
   /* Inputs with icon inside */
   .users-input-container {
     @apply w-full;
