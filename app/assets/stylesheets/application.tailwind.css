@@ -110,7 +110,7 @@ select:-webkit-autofill:focus {
 
   /* Cards */
   .user-card-container {
-    @apply flex items-center justify-center gap-4 p-8 transition duration-300 ease-in-out bg-white shadow-lg rounded-2xl ring-2 ring-primary-300 ring-opacity-50;
+    @apply flex items-center justify-center gap-6 p-8 transition duration-300 ease-in-out bg-white shadow-lg rounded-2xl ring-2 ring-primary-300 ring-opacity-50;
   }
 
   .user-card-container:hover {
@@ -124,7 +124,7 @@ select:-webkit-autofill:focus {
     @apply text-xl font-medium text-primary-600 w-36;
   }
   .users-form-container {
-    @apply flex flex-col gap-3 mx-auto font-admin w-96 text-primary-900;
+    @apply flex flex-col gap-4 mx-auto font-admin w-96 text-primary-900;
   }
 
   .users-form-title-container {
@@ -169,6 +169,14 @@ select:-webkit-autofill:focus {
 
   .users-form-submit-container:hover {
     @apply bg-primary-700;
+  }
+
+  .users-form-submit-container:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .users-form-submit-container:focus {
+    @apply border-2 border-primary-300;
   }
 
   .users-form-submit {
