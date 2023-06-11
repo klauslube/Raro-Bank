@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      deposit: Usuário
+    attributes:
+      deposit:
+        receiver_cpf: CPF do aluno
