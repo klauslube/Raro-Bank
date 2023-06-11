@@ -61,7 +61,7 @@
       <%= f.label :current_password, class: 'users-input-label' %>
 
       <div class="users-input-group">
-        <%= f.password_field :current_password, class: 'users-input-field', autocomplete: "current-password", placeholder: 'Digite sua atual para prosseguir com as alterações', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+        <%= f.password_field :current_password, class: 'users-input-field', autocomplete: "current-password", placeholder: 'Digite sua senha atual para prosseguir', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
         <button type="button" data-action="password-visibility#toggle">
           <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
