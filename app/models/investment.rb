@@ -1,12 +1,4 @@
 class Investment < ApplicationRecord
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[name minimum_amount expiration_date premium]
-  end
-
-  def self.ransackable_associations(_auth_object = nil)
-    %w[indicator user_investment]
-  end
-
   belongs_to :approver, class_name: 'User'
   belongs_to :indicator
   has_many :user_investments, class_name: 'UserInvestment', dependent: :destroy
@@ -17,9 +9,22 @@ class Investment < ApplicationRecord
   validates :expiration_date, :start_date, presence: true
   validates :premium, inclusion: [true, false]
 
-  validate :expiration_date_after_start_date
+  scope :invested_users_count, -> (investment_id) {
+    joins(:user_investments)
+      .where(id: investment_id)
+      .select('investments.id, COUNT(user_investments.id) AS invested_users_count')
+      .group('investments.id')
+  }
 
   after_commit :destroy_expired_investments, on: :create
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name minimum_amount expiration_date premium]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[indicator user_investment]
+  end
 
   private
 
