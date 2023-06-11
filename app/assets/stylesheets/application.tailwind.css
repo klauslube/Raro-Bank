@@ -83,6 +83,11 @@ select:-webkit-autofill:focus {
     @apply flex items-center justify-center gap-2 px-4 py-2 text-base min-w-fit text-primary-600 hover:text-primary-300 font-bold;
   }
 
+  /* Admin users */
+  .admin-list-item {
+    @apply w-full flex justify-between items-center;
+  }
+
   /* LAYOUT USERS */
   /* Navbar */
   .user-menu-dropdown {
@@ -205,7 +210,7 @@ select:-webkit-autofill:focus {
   }
 
   .users-select-field {
-    @apply block w-full p-2 border-2 rounded-md shadow-sm border-primary-300 focus:border-primary-600 focus:ring-primary-600 sm:text-sm sm:leading-6;
+    @apply block w-full p-2 border-2 rounded-md shadow-sm border-primary-300 focus:border-primary-600 focus:ring-primary-600 sm:text-sm sm:leading-6 border-opacity-50;
   }
 
   /* Inputs with icon inside */

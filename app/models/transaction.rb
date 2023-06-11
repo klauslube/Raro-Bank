@@ -8,6 +8,9 @@ class Transaction < ApplicationRecord
   validate :check_sender_balance
   validate :check_transfer_yourself
 
+  # Get all transactions that are sent by the users with role admin
+  scope :sent_by_admins, -> { joins(:sender).merge(Account.admins) }
+
   after_create :generate_token
   after_create :token_countdown
   after_create :cancel_transfer_countdown

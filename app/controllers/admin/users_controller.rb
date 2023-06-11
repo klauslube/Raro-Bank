@@ -1,7 +1,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :fetch_user, only: %i[edit update]
+    before_action :fetch_user, only: %i[edit update set_user_role]
     before_action :fetch_admin, only: %i[edit_admin update_admin destroy_admin]
     before_action :check_if_is_the_last_admin, only: %i[destroy_admin]
 
@@ -13,6 +13,9 @@ module Admin
     def edit; end
 
     def update
+      admin = params[:user][:role_admin] == '1'
+      @user.role = admin ? 'admin' : set_user_role
+
       if @user.update_without_password(admin_user_params)
         redirect_to admin_users_path, notice: t('.success')
       else
@@ -41,7 +44,7 @@ module Admin
     private
 
     def admin_user_params
-      params.require(:user).permit(:classroom_id, :role, :name, :cpf, :email, :password, :password_confirmation, :current_password)
+      params.require(:user).permit(:classroom_id, :role, :name, :cpf, :email, :password, :password_confirmation, :current_password, :role_admin)
     end
 
     def fetch_user
@@ -57,6 +60,10 @@ module Admin
       return unless User.admin.count == 1
 
       redirect_to root_path, alert: t('.last_admin')
+    end
+
+    def set_user_role
+      @user.classroom_id.nil? ? 'free' : 'premium'
     end
   end
 end
