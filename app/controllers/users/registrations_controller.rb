@@ -2,13 +2,14 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    before_action :configure_sign_up_params, only: [:create]
-    before_action :configure_account_update_params, only: [:update]
+    before_action :configure_sign_up_params, only: %i[create edit update]
+    before_action :configure_account_update_params, only: %i[edit update]
 
     # GET /resource/sign_up
 
     # GET /resource/edit
     def edit
+      super
       redirect_to admin_edit_path if current_user.admin?
     end
 
@@ -42,7 +43,10 @@ module Users
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: %i[name cpf])
+      devise_parameter_sanitizer.permit(:account_update,
+                                        keys: %i[name cpf password
+                                                 password_confirmation
+                                                 current_password])
     end
 
     # The path used after sign up.
