@@ -145,7 +145,7 @@ select:-webkit-autofill:focus {
   }
 
   .users-form-field {
-    @apply flex flex-col gap-1;
+    @apply flex flex-col gap-1 w-full;
   }
 
   .users-input-label {
