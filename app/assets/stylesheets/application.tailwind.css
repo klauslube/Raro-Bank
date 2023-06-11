@@ -80,7 +80,7 @@ select:-webkit-autofill:focus {
   }
 
   .menu-dropdown-item {
-    @apply flex items-center justify-center gap-2 px-4 py-2 text-base min-w-fit text-primary-600 hover:text-primary-300;
+    @apply flex items-center justify-center gap-2 px-4 py-2 text-base min-w-fit text-primary-600 hover:text-primary-300 font-bold;
   }
 
   /* LAYOUT USERS */

@@ -1,6 +1,6 @@
 <nav class="bg-primary-700 h-24 px-16 flex justify-between items-center">
   <%= link_to root_path do %>
-    <%= inline_svg_tag 'logo.svg', class: 'w-[120px] text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out'
+    <%= inline_svg_tag 'logo.svg', class: 'w-[100px] text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out'
     %>
   <% end %>
   <div class="flex gap-4">
@@ -18,23 +18,23 @@
 
     <div data-controller="dropdown" class="icon-button mt-1 relative">
       <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
-        <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-8 h-8' %>
+        <%= inline_svg_tag 'icons/solid/ellipsis-vertical.svg', class: 'w-8 h-8' %>
       </button>
       <div
         data-dropdown-target="menu"
-        class="hidden menu-dropdown mt-4"
+        class="hidden menu-dropdown mt-5"
         data-transition-enter-from="opacity-0 scale-95"
         data-transition-enter-to="opacity-100 scale-100"
         data-transition-leave-from="opacity-100 scale-100"
         data-transition-leave-to="opacity-0 scale-95"
       >
-        <%= link_to admin_edit_path, class: 'menu-dropdown-item font-normal' do %>
-          <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-4 h-4' %>
+        <%= link_to admin_edit_path, class: 'menu-dropdown-item' do %>
           <span><%= t('view.links.account') %></span>
+          <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-4 h-4' %>
         <% end %>
-        <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item font-bold' do %>
-          <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'min-w-4 min-h-4' %>
+        <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item' do %>
           <span class="wrap-nowrap"><%= t('view.links.logout') %></span>
+          <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'min-w-4 min-h-4' %>
         <% end %>
       </div>
     </div>
