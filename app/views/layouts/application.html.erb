@@ -22,7 +22,7 @@
     <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
     <%= render partial: "shared/notifications/error", locals: { message: flash[:alert] } %>
 
-    <main class='w-full h-max flex flex-1 items-center justify-center'>
+    <main class='w-full h-max flex flex-col flex-1 items-center justify-center'>
       <%= yield %>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>

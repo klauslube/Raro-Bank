@@ -1,6 +1,6 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
-  <div class='users-form-container'>
+  <div class='users-form-container item'>
     <div class='users-form-title-container'>
       <h1 class='users-form-title'>Acesse a plataforma</h1>
       <p class='users-form-subtitle'>Faça login ou registre-se para começar a fazer suas raracoins valerem!</p>
@@ -40,9 +40,11 @@
       <div class='w-4 h-8'></div>
     <% end %>
 
-    <div class='flex items-end gap-2'>
-      <span class='text-sm'>Ainda não tem uma conta?</span>
+    <div class='flex items-end gap-1 text-sm justify-start'>
+      <span>Não tem uma conta?</span>
       <%= link_to "Cadastre-se!", new_user_registration_path, class: "users-form-link" %>
+      <span>ou</span>
+      <%= link_to "Reenvie confirmação!", new_user_registration_path, class: "users-form-link" %>
     </div>
   <% end %>
 </div>
