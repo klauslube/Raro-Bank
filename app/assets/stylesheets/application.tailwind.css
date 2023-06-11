@@ -29,6 +29,16 @@ select:-webkit-autofill:focus {
     @apply absolute flex items-center w-full max-w-sm p-4 mb-4 transition duration-1000 transform bg-white shadow-lg rounded-lg bottom-6 right-6 text-primary-600 dark:text-primary-400 dark:bg-primary-800 border-2 border-primary-300 ring-1 ring-black ring-opacity-5;
   }
 
+  /* Pagination */
+  .pagination * {
+    @apply px-3 py-2 mx-2;
+    @apply text-xs text-gray-700 no-underline bg-white rounded-lg;
+  }
+
+  .pagination button:hover {
+    @apply bg-primary-200;
+  }
+
   /* LAYOUT ADMIN */
   /* Navbar */
   .menu-item {
@@ -94,6 +104,57 @@ select:-webkit-autofill:focus {
 
   .admin-details-content {
     @apply text-base font-light;
+  }
+
+  /* Table admin */
+  .table-view {
+    @apply w-full h-full flex flex-col py-8 px-16 gap-8 items-baseline;
+  }
+  .table-container {
+    @apply w-full overflow-hidden rounded-lg shadow-lg;
+  }
+
+  .table-inner {
+    @apply w-full overflow-x-auto;
+  }
+
+  .table-empty-container {
+    @apply p-4 text-primary-800 bg-white flex justify-center;
+  }
+
+  .table-header-container {
+    @apply w-full text-xs font-semibold tracking-wide text-left text-primary-700 uppercase border-b bg-primary-100;
+  }
+
+  .table-link-plus {
+    @apply text-primary-600 transition duration-150 ease-in-out cursor-pointer;
+  }
+
+  .table-link-plus:hover {
+    @apply text-primary-800;
+  }
+
+  .table-header-title {
+    @apply text-4xl font-bold text-primary-600;
+  }
+
+  .table-header-subtitle {
+    @apply text-xl text-primary-600 uppercase;
+  }
+  .table-details-menu-dropdown {
+    @apply absolute flex flex-col items-end justify-start p-2 transition origin-bottom-right bg-primary-200 rounded-md shadow-md border-primary-300 ring-1 ring-black ring-opacity-5 right-8 z-10 -top-4;
+  }
+
+  .details-menu-dropdown-item {
+    @apply flex items-center justify-center gap-2 px-4 py-2 text-sm min-w-fit text-primary-600 transition duration-150 ease-in-out font-normal;
+  }
+
+  .details-menu-dropdown-item:hover {
+    @apply text-primary-300;
+  }
+
+  .tag-user-premium {
+    @apply px-2 py-1 text-xs font-bold text-white uppercase bg-blue-500 rounded-full;
   }
 
   /* LAYOUT USERS */
@@ -240,5 +301,13 @@ select:-webkit-autofill:focus {
 
   .users-input-inside-button {
     @apply text-gray-700 transition duration-150 ease-in-out hover:text-gray-500;
+  }
+
+  .users-form-search {
+    @apply bg-primary-600 rounded-md shadow-sm text-base font-bold text-primary-100 transition duration-150 ease-in-out mt-2 px-3 py-2 cursor-pointer text-md;
+  }
+
+  .users-form-search:hover {
+    @apply bg-primary-700;
   }
 }

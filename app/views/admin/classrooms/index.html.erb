@@ -1,51 +1,90 @@
-<h1><%= t('.classroom') %></h1>
+<div class='table-view'>
+  <%= search_form_for @q, url: admin_classrooms_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
+    <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
+       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
+    <% end %>
 
- <%= search_form_for @q, url: admin_classrooms_path do |f| %>
-    <%= f.label :name_cont, 'Nome:' %>
-    <%= f.search_field :name_cont %>
+    <div class="users-form-field">
+      <%= f.label :name_cont, t('.name'), class: 'users-input-label' %>
+      <%= f.search_field :name_cont, class: 'users-input-field' %>
+    </div>
 
-    <%= f.label :start_date_eq, 'Data de Início:' %>
-    <%= f.date_field :start_date_eq %>
+    <div class="users-form-field">
+      <%= f.label :start_date_eq, t('classrooms.form.start_date'), class: 'users-input-label' %>
+      <%= f.date_field :start_date_eq, class: 'users-input-field' %>
+    </div>
 
-    <%= f.label :end_date_eq, 'Data de Vencimento:' %>
-    <%= f.date_field :end_date_eq %>
+    <div class="users-form-field">
+      <%= f.label :end_date_eq, t('classrooms.form.end_date'), class: 'users-input-label' %>
+      <%= f.date_field :end_date_eq, class: 'users-input-field' %>
+    </div>
 
-    <%= f.submit %>
-    <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
+    <%= f.button class: 'users-form-search' do %>
+      <%= t('users.form.search') %>
+    <% end %>
   <% end %>
-
-<% if @classrooms.blank? %>
-  <p> <%= t('.no_classrooms') %> </p>
-<% end %>
-
-<div id="classrooms">
-  <table >
-    <thead>
-      <tr>
-        <th><%= t('.name') %></th>
-        <th><%= t('.start_date') %></th>
-        <th><%= t('.end_date') %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @classrooms.each do |classroom| %>
-        <tr>
-          <td><%= classroom.name %></td>
-          <td><%= classroom.start_date.strftime('%d/%m/%Y') %></td>
-          <td><%= classroom.end_date.strftime('%d/%m/%Y') %></td>
-          <td>
-            <div>
-              <%= link_to t('.details'), admin_classroom_path(classroom), method: :show %>
-
-              <%= link_to t('.edit'), edit_admin_classroom_path(classroom)%>
-              <%= button_to t('.delete'), admin_classroom_path(classroom), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure you want to delete this classroom?"} %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div id="classrooms" class="table-container">
+    <div class="table-inner">
+    <% if @classrooms.empty? %>
+          <div class=" p-4 text-primary-800 bg-white flex justify-center">
+            <strong class='text-primary-800'> <%= t('others.blank') %></strong>
+          </div>
+      <% else %>
+        <table class="w-full whitespace-no-wrap">
+          <thead>
+            <tr class="table-header-container" >
+              <th class="px-4 py-2 w-3/12"><%= t('classrooms.index.classroom') %></th>
+              <th class="px-4 py-2"><%= t('users.form.start_date') %></th>
+              <th class="px-4 py-2"><%= t('users.form.end_date') %></th>
+              <th class="px-4 py-2"><%= t('classrooms.show.students') %></th>
+              <th class="px-4 py-2 flex justify-center">
+                <%= link_to new_admin_classroom_path, class:'table-link-plus flex items-center gap-1' do %>
+                  <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
+                <% end %>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y">
+            <% @classrooms.each do |classroom| %>
+              <tr class="text-gray-700">
+                <td class="px-8 py-3"><%= classroom.name %></td>
+                <td class="px-8 py-3"><%= l(classroom.start_date, format: :default) %></td>
+                <td class="px-8 py-3"><%= l(classroom.end_date, format: :default) %></td>
+                <td class="px-8 py-3"><%= classroom.users.size %></td>
+                <td class="px-8 py-3 flex justify-center menu-dropdown-container">
+                  <div data-controller="dropdown" class="icon-button relative">
+                    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
+                      <%= inline_svg_tag 'icons/solid/ellipsis-vertical.svg', class: 'table-link-plus w-8 h-8' %>
+                    </button>
+                    <div
+                      data-dropdown-target="menu"
+                      class="hidden table-details-menu-dropdown"
+                      data-transition-enter-from="opacity-0 scale-95"
+                      data-transition-enter-to="opacity-100 scale-100"
+                      data-transition-leave-from="opacity-100 scale-100"
+                      data-transition-leave-to="opacity-0 scale-95"
+                    >
+                      <%= link_to admin_classroom_path(classroom), class: 'details-menu-dropdown-item' do %>
+                        <span><%= t('users.form.details') %></span>
+                        <%= inline_svg_tag 'icons/solid/plus-small.svg', class: 'w-[12px] h-[12px]' %>
+                      <% end %>
+                      <%= link_to edit_admin_classroom_path(classroom), class: 'details-menu-dropdown-item' do %>
+                        <span><%= t('.update') %></span>
+                        <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-[12px] h-[12px]' %>
+                      <% end %>
+                      <%= button_to admin_classroom_path(classroom), method: :delete, data: { confirm: t('classrooms.form.delete_confirmation') }, class: 'details-menu-dropdown-item' do %>
+                        <span><%= t('.classrooms.form.delete') %></span>
+                        <%= inline_svg_tag 'icons/solid/trash.svg', class: 'w-[12px] h-[12px]' %>
+                      <% end %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= paginate @classrooms %>
 </div>
-
-<%= link_to t('.new_classroom'), new_admin_classroom_path %>
-<%= paginate @classrooms %>
