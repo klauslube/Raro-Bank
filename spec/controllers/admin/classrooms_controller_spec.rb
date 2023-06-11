@@ -1,5 +1,4 @@
 require "rails_helper"
-require 'ransack'
 RSpec.describe Admin::ClassroomsController, type: :controller do
   describe "GET #index" do
     it "assigns all classrooms to @classrooms" do

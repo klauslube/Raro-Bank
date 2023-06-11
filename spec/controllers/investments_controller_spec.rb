@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'ransack'
+
 RSpec.describe Admin::InvestmentsController, type: :controller do
   describe "Authenticated as admin user" do
     let(:admin) { create(:user_confirmed, role: :admin) }

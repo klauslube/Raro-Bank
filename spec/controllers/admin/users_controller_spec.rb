@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'ransack'
 RSpec.describe Admin::UsersController, type: :controller do
   describe 'logged in as admin' do
     let(:admin) { create(:user_confirmed, role: :admin) }
