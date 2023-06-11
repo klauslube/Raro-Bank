@@ -76,6 +76,7 @@ en:
       end_date: "End Date"
       name: "Name"
       register: "Register Class"
+      update: "Update class"
       delete: "Delete Class"
       delete_confirmation: "Are you sure you want to delete the class?"
     new:
@@ -84,3 +85,21 @@ en:
     edit:
       title: "Edit Class"
       subtitle: "Update the information for this class and manage the students belonging to it."
+  investments:
+    form:
+      name_placeholder: "Enter the investment name"
+      date_placeholder: "Select the date"
+      start_date: "Start date"
+      end_date: "End date"
+      index: "Index"
+      index_placeholder: "Select the index"
+      premium: "Is this a premium investment?"
+      register: "Register investment"
+      delete: "Delete investment"
+      delete_confirmation: "Are you sure you want to delete the investment?"
+    new:
+      title: "Register investment"
+      subtitle: "Add an investment to the catalog. Remember to mark it as premium only if applicable!"
+    edit:
+      title: "Edit investment"
+      subtitle: "Update the data and values of an investment."

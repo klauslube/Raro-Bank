@@ -77,6 +77,7 @@ pt-BR:
       name: "Nome"
       register: "Cadastrar turma"
       delete: "Deletar turma"
+      update: "Atualizar turma"
       delete_confirmation: "Tem certeza que deseja deletar a turma?"
     new:
       title: "Cadastrar turma"
@@ -84,3 +85,21 @@ pt-BR:
     edit:
       title: "Editar turma"
       subtitle: "Atualize os dados dessa turma e gerencie os alunos que pertencem a ela."
+  investments:
+    form:
+      name_placeholder: "Digite o nome do investimento"
+      date_placeholder: "Selecione a data"
+      start_date: "Data de início"
+      end_date: "Data de término"
+      index: "Índice"
+      index_placeholder: "Selecione o indexador"
+      premium: "Esse é um investimento premium?"
+      register: "Cadastrar investimento"
+      delete: "Deletar investimento"
+      delete_confirmation: "Tem certeza que deseja deletar o investimento?"
+    new:
+      title: "Cadastrar investimento"
+      subtitle: "Adicione um investimento ao catalogo. Lembre-se de marcar caso seja apenas para usuários premium!"
+    edit:
+      title: "Editar investimento"
+      subtitle: "Atualize os dados e valores de um investimento."
