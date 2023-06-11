@@ -1,0 +1,59 @@
+<h1>Catalog Investments</h1>
+
+<%= search_form_for @q, url: catalogs_path, method: :get do |f| %>
+  <%= f.label :name_cont, 'Nome:' %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.label :minimum_amount_gteq, 'Valor Mínimo:' %>
+  <%= f.number_field :minimum_amount_gteq %>
+
+  <%= f.label :indicator_rate_gteq, 'Valor indexador:' %>
+  <%= f.number_field :indicator_rate_gteq %>
+
+  <%= f.label 'Categoria:' %>
+  <%= f.radio_button :premium_eq, nil %>
+  <%= f.label :premium_eq, 'Todos' %>
+  
+  <%= f.radio_button :premium_eq, false %>
+  <%= f.label :premium_eq, 'Free' %>
+  
+  <%= f.radio_button :premium_eq, true %>
+  <%= f.label :premium_eq, 'Premium' %>
+
+  <%= f.label :expiration_date_eq, 'Data de Vencimento:' %>
+  <%= f.date_field :expiration_date_eq %>
+
+  <%= f.submit %>
+  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Index</th>
+      <th scope="col">Minimum Amount</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Expiration Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @investments.each do |investment| %>
+      <% next if investment.expiration_date < Date.current %>
+      <tr>
+        <td><%= investment.name %></td>
+        <td><%= investment.premium ? 'Premium' : 'Free' %></td>
+        <td><%= "#{(investment.indicator.rate * 100 * 365).round(2)}%" %></td> 
+        <td><%= investment.minimum_amount %></td>
+        <td><%= investment.start_date %></td>
+        <td><%= investment.expiration_date %></td>
+        <% if current_user.role == 'free' && investment.premium %>
+          <td><span> Not available for free users </span></td>
+        <% else %>
+          <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
