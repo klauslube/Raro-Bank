@@ -124,7 +124,7 @@ select:-webkit-autofill:focus {
     @apply text-xl font-medium text-primary-600 w-36;
   }
   .users-form-container {
-    @apply flex flex-col gap-4 mx-auto font-admin w-96 text-primary-900;
+    @apply flex flex-col gap-3 mx-auto font-admin w-96 text-primary-900;
   }
 
   .users-form-title-container {
