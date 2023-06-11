@@ -77,10 +77,10 @@ RSpec.describe Admin::UsersController, type: :controller do
           expect(response).to redirect_to(admin_users_path)
         end
 
-        xit 'should set flash[:notice]' do
+        it 'should set flash[:notice]' do
           patch :update, params: { id: user.id, user: attributes_for(:user_confirmed) }
 
-          expect(flash[:notice]).to eq('User updated successfully.')
+          expect(flash[:notice]).to eq('Usuário atualizado com sucesso')
         end
       end
 
@@ -120,8 +120,8 @@ RSpec.describe Admin::UsersController, type: :controller do
           expect(response).to redirect_to(admin_users_path)
         end
 
-        xit 'should set flash[:notice]' do
-          expect(flash[:notice]).to eq('Admin updated successfully.')
+        it 'should set flash[:notice]' do
+          expect(flash[:notice]).to eq('Usuário admin atualizado com sucesso')
         end
       end
 
@@ -158,8 +158,8 @@ RSpec.describe Admin::UsersController, type: :controller do
           expect(response).to redirect_to(root_path)
         end
 
-        xit 'should set flash[:notice]' do
-          expect(flash[:notice]).to eq('Admin user deleted successfully.')
+        it 'should set flash[:notice]' do
+          expect(flash[:notice]).to eq('Usuário admin apagado com sucesso')
         end
       end
 
