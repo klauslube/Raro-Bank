@@ -27,3 +27,5 @@ pt-BR:
         success: Investimento atualizado com sucesso
       destroy:
         success: Investimento apagado com sucesso
+      new:
+        error: Você não tem permissão para acessar esse investimento

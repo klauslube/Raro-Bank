@@ -17,7 +17,7 @@ class UserInvestmentsController < ApplicationController
 
   def new
     if current_user.role == 'free' && @investment.premium?
-      redirect_to catalogs_path, notice: 'Você não tem permissão para acessar esse investimento'
+      redirect_to catalogs_path, notice: t('.error')
     else
       @user_investment = UserInvestment.new
     end
