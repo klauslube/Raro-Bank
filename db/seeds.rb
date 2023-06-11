@@ -97,16 +97,16 @@ end
 
 # Create transactions
 
-30.times do
-  amount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
-  sender = accounts.sample
-  accoutns_whithout_sender = accounts.where.not(id: sender.id)
-  receiver = accoutns_whithout_sender.sample
+# 30.times do
+#   amount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
+#   sender = accounts.sample
+#   accoutns_whithout_sender = accounts.where.not(id: sender.id)
+#   receiver = accoutns_whithout_sender.sample
 
-  transaction = Transaction.new(amount:, sender:, receiver:)
-  transaction.save_without_token!
+#   transaction = Transaction.new(amount:, sender:, receiver:)
+#   transaction.save_without_token!
 
-  puts "Transaction between #{sender.user.name} and #{receiver.user.name} created!"
-end
+#   puts "Transaction between #{sender.user.name} and #{receiver.user.name} created!"
+# end
 
 puts 'Seeds created!'

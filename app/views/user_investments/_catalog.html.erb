@@ -1,6 +1,9 @@
 <h1>Catalog Investments</h1>
 
 <%= search_form_for @q, url: catalogs_path, method: :get do |f| %>
+  <%= f.label :investment_name_cont, 'Nome:' %>
+  <%= f.search_field :investment_name_cont %>
+
   <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
   <%= f.search_field :investment_minimum_amount_gteq %>
 
@@ -30,24 +33,22 @@
     </tr>
   </thead>
   <tbody>
-    <% @investments.each do |investment| %>
-      <% next if investment.expiration_date < Date.current %>
-      <tr>
-        <td><%= investment.id %></td>
-        <td><%= investment.name %></td>
-        <td><%= investment.premium ? 'Premium' : 'Free' %> 
-        <td><%= investment.indicator.rate %></td> 
-        <td><%= investment.minimum_amount %></td>
-        <td><%= investment.start_date %></td>
-        <td><%= investment.expiration_date %></td>
-        <% if current_user.role == 'free' && investment.premium %>
-          <td><span> Not available for free users </span></td>
-        <% elsif investment.start_date <= Date.current %>
-          <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
-        <% else %>
-          <td><span>Investment starts on <%= investment.start_date %></span></td>
-        <% end %>
-      </tr>
-    <% end %>
+  <% @user_investments.each do |investment| %>
+    <% next if investment.investment.expiration_date < Date.current %>
+    <tr>
+      <td><%= investment.id %></td>
+      <td><%= investment.investment.name %></td>
+      <td><%= investment.investment.premium ? 'Premium' : 'Free' %> 
+      <td><%= investment.investment.indicator.rate %></td> 
+      <td><%= investment.investment.minimum_amount %></td>
+      <td><%= investment.investment.start_date %></td>
+      <td><%= investment.investment.expiration_date %></td>
+      <% if current_user.role == 'free' && investment.investment.premium %>
+        <td><span> Not available for free users </span></td>
+      <% else %>
+        <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.investment.id) %></td>
+      <% end %>
+    </tr>
+  <% end %>
   </tbody>
 </table>

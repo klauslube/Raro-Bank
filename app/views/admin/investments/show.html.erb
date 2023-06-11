@@ -1,41 +1,33 @@
-<div>
-  <h3><%= t('.investment_data') %></h3>
-</div>
-<div>
-  <dl>
-    <div>
-      <dt><%= t('.name') %></dt>
-      <dd><%= @investment.name%></dd>
-    </div>
-    <div>
-      <dt><%= t('.minimum_amount') %></dt>
-      <dd><%= @investment.minimum_amount  %></dd>
-    </div>
-    <div>
-      <dt><%= t('.start_date') %></dt>
-      <dd><%= @investment.start_date %></dd>
-    </div>
-    <div>
-      <dt><%= t('.expiration_date') %></dt>
-      <dd><%= @investment.expiration_date %></dd>
-    </div>
-      <div>
-      <dt><%= t('.rate') %></dt>
-      <dd><%= @investment.indicator.rate %></dd>
-    </div>
-      <div>
-      <dt><%= t('.category') %></dt>
-      <dd> 
-        <% if @investment.premium %>
-          Free
-        <% else %>
-          Premium
-        <% end %></dd>
-    </div>
-  </dl>
-</div>
+
+<table>
+  <tr>
+    <th><%= t('.name') %></th>
+    <td><%= @investment.name%></td>
+  </tr>
+  <tr>
+    <th><%= t('.minimum_amount') %></th>
+    <td><%= @investment.minimum_amount  %></td>
+  </tr>
+  <tr>
+    <th><%= t('.start_date') %></th>
+    <td><%= @investment.start_date %></td>
+  </tr>
+  <tr>
+    <th><%= t('.expiration_date') %></th>
+    <td><%= @investment.expiration_date %></td>
+  </tr>
+  <tr>  
+    <th><%= t('.rate') %></th>
+    <td><%= @investment.indicator.rate %></td>
+  </tr>
+  <tr>
+    <th><%= t('.category') %></th>
+    <td><% @investment.premium ? 'Premium' : 'Free' %></td>
+  </tr>
+</table>
 
 <div>
   <%= button_to t('.delete'), admin_investment_path(@investment), data: { turbo_confirm: t('.confirm_pop') }, method: :delete %>
   <%= link_to t('.back'), admin_investments_path %>
-</div>
+</div
+

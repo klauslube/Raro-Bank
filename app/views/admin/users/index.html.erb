@@ -1,7 +1,41 @@
-<h1> <%= t('.users') %> </h1>
+<%= search_form_for @q, url: admin_users_path do |f| %>
+  <%= f.label :name_cont, 'Nome:' %>
+  <%= f.search_field :name_cont %>
 
-<% @users.each do |user| %>
-  <p> <%= user.name  %> | <%= user.role  %> | <%= user.classroom.name if user.classroom  %></p>
+  <%= f.label :email_cont, 'Email:' %>
+  <%= f.search_field :email_cont %>
 
-  <%= link_to t('.edit'), edit_admin_user_path(user) %>
+  <%= f.label :cpf_cont, 'CPF:' %>
+  <%= f.search_field :cpf_cont %>
+
+  <%= f.label :classroom_name_cont, 'Turma:' %>
+  <%= f.search_field :classroom_name_cont %>
+
+  <%= f.submit %>
+  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
 <% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>CPF</th>
+      <th>Role</th>
+      <th>Classroom</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.cpf %></td>
+        <td><%= user.role %></td>
+        <td><%= user.classroom.name if user.classroom %></td>
+        <td><%= link_to t('.edit'), edit_admin_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

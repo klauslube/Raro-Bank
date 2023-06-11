@@ -3,15 +3,20 @@
 
   <div>
     <%= form.hidden_field :approver_id, value: @approver_id %>
-
-    <h2><%= t('.investment_registration') %></h2>
+    
+    <div class='flex'>
+    <p>Cadastrar investimento</p>
+    <p>Adicione um investimo ao catalógo. Lembre-se de marcar caso seja apenas para usuários premium!</p>
+    </div>
+    
     <div>
       <%= form.label :name, t('.name') %>
-      <%= form.text_field :name %>
+      <%= form.text_field :name, placeholder: 'Digite o nome do investimento', class:  %>
+    </div>
 
     <div>
       <%= form.label :minimum_amount, t('.minimum_amount') %>
-      <%= form.number_field :minimum_amount, min: 0 %>
+      <%= form.number_field :minimum_amount, min: 100, placeholder: '100,00' %>
     </div>
 
     <div>
@@ -32,8 +37,7 @@
 
     <div>
       <%= form.label :premium, t('.category') %>
-      <%= form.radio_button :premium, true %> <%= form.label :premium, 'Premium' %>
-      <%= form.radio_button :premium, false %> <%= form.label :premium, 'Free' %>
+      <%= form.check_box :premium %>
     </div>
 
     <div>
