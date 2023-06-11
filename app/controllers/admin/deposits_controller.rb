@@ -4,6 +4,10 @@ module Admin
     before_action :fetch_classroom_users_accounts, only: [:create]
     before_action :fetch_receivers, only: [:create]
 
+    def index
+      @deposits = Transaction.sent_by_admins
+    end
+
     def new
       @transaction = Transaction.new
     end

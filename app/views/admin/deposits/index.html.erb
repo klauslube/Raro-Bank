@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t('.value') %></th>
+      <th><%= t('.status_label') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @deposits.each do |deposit| %>
+    <tr>
+      <td><%= deposit.amount %></td>
+      <td><%= t("activerecord.attributes.transaction.status_enum.#{deposit.status}") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
