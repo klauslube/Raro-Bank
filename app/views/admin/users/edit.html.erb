@@ -3,7 +3,7 @@
 <%= form_for(@user, url: admin_user_path(@user), method: :patch) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @user } %>
 
-  <div class="field">
+  <div class="users-form-field">
     <%= form.label :role, class: 'users-input-label' %>
     <%= form.select :role, User.roles.keys.map { |role| [role.humanize, role] }, { include_blank: false, selected: @user.role || 'free'}, { class: 'users-select-field' } %>
   </div>

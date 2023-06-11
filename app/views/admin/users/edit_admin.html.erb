@@ -3,12 +3,12 @@
 <%= form_for(@admin, url: admin_update_path, html: { method: :patch }) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @admin } %>
 
-  <div class="field">
+  <div class="users-form-field">
     <%= form.label :name, class: 'users-input-label' %>
     <%= form.text_field :name, autofocus: true, autocomplete: "name", class: 'users-input-field' %>
   </div>
 
-  <div class="field">
+  <div class="users-form-field">
     <%= form.label :cpf, class: 'users-input-label' %>
     <%= form.text_field :cpf, autofocus: true, class: 'users-input-field' %>
   </div>
