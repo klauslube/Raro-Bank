@@ -2,24 +2,24 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'><%= t('.forgot_password_title') %></h1>
-      <p class='users-form-subtitle'>Informe seu endereço de e-mail que nós enviaremos um código para alteração de senha</p>
+      <h1 class='users-form-title'><%= t('users.passwords.new.title') %></h1>
+      <p class='users-form-subtitle'><%= t('users.passwords.new.subtitle') %></p>
     </div>
     <div class='users-form-container'>
       <div class="users-form-field">
-        <%= f.label 'E-mail', class: 'users-input-label' %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: 'Digite seu e-mail' %>
+        <%= f.label t('users.form.email'), class: 'users-input-label' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: t('users.form.email_placeholder') %>
       </div>
 
       <%= f.button class: 'users-form-submit-container' do %>
         <div class='w-4 h-8'></div>
-        <span>Enviar e-mail</span>
+        <span><%= t('users.passwords.new.submit')%></span>
         <div class='w-4 h-8'></div>
       <% end %>
 
       <div class='flex items-end gap-1 text-sm justify-start'>
-        <span>Lembrou a senha?</span>
-        <%= link_to "Faça login!", new_user_session_path, class: "users-form-link" %>
+        <span><%= t('users.form.remembered_password') %></span>
+        <%= link_to t('users.form.make_login'), new_user_session_path, class: "users-form-link" %>
       </div>
     </div>
   </div>

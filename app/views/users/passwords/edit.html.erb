@@ -2,30 +2,15 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <%= f.hidden_field :reset_password_token %>
   <div class='users-form-container'>
-      <div class='users-form-title-container'>
-        <h1 class='users-form-title'>Redefina sua senha</h1>
-        <p class='users-form-subtitle'>Informe a nova senha de acesso para completar o resgate da sua conta!</p>
-      </div>
-
-    <div data-controller="password-visibility" class="users-input-container">
-      <%= f.label 'Nova senha', class: 'users-input-label' %>
-
-      <div class="users-input-group">
-        <%= f.password_field :password, autocomplete: "new-password",placeholder: 'Digite sua nova senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
-
-        <button type="button" data-action="password-visibility#toggle">
-          <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
-          <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
-        </button>
-      </div>
-      <span class='text-xs'>Utilize 8 caracteres entre letras, números e caracter especial</span>
+    <div class='users-form-title-container'>
+      <h1 class='users-form-title'><%= t('users.passwords.edit.title') %></h1>
+      <p class='users-form-subtitle'><%= t('users.passwords.edit.subtitle') %></p>
     </div>
 
     <div data-controller="password-visibility" class="users-input-container">
-      <%= f.label 'Confirme a nova senha', class: 'users-input-label' %>
-
+      <%= f.label t('users.form.new_password'), class: 'users-input-label' %>
       <div class="users-input-group">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirme sua nova senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+        <%= f.password_field :password, autocomplete: "new-password",placeholder: t('users.form.new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
         <button type="button" data-action="password-visibility#toggle">
           <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
@@ -33,16 +18,30 @@
         </button>
       </div>
     </div>
+    <span class='text-xs'><%= t('users.form.password_rules') %></span>
+
+    <div data-controller="password-visibility" class="users-input-container">
+      <%= f.label t('users.form.confirm_new_password'), class: 'users-input-label' %>
+
+      <div class="users-input-group">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('users.form.confirm_new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+
+        <button type="button" data-action="password-visibility#toggle">
+          <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+          <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+        </button>
+      </div>
+    </div>
+
     <%= f.button class: 'users-form-submit-container' do %>
       <div class='w-4 h-8'></div>
-      <span>Reedefina</span>
+      <span><%= t('users.passwords.edit.submit') %></span>
       <div class='w-4 h-8'></div>
     <% end %>
 
     <div class='flex items-end gap-1 text-sm justify-start'>
-      <span>Lembrou a senha?</span>
-      <%= link_to "Faça login!", new_user_session_path, class: "users-form-link" %>
+      <span><%= t('users.form.remembered_password') %></span>
+      <%= link_to t('users.form.make_login'), new_user_session_path, class: "users-form-link" %>
     </div>
   </div>
 <% end %>
-
