@@ -12,6 +12,6 @@ pt-BR:
       create:
         receiver_error: Digite um CPF válido ou turma que tenha alunos.
         cpf_error: Digite um CPF válido.
-        success: Saldo enviado com sucesso !
+        success: Saldo enviado com sucesso!
         failure: O deposito não pode ser concluido.
 
