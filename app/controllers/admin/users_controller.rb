@@ -7,7 +7,7 @@ module Admin
 
     def index
       @q = User.ransack(params[:q])
-      @users = @q.result(distinct: true).all_except_current_user(current_user.id).order(:name)
+      @users = @q.result(distinct: true).all_except_current_user(current_user.id).order(:name).page(params[:page]).per(15)
     end
 
     def edit; end

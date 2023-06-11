@@ -4,7 +4,7 @@
   <div>
     <%= form.hidden_field :approver_id, value: @approver_id %>
     
-    <div class='flex'>
+    <div>
     <p>Cadastrar investimento</p>
     <p>Adicione um investimo ao catalógo. Lembre-se de marcar caso seja apenas para usuários premium!</p>
     </div>
@@ -36,7 +36,7 @@
     </div>
 
     <div>
-      <%= form.label :premium, t('.category') %>
+      <%= form.label :premium, t('.premium') %>
       <%= form.check_box :premium %>
     </div>
 

@@ -62,22 +62,28 @@ end
 end
 
 # Create indicators
-5.times do
-  name = Faker::Lorem.characters(number: 1..4).upcase
-  rate = Faker::Number.decimal(l_digits: 2, r_digits: 6)
-  rate_date = Faker::Date.between(from: 1.year.ago, to: Time.zone.today)
+# 5.times do
+#   name = Faker::Lorem.characters(number: 1..4).upcase
+#   rate = Faker::Number.decimal(l_digits: 2, r_digits: 6)
+#   rate_date = Faker::Date.between(from: 1.year.ago, to: Time.zone.today)
 
-  indicator = Indicator.create!(name:, rate:, rate_date:)
+#   indicator = Indicator.create!(name:, rate:, rate_date:)
 
-  puts "Indicator #{indicator.name} created!"
-end
-
+#   puts "Indicator #{indicator.name} created!"
+# end
+IndicatorService.import_indicators
 indicators = Indicator.all
+available_names = Indicator.pluck(:name)
+available_variations = []
+
+(110..250).step(10).each do |percentage|
+  available_variations << "#{percentage}%"
+end
 
 # Create investments
 20.times do
-  name = Faker::Lorem.characters(number: 1..5).upcase
-  minimum_amount = Faker::Number.number(digits: 2) * 100
+  name = "#{available_names.sample} #{available_variations.sample}".upcase
+  minimum_amount = Faker::Number.decimal(l_digits: 2, r_digits: 2).to_f * 100
   premium = Faker::Boolean.boolean
   expiration_date = Faker::Date.between(from: Time.zone.today, to: 1.year.from_now)
   approver = admin

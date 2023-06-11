@@ -5,7 +5,7 @@
   <div class="flex gap-10">
     <%= link_to t('view.links.catalog'), catalogs_path, class: "user-menu-item#{'-active' if request.path.include?('/catolog')}" %>
     <%= link_to t('view.links.transactions'), transactions_path, class: "user-menu-item#{'-active' if request.path.include?('/transactions')}" %>
-    <%= link_to t('view.links.investments'), new_user_investment_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
+    <%= link_to t('view.links.investments'), user_investments_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
   </div>
   <div class="flex justify-end items-center gap-6 min-w-[120px]">
     <div data-controller="dropdown" class="icon-button mt-1 menu-dropdown-container">
