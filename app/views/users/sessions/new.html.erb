@@ -1,19 +1,21 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
   <div class='users-form-container'>
     <div class='users-form-title-container'>
       <h1 class='users-form-title'>Acesse a plataforma</h1>
-      <p>Faça login ou registre-se para começar a fazer suas raracoins valerem!</p>
+      <p class='users-form-subtitle'>Faça login ou registre-se para começar a fazer suas raracoins valerem!</p>
     </div>
+
     <div class="users-form-field">
       <%= f.label :email, class: "users-input-label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: 'Digite seu e-mail' %>
     </div>
 
     <div data-controller="password-visibility" class="users-input-container">
       <%= f.label :password, class: "users-input-label"%>
 
       <div class="users-input-group">
-        <%= f.password_field :password, autocomplete: "current-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Digite sua senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
         <button type="button" data-action="password-visibility#toggle">
           <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
@@ -40,7 +42,7 @@
 
     <div class='flex items-end gap-2'>
       <span class='text-sm'>Ainda não tem uma conta?</span>
-      <%= link_to "Cadastre-se!", new_password_path(resource_name), class: "users-form-link" %>
+      <%= link_to "Cadastre-se!", new_user_registration_path, class: "users-form-link" %>
     </div>
   <% end %>
 </div>
