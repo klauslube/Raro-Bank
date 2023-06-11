@@ -103,3 +103,7 @@ pt-BR:
     edit:
       title: "Editar investimento"
       subtitle: "Atualize os dados e valores de um investimento."
+    show:
+      title: "Investimento"
+      subtitle: "Veja todos os detalhes do produto"
+      users: "Usuários investidores"

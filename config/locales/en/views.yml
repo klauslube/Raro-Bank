@@ -103,3 +103,7 @@ en:
     edit:
       title: "Edit investment"
       subtitle: "Update the data and values of an investment."
+    show:
+      title: "Investment"
+      subtitle: "See all the product details"
+      users: "Investor Users"
