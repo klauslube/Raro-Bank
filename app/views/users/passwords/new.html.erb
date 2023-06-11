@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
-
 <%= form_for(resource, url: user_password_path, html: { method: :post }) do |f| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
+  <div class='users-form-container'>
+    <div class='users-form-title-container'>
+      <h1 class='users-form-title'>Recupere sua senha</h1>
+      <p class='users-form-subtitle'>Informe seu endereço de e-mail que nós enviaremos um código para alteração de senha</p>
+    </div>
+    <div class='users-form-container'>
+      <div class="users-form-field">
+        <%= f.label 'E-mail', class: 'users-input-label' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: 'Digite seu e-mail' %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email, class: 'users-input-label' %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field' %>
-  </div>
+      <%= f.button class: 'users-form-submit-container' do %>
+        <div class='w-4 h-8'></div>
+        <span>Enviar e-mail</span>
+        <div class='w-4 h-8'></div>
+      <% end %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+      <div class='flex items-end gap-1 text-sm justify-start'>
+        <span>Lembrou a senha?</span>
+        <%= link_to "Faça login!", new_user_session_path, class: "users-form-link" %>
+      </div>
+    </div>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
