@@ -1,0 +1,68 @@
+pt-BR:
+  users:
+    shared:
+      links:
+        resend_confirm: Reenviar instruções
+        log_in: Entrar
+        sign_out: Sair
+        sign_up: Cadastrar
+        remeber_password: Esqueceu sua senha ?
+        unblock_instructions: Não recebeu instruções de desbloqueio?
+        sign_in_with: Entrar com
+    registrations:
+      new:
+        sing_up: Cadastrar nova conta
+        leave_blank: Deixe em branco se não deseja alterar
+        min_caracters: caraceteres no mínimo
+        sign_up: Cadastrar
+    confirmations:
+      new:
+        resend_confirm: Reenviar instruções
+        resend_confirm_title: Reenviar instruções para confirmação
+    passwords:
+      new:
+        forgot_password_title: Esqueceu sua senha ?
+        reset_password_instructions: Me enviar instruções para redefinição de senha
+    sessions:
+      new:
+        new_session_title: Entrar
+        remember_me: Lembrar-me
+        log_in: Entrar
+  admin:
+    users:
+      last_admin: Não é possível remover último administrador
+      index:
+        edit: Editar
+        users: Usuários
+      edit:
+        edit_classroom: Editando turma
+        show_classroom: Mostrar turma
+        back: Voltar
+        edit: Editar
+        title_edit: Editar usuário
+        submit: Salvar
+        classroom: Turma
+        role: Cargo
+        select_field: Selecione a turma
+      edit_admin:
+        title_edit: Editando
+        name: Nome
+        cpf: CPF
+        leave_black: Deixe em branco caso não queira alterar.
+        password: Senha
+        password_confirmation: Confirmação da senha
+        submit: Salvar
+        cancel_account: Cancelar minha conta
+        back: Voltar
+        minimum_caracters: quantidade mínima de caracteres
+        confirm_pop: Tem certeza ?
+      create:
+        success: Usuário criado com sucesso
+        failure: Usuário não pode ser criado
+      update:
+        success: Usuário atualizado com sucesso
+        failure: Usuário não pode ser atualizado
+      destroy:
+        success: Usuário apagado com sucesso
+        failure: Usuário não pode ser deletado
+

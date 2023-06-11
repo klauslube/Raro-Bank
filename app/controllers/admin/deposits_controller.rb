@@ -20,7 +20,7 @@ module Admin
       end
 
       if errors.empty?
-        redirect_to admin_root_path, notice: t('.success')
+        redirect_to admin_deposits_path, notice: t('.success')
       else
         flash[:alert] = t('.failure') + "- receiver: #{receiver} -" + errors.join(' ')
         redirect_to admin_deposits_path

@@ -41,7 +41,7 @@ class TransactionsController < ApplicationController
       @transaction.authenticated!
       true
     else
-      @transaction.errors.add(:token_code, 'Authentication code is invalid.')
+      @transaction.errors.add(:token_code, t('.invalid_token'))
       false
     end
   end

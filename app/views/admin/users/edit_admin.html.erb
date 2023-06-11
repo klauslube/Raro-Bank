@@ -1,23 +1,23 @@
-<h2>Edit </h2>
+<h2><%= t('.title_edit') %></h2>
 
 <%= form_for(@admin, url: admin_update_path, html: { method: :patch }) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @admin } %>
 
   <div class="field">
-    <%= form.label :name, class: "input-label" %>
+    <%= form.label t('.name'), class: "input-label" %>
     <%= form.text_field :name, autofocus: true, autocomplete: "name", class: "input-field" %>
   </div>
 
   <div class="field">
-    <%= form.label :cpf, class: "input-label" %>
+    <%= form.label t('.cpf'), class: "input-label" %>
     <%= form.text_field :cpf, autofocus: true, class: "input-field" %>
   </div>
 
   <div data-controller="password-visibility" class="input-container">
-    <%= form.label :password, class: "input-label" %><i>(leave blank if you don't want to change it)</i>
+    <%= form.label :password, class: "input-label" %><i>(<%= t('.leave_black') %>)</i>
 
     <div class="input-group">
-      <%= form.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+      <%= form.password_field t('.password'), autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
 
       <button type="button" data-action="password-visibility#toggle">
         <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
@@ -25,13 +25,12 @@
       </button>
     </div>
     <% if @minimum_password_length %>
-
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> <%= t('.minimum_caracters') %></em>
     <% end %>
   </div>
 
   <div data-controller="password-visibility" class="input-container">
-    <%= form.label :password_confirmation, class: "input-label" %>
+    <%= form.label t('.password_confirmation'), class: "input-label" %>
 
     <div class="input-group">
       <%= form.password_field :password_confirmation, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
@@ -57,12 +56,10 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Update" %>
+    <%= form.submit t('.submit') %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div><%= button_to t('.cancel_account'), admin_destroy_path, data: { turbo_confirm: t('.confirm_pop') }, method: :delete %></div>
 
-<div>Unhappy? <%= button_to "Cancel my account", admin_destroy_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+<%= link_to t('.back'), :back %>

@@ -1,4 +1,4 @@
-<h2>Resend confirmation instructions</h2>
+<h2><%= t('.resend_confirm_title') %></h2>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
@@ -9,7 +9,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+    <%= f.submit t('.resend_confirm') %>
   </div>
 <% end %>
 

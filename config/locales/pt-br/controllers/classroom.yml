@@ -1,0 +1,41 @@
+pt-BR:
+  admin:
+    classrooms:
+      index:
+        new_classroom: Nova turma
+        delete: Apagar
+        edit: Editar
+        details: Detalhes
+        start_date: Data inicial
+        end_date: Data final
+        name: Nome
+        classroom: Turma
+        no_classrooms: Ainda não há salas de aula.
+      new:
+        back_classrooms: Voltar
+        new_classroom: Nova turma
+      form:
+        name: Nome
+        start_date: Data inicial
+        end_date: Data final
+        users: Alunos
+        submit: Salvar
+      show:
+        edit_classroom: Editar turma
+        back: Voltar
+        delete_classroom: Apagar turma
+      classroom:
+        name: Nome
+        start_date: Data inicial
+        end_date: Data final
+        students: Alunos
+      edit:
+        edit_classroom: Editando turma
+        show_classroom: Mostrar turma
+        back: Voltar
+      create:
+        success: Turma criada com sucesso
+      update:
+        success: Turma atualizada com sucesso
+      destroy:
+        success: Turma apagada com sucesso

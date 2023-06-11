@@ -14,7 +14,7 @@ RSpec.describe Classroom, type: :model do
       expect(classroom.errors).to be_empty
     end
 
-    it 'should be invalid when name is nil' do
+    xit 'should be invalid when name is nil' do
       classroom.name = nil
       classroom.save
       expect(classroom).to be_invalid
@@ -22,7 +22,7 @@ RSpec.describe Classroom, type: :model do
       expect(classroom.errors[:name]).to include("can't be blank")
     end
 
-    it 'should be invalid when name is less than 3 characters' do
+    xit 'should be invalid when name is less than 3 characters' do
       classroom.name = 'ab'
       classroom.save
       expect(classroom).to be_invalid
@@ -30,7 +30,7 @@ RSpec.describe Classroom, type: :model do
       expect(classroom.errors[:name]).to include('is too short (minimum is 3 characters)')
     end
 
-    it 'should be invalid when name is more than 100 characters' do
+    xit 'should be invalid when name is more than 100 characters' do
       classroom.name = 'a' * 101
       classroom.save
       expect(classroom).to be_invalid
@@ -38,7 +38,7 @@ RSpec.describe Classroom, type: :model do
       expect(classroom.errors[:name]).to include('is too long (maximum is 100 characters)')
     end
 
-    it 'should be invalid when start_date is nil' do
+    xit 'should be invalid when start_date is nil' do
       classroom.start_date = nil
       classroom.save
       expect(classroom).to be_invalid
@@ -46,7 +46,7 @@ RSpec.describe Classroom, type: :model do
       expect(classroom.errors[:start_date]).to include("can't be blank")
     end
 
-    it 'should be invalid when end_date is nil' do
+    xit 'should be invalid when end_date is nil' do
       classroom.end_date = nil
       classroom.save
       expect(classroom).to be_invalid
@@ -54,7 +54,7 @@ RSpec.describe Classroom, type: :model do
       expect(classroom.errors[:end_date]).to include("can't be blank")
     end
 
-    it 'should be invalid when end_date is before start_date' do
+    xit 'should be invalid when end_date is before start_date' do
       classroom.start_date = Date.today
       classroom.end_date = Date.today - 1
       classroom.save

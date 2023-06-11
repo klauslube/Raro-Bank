@@ -1,6 +1,6 @@
 <div>
   <div>
-    <%= link_to "New Investment", new_admin_investment_path(@investment) %>
+    <%= link_to t('.new_investment'), new_admin_investment_path(@investment) %>
   </div>
 
   <%= search_form_for @q, url: admin_investments_path do |f| %>
@@ -26,14 +26,13 @@
   <table>
     <thead>
       <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Valor mínimo</th>
-        <th scope="col">Data de estréia</th>
-        <th scope="col">Data de vencimento</th>
-        <th scope="col">Indexador</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Premium</th>
-        <th scope="col">+</th>
+        <th scope="col"><%= t('.name') %></th>
+        <th scope="col"><%= t('.minimum_amount') %></th>
+        <th scope="col"><%= t('.start_date') %></th>
+        <th scope="col"><%= t('.expiration_date') %></th>
+        <th scope="col"><%= t('.index') %></th>
+        <th scope="col"><%= t('.category') %></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -47,7 +46,7 @@
         <td><%= investment.premium ? 'Premium' : 'Free' %>
         </td>
         <td>
-          <%= link_to "Details", admin_investment_path(investment) %>
+          <%= link_to t('.details'), admin_investment_path(investment) %>
         </td>
       </tr>
     <% end %>

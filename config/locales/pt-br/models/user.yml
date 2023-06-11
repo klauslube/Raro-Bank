@@ -1,0 +1,20 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usuário
+    attributes:
+      user:
+        name: Nome
+        email: Email
+        cpf: CPF
+        password: Senha
+        current_password: Senha atual
+        password_confirmation: Confirmação da senha
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              no_letter: deve ter pelo menos uma letra
+              no_number: deve ter pelo menos um número
+              no_special: deve possuir pelo menos um caracter especial

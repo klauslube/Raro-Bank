@@ -1,4 +1,4 @@
-<h1>User Investments</h1>
+<h1><%= t('.investment_title') %></h1>
 <%= link_to 'Investments Catalog', catalogs_path %>
 
 <%= search_form_for @q do |f| %>
@@ -25,14 +25,14 @@
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Minimum Amount</th>
+      <th scope="col"><%= t('.name') %></th>
+      <th scope="col"><%= t('.min_amount') %></th>
       <th scope="col">Expiration Date</th>
       <th scope="col">Index</th>
-      <th scope="col">Category</th>
-      <th scope="col">Profit</th>
+      <th scope="col"><%= t('.category') %></th>
+      <th scope="col"><%= t('.profit') %></th>
       <th scope="col">Initial amount</th>
-      <th scope="col">Purchase Date</th>
+      <th scope="col"><%= t('.purchase_date') %></th>
     </tr>
   </thead>
   <tbody>

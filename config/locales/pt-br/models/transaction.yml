@@ -1,0 +1,25 @@
+pt-BR:
+  activerecord:
+    models:
+      transaction: Transferências
+    attributes:
+      transaction:
+        receiver: Destinatário
+        amount: Valor
+        receiver_id: Destinatário
+        token_code: Código de autenticação
+        receiver_cpf: CPF do destinatário
+        status_enum:
+          started: Iniciada
+          authenticated: Autenticada
+          pending: Pendente
+          completed: Concluída
+          canceled: Cancelada
+    errors:
+      models:
+        transaction:
+          attributes:
+            amount:
+              insufficient_balance: insuficiente para a transação
+            receiver_id:
+              transfer_yourself: não pode ser você mesmo
