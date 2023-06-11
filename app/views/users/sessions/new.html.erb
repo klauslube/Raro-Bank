@@ -1,34 +1,50 @@
-<h2><%= t('.new_session_title') %></h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, class: "input-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field" %>
-  </div>
-
-  <div data-controller="password-visibility" class="input-container">
-    <%= f.label :password, class: "input-label"%>
-
-    <div class="input-group">
-      <%= f.password_field :password, autocomplete: "current-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
-
-      <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
-      </button>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
+  <div class='users-form-container item'>
+    <div class='users-form-title-container'>
+      <h1 class='users-form-title'><%= t('users.sessions.title') %></h1>
+      <p class='users-form-subtitle'><%= t('users.sessions.subtitle') %></p>
     </div>
-  </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label t('.remember_me'), class: "input-label" %>
+    <div class="users-form-field">
+      <%= f.label 'E-mail', class: "users-input-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder: 'Digite seu e-mail' %>
+    </div>
+
+    <div data-controller="password-visibility" class="users-input-container">
+      <%= f.label :password, class: "users-input-label"%>
+
+      <div class="users-input-group">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Digite sua senha', data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+
+        <button type="button" data-action="password-visibility#toggle">
+          <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+          <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+        </button>
+      </div>
+    </div>
+
+    <div class='flex justify-between'>
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center gap-2">
+          <%= f.check_box :remember_me, class: 'users-checkbox-field' %>
+          <%= f.label :remember_me, class: "users-input-label" %>
+        </div>
+      <% end %>
+      <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "users-form-link" %>
+    </div>
+
+    <%= f.button class: 'users-form-submit-container' do %>
+      <%= inline_svg_tag 'icons/solid/lock-closed.svg', class: 'w-4 h-8 text-primary-800' %>
+      <span><%= t('users.registrations.sessions.submit') %></span>
+      <div class='w-4 h-8'></div>
+    <% end %>
+
+    <div class='flex items-end gap-1 text-sm justify-start'>
+      <span><%=  t('users.form.not_have_account') %></span>
+      <%= link_to t('users.form.register'), new_user_registration_path, class: "users-form-link" %>
+      <span>ou</span>
+      <%= link_to t('users.form.resend_confirmation'), new_user_confirmation_path, class: "users-form-link" %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit t('.log_in') %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

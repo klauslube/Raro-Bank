@@ -1,12 +1,12 @@
-<nav class="bg-primary-700 h-24 px-16 flex justify-between items-center">
+<nav class="bg-primary-700 max-h-[100px] px-16 flex justify-between items-center">
   <%= link_to root_path do %>
-    <%= inline_svg_tag 'logo.svg', class: 'w-[120px] text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out'
+    <%= inline_svg_tag 'logo.svg', class: 'w-[100px] text-primary-100 hover:text-primary-300 transition duration-200 ease-in-out'
     %>
   <% end %>
   <div class="flex gap-4">
-    <%= link_to t('view.links.classrooms'), admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classrooms')}" %>
-    <%= link_to t('view.links.investments'), admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investiments')}" %>
-    <%= link_to t('view.links.users'), class: "menu-item#{'-active' if request.path.include?('/users')}" %>
+    <%= link_to t('links.classrooms'), admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classroom')}" %>
+    <%= link_to t('links.investments'), admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investment')}" %>
+    <%= link_to t('links.users'), admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
     <%= link_to :deposits, admin_deposits_path, class: "menu-item#{'-active' if request.path.include?('/deposits')}"  %>
   </div>
   <div class="flex justify-end items-center gap-4 min-w-[120px]">
@@ -19,23 +19,23 @@
 
     <div data-controller="dropdown" class="icon-button mt-1 relative">
       <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
-        <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-8 h-8' %>
+        <%= inline_svg_tag 'icons/solid/ellipsis-vertical.svg', class: 'w-8 h-8' %>
       </button>
       <div
         data-dropdown-target="menu"
-        class="hidden menu-dropdown mt-4"
+        class="hidden menu-dropdown mt-5"
         data-transition-enter-from="opacity-0 scale-95"
         data-transition-enter-to="opacity-100 scale-100"
         data-transition-leave-from="opacity-100 scale-100"
         data-transition-leave-to="opacity-0 scale-95"
       >
-        <%= link_to admin_edit_path, class: 'menu-dropdown-item font-normal' do %>
-          <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-4 h-4' %>
-          <span><%= t('view.links.account') %></span>
+        <%= link_to admin_edit_path, class: 'menu-dropdown-item' do %>
+          <span><%= t('links.account') %></span>
+          <%= inline_svg_tag 'icons/solid/cog-8-tooth.svg', class: 'w-4 h-4' %>
         <% end %>
-        <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item font-bold' do %>
+        <%= button_to destroy_user_session_path, method: :delete, class: 'menu-dropdown-item' do %>
+          <span class="wrap-nowrap"><%= t('links.logout') %></span>
           <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: 'min-w-4 min-h-4' %>
-          <span class="wrap-nowrap"><%= t('view.links.logout') %></span>
         <% end %>
       </div>
     </div>
