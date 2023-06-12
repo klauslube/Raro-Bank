@@ -26,6 +26,7 @@ class TransactionsController < ApplicationController
       @transaction.sender.save! && @transaction.update(status: 'pending')
 
       @transaction.call_update_balance
+      @transaction.update(status: 'completed')
 
       redirect_to transactions_path, notice: t('.success')
     else

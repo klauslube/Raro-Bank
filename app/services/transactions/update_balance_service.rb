@@ -13,8 +13,6 @@ module Transactions
     def update_balance
       transaction_receiver.balance += transaction_amount
       transaction_receiver.save!
-      @transaction.status = 'completed'
-      @transaction.save!
     end
 
     def transaction_receiver

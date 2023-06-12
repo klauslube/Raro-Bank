@@ -46,9 +46,9 @@ class Transaction < ApplicationRecord
     weekday >= 1 && weekday <= 5 && hour >= 8 && hour < 18
   end
 
-  def notification_completed_transaction
-    receiver_notification_email
-  end
+  # def notification_completed_transaction
+  #   receiver_notification_email
+  # end
 
   private
 
@@ -84,7 +84,8 @@ class Transaction < ApplicationRecord
 
   def update_balance
     if self.class.within_transfer_hours?
-      Transactions::UpdateBalanceService.new(self).call
+      # Transactions::UpdateBalanceService.new(self).call
+      Transactions::UpdateBalanceJob.perform_now(id)
     else
       Transactions::UpdateBalanceJob.perform_later(id)
     end
