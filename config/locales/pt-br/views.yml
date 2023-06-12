@@ -21,6 +21,7 @@ pt-BR:
   users:
     balance: 'Saldo'
     contacts: 'Contatos'
+    choose_contacts: 'Ou escolha um dos seus contatos: '
     contacts_empty: 'Você ainda não possui contatos'
     form:
       name_placeholder: 'Digite seu nome'

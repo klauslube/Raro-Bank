@@ -29,7 +29,7 @@
           <%= form.number_field :receiver_cpf, value: @receiver_cpf, placeholder: t('.placeholder_receiver_cpf'), class: 'input-group-transfer' %>
         </div>
         <div class='flex flex-col items-center justify-center w-full p-2' >
-          <span class=' text-primary-700'>Ou escolha um dos seus contatos: </span>
+          <span class=' text-primary-700'><%= t('users.choose_contacts') %></span>
           <%= link_to t('.contacts'), contacts_path, class: 'user-simple-link' %>
         </div>
         <div>
