@@ -38,7 +38,7 @@ accounts = Account.not_admin
 
 # Set amount of raracoins for each account
 accounts.each do |account|
-  account.update(balance: 1000)
+  account.update(balance: 20000)
 
   puts "Account #{account.id} updated!"
 end
