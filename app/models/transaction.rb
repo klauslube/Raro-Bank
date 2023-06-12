@@ -12,7 +12,7 @@ class Transaction < ApplicationRecord
   after_create :token_countdown
   after_create :cancel_transfer_countdown
   after_commit :update_balance
-  after_commit :new_transfer, on: :create
+  after_commit :send_confirmation_email, on: :create
   after_commit :send_notification_email, on: :create
 
   enum :status, {
@@ -24,7 +24,7 @@ class Transaction < ApplicationRecord
   }, scopes: true, default: :started
 
   def resend_email
-    new_transfer
+    send_confirmation_email
   end
 
   def save_without_token!
@@ -79,11 +79,11 @@ class Transaction < ApplicationRecord
     end
   end
 
-  def new_transfer
-    TransactionMailer.notify(self).deliver_now
+  def send_confirmation_email
+    TransactionMailer.token_confirmation(self).deliver_now
   end
 
   def send_notification_email
-    TransactionMailer.transfer_notification(sender, receiver, self).deliver_now
+    TransactionMailer.transfer_notification(self).deliver_now
   end
 end

@@ -49,13 +49,13 @@
   <img src="http://localhost:3000/logo-bank.png" alt="Logo Raro Bank" width="60" class="logo">
 
   <h2>Seu token de autenticação</h2>
-  <h3>Transaction N°:<strong><%= @mailer_transaction.id %></strong></h3>
-  <p><%= @mailer_transaction.sender.user.name %>, utilize este token para confirmar sua transferência.</p>
-  <p class="token"><%= @mailer_transaction.token.code %></p>
+  <h3>Transaction N°:<strong><%= @mailer_token_notification.id %></strong></h3>
+  <p><%= @mailer_token_notification.sender.user.name %>, utilize este token para confirmar sua transferência.</p>
+  <p class="token"><%= @mailer_token_notification.token.code %></p>
 
   <div class="btn-container">
     <p class="link">
-      <%= link_to "Valide sua transação", edit_transaction_url(@mailer_transaction.id), class: "button" %>
+      <%= link_to "Valide sua transação", edit_transaction_url(@mailer_token_notification.id), class: "button" %>
     </p>
   </div>
 
