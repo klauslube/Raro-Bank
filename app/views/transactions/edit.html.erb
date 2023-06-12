@@ -1,29 +1,35 @@
 <%= render 'shared/notifications/form_errors', object: @transaction %>
 
 <div class='table-view'>
-  <div class='flex flex-col w-1/2 px-10 py-4 mx-auto mt-5 bg-white border shadow-md border-primary-200 rounded-xl'>
-    <div class='flex justify-center text-button-transfer'>
-      <%= t('.transaction') %>#<%= @transaction.id %>
+  <div class='flex flex-col w-1/2 gap-2 px-10 py-6 mx-auto mt-5 bg-white border shadow-md border-primary-200 rounded-xl'>
+    <div class='users-details-header'>
+      <span class='user-list-item-inner'>
+        <span class='user-list-item-icon'>
+          <%= inline_svg_tag 'icons/outline/banknotes.svg', class: 'w-4 h-4 text-white' %>
+        </span>
+        <span class='text-primary-800'><%= @transaction.receiver.user.name %></span>
+        <span class='user-list-item-tag'><%= t("activerecord.attributes.transaction.status_enum.#{@transaction.status}") %></span>
+
+      </span>
+      <span class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/current-dolar.svg', class: 'w-6 h-6 text-primary-600' %>
+        <span class='text-sm font-bold text-primary-600'><%= number_to_currency(@transaction.amount) %></span>
+      </span>
     </div>
     <div class='flex justify-center mx-2 text-primary-600'>
       <%= t('.legends_edit_transfer') %>
     </div>
     <div>
-      <%= form_with(model: @transaction, data: { turbo: false }) do |form| %>
+      <%= form_with(model: @transaction, data: { turbo: false }, class: 'gap-2') do |form| %>
         <div>
           <%= form.number_field :token_code, placeholder: t('.placeholder_token_code'), class: 'input-group-transfer' %>
         </div>
+        <div class='flex flex-col items-center justify-center w-full p-2' >
+          <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'user-simple-link' %>
+        </div>
         <%= form.submit t('.next'), class: 'button-primary-transfer' %>
-      </div>
-    <% end %>
-    <div class=''>
-      <div>
-        <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'button-primary-transfer' %>
-      </div>
-      <div>
         <%= link_to t('.back'), transactions_path, class: 'button-primary-transfer' %>
       </div>
-    </div>
+    <% end %>
   </div>
-</div>
 </div>
