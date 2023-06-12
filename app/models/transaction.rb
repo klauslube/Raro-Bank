@@ -63,10 +63,14 @@ class Transaction < ApplicationRecord
   end
 
   def token_countdown
+    return if sender.user.admin?
+
     Transactions::TokenUpdateJob.set(wait: 5.minutes).perform_later
   end
 
   def cancel_transfer_countdown
+    return if sender.user.admin?
+
     Transactions::CancelTransferJob.set(wait: 6.minutes).perform_later(id)
   end
 
