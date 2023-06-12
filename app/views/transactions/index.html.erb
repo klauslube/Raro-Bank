@@ -1,6 +1,6 @@
-<div class="flex justify-end mx-5 mt-5">
+<div class="flex justify-end mx-3 mt-5 items-center">
   <%= inline_svg_tag 'icons/solid/token-swap-line.svg' %>
-  <%= link_to t('.new_transfer'), new_transaction_path, class: 'text-button-transfer' %>
+  <%= link_to t('.new_transfer'), new_transaction_path, class: 'text-button-transfer-large' %>
 </div>
 <% @transactions.each do |transaction| %>
   <div class='container-transfer'>

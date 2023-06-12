@@ -11,7 +11,7 @@
           <%= inline_svg_tag 'icons/outline/currency-dolar.svg'%>
         </div>
         <div class="text-xl font-extrabold text-primary-600 ">
-          <%= current_user.balance %>
+          <%= '%.2f' % current_user.balance %>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
           <%= form.submit t('.next'), class: 'button-primary-transfer' %>
         </div>
       <% end %>
-        <div class='text-center items-center flex flex-row justify-between'>
+        <div class=''>
           <div>
             <%= link_to t('.contacts'), accounts_path, class: 'button-primary-transfer' %>
           </div>

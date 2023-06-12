@@ -14,6 +14,8 @@ pt-BR:
       transaction: Transação
       placeholder_token_code: Digite código de autenticação.
       resend_email: Renviar código
+      next: Avançar
+      legends_edit_transfer: Um token de confirmação foi enviado para seu email.
     create:
       success: Por favor confirme sua transferência
     update:
@@ -24,4 +26,5 @@ pt-BR:
       value: Valor
       status_label: Status da transferência
       confirm: CONFIRMAR
-
+    resend_email:
+      resend_email_notice: Um email foi enviado para você.
