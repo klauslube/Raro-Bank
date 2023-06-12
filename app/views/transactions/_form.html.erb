@@ -1,21 +1,49 @@
 <%= render 'shared/notifications/form_errors', object: @transaction %>
 
-<div class='w-auto mx-auto'>
-  <div class='text-center'>
-    <%= current_user.balance %>
-  </div>
-  <%= form_with(model: @transaction, data: { turbo: false }) do |form| %>
+<div class='mt-5'>
+  <div class='bg-white border-primary-200 w-1/2 border rounded-xl mx-auto shadow-md mt-5 px-10 py-2 '>
+    <div class='flex justify-between'>
+      <div class="text-primary-600 mx-2 font-extrabold text-lg relative mt-2 mb-2">
+        <%= t('.transfer_title') %>
+      </div>
+      <div class="flex items-center">
+        <div class="text-primary-600 mx-2">
+          <%= inline_svg_tag 'icons/outline/currency-dolar.svg'%>
+        </div>
+        <div class="text-xl font-extrabold text-primary-600 ">
+          <%= number_to_currency(current_user.balance) %>
+        </div>
+      </div>
+    </div>
+
+    <div class='mx-2 text-primary-600 flex justify-center'>
+      <%= t('.legends_new_transfer') %>
+    </div>
+
     <div>
-      <%= form.label :amount, class:'input-label' %>
-      <%= form.number_field :amount, step: 0.01, placeholder: t('.placeholder_amount'), class: 'input-field' %>
+      <%= form_with(model: @transaction, data: { turbo: false }) do |form| %>
+        <div>
+          <%= form.number_field :amount, step: 0.01, placeholder: t('.placeholder_amount'), class: 'input-group-transfer' %>
+        </div>
+        <div>
+          <%= form.number_field :receiver_cpf, value: @receiver_cpf, placeholder: t('.placeholder_receiver_cpf'), class: 'input-group-transfer' %>
+        </div>
+        <div>
+          <%= form.submit t('.next'), class: 'button-primary-transfer' %>
+        </div>
+      <% end %>
+        <div class=''>
+          <div>
+            <%= link_to t('.contacts'), accounts_path, class: 'button-primary-transfer' %>
+          </div>
+          <div>
+            <%= link_to t('.cancel'), transactions_path, class: 'button-primary-transfer' %>
+          </div>
+        </div>
     </div>
-      <div>
-      <%= form.label :receiver_cpf, class:'input-label' %>
-  <em><%= form.number_field :receiver_cpf, step: 0.01, placeholder: t('.placeholder_receiver_cpf'), class: 'input-field' %></em>
-    </div>
-    <div class='action'>
-      <%= form.submit t('.next'), class: 'button-primary' %>
-      <%= link_to t('.cancel'), transactions_path, class: 'button-primary' %>
-    </div>
-  <% end %>
+  </div>
 </div>
+
+<%# current_user.account.sender_transactions.each do |transaction| %>
+  <%#= transaction.receiver.user.name %>
+<%# end %>

@@ -44,7 +44,7 @@
 - [x] Aplicar estilo de tela de Admin: Classrooms
 - [x] Aplicar estilo de tela de Admin: Investment
 - [x] Aplicar estilo de tela de Admin: Cadastro de saldo
-- [ ] Implementar estilo de notificações
+- [x] Implementar estilo de notificações
 - [ ] Implementar página de erros: 404/500
 
 ## Issues finais
@@ -56,7 +56,7 @@
 
 - [ ] Implementar imagem de perfil dos usuários, utilizando o [Active Storage](https://guides.rubyonrails.org/active_storage_overview.html)
 - [ ] Implementar mensagem em transações, utilizando o [Action Text](https://guides.rubyonrails.org/action_text_overview.html)
-- [ ] Implementar locale - i18n
+- [x] Implementar locale - i18n
 
 ## Detalhes
 
