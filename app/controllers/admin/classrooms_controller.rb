@@ -3,7 +3,8 @@ module Admin
     before_action :fetch_classroom, only: %i[show edit update destroy]
 
     def index
-      @classrooms = Classroom.all
+      @q = Classroom.ransack(params[:q])
+      @classrooms = @q.result(distinct: true).order(:name).page(params[:page]).per(15)
     end
 
     def show; end
@@ -29,9 +30,11 @@ module Admin
     end
 
     def destroy
-      return redirect_to admin_classrooms_path, notice: t('.success') if @classroom.destroy
-
-      render :index, status: :unprocessable_entity
+      if @classroom.destroy
+        redirect_to admin_classrooms_path, notice: t('.success')
+      else
+        redirect_to admin_classrooms_path, alert: t('.error')
+      end
     end
 
     private

@@ -1,11 +1,11 @@
-<nav class="bg-primary-700 h-24 px-16 flex justify-between items-center">
+<nav class="bg-primary-700 h-24 py-4 px-16 flex justify-between items-center">
   <%= link_to root_path do %>
     <%= inline_svg_tag 'logo-user.svg', class: 'w-[120px] text-primary-100 hover:opacity-80 transition duration-200 ease-in-out' %>
   <% end %>
   <div class="flex gap-10">
-    <%= link_to t('view.links.catalog'), catalogs_path, class: "user-menu-item#{'-active' if request.path.include?('/catolog')}" %>
-    <%= link_to t('view.links.transactions'), transactions_path, class: "user-menu-item#{'-active' if request.path.include?('/transactions')}" %>
-    <%= link_to t('view.links.investments'), new_user_investment_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
+    <%= link_to t('links.catalog'), catalogs_path, class: "user-menu-item#{'-active' if request.path.include?('/catolog')}" %>
+    <%= link_to t('links.transactions'), transactions_path, class: "user-menu-item#{'-active' if request.path.include?('/transactions')}" %>
+    <%= link_to t('links.investments'), user_investments_path, class: "user-menu-item#{'-active' if request.path.include?('/investiments')}" %>
   </div>
   <div class="flex justify-end items-center gap-6 min-w-[120px]">
     <div data-controller="dropdown" class="icon-button mt-1 menu-dropdown-container">
@@ -24,17 +24,16 @@
           data-transition-leave-from="opacity-100 scale-100"
           data-transition-leave-to="opacity-0 scale-95"
         >
-
-        <span class="user-context-item" >
+        <%= link_to transactions_path, class: "user-context-item" do %>
           <%= number_with_delimiter(current_user.balance, delimiter: '.', separator: ',') %>
           <%= inline_svg_tag 'icons/outline/current-dolar.svg', class: "min-w- min-h-4" %>
-        </span>
+        <% end %>
         <%= link_to edit_user_registration_path, class: "user-context-item" do %>
-          <span><%= t('view.links.account') %></span>
+          <span><%= t('links.account') %></span>
           <%= inline_svg_tag 'icons/outline/cog-8-tooth.svg', class: 'min-w- min-h-4' %>
         <% end %>
         <%= button_to destroy_user_session_path, method: :delete, class: "user-context-item" do %>
-          <span><%= t('view.links.logout') %></span>
+          <span><%= t('links.logout') %></span>
           <%= inline_svg_tag 'icons/solid/arrow-left-on-rect.svg', class: "min-w-4 min-h-4 ml-2" %>
         <% end %>
 

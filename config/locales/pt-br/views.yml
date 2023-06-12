@@ -1,0 +1,69 @@
+pt-BR:
+  links:
+    logout: "Sair"
+    account: "Conta"
+    catalog: "Catálogo"
+    transactions: "Transações"
+    investments: "Investimentos"
+    classrooms: "Classrooms"
+    users: "Usuarios"
+    invest: "Investir"
+    transfer: "Transferir"
+    extract: "Extrato"
+  home:
+    title: "Comece a movimentar sua conta"
+  article:
+    title: "Garanta acesso aos melhores investimentos ao se tornar um aluno da Raro Academy"
+    subtitle: "Alunos e ex-alunos da nossa escola possuem acesso a investimentos de alto rendimento. Faça suas raracoins valerem a pena!"
+    more: "Veja mais"
+  users:
+    form:
+      name_placeholder: "Digite seu nome"
+      cpf_placeholder: "Digite seu CPF"
+      email: "E-mail"
+      email_placeholder: "Digite seu e-mail"
+      password: "Senha"
+      password_placeholder: "Digite sua senha"
+      confirm_password: "Confirme sua senha"
+      confirm_password_placeholder: "Confirme a sua senha"
+      new_password: "Nova senha"
+      confirm_new_password: "Confirme sua nova senha"
+      confirm_new_password_placeholder: "Digite a confirmação da sua nova senha"
+      new_password_placeholder: "Digite sua nova senha"
+      current_password: "Senha atual"
+      current_password_placeholder: "Digite sua senha atual para prosseguir"
+      password_rules: "Utilize 8 caracteres entre letras, números e caracter especial"
+      cpf_rules: "Somente números"
+      remembered_password: "Lembrou a senha?"
+      make_login: "Faça login!"
+      register: "Cadastre-se!"
+      resend_confirmation: "Reenviar confirmação!"
+      have_account: "Já possui uma conta?"
+      not_have_account: "Não possui uma conta?"
+      save: "Salvar"
+      delete: "Deletar conta"
+      delete_confirmation: "Tem certeza que deseja deletar sua conta?"
+    confirmations:
+      title: "Reenviar confirmação"
+      subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."
+    passwords:
+      new:
+        title: "Esqueceu a senha?"
+        subtitle: "Informe seu endereço de e-mail que nós enviaremos um código para alteração de senha."
+        submit: "Enviar e-mail"
+      edit:
+        title: "Redefina sua senha"
+        subtitle: "Informe a nova senha de acesso para completar o resgate da sua conta!"
+        submit: "Alterar senha"
+    registrations:
+      new:
+        title: "Cadastre-se!"
+        subtitle: "Registre-se agora para começar a fazer suas raracoins valerem"
+        submit: "Cadastre"
+      edit:
+        title: "Editar cadastro"
+        subtitle: "Altere seus dados cadastrais"
+    sessions:
+      title: "Acesse a plataforma"
+      subtitle: "Faça login ou registre-se para começar a fazer suas raracoins valerem!"
+      submit: "Entrar"

@@ -8,10 +8,19 @@ class UserInvestmentsController < ApplicationController
     @user_investments = @q.result(distinct: true).where(user_id: current_user.id)
   end
 
+  def catalogs
+    @q = Investment.ransack(params[:q])
+    @investments = @q.result(distinct: true).order(:name).page(params[:page]).per(10)
+  end
+
   def show; end
 
   def new
-    @user_investment = UserInvestment.new
+    if current_user.role == 'free' && @investment.premium?
+      redirect_to catalogs_path, notice: t('.error')
+    else
+      @user_investment = UserInvestment.new
+    end
   end
 
   def create

@@ -2,11 +2,14 @@
 <%= link_to 'Investments Catalog', catalogs_path %>
 
 <%= search_form_for @q do |f| %>
-  <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo Maior ou Igual a:' %>
-  <%= f.search_field :investment_minimum_amount_gteq %>
+  <%= f.label :investment_name_cont, 'Nome:' %>
+  <%= f.search_field :investment_name_cont %>
+
+  <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo:' %>
+  <%= f.number_field :investment_minimum_amount_gteq, min: 0 %>
 
   <%= f.label :investment_indicator_rate_gteq, 'Valor indexador:' %>
-  <%= f.search_field :investment_indicator_rate_gteq %>
+  <%= f.number_field :investment_indicator_rate_gteq %>
 
   <%= f.label :investment_premium_eq, 'Premium:' %>
   <%= f.check_box :investment_premium_eq %>
@@ -21,7 +24,6 @@
 <table>
   <thead>
     <tr>
-      <th scope="col">Id</th>
       <th scope="col"><%= t('.name') %></th>
       <th scope="col"><%= t('.min_amount') %></th>
       <th scope="col">Expiration Date</th>
@@ -35,11 +37,10 @@
   <tbody>
     <% @user_investments.each do |investment| %>
       <tr>
-        <td><%= investment.id %></td>
         <td><%= investment.investment.name %></td>
         <td><%= investment.investment.minimum_amount %></td>
         <td><%= investment.investment.expiration_date %></td>
-        <td><%= investment.investment.indicator.rate %></td> 
+        <td><%= "#{(investment.investment.indicator.rate * 100 * 365).round(2)}%" %></td> 
         <td><%= investment.investment.premium ? 'Premium' : 'Free' %> 
         <td><%= investment.profit %></td>
         <td><%= investment.initial_amount %></td>

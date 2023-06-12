@@ -11,14 +11,9 @@ module Transactions
     private
 
     def update_balance
-      transaction_sender.balance -= transaction_amount
       transaction_receiver.balance += transaction_amount
-      transaction_sender.save!
       transaction_receiver.save!
-    end
-
-    def transaction_sender
-      @transaction.sender
+      @transaction.status = 'completed'
     end
 
     def transaction_receiver

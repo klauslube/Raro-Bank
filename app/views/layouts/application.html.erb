@@ -12,7 +12,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="min-h-full flex flex-col justify-between">
+  <body class="flex flex-col justify-between h-screen">
     <% if user_signed_in? %>
       <%= render 'layouts/navbar' %>
     <% else %>
@@ -22,7 +22,9 @@
     <%= render partial: "shared/notifications/success", locals: { message: flash[:notice] } %>
     <%= render partial: "shared/notifications/error", locals: { message: flash[:alert] } %>
 
-    <%= yield %>
+    <main class='w-full h-max flex flex-col flex-1 items-center justify-center'>
+      <%= yield %>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
   </body>
 </html>

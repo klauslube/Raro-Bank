@@ -1,22 +1,22 @@
 <%= form_with(model: @classroom, url: @classroom.persisted? ? admin_classroom_path(@classroom) : admin_classrooms_path, local: true) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @classroom } %>
 
-  <div class="field">
-    <%= form.label t('.name'), class: "input-label" %>
-    <%= form.text_field :name, class: "input-field" %>
+  <div class="users-form-field">
+    <%= form.label t('.name'), class: 'users-input-label' %>
+    <%= form.text_field :name, class: 'users-input-field' %>
   </div>
 
-  <div class="field">
-    <%= form.label t('.start_date'), class: "input-label" %>
-    <%= form.date_field :start_date, class: "input-field" %>
+  <div class="users-form-field">
+    <%= form.label t('.start_date'), class: 'users-input-label' %>
+    <%= form.date_field :start_date, class: 'users-input-field' %>
   </div>
 
-  <div class="field">
-    <%= form.label t('.end_date'), class: "input-label" %>
-    <%= form.date_field :end_date, class: "input-field" %>
+  <div class='users-form-field'>
+    <%= form.label t('.end_date'), class: 'users-input-label' %>
+    <%= form.date_field :end_date, class: 'users-input-field' %>
   </div>
 
-  <div class="field">
+  <div class='users-form-field'>
     <%= form.label t('.users') %>
     <%= form.select :user_ids, User.all_except_admins.order(:name).pluck(:name, :id), {}, { multiple: true, data: { controller: 'slim' } } %>
   </div>

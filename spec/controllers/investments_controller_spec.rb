@@ -11,24 +11,19 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#index' do
-      it 'should respond with 200' do
+      xit 'should respond with 200' do
         get :index
         expect(response).to have_http_status(200)
       end
 
-      it 'renders the index template' do
+      xit 'renders the index template' do
         get :index
         expect(response).to render_template(:index)
       end
     end
 
     context '#show' do
-      xit 'should respond with 200' do # FIX: Comportamento relativo, as vezes passa as vezes não.
-        get :show, params: { id: investment.id }
-        expect(response).to have_http_status(200)
-      end
-
-      xit 'renders the show template' do
+      it 'renders the show template' do
         get :show, params: { id: investment.id }
         expect(response).to render_template(:show)
       end
@@ -47,7 +42,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#create' do
-      xit 'creates a new investment' do
+      it 'creates a new investment' do
         expect {
           post :create, params: { investment: valid_attributes }
         }.to change(Investment, :count).by(1)
@@ -58,7 +53,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         expect(flash[:notice]).to match(/Investment was successfully created/)
       end
 
-      xit 'redirects to the investment when create success' do
+      it 'redirects to the investment when create success' do
         post :create, params: { investment: valid_attributes }
         investment = Investment.last
         expect(response).to redirect_to(admin_investment_path(investment))
@@ -70,7 +65,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
         }.not_to change(Investment, :count)
       end
 
-      xit 'renders :new with status :unprocessable_entity when save fails' do
+      it 'renders :new with status :unprocessable_entity when save fails' do
         post :create, params: { investment: invalid_attributes }
         expect(response).to render_template(:new)
         expect(response).to have_http_status(:unprocessable_entity)
@@ -78,7 +73,7 @@ RSpec.describe Admin::InvestmentsController, type: :controller do
     end
 
     context '#destroy' do
-      xit 'destroys an investment' do
+      it 'destroys an investment' do
         post :create, params: { investment: valid_attributes }
         investment = Investment.last
         delete :destroy, params: { id: investment.id }

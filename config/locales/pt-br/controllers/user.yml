@@ -3,10 +3,10 @@ pt-BR:
     shared:
       links:
         resend_confirm: Reenviar instruções
-        log_in: Entrar
+        log_in: Acesse a plataforma
         sign_out: Sair
-        sign_up: Cadastrar
-        remeber_password: Esqueceu sua senha ?
+        sign_up: Cadastre-se
+        remember_password: Esqueceu a senha?
         unblock_instructions: Não recebeu instruções de desbloqueio?
         sign_in_with: Entrar com
     registrations:
@@ -14,20 +14,20 @@ pt-BR:
         sing_up: Cadastrar nova conta
         leave_blank: Deixe em branco se não deseja alterar
         min_caracters: caraceteres no mínimo
-        sign_up: Cadastrar
+        sign_up: Cadastre-se
     confirmations:
       new:
-        resend_confirm: Reenviar instruções
+        resend_confirm: Recupere sua senha
         resend_confirm_title: Reenviar instruções para confirmação
     passwords:
       new:
-        forgot_password_title: Esqueceu sua senha ?
+        forgot_password_title: Esqueceu a senha?
         reset_password_instructions: Me enviar instruções para redefinição de senha
     sessions:
       new:
-        new_session_title: Entrar
-        remember_me: Lembrar-me
-        log_in: Entrar
+        new_session_title: Acesse a plataforma
+        remember_me: Lembre-se de mim
+        log_in: Acesse a plataforma
   admin:
     users:
       last_admin: Não é possível remover último administrador
@@ -55,7 +55,7 @@ pt-BR:
         cancel_account: Cancelar minha conta
         back: Voltar
         minimum_caracters: quantidade mínima de caracteres
-        confirm_pop: Tem certeza ?
+        confirm_pop: Tem certeza?
       create:
         success: Usuário criado com sucesso
         failure: Usuário não pode ser criado
@@ -65,4 +65,3 @@ pt-BR:
       destroy:
         success: Usuário apagado com sucesso
         failure: Usuário não pode ser deletado
-

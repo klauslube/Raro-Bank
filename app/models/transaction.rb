@@ -14,8 +14,6 @@ class Transaction < ApplicationRecord
   after_commit :update_balance
   after_commit :new_transfer, on: :create
 
-  # scope :receiver_by_users, -> { joins(:sender).merge(Account.not_admin) }
-
   enum :status, {
     started: 1,
     authenticated: 5,
@@ -31,6 +29,17 @@ class Transaction < ApplicationRecord
   def save_without_token!
     self.status = :authenticated
     save!
+  end
+
+  def call_update_balance
+    update_balance
+  end
+
+  def self.within_transfer_hours?
+    current_time = Time.now.in_time_zone('America/Fortaleza')
+    weekday = current_time.wday
+    hour = current_time.hour
+    weekday >= 1 && weekday <= 5 && hour >= 8 && hour < 18
   end
 
   private
@@ -62,18 +71,11 @@ class Transaction < ApplicationRecord
   end
 
   def update_balance
-    if within_transfer_hours?
+    if self.class.within_transfer_hours?
       Transactions::UpdateBalanceService.new(self).call
     else
       Transactions::UpdateBalanceJob.perform_later(id)
     end
-  end
-
-  def within_transfer_hours?
-    current_time = Time.now.in_time_zone('America/Fortaleza')
-    weekday = current_time.wday
-    hour = current_time.hour
-    weekday >= 1 && weekday <= 5 && hour >= 8 && hour < 18
   end
 
   def new_transfer

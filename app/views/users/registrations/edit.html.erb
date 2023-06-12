@@ -1,77 +1,86 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
-
-  <div class="field">
-    <%= f.label :name, class: "input-label" %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input-field" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cpf, class: "input-label" %>
-    <%= f.text_field :cpf, autofocus: true, class: "input-field" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email, class: "input-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div data-controller="password-visibility" class="input-container">
-    <%= f.label :password, class: "input-label" %><i>(leave blank if you don't want to change it)</i>
-
-    <div class="input-group">
-      <%= f.password_field :password, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
-
-      <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
-      </button>
+  <div class='users-form-container'>
+    <div class='users-form-title-container'>
+      <h1 class='users-form-title'><%= t('users.registrations.edit.title') %></h1>
     </div>
-    <% if @minimum_password_length %>
 
-      <em><%= @minimum_password_length %> characters minimum</em>
+    <div class='flex justify-between gap-1'>
+      <div class="users-form-field">
+        <%= form.label :name, class: 'users-input-label' %>
+        <%= form.text_field :name, autofocus: true, autocomplete: "name", class: 'users-input-field', placeholder: t('users.form.name_placeholder') %>
+      </div>
+
+      <div class="users-form-field">
+        <div class='flex items-center justify-between'>
+          <%= form.label :cpf, class: 'users-input-label uppercase' %>
+          <span class='text-xs'><%= t('users.form.cpf_rules') %></span>
+        </div>
+        <%= form.text_field :cpf, autofocus: true, class: 'users-input-field', placeholder: t('users.form.cpf_placeholder') %>
+      </div>
+    </div>
+
+    <div class="users-form-field">
+      <%= form.label  t('users.form.email'), class: 'users-input-label' %>
+      <%= form.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder:  t('users.form.email_placeholder') %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 
-  <div data-controller="password-visibility" class="input-container">
-    <%= f.label :password_confirmation, class: "input-label" %>
+    <div class='flex justify-between gap-6'>
+      <div data-controller="password-visibility" class="users-input-container">
+        <%= form.label 'Nova senha', class: 'users-input-label' %>
+        <div class="users-input-group">
+          <%= form.password_field :password, autocomplete: "new-password", placeholder: t('users.form.new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
-    <div class="input-group">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+          <button type="button" data-action="password-visibility#toggle">
+            <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+            <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+          </button>
+        </div>
+      </div>
 
-      <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
-      </button>
+      <div data-controller="password-visibility" class="users-input-container">
+        <%= form.label 'Confirme a nova senha', class: 'users-input-label' %>
+
+        <div class="users-input-group">
+          <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('users.form.confirm_new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+
+          <button type="button" data-action="password-visibility#toggle">
+            <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+            <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
+    <span class='text-xs'><%= t('users.form.password_rules') %></span>
 
-  <div data-controller="password-visibility" class="input-container">
-    <%= f.label :current_password, class: "input-label" %>
+    <div data-controller="password-visibility" class="users-input-container">
+      <%= form.label :current_password, class: 'users-input-label' %>
 
-    <div class="input-group">
-      <%= f.password_field :current_password, class: "input-field", autocomplete: "current-password", data: { password_visibility_target: "input" }, spellcheck: false, class: "input-inside" %>
+      <div class="users-input-group">
+        <%= form.password_field t('users.form.current_password'), class: 'users-input-field', autocomplete: "current-password", placeholder: t('users.form.current_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
-      <button type="button" data-action="password-visibility#toggle">
-        <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button' %>
-        <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'input-inside-button', class: 'hidden' %>
-      </button>
+        <button type="button" data-action="password-visibility#toggle">
+          <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
+          <%= inline_svg_tag 'icons/solid/eye-slash.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button', class: 'hidden' %>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+    <div class='flex justify-between items-center w-full gap-6'>
+      <%= button_to registration_path(resource_name), method: :delete, class: 'users-button-danger', data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" } do %>
+        <div class='w-4 h-8'></div>
+          <%= t('users.form.delete') %>
+        <div class='w-4 h-8'></div>
+      <% end %>
+      <%= form.button class: 'users-form-submit-container' do %>
+        <div class='w-4 h-8'></div>
+          <%= t('users.form.save') %>
+        <div class='w-4 h-8'></div>
+      <% end %>
+    </div>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
