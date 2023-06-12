@@ -46,6 +46,10 @@ pt-BR:
       delete_confirmation: "Tem certeza que deseja deletar sua conta?"
       details: "Detalhes"
       search: "Buscar"
+      created: "Criado em"
+      updated: "Atualizado em"
+      amount: "Valor"
+      destination: "Destinatário"
     confirmations:
       title: "Reenviar confirmação"
       subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."

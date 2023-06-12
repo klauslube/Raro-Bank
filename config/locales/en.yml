@@ -35,57 +35,58 @@ en:
   admin:
     classrooms:
       create:
-        success: 'Your classroom has been created!'
+        success: "Your classroom has been created!"
       update:
-        success: 'Your classroom has been updated!'
+        success: "Your classroom has been updated!"
       destroy:
-        success: 'Your classroom has been deleted!'
+        success: "Your classroom has been deleted!"
     investments:
       create:
-        success: 'Investment was successfully created'
+        success: "Investment was successfully created"
       update:
-        success: 'Investment was successfully updated'
+        success: "Investment was successfully updated"
       destroy:
-        success: 'Investment was successfully destroyed'
+        success: "Investment was successfully destroyed"
     deposits:
       create:
-        success: 'Your deposit was successfully created!'
-        failure: 'Your deposit was not created!'
-        cpf_error: 'Type a valid CPF'
-        amount_error: 'Type a valid amount'
-        receiver_error: 'Type a CPF or choose a class with users'
+        success: "Your deposit was successfully created!"
+        failure: "Your deposit was not created!"
+        cpf_error: "Type a valid CPF"
+        amount_error: "Type a valid amount"
+        receiver_error: "Type a CPF or choose a class with users"
   user_investments:
     create:
-      success: 'User investment was successfully created'
+      success: "User investment was successfully created"
     update:
-      success: 'User investment was successfully updated'
+      success: "User investment was successfully updated"
     destroy:
-      success: 'User investment was successfully destroyed'
+      success: "User investment was successfully destroyed"
   transactions:
     create:
-      success: 'Your transfer has been created!'
-      success: 'Please confirm your transfer.'
+      success: "Please confirm your transfer."
     update:
-      success: 'Your transfer has been updated!'
+      success: "Your transfer has been updated!"
   activerecord:
     errors:
       models:
         user:
           attributes:
             password:
-              no_letter: 'must have at least 1 letter'
-              no_number: 'must have at least 1 number'
-              no_special: 'must have at least 1 special character'
+              no_letter: "must have at least 1 letter"
+              no_number: "must have at least 1 number"
+              no_special: "must have at least 1 special character"
             role:
-              not_a_free_user: 'Denied access. This action is only allowed for free users.'
-              not_a_premium_user: 'Denied access. This action is only allowed for premium users.'
-              not_an_admin: 'Denied access. This action is only allowed for admins.'
-              not_a_free_or_premium_user: 'Denied access. This action is only allowed for free or premium users.'
+              not_a_free_user: "Denied access. This action is only allowed for free users."
+              not_a_premium_user: "Denied access. This action is only allowed for premium users."
+              not_an_admin: "Denied access. This action is only allowed for admins."
+              not_a_free_or_premium_user: "Denied access. This action is only allowed for free or premium users."
         classroom:
           attributes:
             end_date:
-              end_date_after: 'must be after start date'
+              end_date_after: "must be after start date"
         investments:
           attributes:
             expiration_date:
-              expiration_date_after: 'must be after start date'
+              expiration_date_after: "must be after start date"
+  datetime:
+    custom: "%d/%m/%Y at %H:%M"
