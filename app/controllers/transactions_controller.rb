@@ -22,6 +22,11 @@ class TransactionsController < ApplicationController
 
   def update
     if token_authenticated? && @transaction.update(transaction_params)
+      @transaction.sender.balance -= @transaction.amount
+      @transaction.sender.save! && @transaction.update(status: 'pending')
+
+      @transaction.call_update_balance
+
       redirect_to transactions_path, notice: t('.success')
     else
       render :edit

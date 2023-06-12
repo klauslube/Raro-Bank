@@ -11,7 +11,6 @@ class Transaction < ApplicationRecord
   after_create :generate_token
   after_create :token_countdown
   after_create :cancel_transfer_countdown
-  after_commit :update_balance, on: :create
   after_commit :new_transfer, on: :create
 
   enum :status, {
@@ -29,6 +28,10 @@ class Transaction < ApplicationRecord
   def save_without_token!
     self.status = :authenticated
     save!
+  end
+
+  def call_update_balance
+    update_balance
   end
 
   def self.within_transfer_hours?
@@ -67,8 +70,6 @@ class Transaction < ApplicationRecord
   end
 
   def update_balance
-    return unless status == :authenticated
-
     if self.class.within_transfer_hours?
       Transactions::UpdateBalanceService.new(self).call
     else

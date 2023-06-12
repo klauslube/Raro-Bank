@@ -25,7 +25,7 @@ module Transactions
       current_day = Time.now.in_time_zone('America/Fortaleza').to_date
       next_day = current_day + 1.day
       next_day += 1.day until next_day.on_weekday?
-      next_day
+      next_day - 1.day
     end
   end
 end
