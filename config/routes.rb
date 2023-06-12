@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   authenticated :user do
     # Routes for admin user (role: admin)
     constraints(RoleConstraint.new([:admin])) do
-      root to:  "admin/investments#index", as: :admin_root
-      get "/admin", to: "admin/investments#index"
+      root to: 'admin/investments#index', as: :admin_root
+      get '/admin', to: 'admin/investments#index'
 
       namespace :admin do
         resources :classrooms
@@ -37,14 +37,14 @@ Rails.application.routes.draw do
     constraints(RoleConstraint.new([:free, :premium])) do
       root to: 'home#index' #TODO: implement home#index
 
-      resources :accounts, only: %i[index]
+      get '/contacts', to: 'accounts#index', as: :contacts
       resources :transactions, except: %i[:destroy :show] do
         member do
           post :resend_email
         end
       end
       resources :user_investments
-      get "/catalogs", to: "user_investments#catalogs"
+      get '/catalogs', to: 'user_investments#catalogs'
     end
   end
 
