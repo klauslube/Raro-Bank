@@ -29,11 +29,11 @@
         </div>
         <div class="flex items-center gap-2">
           <%= f.label :premium_eq, t('users.form.free'), class: 'users-input-label' %>
-          <%= f.radio_button :premium_eq, 1 %>
+          <%= f.radio_button :premium_eq, false %>
         </div>
         <div class="flex items-center gap-2">
           <%= f.label :premium_eq, t('users.form.premium'), class: 'users-input-label' %>
-          <%= f.radio_button :premium_eq, 2 %>
+          <%= f.radio_button :premium_eq, true %>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
   <div id="users" class="table-container">
     <div class="table-inner">
       <% if @investments.empty? %>
-        <div class="flex justify-center p-4 bg-white  text-primary-800">
+        <div class="flex justify-center p-4 bg-white text-primary-800">
           <strong class='text-primary-800'> <%= t('others.blank') %></strong>
         </div>
       <% else %>

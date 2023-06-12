@@ -5,7 +5,7 @@ module Admin
     before_action :fetch_receivers, only: [:create]
 
     def index
-      @deposits = Transaction.sent_by_admins
+      @deposits = Transaction.sent_by_admins.page(params[:page]).per(15)
     end
 
     def new
