@@ -50,7 +50,7 @@
 
   <h2>Você tem uma nova transferência</h2>
   <h3>Transferência N°:<strong><%= @mailer_notification.id %></strong></h3>
-  <p><%= @mailer_notification.sender.user.name %>, uma nova transferência foi criada em seu nome num valor de:</p>
+  <p><%= @mailer_notification.sender.user.name %>, uma nova transferência foi criada em seu nome com valor de:</p>
   <p class="token"><%= number_to_currency(@mailer_notification.amount) %></p>
 
   <div class="btn-container">
