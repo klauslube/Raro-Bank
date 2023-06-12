@@ -361,11 +361,11 @@ select:-webkit-autofill:focus {
   }
 
   .user-list-item {
-    @apply w-full flex items-center justify-between gap-4 p-3 bg-white border-2 border-primary-300 rounded-lg shadow-sm text-primary-600;
+    @apply w-full flex items-center justify-between gap-6 p-4 bg-white border-2 border-primary-300 rounded-lg shadow-sm text-primary-600;
   }
 
   .user-list-item-inner {
-    @apply flex items-center gap-4;
+    @apply flex items-center gap-6;
   }
 
   .user-list-item-with-icon {
@@ -381,7 +381,7 @@ select:-webkit-autofill:focus {
   }
 
   .user-list-item-button {
-    @apply py-2 px-2 bg-primary-600 text-sm font-bold uppercase text-primary-100 rounded-xl transition duration-150 ease-in-out;
+    @apply py-2 px-4 bg-primary-600 text-sm font-bold uppercase text-primary-100 rounded-xl transition duration-150 ease-in-out;
   }
 
   .user-list-item-button:hover {

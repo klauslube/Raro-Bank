@@ -105,7 +105,7 @@ pt-BR:
       classroom: "Nome da turma"
   investments:
     form:
-      name: "Nome dp vencimento"
+      name: "Nome do investimento"
       minimum_amount: "Valor mínimo"
       name_placeholder: "Digite o nome do investimento"
       date_placeholder: "Selecione a data"

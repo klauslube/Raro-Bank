@@ -1,52 +1,83 @@
-<h1><%= t('.investment_title') %></h1>
-<%= link_to 'Investments Catalog', catalogs_path %>
-
-<%= search_form_for @q do |f| %>
-  <%= f.label :investment_name_cont, 'Nome:' %>
-  <%= f.search_field :investment_name_cont %>
-
-  <%= f.label :investment_minimum_amount_gteq, 'Valor Mínimo:' %>
-  <%= f.number_field :investment_minimum_amount_gteq, min: 0 %>
-
-  <%= f.label :investment_indicator_rate_gteq, 'Valor indexador:' %>
-  <%= f.number_field :investment_indicator_rate_gteq %>
-
-  <%= f.label :investment_premium_eq, 'Premium:' %>
-  <%= f.check_box :investment_premium_eq %>
-
-  <%= f.label :investment_expiration_date_eq, 'Data de Vencimento:' %>
-  <%= f.date_field :investment_expiration_date_eq %>
-
-  <%= f.submit %>
-  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th scope="col"><%= t('.name') %></th>
-      <th scope="col"><%= t('.min_amount') %></th>
-      <th scope="col">Expiration Date</th>
-      <th scope="col">Index</th>
-      <th scope="col"><%= t('.category') %></th>
-      <th scope="col"><%= t('.profit') %></th>
-      <th scope="col">Initial amount</th>
-      <th scope="col"><%= t('.purchase_date') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @user_investments.each do |investment| %>
-      <tr>
-        <td><%= investment.investment.name %></td>
-        <td><%= investment.investment.minimum_amount %></td>
-        <td><%= investment.investment.expiration_date %></td>
-        <td><%= "#{(investment.investment.indicator.rate * 100 * 365).round(2)}%" %></td> 
-        <td><%= investment.investment.premium ? 'Premium' : 'Free' %> 
-        <td><%= investment.profit %></td>
-        <td><%= investment.initial_amount %></td>
-        <td><%= investment.created_at.strftime('%d/%m/%y') %></td>
-        <td><%= link_to "Detalhes", user_investment_path(investment) %></td>
-      </tr>
+<div class='table-view'>
+  <%= search_form_for @q, class:'w-full flex justify-between gap-4 items-end' do |f| %>
+    <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
+       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
-  </tbody>
-</table>
+
+    <div class="users-form-field">
+      <%= f.label :investment_name_cont, t('investments.form.name'), class: 'users-input-label' %>
+      <%= f.search_field :investment_name_cont, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :investment_minimum_amount_gteq, t('investments.form.minimum_amount'), class: 'users-input-label' %>
+      <%= f.number_field :investment_minimum_amount_gteq, min: 0, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :investment_indicator_rate_gteq, t('investments.form.index'), class: 'users-input-label' %>
+      <%= f.number_field :investment_indicator_rate_gteq, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :investment_expiration_date_eq, t('investments.form.expiration'), class: 'users-input-label' %>
+      <%= f.number_field :investment_expiration_date_eq, class: 'users-input-field' %>
+    </div>
+
+    <div class="flex items-center gap-4">
+    <%= f.check_box :investment_premium_eq, class: 'users-checkbox-field' %>
+    <%= f.label :investment_premium_eq, t('users.form.premium'), class: 'users-input-label' %>
+    </div>
+
+    <%= f.button class: 'form-search' do %>
+      <%= inline_svg_tag 'icons/solid/mag-glass.svg', class: 'w-4 h-4' %>
+    <% end %>
+  <% end %>
+
+  <% if @user_investments.empty? %>
+    <div class='user-list-item'>
+      <span class='m-2'><%= t('users.form.empty') %></span>
+    </div>
+  <% else %>
+    <div class='user-list-container'>
+      <% @user_investments.each do |investment| %>
+        <div class='user-list-item'>
+          <span class='user-list-item-inner'>
+            <span class='user-list-item-icon'>
+              <%= inline_svg_tag 'icons/outline/banknotes.svg', class: 'w-4 h-4 text-white' %>
+            </span>
+            <span><%= investment.investment.name %></span>
+            <% if investment.investment.premium? %>
+              <span class='user-list-item-tag'>Premium</span>
+            <% end %>
+          </span>
+          <span class='user-list-item-inner'>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/hands_giving.svg', class: 'w-6 h-6 text-secondary-600' %>
+              <span>Adqurido em <%= l(investment.created_at, format: :date) %></span>
+            </div>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/cash.svg', class: 'w-6 h-6 text-secondary-600' %>
+              <span><%= number_to_currency(investment.initial_amount) %></span>
+            </div>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/solid/arrow-trending-up.svg', class: 'w-6 h-6 text-secondary-600' %>
+              <span><%= number_to_currency(investment.profit) %></span>
+            </div>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/percentage.svg', class: 'w-4 h-4 text-secondary-600' %>
+              <span><%="#{(investment.investment.indicator.rate * 100 * 365).round(2)}%" %></span>
+            </div>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/hands_giving.svg', class: 'w-6 h-6 text-secondary-600' %>
+              <span>Expira em <%= l(investment.investment.expiration_date, format: :default) %></span>
+            </div>
+            <%= link_to user_investment_path(investment), class: 'user-list-item-button' do %>
+              <%= t('users.form.retrieve') %>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
