@@ -1,58 +1,57 @@
 <%= form_for(@user, url: admin_user_path(@user), method: :patch) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @user } %>
-  <div class='users-form-container py-4'>
+  <div class='py-4 users-form-container'>
     <div class='users-form-title-container'>
-      <h1 class='users-form-title'>Gerenciar usuários</h1>
-      <p class='users-form-subtitle'>Adicione um aluno a uma turma e dê privilégios de premium para ele!</p>
+      <h1 class='users-form-title'><%= t('users.edit.title') %></h1>
+      <p class='users-form-subtitle'><%= t('users.edit.subtitle') %></p>
     </div>
-    <div class='flex flex-col gap-1'>
+    <div class='flex flex-col gap-2'>
       <div class='admin-list-item'>
-        <span class='font-bold'>Nome</span>
+        <span class='font-bold'><%= t('.name') %></span>
         <span><%= @user.name %></span>
       </div>
       <div class='admin-list-item'>
-        <span class='font-bold'>E-mail</span>
+        <span class='font-bold'><%= t('users.form.email') %></span>
         <span><%= @user.email %></span>
       </div>
       <div class='admin-list-item'>
-        <span class='font-bold'>E-mail confirmado?</span>
+        <span class='font-bold'><%= t('users.form.email_confirmed') %></span>
         <% if @user.confirmed_at %>
-          <span>Sim</span>
+          <span><%= t('users.form.yes') %></span>
         <% else %>
-          <span>Não</span>
+          <span><%= t('users.form.no') %></span>
         <% end %>
       </div>
       <div class='admin-list-item'>
-        <span class='font-bold'>Data de cadastro</span>
+        <span class='font-bold'><%= t('users.form.register_date') %></span>
         <span><%= @user.created_at.strftime('%d/%m/%Y') %></span>
       </div>
       <div class='admin-list-item'>
-        <span class='font-bold'>Usuário</span>
+        <span class='font-bold'><%= t('users.form.user') %></span>
         <% if @user.free? %>
-          <span>Free</span>
+          <span><%= t('users.form.free') %></span>
         <% else %>
-          <span>Premium</span>
+          <span><%= t('users.form.premium') %></span>
         <% end %>
       </div>
 
       <div class="admin-list-item">
-        <%# Adicionar locale: Conceder privilégios de adminstrador? %>
-        <%= form.label :role_admin, class: "font-bold" %>
+        <%= form.label t('users.form.role_admin_label'), class: "font-bold" %>
         <%= form.check_box :role_admin, checked: @user.admin?, class: 'users-checkbox-field' %>
       </div>
 
-  <div>
-    <%= form.label :classroom_id, class: 'users-input-label' %>
-    <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: "Select a Classroom" }, { class: 'users-select-field' } %>
-  </div>
+      <div>
+        <%= form.label :classroom_id, class: 'users-input-label' %>
+        <%= form.collection_select :classroom_id, Classroom.all, :id, :name, { prompt: t('classrooms.form.select_classroom') }, { class: 'users-select-field' } %>
+      </div>
 
-    <% form.hidden_field :name, value: @user.name %>
-    <% form.hidden_field :cpf, value: @user.cpf %>
-    <% form.hidden_field :email, value: @user.email %>
+      <% form.hidden_field :name, value: @user.name %>
+      <% form.hidden_field :cpf, value: @user.cpf %>
+      <% form.hidden_field :email, value: @user.email %>
 
-    <%= form.button class: 'users-form-submit-container' do %>
-      <div class='w-4 h-8'></div>
-      <span>Salvar</span>
-      <div class='w-4 h-8'></div>
+      <%= form.button class: 'users-form-submit-container' do %>
+        <div class='w-4 h-8'></div>
+        <span><%= t('users.form.save') %></span>
+        <div class='w-4 h-8'></div>
+      <% end %>
     <% end %>
-<% end %>

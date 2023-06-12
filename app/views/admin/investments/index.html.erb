@@ -1,7 +1,7 @@
-<div class='table-view'>
+<div class='items-center table-view'>
   <%= search_form_for @q, url: admin_investments_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
     <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
-       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
+      <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
 
     <div class="users-form-field">
@@ -19,21 +19,21 @@
       <%= f.number_field :indicator_rate_gteq, class: 'users-input-field' %>
     </div>
 
-      <div class="users-form-field">
-        <%= f.label :premium_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
+    <div class="users-form-field">
+      <%= f.label :premium_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
 
-        <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-2">
-            <%= f.label :premium_eq, t('users.form.all'), class: 'users-input-label' %>
-            <%= f.radio_button :premium_eq, '', checked: true %>
-          </div>
-          <div class="flex items-center gap-2">
-            <%= f.label :premium_eq, t('users.form.free'), class: 'users-input-label' %>
-            <%= f.radio_button :premium_eq, false %>
-          </div>
-          <div class="flex items-center gap-2">
-            <%= f.label :premium_eq, t('users.form.premium'), class: 'users-input-label' %>
-            <%= f.radio_button :premium_eq, true %>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+          <%= f.label :premium_eq, t('users.form.all'), class: 'users-input-label' %>
+          <%= f.radio_button :premium_eq, '', checked: true %>
+        </div>
+        <div class="flex items-center gap-2">
+          <%= f.label :premium_eq, t('users.form.free'), class: 'users-input-label' %>
+          <%= f.radio_button :premium_eq, false %>
+        </div>
+        <div class="flex items-center gap-2">
+          <%= f.label :premium_eq, t('users.form.premium'), class: 'users-input-label' %>
+          <%= f.radio_button :premium_eq, true %>
         </div>
       </div>
     </div>
@@ -44,10 +44,10 @@
   <% end %>
   <div id="users" class="table-container">
     <div class="table-inner">
-    <% if @investments.empty? %>
-          <div class=" p-4 text-primary-800 bg-white flex justify-center">
-            <strong class='text-primary-800'> <%= t('others.blank') %></strong>
-          </div>
+      <% if @investments.empty? %>
+        <div class="flex justify-center p-4 bg-white text-primary-800">
+          <strong class='text-primary-800'> <%= t('others.blank') %></strong>
+        </div>
       <% else %>
         <table class="w-full whitespace-no-wrap">
           <thead>
@@ -57,7 +57,7 @@
               <th class="px-4 py-2"><%= t('.start_date') %></th>
               <th class="px-4 py-2"><%= t('.expiration_date') %></th>
               <th class="px-4 py-2"><%= t('investments.form.index') %></th>
-               <th class="px-4 py-2 flex justify-center">
+              <th class="flex justify-center px-4 py-2">
                 <%= link_to new_admin_investment_path, class:'table-link-plus flex items-center gap-1' do %>
                   <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
                 <% end %>
@@ -67,28 +67,28 @@
           <tbody class="bg-white divide-y">
             <% @investments.each do |investment| %>
               <tr class="text-gray-700">
-              <td class="px-8 py-3">
-                <div class='flex gap-4 items-center'>
-                  <%= investment.name %>
-                  <% if investment.premium? %>
-                    <span class='tag-user-premium'>Premium</span>
-                  <% end %>
-                </div>
+                <td class="px-8 py-3">
+                  <div class='flex items-center gap-4'>
+                    <%= investment.name %>
+                    <% if investment.premium? %>
+                      <span class='tag-user-premium'>Premium</span>
+                    <% end %>
+                  </div>
                 </td>
                 <td class="px-8 py-3"><%= number_to_currency(investment.minimum_amount) %></td>
                 <td class="px-8 py-3"><%= l(investment.start_date, format: :default) %></td>
                 <td class="px-8 py-3"><%= l(investment.expiration_date, format: :default) %></td>
                 <td class="px-8 py-3"><%="#{(investment.indicator.rate * 100 * 365).round(2)}%" %></td>
-                <td class="px-8 py-3 flex justify-center">
+                <td class="flex justify-center px-8 py-3">
                   <%= link_to admin_investment_path(investment), class:'table-link-plus flex items-center gap-1' do %>
                     <%= inline_svg_tag 'icons/solid/plus-small.svg', class: 'table-link-plus w-4 h-4' %>
-                <% end %>
-              </tr>
+                  <% end %>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <%= paginate @investments %>
   </div>
-  <%= paginate @investments %>
-</div>

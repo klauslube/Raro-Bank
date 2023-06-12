@@ -1,22 +1,22 @@
-<div class='table-view'>
+<div class='items-center table-view'>
   <div id="classrooms" class="table-container">
     <div class="table-inner">
-    <% if @deposits.empty? %>
-          <div class=" p-4 text-primary-800 bg-white flex justify-center">
-            <strong class='text-primary-800'> <%= t('others.blank') %></strong>
-          </div>
+      <% if @deposits.empty? %>
+        <div class="flex justify-center p-4 bg-white text-primary-800">
+          <strong class='text-primary-800'> <%= t('others.blank') %></strong>
+        </div>
       <% else %>
         <table class="w-full whitespace-no-wrap">
           <thead>
             <tr class="table-header-container" >
-              <th class="px-4 py-2 w-3/12"><%= t('users.form.destination') %></th>
+              <th class="w-3/12 px-4 py-2"><%= t('users.form.destination') %></th>
               <th class="px-4 py-2"><%= t('users.form.amount') %></th>
               <th class="px-4 py-2"><%= t('users.form.updated') %></th>
               <th class="px-4 py-2"><%= t('.classroom') %></th>
-              <th class="px-4 py-2 flex justify-between items-center">
+              <th class="flex items-center justify-between px-4 py-2">
                 <%= t('.date') %>
                 <%= link_to admin_new_deposit_path, class:'table-link-plus flex items-center gap-1' do %>
-                <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
+                  <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
                 <% end %>
               </th>
             </tr>
@@ -24,23 +24,23 @@
           <tbody class="bg-white divide-y">
             <% @deposits.each do |deposit| %>
               <tr class="text-gray-700">
-                <td class="px-8 py-3 items-start">
-                <div class='flex gap-4 items-center'>
-                  <%= deposit.receiver.user.name %>
-                  <span class='tag-user-premium'><%= deposit.status %></span>
-                </div>
+                <td class="items-start px-8 py-3">
+                  <div class='flex items-center gap-4'>
+                    <%= deposit.receiver.user.name %>
+                    <span class='tag-user-premium'><%= deposit.status %></span>
+                  </div>
                 </td>
                 <td class="px-8 py-3"><%= number_to_currency(deposit.amount) %></td>
                 <td class="px-8 py-3"><%= l(deposit.updated_at, format: :custom) %></td>
                 <td class="px-8 py-3">
-                <% if deposit.receiver.user.classroom.presence %>
-                    <span class="px-8 py-3 items-start"><%= deposit.receiver.user.classroom.name %></span>
+                  <% if deposit.receiver.user.classroom.presence %>
+                    <span class="items-start px-8 py-3"><%= deposit.receiver.user.classroom.name %></span>
                   <% else %>
-                    <span class="px-8 py-3 items-start">-</span>
+                    <span class="items-start px-8 py-3">-</span>
                   <% end %>
                 </td>
                 <td class="px-8 py-3">
-                <%= l(deposit.created_at, format: :custom) %>
+                  <%= l(deposit.created_at, format: :custom) %>
                 </td>
               </tr>
             <% end %>
@@ -49,5 +49,5 @@
       </table>
     </div>
   </div>
-<%= paginate @deposits %>
+  <%= paginate @deposits %>
 </div>

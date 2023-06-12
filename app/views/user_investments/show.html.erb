@@ -1,36 +1,50 @@
-<h2>Investimento #<%= @user_investment.id %></h2> 
-<table>
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Minimum Amount</th>
-      <th scope="col">Expiration Date</th>
-      <th scope="col">Index</th>
-      <th scope="col">Category</th>
-      <th scope="col">Profit</th>
-      <th scope="col">Initial amount</th>
-      <th scope="col">Purchase Date</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><%= @user_investment.id %></td>
-        <td><%= @user_investment.investment.name %></td>
-        <td><%= @user_investment.investment.minimum_amount %></td>
-        <td><%= @user_investment.investment.expiration_date %></td>
-        <td><%= @user_investment.investment.indicator.rate %></td> 
-        <td><%= @user_investment.investment.premium ? 'Premium' : 'Free' %> 
-        <td><%= @user_investment.profit %></td>
-        <td><%= @user_investment.initial_amount %></td>
-        <td><%= @user_investment.created_at.strftime('%d/%m/%y') %></td>
-      </tr>
-  </tbody>
-</table>
-
-
-
-<div>
-  <%= button_to "Resgatar", @user_investment, data: { confirm: "Você tem certeza?", turbo_confirm: "Você tem certeza?" }, method: :delete %>
-  <%= link_to "Voltar", user_investments_path %>
+<div class='items-center justify-center w-full h-full px-16 py-8'>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: @user_investment } %>
+  <div class='users-details-container'>
+    <div class='users-details-header'>
+      <span class='user-list-item-inner'>
+        <span class='user-list-item-icon'>
+          <%= inline_svg_tag 'icons/outline/banknotes.svg', class: 'w-4 h-4 text-white' %>
+        </span>
+        <span><%= @user_investment.investment.name %></span>
+        <% if @user_investment.investment.premium? %>
+          <span class='user-list-item-tag'>Premium</span>
+        <% end %>
+      </span>
+      <span class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/current-dolar.svg', class: 'w-6 h-6 text-primary-600' %>
+        <span class='text-sm font-bold text-primary-600'><%= number_to_currency(current_user.balance) %></span>
+      </span>
+    </div>
+    <div class='users-details-body'>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/percentage.svg', class: 'ml-1 w-4 h-4 text-secondary-600' %>
+        <span><%="#{(@user_investment.investment.indicator.rate * 100 * 365).round(2)}%" %></span>
+      </div>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/currency-dolar.svg', class: 'w-4 h-4 text-secondary-600' %>
+        <span><%= number_to_currency(@user_investment.investment.minimum_amount) %></span>
+      </div>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/solid/arrow-trending-up.svg', class: 'w-4 h-4 text-secondary-600' %>
+        <span><%= number_to_currency(@user_investment.profit) %></span>
+      </div>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/calendar-days.svg', class: 'w-4 h-4 text-secondary-600' %>
+        <span>
+          <%= l(@user_investment.investment.created_at, format: :date) %> -
+          <%= l(Date.current, format: :default) %>
+        </span>
+      </div>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/user-circle.svg', class: 'w-4 h-4 text-secondary-600' %>
+        <span><%= @user_investment.investment.premium ?  t('users.form.free') :  t('users.form.premium')%></span>
+      </div>
+      <%= button_to @user_investment, method: :delete, class: 'users-button-retriever', data: { confirm: t('users.form.delete_confirmation'), turbo_confirm: t('users.form.delete_confirmation') } do %>
+        <div class='w-4 h-8'></div>
+        <%= t('users.form.retrieve') %>
+        <div class='w-4 h-8'></div>
+      <% end %>
+    </div>
+  </div>
 </div>

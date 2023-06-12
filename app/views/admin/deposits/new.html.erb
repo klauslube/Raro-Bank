@@ -1,5 +1,5 @@
 <%= form_with(model: @transaction, url: admin_deposits_path, data: { controller: 'deposit' }) do |form| %>
-  <%= render partial: 'shared/errors', locals: { object: @transaction } %>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: @transaction } %>
 
   <div class='users-form-container'>
     <div class='users-form-title-container'>

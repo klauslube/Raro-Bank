@@ -1,11 +1,11 @@
 <%= render 'shared/notifications/form_errors', object: @transaction %>
 
-<div class='mt-5'>
-  <div class='bg-white border-primary-200 w-1/2 border rounded-xl mx-auto shadow-md mt-5 px-10 py-2 '>
-    <div class='text-button-transfer flex justify-center'>
+<div class='table-view'>
+  <div class='flex flex-col w-1/2 px-10 py-4 mx-auto mt-5 bg-white border shadow-md border-primary-200 rounded-xl'>
+    <div class='flex justify-center text-button-transfer'>
       <%= t('.transaction') %>#<%= @transaction.id %>
     </div>
-    <div class='mx-2 text-primary-600 flex justify-center'>
+    <div class='flex justify-center mx-2 text-primary-600'>
       <%= t('.legends_edit_transfer') %>
     </div>
     <div>
@@ -13,17 +13,17 @@
         <div>
           <%= form.number_field :token_code, placeholder: t('.placeholder_token_code'), class: 'input-group-transfer' %>
         </div>
-          <%= form.submit t('.next'), class: 'button-primary-transfer' %>
-        </div>
-      <% end %>
-        <div class=''>
-          <div>
-            <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'button-primary-transfer' %>
-          </div>
-          <div>
-            <%= link_to t('.back'), transactions_path, class: 'button-primary-transfer' %>
-          </div>
-        </div>
+        <%= form.submit t('.next'), class: 'button-primary-transfer' %>
+      </div>
+    <% end %>
+    <div class=''>
+      <div>
+        <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'button-primary-transfer' %>
+      </div>
+      <div>
+        <%= link_to t('.back'), transactions_path, class: 'button-primary-transfer' %>
+      </div>
     </div>
   </div>
+</div>
 </div>

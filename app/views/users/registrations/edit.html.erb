@@ -70,15 +70,15 @@
       </div>
     </div>
 
-    <div class='flex justify-between items-center w-full gap-6'>
+    <div class='flex items-center justify-between w-full gap-6'>
       <%= button_to registration_path(resource_name), method: :delete, class: 'users-button-danger', data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" } do %>
         <div class='w-4 h-8'></div>
-          <%= t('users.form.delete') %>
+        <%= t('users.form.delete') %>
         <div class='w-4 h-8'></div>
       <% end %>
       <%= form.button class: 'users-form-submit-container' do %>
         <div class='w-4 h-8'></div>
-          <%= t('users.form.save') %>
+        <%= t('users.form.save') %>
         <div class='w-4 h-8'></div>
       <% end %>
     </div>
