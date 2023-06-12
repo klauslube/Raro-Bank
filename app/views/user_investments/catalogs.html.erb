@@ -48,6 +48,18 @@
     <% end %>
   <% end %>
 
+  <div class='flex justify-start w-full gap-2'>
+    <% UserInvestmentsController::SORT_OPTIONS.each do |label, value| %>
+      <% column = value.split("_").first %>
+      <% direction = value.split("_").last == "asc" ? "asc" : "desc" %>
+      <% link_text = direction == "asc" ? "#{label}" : "#{label}" %>
+      <% link_params = { sort: column, direction: direction } %>
+      <span class="order-item-tag">
+        <%= link_to link_text, link_params %>
+      </span>
+    <% end %>
+  </div>
+
   <% if @investments.empty? %>
     <div class='user-list-item'>
       <span class='m-2'><%= t('users.form.empty') %></span>
@@ -73,6 +85,10 @@
             <div class='user-list-item-with-icon'>
               <%= inline_svg_tag 'icons/outline/percentage.svg', class: 'w-4 h-4 text-secondary-600' %>
               <span><%="#{(investment.indicator.rate * 100 * 365).round(2)}%" %></span>
+            </div>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/calendar-days.svg', class: 'w-4 h-4 text-secondary-600' %>
+              <span>De <%= l(investment.start_date, format: :default) %></span>
             </div>
             <div class='user-list-item-with-icon'>
               <%= inline_svg_tag 'icons/outline/calendar-days.svg', class: 'w-4 h-4 text-secondary-600' %>
