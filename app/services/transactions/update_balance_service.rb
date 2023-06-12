@@ -6,6 +6,7 @@ module Transactions
 
     def call
       update_balance
+      @transaction.notification_completed_transaction
     end
 
     private

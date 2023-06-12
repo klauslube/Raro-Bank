@@ -22,21 +22,21 @@
     margin: 0 auto;
     width: 120px;
     text-align: left;
-   }
+  }
 
-   .token {
-      font-size: 40px;
-      font-weight: bold;
-      color: #dfdef8;
-   }
+  .token {
+    font-size: 40px;
+    font-weight: bold;
+    color: #dfdef8;
+  }
 
-   btn-container {
+  btn-container {
     margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
-   }
+  }
 
-   a.button {
+  a.button {
     /* color: #fff; */
     background-color: #93ff90;
     padding: 10px;
@@ -48,15 +48,9 @@
 <main class="container">
   <img src="http://localhost:3000/logo-bank.png" alt="Logo Raro Bank" width="60" class="logo">
 
-  <h2>Seu token de autenticação</h2>
-  <h3>Transaction N°:<strong><%= @mailer_transaction.id %></strong></h3>
-  <p><%= @mailer_transaction.sender.user.name %>, utilize este token para confirmar sua transferência.</p>
-  <p class="token"><%= @mailer_transaction.token.code %></p>
-
-  <div class="btn-container">
-    <p class="link">
-      <%= link_to "Valide sua transação", edit_transaction_url(@mailer_transaction.id), class: "button" %>
-    </p>
-  </div>
+  <h2>Você recebeu uma nova transferência</h2>
+  <h3>Transferência N°:<strong><%= @mailer_receiver_info.id %></strong></h3>
+  <p>Olá <%= @mailer_receiver_info.receiver.user.name %>, você recebeu uma nova transferência de <%= @mailer_receiver_info.sender.user.name %> %> num valor de:</p>
+  <p class="token"><%= number_to_currency(@mailer_receiver_info.amount) %></p>
 
 </main>
