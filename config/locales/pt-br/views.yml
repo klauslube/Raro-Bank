@@ -50,6 +50,11 @@ pt-BR:
       updated: "Atualizado em"
       amount: "Valor"
       destination: "Destinatário"
+      classroom: "Turma"
+      role: "Tipo de usuário"
+      free: "Grátis"
+      premium: "Premium"
+      all: "Todos"
     confirmations:
       title: "Reenviar confirmação"
       subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."
