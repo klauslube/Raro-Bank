@@ -1,63 +1,95 @@
-<div>
-  <div>
-    <%= link_to t('.new_investment'), new_admin_investment_path(@investment) %>
-  </div>
-
-  <%= search_form_for @q, url: admin_investments_path do |f| %>
-    <%= f.label :name_cont, 'Nome:' %>
-    <%= f.search_field :name_cont %>
-
-    <%= f.label :minimum_amount_gteq, 'Valor Mínimo:' %>
-    <%= f.number_field :minimum_amount_gteq, min: 0 %>
-
-    <%= f.label :indicator_rate_gteq, 'Valor indexador:' %>
-    <%= f.number_field :indicator_rate_gteq %>
-
-    <%= f.label 'Categoria:' %>
-    <%= f.radio_button :premium_eq, nil %>
-    <%= f.label :premium_eq, 'Todos' %>
-
-    <%= f.radio_button :premium_eq, false %>
-    <%= f.label :premium_eq, 'Free' %>
-
-    <%= f.radio_button :premium_eq, true %>
-    <%= f.label :premium_eq, 'Premium' %>
-
-    <%= f.label :expiration_date_eq, 'Data de Vencimento:' %>
-    <%= f.date_field :expiration_date_eq %>
-
-    <%= f.submit %>
-    <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
-  <% end %>
-
-  <table>
-    <thead>
-      <tr>
-        <th scope="col"><%= t('.name') %></th>
-        <th scope="col"><%= t('.minimum_amount') %></th>
-        <th scope="col"><%= t('.start_date') %></th>
-        <th scope="col"><%= t('.expiration_date') %></th>
-        <th scope="col"><%= t('.index') %></th>
-        <th scope="col"><%= t('.category') %></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @investments.each do |investment| %>
-      <tr>
-        <td><%= investment.name %></td>
-        <td><%= investment.minimum_amount %></td>
-        <td><%= investment.start_date %></td>
-        <td><%= investment.expiration_date %></td>
-        <td><%= "#{(investment.indicator.rate * 100 * 365).round(2)}%" %></td>
-        <td><%= investment.premium ? 'Premium' : 'Free' %>
-        </td>
-        <td>
-          <%= link_to t('.details'), admin_investment_path(investment) %>
-        </td>
-      </tr>
+<div class='table-view'>
+  <%= search_form_for @q, url: admin_users_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
+    <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
+       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
-    </tbody>
-  </table>
+
+    <div class="users-form-field">
+      <%= f.label :name_cont, t('.name'), class: 'users-input-label' %>
+      <%= f.search_field :name_cont, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :minimum_amount_gteq, t('.minimum_amount') %>
+      <%= f.number_field :minimum_amount_gteq, min: 0, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :indicator_rate_gteq, t('investments.form.index') %>
+      <%= f.number_field :indicator_rate_gteq, class: 'users-input-field' %>
+    </div>
+
+
+      <div class="users-form-field">
+        <%= f.label :premium_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
+
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <%= f.label :premium_eq, t('users.form.all'), class: 'users-input-label' %>
+            <%= f.radio_button :premium_eq, '', checked: true %>
+          </div>
+          <div class="flex items-center gap-2">
+            <%= f.label :premium_eq, t('users.form.free'), class: 'users-input-label' %>
+            <%= f.radio_button :premium_eq, 1 %>
+          </div>
+          <div class="flex items-center gap-2">
+            <%= f.label :premium_eq, t('users.form.premium'), class: 'users-input-label' %>
+            <%= f.radio_button :premium_eq, 2 %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.button class: 'users-form-search' do %>
+      <%= t('users.form.search') %>
+    <% end %>
+  <% end %>
+  <div id="users" class="table-container">
+    <div class="table-inner">
+    <% if @investments.empty? %>
+          <div class=" p-4 text-primary-800 bg-white flex justify-center">
+            <strong class='text-primary-800'> <%= t('others.blank') %></strong>
+          </div>
+      <% else %>
+        <table class="w-full whitespace-no-wrap">
+          <thead>
+            <tr class="table-header-container" >
+              <th class="px-4 py-2"><%= t('.nome') %></th>
+              <th class="px-4 py-2"><%= t('.minimum_amount') %></th>
+              <th class="px-4 py-2"><%= t('.start_date') %></th>
+              <th class="px-4 py-2"><%=t('.expiration_date') %></th>
+              <th class="px-4 py-2"><%=t('.rate') %></th>
+               <th class="px-4 py-2 flex justify-center">
+                <%= link_to new_admin_investment_path, class:'table-link-plus flex items-center gap-1' do %>
+                  <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
+                <% end %>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y">
+            <% @investments.each do |investment| %>
+              <tr class="text-gray-700">
+              <td class="px-8 py-3">
+                <div class='flex gap-4 items-center'>
+                  <%= investment.name %>
+                  <% if investment.premium? %>
+                    <span class='tag-user-premium'>Premium</span>
+                  <% end %>
+                </div>
+                </td>
+                <td class="px-8 py-3"><%= number_to_currency(investment.minimum_amount) %></td>
+                <td class="px-8 py-3"><%= l(investment.start_date, format: :default) %></td>
+                <td class="px-8 py-3"><%= l(investment.expiration_date, format: :default) %></td>
+                <td class="px-8 py-3"><%="#{(investment.indicator.rate * 100 * 365).round(2)}%" %></td>
+                <td class="px-8 py-3 flex justify-center">
+                  <%= link_to admin_investment_path(investment), class:'table-link-plus flex items-center gap-1' do %>
+                    <%= inline_svg_tag 'icons/solid/plus-small.svg', class: 'table-link-plus w-4 h-4' %>
+                <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= paginate @investments %>
 </div>
-<%= paginate @investments %>
