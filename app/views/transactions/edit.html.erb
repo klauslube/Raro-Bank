@@ -1,7 +1,7 @@
 <%= render 'shared/notifications/form_errors', object: @transaction %>
 
-<div class='mt-5'>
-  <div class='bg-white border-primary-200 w-1/2 border rounded-xl mx-auto shadow-md mt-5 px-10 py-2 '>
+<div class='table-view'>
+  <div class='bg-white border-primary-200 w-1/2 border rounded-xl mx-auto shadow-md mt-5 px-10 py-4 flex flex-col'>
     <div class='text-button-transfer flex justify-center'>
       <%= t('.transaction') %>#<%= @transaction.id %>
     </div>
