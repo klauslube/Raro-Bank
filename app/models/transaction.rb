@@ -87,14 +87,14 @@ class Transaction < ApplicationRecord
   end
 
   def send_confirmation_email
-    TransactionMailer.token_confirmation(self).deliver_now
+    TransactionMailer.token_confirmation(self).deliver_now unless sender.user.admin?
   end
 
   def send_notification_email
-    TransactionMailer.transfer_notification(self).deliver_now
+    TransactionMailer.transfer_notification(self).deliver_now unless sender.user.admin?
   end
 
   def receiver_notification_email
-    TransactionMailer.receiver_notification(self).deliver_now
+    TransactionMailer.receiver_notification(self).deliver_now unless sender.user.admin?
   end
 end
