@@ -142,3 +142,10 @@ pt-BR:
       users: 'Usuários investidores'
   others:
     blank: 'Nenhum registro encontrado'
+  search:
+    name_placeholder: 'Digite para pesquisar por nome'
+    minimum_amount_placeholder: 'Digite o valor mínimo'
+    index_placeholder: 'Digite para pesquisar por índice'
+    cpf_placeholder: 'Digite para pesquisar por CPF'
+    email_placeholder: 'Digite para pesquisar por e-mail'
+    investment_name_placeholder: 'Digite para pesquisar por investimento'

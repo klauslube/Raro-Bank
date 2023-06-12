@@ -6,15 +6,15 @@
 
     <div class="users-form-field">
       <%= f.label :name_cont, t('.name'), class: 'users-input-label' %>
-      <%= f.search_field :name_cont, class: 'users-input-field' %>
+      <%= f.search_field :name_cont, class: 'users-input-field', placeholder: t('search.name_placeholder') %>
     </div>
     <div class="users-form-field">
       <%= f.label :email_cont, t('users.form.email'), class: 'users-input-label' %>
-      <%= f.search_field :email_cont, class: 'users-input-field' %>
+      <%= f.search_field :email_cont, class: 'users-input-field', placeholder: t('search.email_placeholder') %>
     </div>
     <div class="users-form-field">
       <%= f.label :cpf_cont, 'CPF:', class: 'users-input-label' %>
-      <%= f.search_field :cpf_cont, class: 'users-input-field' %>
+      <%= f.search_field :cpf_cont, class: 'users-input-field', placeholder: t('search.cpf_placeholder') %>
     </div>
     <div class="users-form-field">
       <%= f.label :role_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
@@ -42,7 +42,7 @@
   <div id="users" class="table-container">
     <div class="table-inner">
       <% if @users.empty? %>
-        <div class="flex justify-center p-4 bg-white  text-primary-800">
+        <div class="flex justify-center p-4 bg-white text-primary-800">
           <strong class='text-primary-800'> <%= t('others.blank') %></strong>
         </div>
       <% else %>

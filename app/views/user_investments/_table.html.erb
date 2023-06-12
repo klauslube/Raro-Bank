@@ -6,22 +6,22 @@
 
     <div class="users-form-field">
       <%= f.label :investment_name_cont, t('investments.form.name'), class: 'users-input-label' %>
-      <%= f.search_field :investment_name_cont, class: 'users-input-field' %>
+      <%= f.search_field :investment_name_cont, class: 'users-input-field', placeholder: t('search.investment_name_placeholder') %>
     </div>
 
     <div class="users-form-field">
       <%= f.label :investment_minimum_amount_gteq, t('investments.form.minimum_amount'), class: 'users-input-label' %>
-      <%= f.number_field :investment_minimum_amount_gteq, min: 0, class: 'users-input-field' %>
+      <%= f.number_field :investment_minimum_amount_gteq, min: 0, class: 'users-input-field', placeholder: t('search.minimum_amount_placeholder') %>
     </div>
 
     <div class="users-form-field">
       <%= f.label :investment_indicator_rate_gteq, t('investments.form.index'), class: 'users-input-label' %>
-      <%= f.number_field :investment_indicator_rate_gteq, class: 'users-input-field' %>
+      <%= f.number_field :investment_indicator_rate_gteq, class: 'users-input-field', placeholder: t('search.index_placeholder') %>
     </div>
 
     <div class="users-form-field">
       <%= f.label :investment_expiration_date_eq, t('investments.form.expiration'), class: 'users-input-label' %>
-      <%= f.number_field :investment_expiration_date_eq, class: 'users-input-field' %>
+      <%= f.date_field :investment_expiration_date_eq, class: 'users-input-field' %>
     </div>
 
     <div class="flex items-center gap-4">

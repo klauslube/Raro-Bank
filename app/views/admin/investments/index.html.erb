@@ -6,17 +6,17 @@
 
     <div class="users-form-field">
       <%= f.label :name_cont, t('.name'), class: 'users-input-label' %>
-      <%= f.search_field :name_cont, class: 'users-input-field' %>
+      <%= f.search_field :name_cont, class: 'users-input-field', placeholder: t('search.name_placeholder') %>
     </div>
 
     <div class="users-form-field">
       <%= f.label :minimum_amount_gteq, t('.minimum_amount'), class: 'users-input-label' %>
-      <%= f.number_field :minimum_amount_gteq, min: 0, class: 'users-input-field' %>
+      <%= f.number_field :minimum_amount_gteq, min: 0, class: 'users-input-field', placeholder: t('search.minimum_amount_placeholder') %>
     </div>
 
     <div class="users-form-field">
       <%= f.label :indicator_rate_gteq, t('investments.form.index'), class: 'users-input-label' %>
-      <%= f.number_field :indicator_rate_gteq, class: 'users-input-field' %>
+      <%= f.number_field :indicator_rate_gteq, class: 'users-input-field', placeholder: t('search.index_placeholder') %>
     </div>
 
     <div class="users-form-field">
