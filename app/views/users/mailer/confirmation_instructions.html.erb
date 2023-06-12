@@ -1,5 +1,58 @@
-<p>Welcome <%= @email %>!</p>
+ <style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #47449b;
+    color: #f4f3ff;
+    gap: 20px;
+  }
 
-<p>You can confirm your account email through the link below:</p>
+  h1, h2, h3, p {
+    text-align: center;
+    margin-top: 10px;
+  }
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  p {
+    font-size: 18px;
+  }
+
+  img.logo {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    text-align: left;
+  }
+
+  btn-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  a.button {
+    background-color: #93ff90;
+    margin-top: 20px;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+</style>
+
+<main class="container">
+  <img src="http://localhost:3000/logo-bank.png" alt="Logo Raro Bank" width="60" class="logo">
+
+  <h1>Bem vindo ao Raro Bank!</h1>
+
+  <h2>Confirme sua conta para ter acesso ao banco da suas raracoins e faça elas valerem!</h2>
+
+  <div class="btn-container">
+    <p class="link">
+      <%= link_to 'Confirme sua conta', confirmation_url(@resource, confirmation_token: @token), class: "button"  %>
+    </p>
+  </div>
+</main>

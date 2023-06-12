@@ -3,14 +3,19 @@ pt-BR:
     form:
       next: Avançar
       cancel: Cancelar
-      placeholder_amount: Digite um valor.
+      placeholder_amount: Digite um valor que deseja transferir.
       placeholder_receiver_cpf: Digite um CPF.
+      legends_new_transfer: Escolha entre transferir para um CPF ou algum contato
+      transfer_title: Transferência
+      contacts: Lista de contatos
     edit:
       confirm: Confirmar
       back: Voltar
       transaction: Transação
       placeholder_token_code: Digite código de autenticação.
       resend_email: Renviar código
+      next: Avançar
+      legends_edit_transfer: Um token de confirmação foi enviado para seu email.
     create:
       success: Por favor confirme sua transferência
     update:
@@ -20,5 +25,6 @@ pt-BR:
       new_transfer: Nova transferência
       value: Valor
       status_label: Status da transferência
-      confirm: Confirmar
-
+      confirm: CONFIRMAR
+    resend_email:
+      resend_email_notice: Um email foi enviado para você.

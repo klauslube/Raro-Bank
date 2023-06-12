@@ -16,7 +16,11 @@ class UserInvestmentsController < ApplicationController
   def show; end
 
   def new
-    @user_investment = UserInvestment.new
+    if current_user.role == 'free' && @investment.premium?
+      redirect_to catalogs_path, notice: t('.error')
+    else
+      @user_investment = UserInvestment.new
+    end
   end
 
   def create

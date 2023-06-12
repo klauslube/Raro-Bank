@@ -6,8 +6,11 @@ module Transactions
 
     def perform(transaction_id)
       transaction = Transaction.find(transaction_id)
-      Transactions::UpdateBalanceService.new(transaction).call
-      schedule_next_business_day(transaction)
+      if Transaction.within_transfer_hours?
+        Transactions::UpdateBalanceService.new(transaction).call
+      else
+        schedule_next_business_day(transaction)
+      end
     end
 
     private
@@ -22,7 +25,7 @@ module Transactions
       current_day = Time.now.in_time_zone('America/Fortaleza').to_date
       next_day = current_day + 1.day
       next_day += 1.day until next_day.on_weekday?
-      next_day
+      next_day - 1.day
     end
   end
 end

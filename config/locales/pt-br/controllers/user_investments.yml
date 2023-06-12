@@ -22,8 +22,10 @@ pt-BR:
         initial_amount: Valor inicial
       
       create:
-        success: Turma criada com sucesso
+        success: Investimento criado com sucesso
       update:
-        success: Turma atualizada com sucesso
+        success: Investimento atualizado com sucesso
       destroy:
-        success: Turma apagada com sucesso
+        success: Investimento apagado com sucesso
+      new:
+        error: Você não tem permissão para acessar esse investimento

@@ -39,3 +39,5 @@ pt-BR:
         success: Turma atualizada com sucesso
       destroy:
         success: Turma apagada com sucesso
+        error: 'Turma não pode ser apagada se tem alunos'
+
