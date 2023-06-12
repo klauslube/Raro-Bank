@@ -60,10 +60,12 @@ Com a modelagem de dados pronta, começamos a pensar nas configurações iniciai
 
 ### Estruturando documentação
 
-Já pensando na melhor forma de documentar todo o processo de desenvolvimento do projeto foram criados templates para serem aplicados nas _issues_ do Gilab. O objetivo era que todas as _issues_ tivessem a mesma estrutura, facilitando assim a leitura e entendimento de todos os envolvidos. O template criado pode ser visto [aqui](.gitlab/issue_templates/default.md). Para o _merge request_ também foi criado um template que pode ser conferido [aqui](.gitlab/merge_request_templates/default.md).
+Já pensando na melhor forma de documentar todo o processo de desenvolvimento do projeto foram criados templates para serem aplicados nas _issues_ do Gitlab. O objetivo era que todas as _issues_ tivessem a mesma estrutura, facilitando assim a leitura e entendimento de todos os envolvidos. O template criado pode ser visto [aqui](.gitlab/issue_templates/default.md). Para o _merge request_ também foi criado um template que pode ser conferido [aqui](.gitlab/merge_request_templates/default.md).
 Sobre a criação de _issues_, fizemos uma lista com todas as funcionalidades que deveriam ser desenvolvidas, incluindo as regras de negócio. A lista pode ser conferida [aqui](.gitlab/issues-list.md). A partir dessa lista foram criadas as _issues_ que foram distribuídas entre os membros do grupo. Abaixo está demonstrado como o _board_ foi utilizando. Criamos _labels_: to do, doing, review e done. A medida que as _issues_ eram criadas, elas eram adicionadas na coluna to do. Quando um membro do grupo assumia a _issue_, ela era movida para a coluna doing. Quando o desenvolvimento da _issue_ era finalizado, ela era movida para a coluna review, onde outro membro do grupo fazia a revisão do código. Quando a revisão era finalizada, a _issue_ era movida para a coluna _closed_ com label done. Tivemos ainda uma label com título _extra_, para marcar que uma tarefa era "extra código", como tarefas de design e documentação.
 
-### Iniciando o código
+Outro ponto que nos ajudou a organizar e visualizar melhor as implementações necessárias foi repassar o [mock-up](https://app.diagrams.net/#G15ZSxbJRGecbepLGEVpWxnT0trDCP1wUM#%7B%22pageId%22%3A%223qBqqfG4xFEf4saZzpzj%22%7D) que recebemos inicialmente para uma estrutura de melhor visualização no [Figma](https://www.figma.com/file/9Qh0FAv4BoUbGXp8jrJRqT/RaroBank?type=design&node-id=0-1&t=7EO655pjzzw7yaOp-0).
+
+### Desenvolvimento
 
 Durante as reuniões diárias da primeira semana, o grupo definiu que o desenvolvimento do projeto poderia ser definido em partes, conforme foi feito durante o curso na execução do projeto Raro Food. Sendo assim, seguindo a arquitetura MVC, o projeto foi dividido da seguinte forma:
 
@@ -113,18 +115,60 @@ As rotas foram criadas no intuito de indicar o caminho do que seria implementado
 - **Regras de negócio e funcionalidades**
   Com todo o MVC estruturado passamos a trabalhar para realizar implementações que garantissem as regras de negócio definidas para o projeto (tendo como base [proposta do projeto final](.gitlab/enunciado.md)). Abaixo estão detalhadas as implementações realizadas.
 
-  - Investimentos:
-  - - Criada rota para o catálogo de investimentos '/catalogs', nela é listado todos os investimentos registrados que já estão na start_date ou seja que já começaram o seu período de duração. Os investimentos do usuário são acessados na rota /user_investments.
+  - INVESTIMENTOS:
+
+    - Criada rota para o catálogo de investimentos `/catalogs`, nela é listado todos os investimentos registrados que já estão na _start_date_ ou seja que já começaram o seu período de duração. Os investimentos dos usuários são acessados na rota `/user_investments`.
     - Para os usuários _free_ será listado todos os investimentos(free e premium) mas eles não poderão acessar os investimentos para _premium_. Já os usuários premium podem ver todos e comprar todos os tipos de investimentos.
     - Criado métodos para que ao o usuário comprar ou resgatar um investimento, seu saldo na conta atualize.
-    - - Criado Job para agendar a action `destroy` do investimento para a sua data de expiração. Quando o investimento expirar, as contas de todos os usuários que estavam registrados nele, receberão o seu o lucro de acordo com o investido.
-  - Adicionada tela de detalhes do investimento do usúario, onde ele pode resgastar o investimento.
+    - Criado Job para agendar a action `destroy` do investimento para a sua data de expiração. Quando o investimento expirar, as contas de todos os usuários que estavam registrados nele receberão o seu o lucro de acordo com o valor investido.
+    - Adicionada tela de detalhes do investimento do usuário, onde ele pode resgatar o investimento.
+    - Implementado Job para atualizar o profit do investimento. Nele é calculado o valor diário que deve render, de acordo o nome do investimento. Ex: Selic + 200% => renderia o valor diário x 200%.
+    - Criada uma `task` para que ao o whenever fazer a request diária para a API do Banco Central, seja disparado a atualização do `profit` para o valor do dia.
+    - Implementado validações para checagem de balance ao comprar um investimento e checar se o `initial amount` é suficiente para a compra.
+    - Foi criada a entidade `Indicator` para armazenar as informações consumidas da API do Banco Central. Essas informações são utilizadas para calcular o valor diário que o investimento deve render.
+    - Utilizando a _gem_ Ransanck foram implementados os campos de busca para os investimentos, de acordo com o solicitado na proposta do projeto.
 
-- Implementado Job para atualizar o profit do investimento. Nele é calculado o valor diário que deve render, de acordo o nome do investimento. Ex: Selic + 200% => renderia o valor diário x 200%.
-- Criado uma task para que ao o whenever fazer a request diária para a API do banco central, ser disparado a atualização do profit para o valor do dia.
-- Implementado validações para checagem de balance ao comprar um investimento e checar se o initial amount é suficiente para a compra.
+- TRANSACTIONS:
 
-Foi nessa etapa que surgiram as novas entidades citadas anteriormente como apoio para Transactions e Investments.
+  - Foram realizadas validações para que o usuário não possa realizar uma transferência pra ele mesmo e para que o saldo seja validado antes de realizar a transferência.
+  - Foi criado um Job para tratar todas as regras de negócio da transferência como: atualizar o saldo das contas participantes das transações, diminuindo o valor do _sender_ e aumentando o valor do _receiver_.
+  - Também com Job, foi implementado a lógica para que uma transferência realizada fora do horário comercial seja agendada para o próximo dia útil.
+  - Foi criada a entidade `Transaction` para armazenar as informações das transações realizadas.
+  - O método para geração do token foi definido na model Transaction garantindo que ele não se repita e que tenha 6 dígitos.
+  - Foi implementado _mailer_ para o recebimento do token e um _countdown_ através de Job para que ele fique disponível por apenas 5 minutos.
+
+- CLASSROOM
+
+- Ainda na modelagem de dados, definimos em conjunto que um usuário só poderia se relacionar com uma turma. Por isso, quando um usuário já está em uma turma e o administrador o inclui em outra turma, ele é retirado da turma anterior.
+- A nível de model foi validado que uma data fim não pode ser menor que a data de início.
+- No model de User foi implementando um callback para que ao ser adicionado em uma turma, o usuário seja atualizado para o tipo de usuário _premium_.
+
+- CADASTRAR SALDO
+
+- Dentro da estrutura de controllers de _admin_ foi criado um controller chamado de _deposits_controller_. Nele foi realizada a implementação para que o usuário administrador possa cadastrar saldo para um usuário único através de um CPF ou para vários usuários através de uma _Classroom_.
+- Como a estrutura do depósito é idêntica a estrutura da transferência, seria necessário que a conta do usuário administrador tivesse o saldo validado, para não haver problemas com essa validação, dentro do controller foi definido um método que define que o saldo desse administrador será sempre o valor que ele está incluindo no _imput_ de _amount_.
+- A outra validação de transação que o admin não precisa passar é o token de validação, para que isso fosse possível, foi criado um método `save_without_token` no model de Transaction.
+
+- **Estilização**
+
+  Para essa etapa foi seguido a mesma estrutura definida anteriormente para: Usuário não logado; Usuário logado como Administrador e Usuário logado como Free ou Premium. As telas com estilo foram realizadas no Figma, assim como um Style Guide com logos, cores e ícones que poderiam ser utilizado.
+  Também seguindo a mesma ideia de deixar uma estrutura pronta a ser seguida, foram feitas algumas implementações bases de estilo tanto para o ambiente administrativo quanto para o ambiente do usuário free ou premium, como:
+
+  - Navbar com itens de navegação;
+  - Menu de contexto para usuário admin com opções de editar sua conta e logout;
+  - Logo idealizada pelo @thalys.augusto que redireciona para home;
+  - Sistema de notificações;
+  - Utilização de ícones através da svg_inline_tag;
+  - Botão de visibilidade de password;
+  - Aplicação da logo no favicon;
+
+  Classes do Tailiwind foram criadas para serem replicadas nos formulários e inputs, assim como as cores que serão utilizadas no projeto, divididas em _primary_ e _secondary_.
+
+  - Instalação das fontes: _Poppins_ para layout de usuário / _Titillium Web_ para layout administrativo.
+
+Os detalhes podem ser encontrados no `styleguide.md`.
+
+- **Extras**
 
 ## Usuário Administrador
 
