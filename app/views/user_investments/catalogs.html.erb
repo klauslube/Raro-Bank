@@ -1,60 +1,91 @@
-<h1>Catalog Investments</h1>
-
-<%= search_form_for @q, url: catalogs_path, method: :get do |f| %>
-  <%= f.label :name_cont, 'Nome:' %>
-  <%= f.search_field :name_cont %>
-
-  <%= f.label :minimum_amount_gteq, 'Valor Mínimo:' %>
-  <%= f.number_field :minimum_amount_gteq %>
-
-  <%= f.label :indicator_rate_gteq, 'Valor indexador:' %>
-  <%= f.number_field :indicator_rate_gteq %>
-
-  <%= f.label 'Categoria:' %>
-  <%= f.radio_button :premium_eq, nil %>
-  <%= f.label :premium_eq, 'Todos' %>
-  
-  <%= f.radio_button :premium_eq, false %>
-  <%= f.label :premium_eq, 'Free' %>
-  
-  <%= f.radio_button :premium_eq, true %>
-  <%= f.label :premium_eq, 'Premium' %>
-
-  <%= f.label :expiration_date_eq, 'Data de Vencimento:' %>
-  <%= f.date_field :expiration_date_eq %>
-
-  <%= f.submit %>
-  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">Index</th>
-      <th scope="col">Minimum Amount</th>
-      <th scope="col">Start Date</th>
-      <th scope="col">Expiration Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @investments.each do |investment| %>
-      <% next if investment.expiration_date < Date.current %>
-      <tr>
-        <td><%= investment.name %></td>
-        <td><%= investment.premium ? 'Premium' : 'Free' %></td>
-        <td><%= "#{(investment.indicator.rate * 100 * 365).round(2)}%" %></td> 
-        <td><%= investment.minimum_amount %></td>
-        <td><%= investment.start_date %></td>
-        <td><%= investment.expiration_date %></td>
-        <% if current_user.role == 'free' && investment.premium %>
-          <td><span> Not available for free users </span></td>
-        <% else %>
-          <td><%= link_to "Invest", new_user_investment_path(investment_id: investment.id) %></td>
-        <% end %>
-      </tr>
+<div class='table-view'>
+  <%= search_form_for @q, url: catalogs_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
+    <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
+       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
-  </tbody>
-</table>
+
+    <div class="users-form-field">
+      <%= f.label :name_cont, t('investments.form.name'), class: 'users-input-label' %>
+      <%= f.search_field :name_cont, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :minimum_amount_gteq, t('investments.form.minimum_amount'), class: 'users-input-label' %>
+      <%= f.number_field :minimum_amount_gteq, min: 0, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :indicator_rate_gteq, t('investments.form.index'), class: 'users-input-label' %>
+      <%= f.number_field :indicator_rate_gteq, class: 'users-input-field' %>
+    </div>
+
+    <div class="users-form-field">
+      <%= f.label :expiration_date_eq, t('investments.form.expiration'), class: 'users-input-label' %>
+      <%= f.number_field :expiration_date_eq, class: 'users-input-field' %>
+    </div>
+
+      <div class="flex flex-col gap-1">
+        <%= f.label :premium_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
+
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <div class="flex items-center gap-2">
+            <%= f.radio_button :premium_eq, nil  %>
+            <%= f.label :premium_eq, t('users.form.all'), class: 'users-input-label' %>
+          </div>
+          <div class="flex items-center gap-2">
+            <%= f.radio_button :premium_eq, false %>
+            <%= f.label :premium_eq, t('users.form.free'), class: 'users-input-label' %>
+          </div>
+          <div class="flex items-center gap-2">
+            <%= f.radio_button :premium_eq, true %>
+            <%= f.label :premium_eq, t('users.form.premium'), class: 'users-input-label' %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.button class: 'form-search' do %>
+      <%= inline_svg_tag 'icons/solid/mag-glass.svg', class: 'w-4 h-4' %>
+    <% end %>
+  <% end %>
+
+  <% if @investments.empty? %>
+    <div class='user-list-item'>
+      <span class='m-2'><%= t('users.form.empty') %></span>
+    </div>
+  <% else %>
+    <div class='user-list-container'>
+      <% @investments.each do |investment| %>
+        <div class='user-list-item'>
+          <span class='user-list-item-inner'>
+            <span class='user-list-item-icon'>
+              <%= inline_svg_tag 'icons/outline/banknotes.svg', class: 'w-4 h-4 text-white' %>
+            </span>
+            <span><%= investment.name %></span>
+            <% if investment.premium? %>
+              <span class='user-list-item-tag'>Premium</span>
+            <% end %>
+          </span>
+          <span class='user-list-item-inner'>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/cash.svg', class: 'w-6 h-6 text-secondary-600' %>
+              <span><%= number_to_currency(investment.minimum_amount) %></span>
+            </div>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/percentage.svg', class: 'w-4 h-4 text-secondary-600' %>
+              <span><%="#{(investment.indicator.rate * 100 * 365).round(2)}%" %></span>
+            </div>
+            <div class='user-list-item-with-icon'>
+              <%= inline_svg_tag 'icons/outline/banknotes.svg', class: 'w-4 h-4 text-secondary-600' %>
+              <span>Até <%= l(investment.expiration_date, format: :default) %></span>
+            </div>
+            <%= link_to new_user_investment_path(investment_id: investment.id), class: 'user-list-item-button' do %>
+              <%= t('users.form.invest') %>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <%= paginate @investments %>
+<div class='h-8'></div>
