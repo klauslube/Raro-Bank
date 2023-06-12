@@ -12,7 +12,7 @@
         <strong><%= t('classrooms.form.start_date') %>:</strong>
         <span><%= l(@classroom.start_date, format: :default) %></span>
       </div>
-       |
+      |
       <div class='flex gap-2 table-header-subtitle'>
         <strong><%= t('classrooms.form.end_date') %>:</strong>
         <span><%= l(@classroom.end_date, format: :default) %></span>
@@ -23,7 +23,7 @@
   <div id="classrooms" class="table-container">
     <div class="table-inner">
       <% if @classroom.users.empty? %>
-        <div class="flex justify-center p-4 bg-white  text-primary-800">
+        <div class="flex justify-center p-4 bg-white text-primary-800">
           <strong class='text-primary-800'> <%= t('others.blank') %></strong>
         </div>
       <% else %>
@@ -51,24 +51,9 @@
                 <td class="px-8 py-3"><%= student.email %></td>
                 <td class="px-8 py-3"><%= student.cpf %></td>
                 <td class="flex justify-center px-8 py-3 menu-dropdown-container">
-                  <div data-controller="dropdown" class="relative icon-button">
-                    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
-                      <%= inline_svg_tag 'icons/solid/ellipsis-vertical.svg', class: 'table-link-plus w-8 h-8' %>
-                    </button>
-                    <div
-                      data-dropdown-target="menu"
-                      class="hidden table-details-menu-dropdown"
-                      data-transition-enter-from="opacity-0 scale-95"
-                      data-transition-enter-to="opacity-100 scale-100"
-                      data-transition-leave-from="opacity-100 scale-100"
-                      data-transition-leave-to="opacity-0 scale-95"
-                    >
-                      <%= link_to edit_admin_user_path(student), class: 'details-menu-dropdown-item' do %>
-                        <span><%= t('.update') %></span>
-                        <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-2 h-2' %>
-                      <% end %>
-                    </div>
-                  </div>
+                  <%= link_to edit_admin_user_path(student), class: 'details-menu-dropdown-item' do %>
+                    <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'w-2 h-2' %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

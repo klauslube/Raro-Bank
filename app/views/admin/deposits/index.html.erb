@@ -1,8 +1,8 @@
-<div class='table-view'>
+<div class='items-center table-view'>
   <div id="classrooms" class="table-container">
     <div class="table-inner">
       <% if @deposits.empty? %>
-        <div class="flex justify-center p-4 bg-white  text-primary-800">
+        <div class="flex justify-center p-4 bg-white text-primary-800">
           <strong class='text-primary-800'> <%= t('others.blank') %></strong>
         </div>
       <% else %>
@@ -49,5 +49,5 @@
       </table>
     </div>
   </div>
-<%= paginate @deposits %>
+  <%= paginate @deposits %>
 </div>

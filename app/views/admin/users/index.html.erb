@@ -1,7 +1,7 @@
-<div class='table-view'>
+<div class='items-center table-view'>
   <%= search_form_for @q, url: admin_users_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
     <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
-       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
+      <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
 
     <div class="users-form-field">
@@ -16,21 +16,21 @@
       <%= f.label :cpf_cont, 'CPF:', class: 'users-input-label' %>
       <%= f.search_field :cpf_cont, class: 'users-input-field' %>
     </div>
-      <div class="users-form-field">
-        <%= f.label :role_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
+    <div class="users-form-field">
+      <%= f.label :role_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
 
-        <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-2">
-            <%= f.label :role_eq, t('users.form.all'), class: 'users-input-label' %>
-            <%= f.radio_button :role_eq, '', checked: true %>
-          </div>
-          <div class="flex items-center gap-2">
-            <%= f.label :role_eq, t('users.form.free'), class: 'users-input-label' %>
-            <%= f.radio_button :role_eq, 1 %>
-          </div>
-          <div class="flex items-center gap-2">
-            <%= f.label :role_eq, t('users.form.premium'), class: 'users-input-label' %>
-            <%= f.radio_button :role_eq, 2 %>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+          <%= f.label :role_eq, t('users.form.all'), class: 'users-input-label' %>
+          <%= f.radio_button :role_eq, '', checked: true %>
+        </div>
+        <div class="flex items-center gap-2">
+          <%= f.label :role_eq, t('users.form.free'), class: 'users-input-label' %>
+          <%= f.radio_button :role_eq, 1 %>
+        </div>
+        <div class="flex items-center gap-2">
+          <%= f.label :role_eq, t('users.form.premium'), class: 'users-input-label' %>
+          <%= f.radio_button :role_eq, 2 %>
         </div>
       </div>
     </div>
@@ -41,10 +41,10 @@
   <% end %>
   <div id="users" class="table-container">
     <div class="table-inner">
-    <% if @users.empty? %>
-          <div class=" p-4 text-primary-800 bg-white flex justify-center">
-            <strong class='text-primary-800'> <%= t('others.blank') %></strong>
-          </div>
+      <% if @users.empty? %>
+        <div class="flex justify-center p-4 bg-white  text-primary-800">
+          <strong class='text-primary-800'> <%= t('others.blank') %></strong>
+        </div>
       <% else %>
         <table class="w-full whitespace-no-wrap">
           <thead>
@@ -53,39 +53,39 @@
               <th class="px-4 py-2"><%= t('users.form.email') %></th>
               <th class="px-4 py-2"><%= t('.cpf') %></th>
               <th class="px-4 py-2"><%= t('users.form.classroom') %></th>
-              <th class="px-4 py-2 flex justify-center">-</th>
+              <th class="flex justify-center px-4 py-2">-</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y">
             <% @users.each do |user| %>
               <tr class="text-gray-700">
-              <td class="px-8 py-3">
-                <div class='flex gap-4 items-center'>
-                  <%= user.name %>
-                  <% if user.premium? %>
-                    <span class='tag-user-premium'>Premium</span>
-                  <% end %>
-                </div>
+                <td class="px-8 py-3">
+                  <div class='flex items-center gap-4'>
+                    <%= user.name %>
+                    <% if user.premium? %>
+                      <span class='tag-user-premium'>Premium</span>
+                    <% end %>
+                  </div>
                 </td>
                 <td class="px-8 py-3"><%= user.email %></td>
                 <td class="px-8 py-3"><%= user.cpf %></td>
                 <td class="px-8 py-3">
-                <% if user.classroom.presence %>
-                   <span class="px-8 py-3 items-start"><%= user.classroom.name %></span>
+                  <% if user.classroom.presence %>
+                    <span class="items-start px-8 py-3"><%= user.classroom.name %></span>
                   <% else %>
-                    <span class="px-8 py-3 items-start">-</span>
-                <% end %>
+                    <span class="items-start px-8 py-3">-</span>
+                  <% end %>
                 </td>
-                <td class="px-8 py-3 flex justify-center">
+                <td class="flex justify-center px-8 py-3">
                   <%= link_to edit_admin_user_path(user), class:'table-link-plus flex items-center gap-1' do %>
                     <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'table-link-plus w-4 h-4' %>
-                <% end %>
-              </tr>
+                  <% end %>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <%= paginate @users %>
   </div>
-  <%= paginate @users %>
-</div>
