@@ -12,6 +12,7 @@ class Transaction < ApplicationRecord
   after_create :token_countdown
   after_create :cancel_transfer_countdown
   after_commit :new_transfer, on: :create
+  after_commit :send_notification_email, on: :create
 
   enum :status, {
     started: 1,
@@ -79,5 +80,9 @@ class Transaction < ApplicationRecord
 
   def new_transfer
     TransactionMailer.notify(self).deliver_now
+  end
+
+  def send_notification_email
+    TransactionMailer.transfer_notification(sender, receiver, self).deliver_now
   end
 end

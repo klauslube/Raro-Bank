@@ -9,13 +9,16 @@ class TransactionMailer < ApplicationMailer
     )
   end
 
+  def transfer_notification(sender, receiver, transaction)
+    @sender = sender.user
+    @receiver = receiver.user
+    @transaction = transaction
+    mail(to: [@sender.email, @receiver.email], subject: 'Notificação de transferência')
+  end
+
   private
 
   def sender_email
     @mailer_transaction.sender.user.email
-  end
-
-  def token_generator
-    # Todo token.key
   end
 end
