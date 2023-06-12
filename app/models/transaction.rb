@@ -8,13 +8,11 @@ class Transaction < ApplicationRecord
   validate :check_sender_balance
   validate :check_transfer_yourself
 
-  # Get all transactions that are sent by the users with role admin
   scope :sent_by_admins, -> { joins(:sender).merge(Account.admins) }
 
   after_create :generate_token
   after_create :token_countdown
   after_create :cancel_transfer_countdown
-  after_commit :update_balance
   after_commit :send_confirmation_email, on: :create
   after_commit :send_notification_email, on: :create
 
@@ -46,9 +44,9 @@ class Transaction < ApplicationRecord
     weekday >= 1 && weekday <= 5 && hour >= 8 && hour < 18
   end
 
-  # def notification_completed_transaction
-  #   receiver_notification_email
-  # end
+  def notification_completed_transaction
+    receiver_notification_email
+  end
 
   private
 
