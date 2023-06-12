@@ -1,4 +1,6 @@
 class Indicator < ApplicationRecord
+  has_one :investment, dependent: :restrict_with_error
+
   def name_with_rate
     "#{name} - #{rate}"
   end

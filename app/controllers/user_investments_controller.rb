@@ -3,6 +3,17 @@ class UserInvestmentsController < ApplicationController
   before_action :fetch_user_investment, only: %i[show destroy]
   before_action :fetch_investment, only: %i[new create]
 
+  SORT_OPTIONS = {
+    'Nome (A-Z)' => 'name_asc',
+    'Nome (Z-A)' => 'name_desc',
+    'Valor minimo ↑' => 'minimum_amount_asc',
+    'Valor minimo ↓' => 'minimum_amount_desc',
+    'Data de início ↑' => 'start_asc',
+    'Data de início ↓' => 'start_desc',
+    'Data de Vencimento ↑' => 'expiration_date_asc',
+    'Data de Vencimento ↓' => 'expiration_date_desc'
+  }.freeze
+
   def index
     @q = UserInvestment.ransack(params[:q])
     @user_investments = @q.result(distinct: true).where(user_id: current_user.id)
@@ -10,7 +21,7 @@ class UserInvestmentsController < ApplicationController
 
   def catalogs
     @q = Investment.ransack(params[:q])
-    @investments = @q.result(distinct: true).order(:name).page(params[:page]).per(10)
+    @investments = @q.result(distinct: true).order(sort_column).page(params[:page]).per(10)
   end
 
   def show; end
@@ -56,5 +67,20 @@ class UserInvestmentsController < ApplicationController
 
   def fetch_user_investment
     @user_investment = UserInvestment.find(params[:id])
+  end
+
+  def sort_column
+    case params[:sort]
+    when 'minimum'
+      "minimum_amount #{params[:direction]}"
+    when 'expiration'
+      "investments.expiration_date #{params[:direction]}"
+    when 'start'
+      "investments.expiration_date #{params[:direction]}"
+    when 'name'
+      "investments.#{params[:sort]} #{params[:direction]}"
+    else
+      'name ASC'
+    end
   end
 end

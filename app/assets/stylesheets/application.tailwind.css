@@ -415,4 +415,12 @@ select:-webkit-autofill:focus {
   .users-details-footer {
     @apply flex items-center justify-end gap-4;
   }
+
+  .order-item-tag {
+    @apply px-2 py-1 text-xs font-bold uppercase rounded-md x-1 text-primary-700 bg-primary-300;
+  }
+
+  .order-item-tag:hover {
+    @apply bg-primary-400;
+  }
 }
