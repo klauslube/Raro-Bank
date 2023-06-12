@@ -28,15 +28,15 @@
       <% if devise_mapping.rememberable? %>
         <div class="flex items-center gap-2">
           <%= f.check_box :remember_me, class: 'users-checkbox-field' %>
-          <%= f.label :remember_me, class: "users-input-label" %>
+          <%= f.label t('users.sessions.new.remember_me'), class: "users-input-label" %>
         </div>
       <% end %>
-      <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "users-form-link" %>
+      <%= link_to t('users.passwords.new.title'), new_password_path(resource_name), class: "users-form-link" %>
     </div>
 
     <%= f.button class: 'users-form-submit-container' do %>
       <%= inline_svg_tag 'icons/solid/lock-closed.svg', class: 'w-4 h-8 text-primary-800' %>
-      <span><%= t('users.registrations.sessions.submit') %></span>
+      <span><%= t('users.sessions.submit') %></span>
       <div class='w-4 h-8'></div>
     <% end %>
 

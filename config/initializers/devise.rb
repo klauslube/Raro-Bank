@@ -143,7 +143,7 @@ Devise.setup do |config|
   # without confirming their account.
   # Default is 0.days, meaning the user cannot access the website without
   # confirming their account.
-  config.allow_unconfirmed_access_for = nil
+  config.allow_unconfirmed_access_for = 0.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -224,6 +224,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
+  # CONFIGURAÇÃO PARA QUE O LINK ENVIADO POR E-MAIL PELO DEVISE PARA RECUPERAÇÃO DE SENHA FIQUE VÁLIDO POR 2 HORAS
   config.reset_password_within = 2.hours
 
   # When set to false, does not sign a user in automatically after their password is
