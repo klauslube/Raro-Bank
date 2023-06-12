@@ -261,6 +261,14 @@ select:-webkit-autofill:focus {
     @apply bg-red-700;
   }
 
+  .users-button-retriever {
+    @apply flex w-full justify-between items-center flex-1 px-3 py-2 bg-secondary-600 rounded-md shadow-sm cursor-pointer text-base font-bold text-white transition duration-150 ease-in-out mt-2;
+  }
+
+  .users-button-retriever:hover {
+    @apply bg-secondary-400;
+  }
+
   .users-button-danger:disabled {
     @apply opacity-50 cursor-not-allowed;
   }

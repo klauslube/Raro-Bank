@@ -44,6 +44,7 @@ pt-BR:
       save: "Salvar"
       delete: "Deletar conta"
       delete_confirmation: "Tem certeza que deseja deletar sua conta?"
+      retrieve_confirmation: "Tem certeza que deseja resgatar seu investimento?"
       details: "Detalhes"
       search: "Buscar"
       created: "Criado em"
