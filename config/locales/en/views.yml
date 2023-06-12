@@ -1,116 +1,144 @@
 en:
   links:
-    logout: "Logout"
-    account: "Account"
-    catalog: "Catalog"
-    transactions: "Transactions"
-    investments: "Investments"
-    classrooms: "Classrooms"
-    deposits: "Deposits"
-    users: "Users"
-    invest: "Invest"
-    transfer: "Transfer"
-    extract: "Extract"
+    logout: 'Logout'
+    account: 'Account'
+    catalog: 'Catalog'
+    transactions: 'Transactions'
+    investments: 'Investments'
+    classrooms: 'Classrooms'
+    deposits: 'Deposits'
+    users: 'Users'
+    invest: 'Invest'
+    transfer: 'Transfer'
+    extract: 'Extract'
   home:
-    title: "Start in the best way"
+    title: 'Start moving your account'
   article:
-    title: "Secure access to the best investments by becoming a student at Raro Academy"
-    subtitle: "Students and alumni of our school have access to high-yield investments. Make your Raracoins count!"
-    more: "Learn more"
+    title: 'Ensure access to the best investments by becoming a student of Raro Academy'
+    subtitle: 'Students and alumni of our school have access to high-yield investments. Make your raracoins worthwhile!'
+    more: 'See more'
   users:
     form:
-      name_placeholder: "Enter your name"
-      cpf_placeholder: "Enter your CPF"
-      email: "Email"
-      email_placeholder: "Enter your email"
-      password: "Password"
-      password_placeholder: "Enter your password"
-      confirm_password: "Confirm Password"
-      confirm_password_placeholder: "Confirm your password"
-      new_password: "New Password"
-      confirm_new_password: "Confirm New Password"
-      confirm_new_password_placeholder: "Enter the confirmation of your new password"
-      new_password_placeholder: "Enter your new password"
-      current_password: "Current Password"
-      current_password_placeholder: "Enter your current password to proceed"
-      password_rules: "Use 8 characters including letters, numbers, and special characters"
-      cpf_rules: "Numbers only"
-      remembered_password: "Remembered your password?"
-      make_login: "Log In!"
-      register: "Register!"
-      resend_confirmation: "Resend Confirmation!"
-      have_account: "Already have an account?"
+      name_placeholder: 'Enter your name'
+      cpf_placeholder: 'Enter your CPF'
+      email: 'Email'
+      email_placeholder: 'Enter your email'
+      email_confirmed: 'Email confirmed?'
+      register_date: 'Registration date'
+      password: 'Password'
+      password_placeholder: 'Enter your password'
+      confirm_password: 'Confirm your password'
+      confirm_password_placeholder: 'Confirm your password'
+      new_password: 'New password'
+      confirm_new_password: 'Confirm your new password'
+      confirm_new_password_placeholder: 'Enter the confirmation of your new password'
+      new_password_placeholder: 'Enter your new password'
+      current_password: 'Current password'
+      current_password_placeholder: 'Enter your current password to proceed'
+      password_rules: 'Use 8 characters including letters, numbers, and special characters'
+      cpf_rules: 'Numbers only'
+      remembered_password: 'Remembered your password?'
+      make_login: 'Log in!'
+      register: 'Register!'
+      resend_confirmation: 'Resend confirmation!'
+      have_account: 'Already have an account?'
       not_have_account: "Don't have an account?"
-      save: "Save"
-      delete: "Delete Account"
-      delete_confirmation: "Are you sure you want to delete your account?"
-      details: "Details"
+      save: 'Save'
+      delete: 'Delete account'
+      delete_confirmation: 'Are you sure you want to delete your account?'
+      retrieve_confirmation: 'Are you sure you want to retrieve your investment?'
+      details: 'Details'
+      search: 'Search'
+      created: 'Created on'
+      updated: 'Updated on'
+      amount: 'Amount'
+      destination: 'Recipient'
+      classroom: 'Classroom'
+      role: 'User type'
+      free: 'Free'
+      premium: 'Premium'
+      all: 'All'
+      empty: 'No items found'
+      invest: 'Invest'
+      retrieve: 'Retrieve'
+      invest_amount: 'Enter minimum investment amount'
+      yes: 'Yes'
+      no: 'No'
+      user: 'User'
+      role_admin_label: 'Add locale: Grant administrator privileges?'
+    edit:
+      title: 'Manage user'
+      subtitle: 'Add a student to a classroom and give them premium privileges!'
     confirmations:
-      title: "Resend Confirmation"
-      subtitle: "Unlock your access! Enter your email again to resend the confirmation link."
+      title: 'Resend confirmation'
+      subtitle: 'Unlock your access! Enter your email again to resend the confirmation link.'
     passwords:
       new:
-        title: "Forgot Password?"
-        subtitle: "Enter your email address and we'll send you a code to reset your password."
-        submit: "Send Email"
+        title: 'Forgot password?'
+        subtitle: 'Enter your email address, and we will send you a code to change your password.'
+        submit: 'Send email'
       edit:
-        title: "Reset Your Password"
-        subtitle: "Enter the new access password to complete your account recovery!"
-        submit: "Change Password"
+        title: 'Reset your password'
+        subtitle: 'Enter the new access password to complete the retrieval of your account!'
+        submit: 'Change password'
     registrations:
       new:
-        title: "Register!"
-        subtitle: "Register now to start making your raracoins count"
-        submit: "Register"
+        title: 'Register!'
+        subtitle: 'Register now to start making your raracoins worthwhile'
+        submit: 'Register'
       edit:
-        title: "Edit Registration"
-        subtitle: "Update your registration details"
+        title: 'Edit registration'
+        subtitle: 'Change your registration details'
     sessions:
-      title: "Access the Platform"
-      subtitle: "Log in or register to start making your raracoins count!"
-      submit: "Log In"
+      title: 'Access the platform'
+      subtitle: 'Log in or register to start making your raracoins worthwhile!'
+      submit: 'Sign in'
   classrooms:
     form:
-      name_placeholder: "Enter the class name"
-      date_placeholder: "Select the date"
-      start_date: "Start Date"
-      end_date: "End Date"
-      name: "Name"
-      register: "Register Class"
-      update: "Update class"
-      delete: "Delete Class"
-      delete_confirmation: "Are you sure you want to delete the class?"
+      name_placeholder: 'Enter the classroom name'
+      date_placeholder: 'Select the date'
+      start_date: 'Start date'
+      end_date: 'End date'
+      name: 'Name'
+      register: 'Register classroom'
+      delete: 'Delete classroom'
+      update: 'Update classroom'
+      delete_confirmation: 'Are you sure you want to delete the classroom?'
+      select_classroom: 'Select a classroom'
     new:
-      title: "Register Class"
-      subtitle: "Add a new class to the system."
+      title: 'Register classroom'
+      subtitle: 'Add a new classroom to the system.'
     edit:
-      title: "Edit Class"
-      subtitle: "Update the information for this class and manage the students belonging to it."
+      title: 'Edit classroom'
+      subtitle: 'Update the data of this classroom and manage the students belonging to it.'
     show:
-      students: "Alunos"
+      students: 'Students'
     index:
-      classroom: "Nome da turma"
+      classroom: 'Classroom name'
   investments:
     form:
-      name_placeholder: "Enter the investment name"
-      date_placeholder: "Select the date"
-      start_date: "Start date"
-      end_date: "End date"
-      index: "Index"
-      index_placeholder: "Select the index"
-      premium: "Is this a premium investment?"
-      register: "Register investment"
-      delete: "Delete investment"
-      delete_confirmation: "Are you sure you want to delete the investment?"
+      name: 'Investment name'
+      minimum_amount: 'Minimum amount'
+      name_placeholder: 'Enter the investment name'
+      date_placeholder: 'Select the date'
+      start_date: 'Start date'
+      end_date: 'End date'
+      expiration: 'Expiration date'
+      index: 'Index'
+      index_placeholder: 'Select the indexer'
+      premium: 'Is this a premium investment?'
+      register: 'Register investment'
+      delete: 'Delete investment'
+      delete_confirmation: 'Are you sure you want to delete the investment?'
     new:
-      title: "Register investment"
-      subtitle: "Add an investment to the catalog. Remember to mark it as premium only if applicable!"
+      title: 'Register investment'
+      subtitle: 'Add an investment to the catalog. Remember to mark it as exclusive to premium users if necessary!'
     edit:
-      title: "Edit investment"
-      subtitle: "Update the data and values of an investment."
+      title: 'Edit investment'
+      subtitle: 'Update the data and values of an investment.'
     show:
-      title: "Investment"
-      subtitle: "See all the product details"
-      users: "Investor Users"
+      title: 'Investment'
+      subtitle: 'See all the details of the product'
+      users: 'Investing users'
   others:
-    blank: "No data to display"
+    blank: 'No records found'
