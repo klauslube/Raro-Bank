@@ -387,4 +387,20 @@ select:-webkit-autofill:focus {
   .user-list-item-button:hover {
     @apply bg-primary-700;
   }
+
+  .users-details-container {
+    @apply flex flex-col bg-white p-12 gap-4 mx-auto text-primary-800 border-2 border-primary-200 rounded-2xl shadow-md w-[600px];
+  }
+
+  .users-details-header {
+    @apply flex w-full items-center justify-between;
+  }
+
+  .users-details-body {
+    @apply flex flex-col gap-4 my-8;
+  }
+
+  .users-details-footer {
+    @apply flex items-center justify-end gap-4;
+  }
 }

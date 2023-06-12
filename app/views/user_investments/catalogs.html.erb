@@ -75,7 +75,7 @@
               <span><%="#{(investment.indicator.rate * 100 * 365).round(2)}%" %></span>
             </div>
             <div class='user-list-item-with-icon'>
-              <%= inline_svg_tag 'icons/outline/banknotes.svg', class: 'w-4 h-4 text-secondary-600' %>
+              <%= inline_svg_tag 'icons/outline/calendar-days.svg', class: 'w-4 h-4 text-secondary-600' %>
               <span>Até <%= l(investment.expiration_date, format: :default) %></span>
             </div>
             <%= link_to new_user_investment_path(investment_id: investment.id), class: 'user-list-item-button' do %>

@@ -1,37 +1,51 @@
-<%= render 'shared/errors', object: @user_investment %>
+<div class='w-full h-full px-16 py-8 items-center justify-center'>
+  <%= render partial: 'shared/notifications/form_errors', locals: { object: @user_investment } %>
+  <div class='users-details-container'>
+    <div class='users-details-header'>
+      <span class='user-list-item-inner'>
+        <span class='user-list-item-icon'>
+          <%= inline_svg_tag 'icons/outline/banknotes.svg', class: 'w-4 h-4 text-white' %>
+        </span>
+        <span><%= investment.name %></span>
+        <% if investment.premium? %>
+          <span class='user-list-item-tag'>Premium</span>
+        <% end %>
+      </span>
+      <span class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/current-dolar.svg', class: 'w-6 h-6 text-primary-600' %>
+        <span class='font-bold text-sm text-primary-600'><%= number_to_currency(current_user.balance) %></span>
+      </span>
+    </div>
+    <div class='users-details-body'>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/percentage.svg', class: 'ml-1 w-4 h-4 text-secondary-600' %>
+        <span><%="#{(@investment.indicator.rate * 100 * 365).round(2)}%" %></span>
+      </div>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/currency-dolar.svg', class: 'w-4 h-4 text-secondary-600' %>
+        <span><%= number_to_currency(@investment.minimum_amount) %></span>
+      </div>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/calendar-days.svg', class: 'w-4 h-4 text-secondary-600' %>
+        <span>
+          <%= l(@investment.created_at, format: :date) %> -
+          <%= l(@investment.expiration_date, format: :default) %>
+        </span>
+      </div>
+      <div class='user-list-item-with-icon'>
+        <%= inline_svg_tag 'icons/outline/user-circle.svg', class: 'w-4 h-4 text-secondary-600' %>
+        <span><%= @investment.premium ?  t('users.form.free') :  t('users.form.premium')%></span>
+      </div>
+    </div>
 
-<div>
-  <%= label_tag t('.name') %>
-  <%= @investment.name %>
-</div>
-<div>
-  <%= label_tag t('.min_amount') %>
-  <%= @investment.minimum_amount %>
-</div>
-<div>
-  <%= label_tag t('.expiration_date') %>
-  <%= @investment.expiration_date %>
-</div>
-<div>
-  <%= label_tag 'Index' %>
-  <%= @investment.indicator.rate %>
-</div>
-<div>
-  <%= label_tag t('.category') %>
-  <%= @investment.premium ? 'Premium' : 'Free'%>
-</div>
-<div>
-  <%= label_tag 'Balance Account:' %>
-  <%= current_user.account.balance %>
-</div>
+    <%= form_with(model: @user_investment, url: user_investments_path(investment_id: @investment.id), data: { turbo: false }, class:'users-details-footer')  do |form| %>
+      <div class="users-form-field">
+        <%= form.label t('.initial_amount'), class: 'users-input-label' %>
+        <%= form.number_field :initial_amount, min: 0, class: 'users-input-field' %>
+      </div>
 
-<%= form_with(model: @user_investment, url: user_investments_path(investment_id: @investment.id), data: { turbo: false }) do |form| %>
-  <div>
-    <%= form.label t('.initial_amount') %>
-    <%= form.number_field :initial_amount, min: 0 %>
+        <%= form.submit t('.buy'), class: 'user-list-item-button mt-6 cursor-pointer p-3 cursor-pointer', placeholder: t('users.form.invest_amount') %>
+
+    <% end %>
   </div>
-  <div>
-    <%= form.submit t('.buy') %>
-    <%= link_to "Voltar", catalogs_path %>
-  </div>
-<% end %>
+</div>

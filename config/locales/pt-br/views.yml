@@ -58,6 +58,7 @@ pt-BR:
       empty: "Nenhum item encontrado"
       invest: "Investir"
       retrieve: "Resgatar"
+      invest_amount: "Digite valor mínimo a ser investido"
     confirmations:
       title: "Reenviar confirmação"
       subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."
