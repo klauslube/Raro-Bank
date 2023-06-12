@@ -7,4 +7,5 @@ class Account < ApplicationRecord
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   scope :not_admin, -> { joins(:user).where.not(users: { role: :admin }) }
+  scope :receivers_for_sender, ->(sender_id) { joins(:receiver_transactions).where(transactions: { sender_id: }).distinct }
 end

@@ -1,15 +1,14 @@
 <%= render 'shared/notifications/form_errors', object: @transaction %>
-<div class="text-center mt-4 mb-4 sm:text-2xl sm:tracking-tight">
+
+<div>
   <%= t('.transaction') %>#<%= @transaction.id %>
 </div>
-<div class='flex justify-center text-center'>
-  <%= form_with model: @transaction, data: { turbo: false } do |form| %>
-    <%= form.label :token_code, class:"input-label" %>
-    <%= form.number_field :token_code, required: true, placeholder: t('.placeholder_token_code'), class: 'input-field' %>
-    <%= form.submit t('.confirm') %>
-  <% end %>
-</div>
-<div class='flex justify-center text-center'>
-  <%= link_to t('.back'), transactions_path, class: 'px-1' %>
-  <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'px-1' %>
-</div>
+<%= form_with model: @transaction, data: { turbo: false } do |form| %>
+  <%= form.label :token_code, class:"input-label" %>
+  <%= form.number_field :token_code, required: true, placeholder: t('.placeholder_token_code'), class: 'input-field' %>
+  <%= form.submit t('.confirm') %>
+<% end %>
+
+<%= link_to t('.back'), transactions_path, class: 'px-1' %>
+<%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'px-1' %>
+

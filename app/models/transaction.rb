@@ -12,7 +12,9 @@ class Transaction < ApplicationRecord
   after_create :token_countdown
   after_create :cancel_transfer_countdown
   after_commit :update_balance
-  after_commit :new_transfer
+  after_commit :new_transfer, on: :create
+
+  # scope :receiver_by_users, -> { joins(:sender).merge(Account.not_admin) }
 
   enum :status, {
     started: 1,
