@@ -1,4 +1,4 @@
-<div class='w-full h-full px-16 py-8 items-center justify-center'>
+<div class='items-center justify-center w-full h-full px-16 py-8'>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @user_investment } %>
   <div class='users-details-container'>
     <div class='users-details-header'>
@@ -13,7 +13,7 @@
       </span>
       <span class='user-list-item-with-icon'>
         <%= inline_svg_tag 'icons/outline/current-dolar.svg', class: 'w-6 h-6 text-primary-600' %>
-        <span class='font-bold text-sm text-primary-600'><%= number_to_currency(current_user.balance) %></span>
+        <span class='text-sm font-bold text-primary-600'><%= number_to_currency(current_user.balance) %></span>
       </span>
     </div>
     <div class='users-details-body'>
@@ -44,7 +44,7 @@
         <%= form.number_field :initial_amount, min: 0, class: 'users-input-field' %>
       </div>
 
-        <%= form.submit t('.buy'), class: 'user-list-item-button mt-6 cursor-pointer p-3 cursor-pointer', placeholder: t('users.form.invest_amount') %>
+      <%= form.submit t('.buy'), class: 'user-list-item-button mt-6 cursor-pointer p-3 cursor-pointer', placeholder: t('users.form.invest_amount') %>
 
     <% end %>
   </div>

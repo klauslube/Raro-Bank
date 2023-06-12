@@ -1,8 +1,18 @@
-<div class='w-full h-full flex flex-col py-8 px-16 gap-6 items-baseline'>
-  <div class="w-full flex justify-end items-center">
-    <%= inline_svg_tag 'icons/solid/token-swap-line.svg' %>
-    <%= link_to t('.new_transfer'), new_transaction_path, class: 'text-button-transfer-large' %>
+<div class='flex flex-col items-baseline w-full h-full gap-6 px-16 py-8'>
+  <div class="flex items-center justify-between w-full">
+    <div class='flex flex-row items-center gap-4 text-primary-600'>
+      <span><%= t('.balance') %></span>
+      <strong class='text-4xl font-bold'>
+        <%= number_with_precision(current_user.balance, precision: 2) %>
+      </strong>
+      <%= inline_svg_tag 'icons/outline/currency-dolar.svg', class:'text-primary-600 h-6 w-6' %>
+    </div>
+    <div class='flex flex-row items-center gap-4'>
+      <%= inline_svg_tag 'icons/solid/token-swap-line.svg' %>
+      <%= link_to t('.new_transfer'), new_transaction_path, class: 'text-button-transfer-large' %>
+    </div>
   </div>
+
   <% if @transactions.empty? %>
     <div class='user-list-item'>
       <span class='m-2'><%= t('users.form.empty') %></span>
@@ -11,22 +21,22 @@
     <% @transactions.each do |transaction| %>
       <div class='user-list-container'>
         <div class='container-transfer'>
-            <div class='user-list-item-icon mr-4'>
-              <%= inline_svg_tag 'icons/solid/arrow-up-down.svg', class: 'text-primary-100 ' %>
-            </div>
-              <%= transaction.receiver.user.name %>
-            <div class='flex-1 text-primary-600'>
-            </div>
-            <div class='flex-1 text-button-transfer'>
-              R$ <%= number_with_precision(transaction.amount, precision: 2) %>
-            </div>
-            <div>
-              <%= inline_svg_tag 'icons/solid/data-icon.svg', class: 'text-secondary-600 mx-2' %>
-            </div>
-            <div class='flex-1 text-primary-600'>
-              <%= transaction.created_at.strftime("%d/%m/%Y às %H:%M") %>
-            </div>
-              <%= link_to t('.confirm'), edit_transaction_path(transaction), class: 'confirm-button-transfer' %>
+          <div class='mr-4 user-list-item-icon'>
+            <%= inline_svg_tag 'icons/solid/arrow-up-down.svg', class: 'text-primary-100 ' %>
+          </div>
+          <%= transaction.receiver.user.name %>
+          <div class='flex-1 text-primary-600'>
+          </div>
+          <div class='flex-1 text-button-transfer'>
+            R$ <%= number_with_precision(transaction.amount, precision: 2) %>
+          </div>
+          <div>
+            <%= inline_svg_tag 'icons/solid/data-icon.svg', class: 'text-secondary-600 mx-2' %>
+          </div>
+          <div class='flex-1 text-primary-600'>
+            <%= transaction.created_at.strftime("%d/%m/%Y às %H:%M") %>
+          </div>
+          <%= link_to t('.confirm'), edit_transaction_path(transaction), class: 'confirm-button-transfer' %>
         </div>
       </div>
     <% end %>

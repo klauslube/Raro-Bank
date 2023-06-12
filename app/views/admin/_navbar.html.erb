@@ -17,13 +17,13 @@
       </span>
     <% end %>
 
-    <div data-controller="dropdown" class="icon-button mt-1 relative">
+    <div data-controller="dropdown" class="relative mt-1 icon-button">
       <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
         <%= inline_svg_tag 'icons/solid/ellipsis-vertical.svg', class: 'w-8 h-8' %>
       </button>
       <div
         data-dropdown-target="menu"
-        class="hidden menu-dropdown mt-5"
+        class="hidden mt-5 menu-dropdown"
         data-transition-enter-from="opacity-0 scale-95"
         data-transition-enter-to="opacity-100 scale-100"
         data-transition-leave-from="opacity-100 scale-100"

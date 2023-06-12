@@ -1,7 +1,7 @@
 <div class='table-view'>
   <%= search_form_for @q, class:'w-full flex justify-between gap-4 items-end' do |f| %>
     <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
-       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
+      <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
 
     <div class="users-form-field">
@@ -25,8 +25,8 @@
     </div>
 
     <div class="flex items-center gap-4">
-    <%= f.check_box :investment_premium_eq, class: 'users-checkbox-field' %>
-    <%= f.label :investment_premium_eq, t('users.form.premium'), class: 'users-input-label' %>
+      <%= f.check_box :investment_premium_eq, class: 'users-checkbox-field' %>
+      <%= f.label :investment_premium_eq, t('users.form.premium'), class: 'users-input-label' %>
     </div>
 
     <%= f.button class: 'form-search' do %>

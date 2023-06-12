@@ -26,18 +26,18 @@
   <div id="classrooms" class="table-container">
     <div class="table-inner">
       <% if @classrooms.empty? %>
-        <div class=" p-4 text-primary-800 bg-white flex justify-center">
+        <div class="flex justify-center p-4 bg-white  text-primary-800">
           <strong class='text-primary-800'> <%= t('others.blank') %></strong>
         </div>
       <% else %>
         <table class="w-full whitespace-no-wrap">
           <thead>
             <tr class="table-header-container" >
-              <th class="px-4 py-2 w-3/12"><%= t('classrooms.index.classroom') %></th>
+              <th class="w-3/12 px-4 py-2"><%= t('classrooms.index.classroom') %></th>
               <th class="px-4 py-2"><%= t('users.form.start_date') %></th>
               <th class="px-4 py-2"><%= t('users.form.end_date') %></th>
               <th class="px-4 py-2"><%= t('classrooms.show.students') %></th>
-              <th class="px-4 py-2 flex justify-center">
+              <th class="flex justify-center px-4 py-2">
                 <%= link_to new_admin_classroom_path, class:'table-link-plus flex items-center gap-1' do %>
                   <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
                 <% end %>
@@ -51,8 +51,8 @@
                 <td class="px-8 py-3"><%= l(classroom.start_date, format: :default) %></td>
                 <td class="px-8 py-3"><%= l(classroom.end_date, format: :default) %></td>
                 <td class="px-8 py-3"><%= classroom.users.size %></td>
-                <td class="px-8 py-3 flex justify-center menu-dropdown-container">
-                  <div data-controller="dropdown" class="icon-button relative">
+                <td class="flex justify-center px-8 py-3 menu-dropdown-container">
+                  <div data-controller="dropdown" class="relative icon-button">
                     <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
                       <%= inline_svg_tag 'icons/solid/ellipsis-vertical.svg', class: 'table-link-plus w-8 h-8' %>
                     </button>

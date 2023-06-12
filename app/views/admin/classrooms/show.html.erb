@@ -1,6 +1,6 @@
 <div class='table-view'>
-  <div class='w-full flex justify-between items-end'>
-    <h1 class='table-header-title flex gap-4 items-center'>
+  <div class='flex items-end justify-between w-full'>
+    <h1 class='flex items-center gap-4 table-header-title'>
       <%= @classroom.name %>
       <%= link_to edit_admin_classroom_path(@classroom) do %>
         <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'table-link-plus w-4 h-4' %>
@@ -11,7 +11,8 @@
       <div class='flex gap-2 table-header-subtitle'>
         <strong><%= t('classrooms.form.start_date') %>:</strong>
         <span><%= l(@classroom.start_date, format: :default) %></span>
-      </div> |
+      </div>
+       |
       <div class='flex gap-2 table-header-subtitle'>
         <strong><%= t('classrooms.form.end_date') %>:</strong>
         <span><%= l(@classroom.end_date, format: :default) %></span>
@@ -21,18 +22,18 @@
 
   <div id="classrooms" class="table-container">
     <div class="table-inner">
-    <% if @classroom.users.empty? %>
-          <div class=" p-4 text-primary-800 bg-white flex justify-center">
-            <strong class='text-primary-800'> <%= t('others.blank') %></strong>
-          </div>
+      <% if @classroom.users.empty? %>
+        <div class="flex justify-center p-4 bg-white  text-primary-800">
+          <strong class='text-primary-800'> <%= t('others.blank') %></strong>
+        </div>
       <% else %>
         <table class="w-full whitespace-no-wrap">
           <thead>
             <tr class="table-header-container" >
-              <th class="px-4 py-2 w-4/12"><%= t('classrooms.show.students') %></th>
+              <th class="w-4/12 px-4 py-2"><%= t('classrooms.show.students') %></th>
               <th class="px-4 py-2 w-4/8"><%= t('users.form.email') %></th>
               <th class="px-4 py-2 w-3/8">CPF</th>
-              <th class="px-4 py-2 w-1/8 flex justify-center">
+              <th class="flex justify-center px-4 py-2 w-1/8">
                 <%= link_to edit_admin_classroom_path(@classroom) do %>
                   <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
                 <% end %>
@@ -43,14 +44,14 @@
             <% @classroom.users.each do |student| %>
               <tr class="text-gray-700">
                 <td class="px-8 py-3">
-                <div class='flex gap-4 items-center'>
-                </div>
+                  <div class='flex items-center gap-4'>
+                  </div>
                   <%= student.name %>
                 </td>
                 <td class="px-8 py-3"><%= student.email %></td>
                 <td class="px-8 py-3"><%= student.cpf %></td>
-                <td class="px-8 py-3 flex justify-center menu-dropdown-container">
-                  <div data-controller="dropdown" class="icon-button relative">
+                <td class="flex justify-center px-8 py-3 menu-dropdown-container">
+                  <div data-controller="dropdown" class="relative icon-button">
                     <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
                       <%= inline_svg_tag 'icons/solid/ellipsis-vertical.svg', class: 'table-link-plus w-8 h-8' %>
                     </button>

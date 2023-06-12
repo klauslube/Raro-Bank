@@ -2,7 +2,7 @@
   <%= render partial: 'shared/notifications/form_errors', locals: { object: @investment } %>
   <%= form.hidden_field :approver_id, value: @approver_id %>
 
-<div class='users-form-container item-center'>
+  <div class='users-form-container item-center'>
     <div class='users-form-title-container'>
       <% if @investment.persisted? %>
         <h1 class='users-form-title'><%= t('investments.edit.title') %></h1>
@@ -11,47 +11,47 @@
         <h1 class='users-form-title'><%= t('investments.new.title') %></h1>
         <p class='users-form-subtitle'><%= t('investments.new.subtitle') %></p>
       <% end %>
+    </div>
+
+    <div class="users-form-field">
+      <%= form.label :name, t('.name'), class: 'users-input-label' %>
+      <%= form.text_field :name, placeholder: t('investments.form.name_placeholder'), class: 'users-input-field' %>
+    </div>
+
+    <div class='flex justify-between gap-4'>
+      <div class="users-form-field">
+        <%= form.label t('investments.form.index'), class: 'users-input-label' %>
+        <%= form.collection_select(:indicator_id, Indicator.all, :id, ->(indicator) { "#{indicator.name}  #{sprintf('%.2f', (indicator.rate * 100 * 365).round(2)) }%" }, { prompt: t('investments.form.index_placeholder') }, class: 'users-select-field') %>
       </div>
 
       <div class="users-form-field">
-        <%= form.label :name, t('.name'), class: 'users-input-label' %>
-        <%= form.text_field :name, placeholder: t('investments.form.name_placeholder'), class: 'users-input-field' %>
+        <%= form.label :minimum_amount, t('.minimum_amount'), class: 'users-input-label' %>
+        <%= form.number_field :minimum_amount, min: 100, placeholder: '100,00', class: 'users-input-field' %>
       </div>
-
-      <div class='flex justify-between gap-4'>
-        <div class="users-form-field">
-          <%= form.label t('investments.form.index'), class: 'users-input-label' %>
-          <%= form.collection_select(:indicator_id, Indicator.all, :id, ->(indicator) { "#{indicator.name}  #{sprintf('%.2f', (indicator.rate * 100 * 365).round(2)) }%" }, { prompt: t('investments.form.index_placeholder') }, class: 'users-select-field') %>
-        </div>
-
-        <div class="users-form-field">
-          <%= form.label :minimum_amount, t('.minimum_amount'), class: 'users-input-label' %>
-          <%= form.number_field :minimum_amount, min: 100, placeholder: '100,00', class: 'users-input-field' %>
-        </div>
-      </div>
-
-      <div class='flex justify-between gap-4'>
-        <div class="users-form-field">
-          <%= form.label :start_date, t('investments.form.start_date'), class: 'users-input-label' %>
-          <%= form.date_field :start_date, min: Date.current, class: 'users-input-field' %>
-        </div>
-
-        <div class="users-form-field">
-          <%= form.label :expiration_date, t('investments.form.end_date'), class: 'users-input-label' %>
-          <%= form.date_field :expiration_date, min: Date.current + 1, class: 'users-input-field' %>
-        </div>
-      </div>
-
-      <div class="flex w-full gap-1 items-center justify-between">
-        <%= form.label :premium,  t('investments.form.premium'), class: 'users-input-label font-bold' %>
-        <%= form.check_box :premium %>
-      </div>
-
-      <%= form.button class: 'users-form-submit-container' do %>
-        <div class='w-4 h-8'></div>
-        <span><%=t('investments.form.register') %></span>
-        <div class='w-4 h-8'></div>
-      <% end %>
     </div>
+
+    <div class='flex justify-between gap-4'>
+      <div class="users-form-field">
+        <%= form.label :start_date, t('investments.form.start_date'), class: 'users-input-label' %>
+        <%= form.date_field :start_date, min: Date.current, class: 'users-input-field' %>
+      </div>
+
+      <div class="users-form-field">
+        <%= form.label :expiration_date, t('investments.form.end_date'), class: 'users-input-label' %>
+        <%= form.date_field :expiration_date, min: Date.current + 1, class: 'users-input-field' %>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between w-full gap-1">
+      <%= form.label :premium,  t('investments.form.premium'), class: 'users-input-label font-bold' %>
+      <%= form.check_box :premium %>
+    </div>
+
+    <%= form.button class: 'users-form-submit-container' do %>
+      <div class='w-4 h-8'></div>
+      <span><%=t('investments.form.register') %></span>
+      <div class='w-4 h-8'></div>
+    <% end %>
   </div>
+</div>
 <% end %>

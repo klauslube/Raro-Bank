@@ -9,7 +9,7 @@
         <h1 class='users-form-title'><%= t('classrooms.new.title') %></h1>
         <p class='users-form-subtitle'><%= t('classrooms.new.subtitle') %></p>
       <% end %>
-      </div>
+    </div>
     <div class="users-form-field">
       <%= form.label t('.name'), class: 'users-input-label' %>
       <%= form.text_field :name, class: 'users-input-field', placeholder: t('classrooms.form.name_placeholder') %>
@@ -32,25 +32,25 @@
       <%= form.select :user_ids, User.all_except_admins.order(:name).pluck(:name, :id), {}, { multiple: true, class: 'users-multiselect-field', data: { controller: 'slim' } } %>
     </div>
 
-      <% if @classroom.persisted? %>
-        <div class='flex justify-between items-center w-full gap-6'>
-          <%= button_to admin_destroy_path, method: :delete, class: 'users-button-danger', data: { confirm: t('users.form.delete_confirmation'), turbo_confirm: t('users.form.delete_confirmation') } do %>
-            <div class='w-4 h-8'></div>
-              <%= t('users.form.delete') %>
-            <div class='w-4 h-8'></div>
-          <% end %>
-          <%= form.button class: 'users-form-submit-container' do %>
-            <div class='w-4 h-8'></div>
-            <span><%= t('classrooms.form.update') %></span>
-            <div class='w-4 h-8'></div>
-          <% end %>
-        </div>
-      <% else %>
-        <%= form.button class: 'users-form-submit-container' do %>
+    <% if @classroom.persisted? %>
+      <div class='flex items-center justify-between w-full gap-6'>
+        <%= button_to admin_destroy_path, method: :delete, class: 'users-button-danger', data: { confirm: t('users.form.delete_confirmation'), turbo_confirm: t('users.form.delete_confirmation') } do %>
           <div class='w-4 h-8'></div>
-          <span><%= t('classrooms.form.register') %></span>
+          <%= t('users.form.delete') %>
           <div class='w-4 h-8'></div>
         <% end %>
+        <%= form.button class: 'users-form-submit-container' do %>
+          <div class='w-4 h-8'></div>
+          <span><%= t('classrooms.form.update') %></span>
+          <div class='w-4 h-8'></div>
+        <% end %>
+      </div>
+    <% else %>
+      <%= form.button class: 'users-form-submit-container' do %>
+        <div class='w-4 h-8'></div>
+        <span><%= t('classrooms.form.register') %></span>
+        <div class='w-4 h-8'></div>
       <% end %>
+    <% end %>
   </div>
 <% end %>
