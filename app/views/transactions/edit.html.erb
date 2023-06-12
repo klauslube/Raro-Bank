@@ -1,15 +1,29 @@
 <%= render 'shared/notifications/form_errors', object: @transaction %>
-<div class="text-center mt-4 mb-4 sm:text-2xl sm:tracking-tight">
-  <%= t('.transaction') %>#<%= @transaction.id %>
-</div>
-<div class='flex justify-center text-center'>
-  <%= form_with model: @transaction, data: { turbo: false } do |form| %>
-    <%= form.label :token_code, class:"input-label" %>
-    <%= form.number_field :token_code, required: true, placeholder: t('.placeholder_token_code'), class: 'input-field' %>
-    <%= form.submit t('.confirm') %>
-  <% end %>
-</div>
-<div class='flex justify-center text-center'>
-  <%= link_to t('.back'), transactions_path, class: 'px-1' %>
-  <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'px-1' %>
+
+<div class='mt-5'>
+  <div class='bg-white border-primary-200 w-1/2 border rounded-xl mx-auto shadow-md mt-5 px-10 py-2 '>
+    <div class='text-button-transfer flex justify-center'>
+      <%= t('.transaction') %>#<%= @transaction.id %>
+    </div>
+    <div class='mx-2 text-primary-600 flex justify-center'>
+      <%= t('.legends_edit_transfer') %>
+    </div>
+    <div>
+      <%= form_with(model: @transaction, data: { turbo: false }) do |form| %>
+        <div>
+          <%= form.number_field :token_code, placeholder: t('.placeholder_token_code'), class: 'input-group-transfer' %>
+        </div>
+          <%= form.submit t('.next'), class: 'button-primary-transfer' %>
+        </div>
+      <% end %>
+        <div class=''>
+          <div>
+            <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'button-primary-transfer' %>
+          </div>
+          <div>
+            <%= link_to t('.back'), transactions_path, class: 'button-primary-transfer' %>
+          </div>
+        </div>
+    </div>
+  </div>
 </div>

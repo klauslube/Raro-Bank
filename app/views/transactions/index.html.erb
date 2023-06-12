@@ -1,20 +1,24 @@
-<%= link_to t('.new_transfer'), new_transaction_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th><%= t('.value') %></th>
-      <th><%= t('.status_label') %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @transactions.each do |transaction| %>
-    <tr>
-      <td><%= transaction.amount %></td>
-      <td><%= t("activerecord.attributes.transaction.status_enum.#{transaction.status}") %></td>
-      <td><%= link_to t('.confirm'), edit_transaction_path(transaction) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="flex justify-end mx-3 mt-5 items-center">
+  <%= inline_svg_tag 'icons/solid/token-swap-line.svg' %>
+  <%= link_to t('.new_transfer'), new_transaction_path, class: 'text-button-transfer-large' %>
+</div>
+<% @transactions.each do |transaction| %>
+  <div class='container-transfer'>
+      <div class='flex mx-2'>
+        <%= inline_svg_tag 'icons/solid/arrow-up-down.svg', class: 'text-primary-600' %>
+      </div>
+      <div class='flex-1 text-primary-600'>
+        <%= transaction.receiver.user.name %>
+      </div>
+      <div class='flex-1 text-button-transfer'>
+        R$ <%= number_with_precision(transaction.amount, precision: 2) %>
+      </div>
+      <div>
+        <%= inline_svg_tag 'icons/solid/data-icon.svg', class: 'text-secondary-600 mx-2' %>
+      </div>
+      <div class='flex-1 text-primary-600'>
+        <%= transaction.created_at.strftime("%d/%m/%Y às %H:%M") %>
+      </div>
+        <%= link_to t('.confirm'), edit_transaction_path(transaction), class: 'confirm-button-transfer' %>
+  </div>
+<% end %>

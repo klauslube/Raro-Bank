@@ -11,6 +11,7 @@ class Transaction < ApplicationRecord
   after_create :generate_token
   after_create :token_countdown
   after_create :cancel_transfer_countdown
+  after_commit :update_balance
   after_commit :new_transfer, on: :create
 
   enum :status, {
