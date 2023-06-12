@@ -29,11 +29,11 @@
           </div>
           <div class="flex items-center gap-2">
             <%= f.label :premium_eq, t('users.form.free'), class: 'users-input-label' %>
-            <%= f.radio_button :premium_eq, 1 %>
+            <%= f.radio_button :premium_eq, false %>
           </div>
           <div class="flex items-center gap-2">
             <%= f.label :premium_eq, t('users.form.premium'), class: 'users-input-label' %>
-            <%= f.radio_button :premium_eq, 2 %>
+            <%= f.radio_button :premium_eq, true %>
         </div>
       </div>
     </div>
