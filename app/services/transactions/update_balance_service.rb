@@ -6,7 +6,6 @@ module Transactions
 
     def call
       update_balance
-      @transaction.notification_completed_transaction
     end
 
     private
@@ -15,6 +14,7 @@ module Transactions
       transaction_receiver.balance += transaction_amount
       transaction_receiver.save!
       @transaction.status = 'completed'
+      @transaction.save!
     end
 
     def transaction_receiver
