@@ -20,15 +20,15 @@
         <%= f.label :role_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
 
         <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-1">
+          <div class="flex items-center gap-2">
             <%= f.label :role_eq, t('users.form.all'), class: 'users-input-label' %>
             <%= f.radio_button :role_eq, '', checked: true %>
           </div>
-          <div class="flex items-center gap-1">
+          <div class="flex items-center gap-2">
             <%= f.label :role_eq, t('users.form.free'), class: 'users-input-label' %>
             <%= f.radio_button :role_eq, 1 %>
           </div>
-          <div class="flex items-center gap-1">
+          <div class="flex items-center gap-2">
             <%= f.label :role_eq, t('users.form.premium'), class: 'users-input-label' %>
             <%= f.radio_button :role_eq, 2 %>
         </div>

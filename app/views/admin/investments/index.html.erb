@@ -1,5 +1,5 @@
 <div class='table-view'>
-  <%= search_form_for @q, url: admin_users_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
+  <%= search_form_for @q, url: admin_investments_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
     <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
        <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
@@ -10,15 +10,14 @@
     </div>
 
     <div class="users-form-field">
-      <%= f.label :minimum_amount_gteq, t('.minimum_amount') %>
+      <%= f.label :minimum_amount_gteq, t('.minimum_amount'), class: 'users-input-label' %>
       <%= f.number_field :minimum_amount_gteq, min: 0, class: 'users-input-field' %>
     </div>
 
     <div class="users-form-field">
-      <%= f.label :indicator_rate_gteq, t('investments.form.index') %>
+      <%= f.label :indicator_rate_gteq, t('investments.form.index'), class: 'users-input-label' %>
       <%= f.number_field :indicator_rate_gteq, class: 'users-input-field' %>
     </div>
-
 
       <div class="users-form-field">
         <%= f.label :premium_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
@@ -56,8 +55,8 @@
               <th class="px-4 py-2"><%= t('.nome') %></th>
               <th class="px-4 py-2"><%= t('.minimum_amount') %></th>
               <th class="px-4 py-2"><%= t('.start_date') %></th>
-              <th class="px-4 py-2"><%=t('.expiration_date') %></th>
-              <th class="px-4 py-2"><%=t('.rate') %></th>
+              <th class="px-4 py-2"><%= t('.expiration_date') %></th>
+              <th class="px-4 py-2"><%= t('investments.form.index') %></th>
                <th class="px-4 py-2 flex justify-center">
                 <%= link_to new_admin_investment_path, class:'table-link-plus flex items-center gap-1' do %>
                   <%= inline_svg_tag 'icons/solid/plus-circle.svg', class: 'table-link-plus w-8 h-8' %>
