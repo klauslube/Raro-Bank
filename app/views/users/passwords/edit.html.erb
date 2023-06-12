@@ -1,6 +1,6 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |form| %>
   <%= render partial: 'shared/notifications/form_errors', locals: { object: resource } %>
-  <%= f.hidden_field :reset_password_token %>
+  <%= form.hidden_field :reset_password_token %>
   <div class='users-form-container'>
     <div class='users-form-title-container'>
       <h1 class='users-form-title'><%= t('users.passwords.edit.title') %></h1>
@@ -8,9 +8,9 @@
     </div>
 
     <div data-controller="password-visibility" class="users-input-container">
-      <%= f.label t('users.form.new_password'), class: 'users-input-label' %>
+      <%= form.label t('users.form.new_password'), class: 'users-input-label' %>
       <div class="users-input-group">
-        <%= f.password_field :password, autocomplete: "new-password",placeholder: t('users.form.new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+        <%= form.password_field :password, autocomplete: "new-password",placeholder: t('users.form.new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
         <button type="button" data-action="password-visibility#toggle">
           <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
@@ -21,10 +21,10 @@
     <span class='text-xs'><%= t('users.form.password_rules') %></span>
 
     <div data-controller="password-visibility" class="users-input-container">
-      <%= f.label t('users.form.confirm_new_password'), class: 'users-input-label' %>
+      <%= form.label t('users.form.confirm_new_password'), class: 'users-input-label' %>
 
       <div class="users-input-group">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('users.form.confirm_new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+        <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('users.form.confirm_new_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
         <button type="button" data-action="password-visibility#toggle">
           <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <%= f.button class: 'users-form-submit-container' do %>
+    <%= form.button class: 'users-form-submit-container' do %>
       <div class='w-4 h-8'></div>
       <span><%= t('users.passwords.edit.submit') %></span>
       <div class='w-4 h-8'></div>

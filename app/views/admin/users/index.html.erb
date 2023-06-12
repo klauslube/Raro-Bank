@@ -1,52 +1,91 @@
-<%= search_form_for @q, url: admin_users_path do |f| %>
-  <%= f.label :name_cont, 'Nome:' %>
-  <%= f.search_field :name_cont %>
-
-  <%= f.label :email_cont, 'Email:' %>
-  <%= f.search_field :email_cont %>
-
-  <%= f.label :cpf_cont, 'CPF:' %>
-  <%= f.search_field :cpf_cont %>
-
-  <%= f.label :classroom_name_cont, 'Turma:' %>
-  <%= f.search_field :classroom_name_cont %>
-
-  <%= f.label :role_eq, 'Role:' %>
-  <%= f.radio_button :role_eq, '', checked: true %>
-  <%= f.label :role_eq, 'Todos' %>
-
-  <%= f.radio_button :role_eq, 1 %>
-  <%= f.label :role_eq, 'Free' %>
-
-  <%= f.radio_button :role_eq, 2 %>
-  <%= f.label :role_eq, 'Premium' %>
-
-
-  <%= f.submit %>
-  <%= button_tag 'Limpar Filtros', type: :button, onclick: 'window.location.href = window.location.pathname' %>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>CPF</th>
-      <th>Role</th>
-      <th>Classroom</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.cpf %></td>
-        <td><%= user.role %></td>
-        <td><%= user.classroom.name if user.classroom %></td>
-        <td><%= link_to t('.edit'), edit_admin_user_path(user) %></td>
-      </tr>
+<div class='table-view'>
+  <%= search_form_for @q, url: admin_users_path, class:'w-full flex justify-between gap-4 items-end' do |f| %>
+    <%= button_tag type: :button, onclick: 'window.location.href = window.location.pathname' do %>
+       <%= inline_svg_tag 'icons/solid/x-circle.svg', class: 'table-link-plus w-8 h-8 mb-1' %>
     <% end %>
-  </tbody>
-</table>
-<%= paginate @users %>
+
+    <div class="users-form-field">
+      <%= f.label :name_cont, t('.name'), class: 'users-input-label' %>
+      <%= f.search_field :name_cont, class: 'users-input-field' %>
+    </div>
+    <div class="users-form-field">
+      <%= f.label :email_cont, t('users.form.email'), class: 'users-input-label' %>
+      <%= f.search_field :email_cont, class: 'users-input-field' %>
+    </div>
+    <div class="users-form-field">
+      <%= f.label :cpf_cont, 'CPF:', class: 'users-input-label' %>
+      <%= f.search_field :cpf_cont, class: 'users-input-field' %>
+    </div>
+      <div class="users-form-field">
+        <%= f.label :role_eq, t('users.form.role'), class: 'users-input-label mb-2' %>
+
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <%= f.label :role_eq, t('users.form.all'), class: 'users-input-label' %>
+            <%= f.radio_button :role_eq, '', checked: true %>
+          </div>
+          <div class="flex items-center gap-2">
+            <%= f.label :role_eq, t('users.form.free'), class: 'users-input-label' %>
+            <%= f.radio_button :role_eq, 1 %>
+          </div>
+          <div class="flex items-center gap-2">
+            <%= f.label :role_eq, t('users.form.premium'), class: 'users-input-label' %>
+            <%= f.radio_button :role_eq, 2 %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.button class: 'users-form-search' do %>
+      <%= t('users.form.search') %>
+    <% end %>
+  <% end %>
+  <div id="users" class="table-container">
+    <div class="table-inner">
+    <% if @users.empty? %>
+          <div class=" p-4 text-primary-800 bg-white flex justify-center">
+            <strong class='text-primary-800'> <%= t('others.blank') %></strong>
+          </div>
+      <% else %>
+        <table class="w-full whitespace-no-wrap">
+          <thead>
+            <tr class="table-header-container" >
+              <th class="px-4 py-2"><%= t('.nome') %></th>
+              <th class="px-4 py-2"><%= t('users.form.email') %></th>
+              <th class="px-4 py-2"><%= t('.cpf') %></th>
+              <th class="px-4 py-2"><%= t('users.form.classroom') %></th>
+              <th class="px-4 py-2 flex justify-center">-</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y">
+            <% @users.each do |user| %>
+              <tr class="text-gray-700">
+              <td class="px-8 py-3">
+                <div class='flex gap-4 items-center'>
+                  <%= user.name %>
+                  <% if user.premium? %>
+                    <span class='tag-user-premium'>Premium</span>
+                  <% end %>
+                </div>
+                </td>
+                <td class="px-8 py-3"><%= user.email %></td>
+                <td class="px-8 py-3"><%= user.cpf %></td>
+                <td class="px-8 py-3">
+                <% if user.classroom.presence %>
+                   <span class="px-8 py-3 items-start"><%= user.classroom.name %></span>
+                  <% else %>
+                    <span class="px-8 py-3 items-start">-</span>
+                <% end %>
+                </td>
+                <td class="px-8 py-3 flex justify-center">
+                  <%= link_to edit_admin_user_path(user), class:'table-link-plus flex items-center gap-1' do %>
+                    <%= inline_svg_tag 'icons/outline/pencil.svg', class: 'table-link-plus w-4 h-4' %>
+                <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= paginate @users %>
+</div>

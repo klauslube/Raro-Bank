@@ -16,7 +16,8 @@ Rails.application.routes.draw do
         resources :investments, only: %i[index new create show destroy]
 
         # Route for admin to deposit money in users account
-        get '/deposits', to: 'deposits#new', as: :deposit
+        get '/deposits', to: 'deposits#index', as: :deposit
+        get '/deposits/new', to: 'deposits#new', as: :new_deposit
         post '/deposits', to: 'deposits#create'
 
         # Routes for admin user (role: admin) to manage other users accounts

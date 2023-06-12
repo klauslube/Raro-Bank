@@ -7,10 +7,10 @@
     <%= link_to t('links.classrooms'), admin_classrooms_path, class: "menu-item#{'-active' if request.path.include?('/classroom')}" %>
     <%= link_to t('links.investments'), admin_investments_path, class: "menu-item#{'-active' if request.path.include?('/investment')}" %>
     <%= link_to t('links.users'), admin_users_path, class: "menu-item#{'-active' if request.path.include?('/users')}" %>
-    <%= link_to :deposits, admin_deposits_path, class: "menu-item#{'-active' if request.path.include?('/deposits')}"  %>
+    <%= link_to t('links.deposits'), admin_deposits_path, class: "menu-item#{'-active' if request.path.include?('/deposits')}" %>
   </div>
   <div class="flex justify-end items-center gap-4 min-w-[120px]">
-    <%= link_to admin_deposits_path , class: "menu-button#{'-active' if request.path.include?('/deposits')}" do %>
+    <%= link_to admin_new_deposit_path , class: "menu-button#{'-active' if request.path.include?('/deposits/new')}" do %>
       <%= inline_svg_tag 'icons/solid/plus-small.svg', class: 'w-4 h-4 mt-1' %>
       <span class="pr-2">
         Saldo

@@ -5,8 +5,9 @@ pt-BR:
     catalog: "Catálogo"
     transactions: "Transações"
     investments: "Investimentos"
-    classrooms: "Classrooms"
-    users: "Usuarios"
+    classrooms: "Turmas"
+    deposits: "Depósitos"
+    users: "Usuários"
     invest: "Investir"
     transfer: "Transferir"
     extract: "Extrato"
@@ -43,6 +44,17 @@ pt-BR:
       save: "Salvar"
       delete: "Deletar conta"
       delete_confirmation: "Tem certeza que deseja deletar sua conta?"
+      details: "Detalhes"
+      search: "Buscar"
+      created: "Criado em"
+      updated: "Atualizado em"
+      amount: "Valor"
+      destination: "Destinatário"
+      classroom: "Turma"
+      role: "Tipo de usuário"
+      free: "Free"
+      premium: "Premium"
+      all: "Todos"
     confirmations:
       title: "Reenviar confirmação"
       subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."
@@ -67,3 +79,48 @@ pt-BR:
       title: "Acesse a plataforma"
       subtitle: "Faça login ou registre-se para começar a fazer suas raracoins valerem!"
       submit: "Entrar"
+  classrooms:
+    form:
+      name_placeholder: "Digite o nome da turma"
+      date_placeholder: "Selecione a data"
+      start_date: "Data de início"
+      end_date: "Data de término"
+      name: "Nome"
+      register: "Cadastrar turma"
+      delete: "Deletar turma"
+      update: "Atualizar turma"
+      delete_confirmation: "Tem certeza que deseja deletar a turma?"
+    new:
+      title: "Cadastrar turma"
+      subtitle: "Adicione uma nova turma ao sistema."
+    edit:
+      title: "Editar turma"
+      subtitle: "Atualize os dados dessa turma e gerencie os alunos que pertencem a ela."
+    show:
+      students: "Alunos"
+    index:
+      classroom: "Nome da turma"
+  investments:
+    form:
+      name_placeholder: "Digite o nome do investimento"
+      date_placeholder: "Selecione a data"
+      start_date: "Data de início"
+      end_date: "Data de término"
+      index: "Índice"
+      index_placeholder: "Selecione o indexador"
+      premium: "Esse é um investimento premium?"
+      register: "Cadastrar investimento"
+      delete: "Deletar investimento"
+      delete_confirmation: "Tem certeza que deseja deletar o investimento?"
+    new:
+      title: "Cadastrar investimento"
+      subtitle: "Adicione um investimento ao catalogo. Lembre-se de marcar caso seja apenas para usuários premium!"
+    edit:
+      title: "Editar investimento"
+      subtitle: "Atualize os dados e valores de um investimento."
+    show:
+      title: "Investimento"
+      subtitle: "Veja todos os detalhes do produto"
+      users: "Usuários investidores"
+  others:
+    blank: "Nenhum registro encontrado"

@@ -32,18 +32,23 @@
           <%= form.submit t('.next'), class: 'button-primary-transfer' %>
         </div>
       <% end %>
-        <div class=''>
-          <div>
-            <%= link_to t('.contacts'), accounts_path, class: 'button-primary-transfer' %>
-          </div>
-          <div>
-            <%= link_to t('.cancel'), transactions_path, class: 'button-primary-transfer' %>
-          </div>
+      <div class=''>
+        <div>
+          <%= link_to t('.contacts'), accounts_path, class: 'button-primary-transfer' %>
         </div>
+        <div>
+          <%= link_to t('.cancel'), transactions_path, class: 'button-primary-transfer' %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<%# current_user.account.sender_transactions.each do |transaction| %>
-  <%#= transaction.receiver.user.name %>
-<%# end %>
+    <div>
+      <%= form.label :receiver_cpf, class:'input-label' %>
+      <em><%= form.number_field :receiver_cpf, step: 0.01, placeholder: t('.placeholder_receiver_cpf'), class: 'input-field' %></em>
+    </div>
+    <div class='action'>
+      <%= form.submit t('.next'), class: 'button-primary' %>
+      <%= link_to t('.cancel'), transactions_path, class: 'button-primary' %>
+    </div>
+  <% end %>
+</div>

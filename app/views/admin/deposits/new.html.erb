@@ -1,22 +1,36 @@
 <%= form_with(model: @transaction, url: admin_deposits_path, data: { controller: 'deposit' }) do |form| %>
   <%= render partial: 'shared/errors', locals: { object: @transaction } %>
 
-  <div>
-    <%= form.label t('.receiver_cpf'), class:'users-input-label' %>
-    <%= form.text_field :receiver_cpf, placeholder: t('.receiver_cpf_placeholder'), data: { deposit_target: 'cpfField', action: 'input->deposit#cpfValueChanged' }, class: 'users-input-field' %>
-  </div>
+  <div class='users-form-container'>
+    <div class='users-form-title-container'>
+      <h1 class='users-form-title'>Adicionar saldo</h1>
+      <p class='users-form-subtitle'>Recompense os alunos pelo esforço, dedicação e resiliência deixando seus cofres cheios de raracoins! :)</p>
+    </div>
 
-  <div>
-    <%= form.label t('.classroom'), class:"users-input-label" %>
-    <%= form.collection_select :classroom_id, Classroom.with_users, :id, :name, { prompt: t('.select_field') }, { include_blank: true, data: { deposit_target: 'classroomField', action: 'change->deposit#classroomValueChanged' }, class: 'users-select-field ' } %>
-  </div>
+    <div class="users-form-field">
+      <%= form.label t('.classroom'), class:'users-input-label' %>
+      <%= form.collection_select :classroom_id, Classroom.with_users, :id, :name, { prompt: t('.select_field') }, { include_blank: true, data: { deposit_target: 'classroomField', action: 'change->deposit#classroomValueChanged' }, class: 'users-select-field ' } %>
+    </div>
 
-  <div>
-    <%= form.label t('.amount'), class:"users-input-label" %>
-    <%= form.number_field :amount, step: 0.01, min: 1, placeholder: t('.deposit_amount_placeholder'), data: { deposit_target: 'amountField', action: 'input->deposit#amountValueChanged' }, class: "users-input-field" %>
-  </div>
+    <div class="users-form-field">
+      <%= form.label :receiver_cpf, class:'users-input-label' %>
+      <%= form.text_field 'Usuário', placeholder: t('.receiver_cpf_placeholder'),data: { deposit_target: 'cpfField', action: 'input->deposit#cpfValueChanged' }, class: 'users-input-field' %>
+    </div>
 
-  <div class="action">
-    <%= form.submit t('.submit'), data: { deposit_target: 'submitButton' }, class: 'button-primary' %>
+    <div>
+      <%= form.label t('.amount'), class:'users-input-label' %>
+      <%= form.number_field :amount, step: 0.01, min: 1, placeholder: t('.deposit_amount_placeholder'), data: { deposit_target: 'amountField', action: 'input->deposit#amountValueChanged' }, class: 'users-input-field' %>
+    </div>
+
+    <%= form.button data: { deposit_target: 'submitButton' }, class: 'users-form-submit-container' do %>
+      <div class='w-4 h-8'></div>
+      <span>Adicionar saldo</span>
+      <div class='w-4 h-8'></div>
+    <% end %>
+
+    <div class='flex items-end gap-2'>
+      <span class='text-sm'>Não sabe o CPF??</span>
+      <%= link_to "Busque por ele aqui!", admin_users_path, class: "users-form-link" %>
+    </div>
   </div>
 <% end %>

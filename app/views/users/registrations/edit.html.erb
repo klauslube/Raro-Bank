@@ -22,7 +22,7 @@
 
     <div class="users-form-field">
       <%= form.label  t('users.form.email'), class: 'users-input-label' %>
-      <%= form.email_field :email, autofocus: true, autocomplete: "email", class: 'users-input-field', placeholder:  t('users.form.email_placeholder') %>
+      <%= form.email_field :email, autofocus: true, disabled: true, autocomplete: "email", class: 'users-input-field', placeholder:  t('users.form.email_placeholder') %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -58,10 +58,10 @@
     <span class='text-xs'><%= t('users.form.password_rules') %></span>
 
     <div data-controller="password-visibility" class="users-input-container">
-      <%= form.label :current_password, class: 'users-input-label' %>
+      <%= form.label t('users.form.current_password'), class: 'users-input-label' %>
 
       <div class="users-input-group">
-        <%= form.password_field t('users.form.current_password'), class: 'users-input-field', autocomplete: "current-password", placeholder: t('users.form.current_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
+        <%= form.password_field :current_password, class: 'users-input-field', autocomplete: "current-password", placeholder: t('users.form.current_password_placeholder'), data: { password_visibility_target: "input" }, spellcheck: false, class: "users-input-inside" %>
 
         <button type="button" data-action="password-visibility#toggle">
           <%= inline_svg_tag 'icons/solid/eye.svg', data: { password_visibility_target: "icon" }, class: 'users-input-inside-button' %>
