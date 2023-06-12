@@ -9,31 +9,10 @@
       <%= form.label :amount, class:'input-label' %>
       <%= form.number_field :amount, step: 0.01, placeholder: t('.placeholder_amount'), class: 'input-field' %>
     </div>
-
-    <div data-controller="receiver">
-      <div class='flex'>
-        <label>
-          <%= form.radio_button :receiver_option, 'select', checked: true, data: { action: 'change->receiver#toggleFields' } %>
-          Selecionar contato
-        </label>
-        <br>
-        <label>
-          <%= form.radio_button :receiver_option, 'cpf', data: { action: 'change->receiver#toggleFields' } %>
-          Digitar CPF
-        </label>
-      </div>
-
-      <div data-receiver-target="selectField" class='flex flex-col'>
-        <%= form.label :receiver_cpf, class:'input-label' %>
-        <%= form.collection_select(:receiver_cpf, current_user.transactions_contacts_history, :cpf, :name, { prompt:'Selecione o contato' }, class: 'input-field') %>
-      </div>
-
-      <div data-receiver-target="cpfField" style="display: none;" class='flex flex-col'>
-        <%= form.label :receiver_cpf, class:'input-label' %>
-        <%= form.number_field :receiver_cpf, step: 0.01, placeholder: t('.placeholder_receiver_cpf'), class: 'input-field' %>
-      </div>
+    <div>
+      <%= form.label :receiver_cpf, class:'input-label' %>
+      <em><%= form.number_field :receiver_cpf, step: 0.01, placeholder: t('.placeholder_receiver_cpf'), class: 'input-field' %></em>
     </div>
-
     <div class='action'>
       <%= form.submit t('.next'), class: 'button-primary' %>
       <%= link_to t('.cancel'), transactions_path, class: 'button-primary' %>
