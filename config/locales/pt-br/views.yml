@@ -11,6 +11,7 @@ pt-BR:
     invest: 'Investir'
     transfer: 'Transferir'
     extract: 'Extrato'
+    new_investment: 'Comece agora!'
   home:
     title: 'Comece a movimentar sua conta'
   article:
@@ -18,6 +19,9 @@ pt-BR:
     subtitle: 'Alunos e ex-alunos da nossa escola possuem acesso a investimentos de alto rendimento. Faça suas raracoins valerem a pena!'
     more: 'Veja mais'
   users:
+    balance: 'Saldo'
+    contacts: 'Contatos'
+    contacts_empty: 'Você ainda não possui contatos'
     form:
       name_placeholder: 'Digite seu nome'
       cpf_placeholder: 'Digite seu CPF'
@@ -116,6 +120,7 @@ pt-BR:
     index:
       classroom: 'Nome da turma'
   investments:
+    empty: 'Você ainda não tem investimentos.'
     form:
       name: 'Nome do investimento'
       minimum_amount: 'Valor mínimo'

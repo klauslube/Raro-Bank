@@ -35,8 +35,11 @@
   <% end %>
 
   <% if @user_investments.empty? %>
-    <div class='user-list-item'>
-      <span class='m-2'><%= t('users.form.empty') %></span>
+    <div class='justify-center user-list-item'>
+      <div class='p-2'>
+        <span><%= t('investments.empty') %></span>
+        <%= link_to t('links.new_investment'), catalogs_path, class: 'user-simple-link'%>
+      </div>
     </div>
   <% else %>
     <div class='user-list-container'>

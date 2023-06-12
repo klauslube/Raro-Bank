@@ -1,7 +1,7 @@
 <div class='flex flex-col items-baseline w-full h-full gap-6 px-16 py-8'>
   <div class="flex items-center justify-between w-full">
     <div class='flex flex-row items-center gap-4 text-primary-600'>
-      <span><%= t('.balance') %></span>
+      <span><%= t('users.balance') %></span>
       <strong class='text-4xl font-bold'>
         <%= number_with_precision(current_user.balance, precision: 2) %>
       </strong>
@@ -19,24 +19,29 @@
     </div>
   <% else %>
     <% @transactions.each do |transaction| %>
-      <div class='user-list-container'>
-        <div class='container-transfer'>
-          <div class='mr-4 user-list-item-icon'>
+      <div class='justify-between container-transfer'>
+        <div class='flex items-center gap-4'>
+          <div class='user-list-item-icon'>
             <%= inline_svg_tag 'icons/solid/arrow-up-down.svg', class: 'text-primary-100 ' %>
           </div>
-          <%= transaction.receiver.user.name %>
-          <div class='flex-1 text-primary-600'>
-          </div>
-          <div class='flex-1 text-button-transfer'>
-            R$ <%= number_with_precision(transaction.amount, precision: 2) %>
-          </div>
-          <div>
+          <span class='text-primary-700'>
+            <%= transaction.receiver.user.name %>
+          </span>
+          <span class='user-list-item-tag'>
+            <%= t("activerecord.attributes.transaction.status_enum.#{transaction.status}") %>
+          </span>
+          <% if transaction.status == 'started' %>
+            <%= link_to t('.confirm'), edit_transaction_path(transaction), class: 'user-simple-link' %>
+          <% end %>
+        </div>
+        <div class='flex items-center gap-10'>
+          <div class='flex gap-4 text-primary-600'>
             <%= inline_svg_tag 'icons/solid/data-icon.svg', class: 'text-secondary-600 mx-2' %>
+            <%= l(transaction.created_at, format: :custom) %>
           </div>
-          <div class='flex-1 text-primary-600'>
-            <%= transaction.created_at.strftime("%d/%m/%Y às %H:%M") %>
+          <div class='flex-1 text-xl text-button-transfer'>
+            <%= number_to_currency(transaction.amount) %>
           </div>
-          <%= link_to t('.confirm'), edit_transaction_path(transaction), class: 'confirm-button-transfer' %>
         </div>
       </div>
     <% end %>
