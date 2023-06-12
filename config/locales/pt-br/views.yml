@@ -55,6 +55,9 @@ pt-BR:
       free: "Free"
       premium: "Premium"
       all: "Todos"
+      empty: "Nenhum item encontrado"
+      invest: "Investir"
+      retrieve: "Resgatar"
     confirmations:
       title: "Reenviar confirmação"
       subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."
@@ -102,10 +105,13 @@ pt-BR:
       classroom: "Nome da turma"
   investments:
     form:
+      name: "Nome dp vencimento"
+      minimum_amount: "Valor mínimo"
       name_placeholder: "Digite o nome do investimento"
       date_placeholder: "Selecione a data"
       start_date: "Data de início"
       end_date: "Data de término"
+      expiration: "Data de vencimento"
       index: "Índice"
       index_placeholder: "Selecione o indexador"
       premium: "Esse é um investimento premium?"
