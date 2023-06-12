@@ -11,6 +11,11 @@ class TransactionMailer < ApplicationMailer
     mail(to: sender_email, subject: 'Nova transferência criada')
   end
 
+  def receiver_notification(id)
+    @mailer_receiver_info = id
+    mail(to: receiver_email, subject: 'Nova transferência recebida')
+  end
+
   private
 
   def confirmation_sender_email
@@ -19,6 +24,10 @@ class TransactionMailer < ApplicationMailer
 
   def sender_email
     @mailer_notification.sender.user.email
+  end
+
+  def receiver_email
+    @mailer_receiver_info.receiver.user.email
   end
 
   def receiver_name

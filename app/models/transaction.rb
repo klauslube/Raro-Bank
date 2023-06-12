@@ -43,6 +43,10 @@ class Transaction < ApplicationRecord
     weekday >= 1 && weekday <= 5 && hour >= 8 && hour < 18
   end
 
+  def notification_completed_transaction
+    receiver_notification_email
+  end
+
   private
 
   def generate_token
@@ -85,5 +89,9 @@ class Transaction < ApplicationRecord
 
   def send_notification_email
     TransactionMailer.transfer_notification(self).deliver_now
+  end
+
+  def receiver_notification_email
+    TransactionMailer.receiver_notification(self).deliver_now
   end
 end
