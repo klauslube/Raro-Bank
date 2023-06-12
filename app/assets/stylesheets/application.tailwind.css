@@ -110,6 +110,7 @@ select:-webkit-autofill:focus {
   .table-view {
     @apply flex flex-col items-baseline w-full h-full gap-8 px-16 py-8;
   }
+
   .table-container {
     @apply w-full overflow-hidden rounded-lg shadow-lg;
   }
@@ -337,7 +338,7 @@ select:-webkit-autofill:focus {
   }
 
   .container-transfer {
-    @apply flex items-center flex-1 w-full h-20 px-4 bg-white border rounded-lg shadow-md border-primary-300;
+    @apply flex items-center w-full p-8 bg-white border rounded-lg shadow-md border-primary-300 text-primary-600;
   }
 
   .text-color {
@@ -417,10 +418,22 @@ select:-webkit-autofill:focus {
   }
 
   .order-item-tag {
-    @apply px-2 py-1 text-xs font-bold uppercase rounded-md x-1 text-primary-700 bg-primary-300;
+    @apply px-2 py-1 text-xs font-bold uppercase rounded-md text-primary-700 bg-primary-300;
   }
 
   .order-item-tag:hover {
     @apply bg-primary-400;
+  }
+
+  .user-contacts-container {
+    @apply flex items-center w-full p-8 bg-white border rounded-lg shadow-md border-primary-300;
+  }
+
+  .user-simple-link {
+    @apply text-base font-bold text-primary-600 decoration-secondary-600 decoration-2 underline-offset-8;
+  }
+
+  .user-simple-link:hover {
+    @apply underline;
   }
 }
