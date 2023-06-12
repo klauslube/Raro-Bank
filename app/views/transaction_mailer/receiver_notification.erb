@@ -50,7 +50,7 @@
 
   <h2>Você recebeu uma nova transferência</h2>
   <h3>Transferência N°:<strong><%= @mailer_receiver_info.id %></strong></h3>
-  <p>Olá <%= @mailer_receiver_info.receiver.user.name %>, você recebeu uma nova transferência de <%= @mailer_receiver_info.sender.user.name %> %> num valor de:</p>
+  <p>Olá,<strong><%= @mailer_receiver_info.receiver.user.name %></strong> você recebeu uma nova transferência de <%= @mailer_receiver_info.sender.user.name %> com valor de:</p>
   <p class="token"><%= number_to_currency(@mailer_receiver_info.amount) %></p>
 
 </main>
