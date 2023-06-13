@@ -29,11 +29,11 @@
           </span>
           <span class='user-list-item-tag'>
 
-          <% if transaction.status == 'canceled' %>
-            <%= t('users.token_expired') %>
-          <% else %>
-            <%= t("activerecord.attributes.transaction.status_enum.#{transaction.status}") %>
-          <% end %>
+            <% if transaction.status == 'canceled' %>
+              <%= t('users.token_expired') %>
+            <% else %>
+              <%= t("activerecord.attributes.transaction.status_enum.#{transaction.status}") %>
+            <% end %>
 
           </span>
           <% if transaction.status == 'started' %>

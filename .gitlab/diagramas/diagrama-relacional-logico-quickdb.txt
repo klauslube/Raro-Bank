@@ -1,6 +1,7 @@
 Users
 -
 id int PK
+classroom_id int FK -< Classrooms.id
 name string
 CPF string(11) UNIQUE
 email string
@@ -10,7 +11,6 @@ role ENUM
 Classrooms
 -
 id int PK
-user_id int FK -< Users.id
 name string UNIQUE
 start_date date
 end_date date
@@ -35,11 +35,10 @@ Investments
 id int PK
 name string
 minimum_amount decimal
-income decimal
 premium? boolean
-profit decimal
 expiration_date date
-creator_id int FK -< Users.id
+approverr_id int FK -< Users.id
+indicator_id int FK -< Indicators.id
 
 User_Investments
 -
@@ -47,3 +46,19 @@ id int PK
 user_id int FK >-< Users.id
 investment_id int FK >-< Investments.id
 initial_amount decimal
+profit decimal
+
+Tokens
+-
+id int PK
+code int
+active? boolean
+transaction_id int FK - Transactions.id
+
+Indicators
+-
+id int PK
+rate decimal
+name string
+rate_date date
+

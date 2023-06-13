@@ -1,159 +1,159 @@
 pt-BR:
   links:
-    logout: "Sair"
-    account: "Conta"
-    catalog: "Catálogo"
-    transactions: "Transações"
-    investments: "Investimentos"
-    classrooms: "Turmas"
-    deposits: "Depósitos"
-    users: "Usuários"
-    invest: "Investir"
-    transfer: "Transferir"
-    extract: "Extrato"
-    new_investment: "Comece agora!"
-    resend: "Reenviar token"
+    logout: 'Sair'
+    account: 'Conta'
+    catalog: 'Catálogo'
+    transactions: 'Transações'
+    investments: 'Investimentos'
+    classrooms: 'Turmas'
+    deposits: 'Depósitos'
+    users: 'Usuários'
+    invest: 'Investir'
+    transfer: 'Transferir'
+    extract: 'Extrato'
+    new_investment: 'Comece agora!'
+    resend: 'Reenviar token'
   home:
-    title: "Comece a movimentar sua conta"
+    title: 'Comece a movimentar sua conta'
   article:
-    title: "Garanta acesso aos melhores investimentos ao se tornar um aluno da Raro Academy"
-    subtitle: "Alunos e ex-alunos da nossa escola possuem acesso a investimentos de alto rendimento. Faça suas raracoins valerem a pena!"
-    more: "Veja mais"
+    title: 'Garanta acesso aos melhores investimentos ao se tornar um aluno da Raro Academy'
+    subtitle: 'Alunos e ex-alunos da nossa escola possuem acesso a investimentos de alto rendimento. Faça suas raracoins valerem a pena!'
+    more: 'Veja mais'
   users:
-    balance: "Saldo"
-    contacts: "Contatos"
-    choose_contacts: "Ou escolha um dos seus contatos: "
-    contacts_empty: "Você ainda não possui contatos"
-    token_expired: "Token expirado"
+    balance: 'Saldo'
+    contacts: 'Contatos'
+    choose_contacts: 'Ou escolha um dos seus contatos: '
+    contacts_empty: 'Você ainda não possui contatos'
+    token_expired: 'Token expirado'
     form:
-      name_placeholder: "Digite seu nome"
-      cpf_placeholder: "Digite seu CPF"
-      email: "E-mail"
-      email_placeholder: "Digite seu e-mail"
-      email_confirmed: "E-mail confirmado?"
-      register_date: "Data de cadastro"
-      password: "Senha"
-      password_placeholder: "Digite sua senha"
-      confirm_password: "Confirme sua senha"
-      confirm_password_placeholder: "Confirme a sua senha"
-      new_password: "Nova senha"
-      confirm_new_password: "Confirme sua nova senha"
-      confirm_new_password_placeholder: "Digite a confirmação da sua nova senha"
-      new_password_placeholder: "Digite sua nova senha"
-      current_password: "Senha atual"
-      current_password_placeholder: "Digite sua senha atual para prosseguir"
-      password_rules: "Utilize 8 caracteres entre letras, números e carácter especial"
-      cpf_rules: "Somente números"
-      remembered_password: "Lembrou a senha?"
-      make_login: "Faça login!"
-      register: "Cadastre-se!"
-      resend_confirmation: "Reenviar confirmação!"
-      have_account: "Já possui uma conta?"
-      not_have_account: "Não possui uma conta?"
-      save: "Salvar"
-      delete: "Deletar conta"
-      delete_confirmation: "Tem certeza que deseja deletar sua conta?"
-      retrieve_confirmation: "Tem certeza que deseja resgatar seu investimento?"
-      details: "Detalhes"
-      search: "Buscar"
-      created: "Criado em"
-      updated: "Atualizado em"
-      amount: "Valor"
-      destination: "Destinatário"
-      classroom: "Turma"
-      role: "Tipo de usuário"
-      free: "Free"
-      premium: "Premium"
-      all: "Todos"
-      empty: "Nenhum item encontrado"
-      invest: "Investir"
-      retrieve: "Resgatar"
-      invest_amount: "Digite valor mínimo a ser investido"
-      yes: "Sim"
-      no: "Não"
-      user: "Usuário"
-      role_admin_label: "Adicionar locale: Conceder privilégios de administrador?"
+      name_placeholder: 'Digite seu nome'
+      cpf_placeholder: 'Digite seu CPF'
+      email: 'E-mail'
+      email_placeholder: 'Digite seu e-mail'
+      email_confirmed: 'E-mail confirmado?'
+      register_date: 'Data de cadastro'
+      password: 'Senha'
+      password_placeholder: 'Digite sua senha'
+      confirm_password: 'Confirme sua senha'
+      confirm_password_placeholder: 'Confirme a sua senha'
+      new_password: 'Nova senha'
+      confirm_new_password: 'Confirme sua nova senha'
+      confirm_new_password_placeholder: 'Digite a confirmação da sua nova senha'
+      new_password_placeholder: 'Digite sua nova senha'
+      current_password: 'Senha atual'
+      current_password_placeholder: 'Digite sua senha atual para prosseguir'
+      password_rules: 'Utilize 8 caracteres entre letras, números e carácter especial'
+      cpf_rules: 'Somente números'
+      remembered_password: 'Lembrou a senha?'
+      make_login: 'Faça login!'
+      register: 'Cadastre-se!'
+      resend_confirmation: 'Reenviar confirmação!'
+      have_account: 'Já possui uma conta?'
+      not_have_account: 'Não possui uma conta?'
+      save: 'Salvar'
+      delete: 'Deletar conta'
+      delete_confirmation: 'Tem certeza que deseja deletar sua conta?'
+      retrieve_confirmation: 'Tem certeza que deseja resgatar seu investimento?'
+      details: 'Detalhes'
+      search: 'Buscar'
+      created: 'Criado em'
+      updated: 'Atualizado em'
+      amount: 'Valor'
+      destination: 'Destinatário'
+      classroom: 'Turma'
+      role: 'Tipo de usuário'
+      free: 'Free'
+      premium: 'Premium'
+      all: 'Todos'
+      empty: 'Nenhum item encontrado'
+      invest: 'Investir'
+      retrieve: 'Resgatar'
+      invest_amount: 'Digite valor mínimo a ser investido'
+      yes: 'Sim'
+      no: 'Não'
+      user: 'Usuário'
+      role_admin_label: 'Adicionar locale: Conceder privilégios de administrador?'
     edit:
-      title: "Gerenciar usuário"
-      subtitle: "Adicione um aluno a uma turma e dê privilégios de premium para ele!"
+      title: 'Gerenciar usuário'
+      subtitle: 'Adicione um aluno a uma turma e dê privilégios de premium para ele!'
     confirmations:
-      title: "Reenviar confirmação"
-      subtitle: "Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação."
+      title: 'Reenviar confirmação'
+      subtitle: 'Libere seu acesso! Insira o seu e-mail novamente para o reenvio do link de confirmação.'
     passwords:
       new:
-        title: "Esqueceu a senha?"
-        subtitle: "Informe seu endereço de e-mail que nós enviaremos um código para alteração de senha."
-        submit: "Enviar e-mail"
+        title: 'Esqueceu a senha?'
+        subtitle: 'Informe seu endereço de e-mail que nós enviaremos um código para alteração de senha.'
+        submit: 'Enviar e-mail'
       edit:
-        title: "Redefina sua senha"
-        subtitle: "Informe a nova senha de acesso para completar o resgate da sua conta!"
-        submit: "Alterar senha"
+        title: 'Redefina sua senha'
+        subtitle: 'Informe a nova senha de acesso para completar o resgate da sua conta!'
+        submit: 'Alterar senha'
     registrations:
       new:
-        title: "Cadastre-se!"
-        subtitle: "Registre-se agora para começar a fazer suas raracoins valerem"
-        submit: "Cadastre"
+        title: 'Cadastre-se!'
+        subtitle: 'Registre-se agora para começar a fazer suas raracoins valerem'
+        submit: 'Cadastre'
       edit:
-        title: "Editar cadastro"
-        subtitle: "Altere seus dados cadastrais"
+        title: 'Editar cadastro'
+        subtitle: 'Altere seus dados cadastrais'
     sessions:
-      title: "Acesse a plataforma"
-      subtitle: "Faça login ou registre-se para começar a fazer suas raracoins valerem!"
-      submit: "Entrar"
+      title: 'Acesse a plataforma'
+      subtitle: 'Faça login ou registre-se para começar a fazer suas raracoins valerem!'
+      submit: 'Entrar'
   classrooms:
     form:
-      name_placeholder: "Digite o nome da turma"
-      date_placeholder: "Selecione a data"
-      start_date: "Data de início"
-      end_date: "Data de término"
-      name: "Nome"
-      register: "Cadastrar turma"
-      delete: "Deletar turma"
-      update: "Atualizar turma"
-      delete_confirmation: "Tem certeza que deseja deletar a turma?"
-      select_classroom: "Selecione uma turma"
+      name_placeholder: 'Digite o nome da turma'
+      date_placeholder: 'Selecione a data'
+      start_date: 'Data de início'
+      end_date: 'Data de término'
+      name: 'Nome'
+      register: 'Cadastrar turma'
+      delete: 'Deletar turma'
+      update: 'Atualizar turma'
+      delete_confirmation: 'Tem certeza que deseja deletar a turma?'
+      select_classroom: 'Selecione uma turma'
     new:
-      title: "Cadastrar turma"
-      subtitle: "Adicione uma nova turma ao sistema."
+      title: 'Cadastrar turma'
+      subtitle: 'Adicione uma nova turma ao sistema.'
     edit:
-      title: "Editar turma"
-      subtitle: "Atualize os dados dessa turma e gerencie os alunos que pertencem a ela."
+      title: 'Editar turma'
+      subtitle: 'Atualize os dados dessa turma e gerencie os alunos que pertencem a ela.'
     show:
-      students: "Alunos"
+      students: 'Alunos'
     index:
-      classroom: "Nome da turma"
+      classroom: 'Nome da turma'
   investments:
-    empty: "Você ainda não tem investimentos."
+    empty: 'Você ainda não tem investimentos.'
     form:
-      name: "Nome do investimento"
-      minimum_amount: "Valor mínimo"
-      name_placeholder: "Digite o nome do investimento"
-      date_placeholder: "Selecione a data"
-      start_date: "Data de início"
-      end_date: "Data de término"
-      expiration: "Data de vencimento"
-      index: "Índice"
-      index_placeholder: "Selecione o indexador"
-      premium: "Esse é um investimento premium?"
-      register: "Cadastrar investimento"
-      delete: "Deletar investimento"
-      delete_confirmation: "Tem certeza que deseja deletar o investimento?"
+      name: 'Nome do investimento'
+      minimum_amount: 'Valor mínimo'
+      name_placeholder: 'Digite o nome do investimento'
+      date_placeholder: 'Selecione a data'
+      start_date: 'Data de início'
+      end_date: 'Data de término'
+      expiration: 'Data de vencimento'
+      index: 'Índice'
+      index_placeholder: 'Selecione o indexador'
+      premium: 'Esse é um investimento premium?'
+      register: 'Cadastrar investimento'
+      delete: 'Deletar investimento'
+      delete_confirmation: 'Tem certeza que deseja deletar o investimento?'
     new:
-      title: "Cadastrar investimento"
-      subtitle: "Adicione um investimento ao catalogo. Lembre-se de marcar caso seja apenas para usuários premium!"
+      title: 'Cadastrar investimento'
+      subtitle: 'Adicione um investimento ao catalogo. Lembre-se de marcar caso seja apenas para usuários premium!'
     edit:
-      title: "Editar investimento"
-      subtitle: "Atualize os dados e valores de um investimento."
+      title: 'Editar investimento'
+      subtitle: 'Atualize os dados e valores de um investimento.'
     show:
-      title: "Investimento"
-      subtitle: "Veja todos os detalhes do produto"
-      users: "Usuários investidores"
+      title: 'Investimento'
+      subtitle: 'Veja todos os detalhes do produto'
+      users: 'Usuários investidores'
   others:
-    blank: "Nenhum registro encontrado"
+    blank: 'Nenhum registro encontrado'
   search:
-    name_placeholder: "Digite para pesquisar por nome"
-    minimum_amount_placeholder: "Digite o valor mínimo"
-    index_placeholder: "Digite para pesquisar por índice"
-    cpf_placeholder: "Digite para pesquisar por CPF"
-    email_placeholder: "Digite para pesquisar por e-mail"
-    investment_name_placeholder: "Digite para pesquisar por investimento"
+    name_placeholder: 'Digite para pesquisar por nome'
+    minimum_amount_placeholder: 'Digite o valor mínimo'
+    index_placeholder: 'Digite para pesquisar por índice'
+    cpf_placeholder: 'Digite para pesquisar por CPF'
+    email_placeholder: 'Digite para pesquisar por e-mail'
+    investment_name_placeholder: 'Digite para pesquisar por investimento'
