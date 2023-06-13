@@ -65,3 +65,7 @@ pt-BR:
       destroy:
         success: Usuário apagado com sucesso
         failure: Usuário não pode ser deletado
+      destroy_admin:
+        success: Usuário admin apagado com sucesso
+      update_admin:
+        success: Usuário admin atualizado com sucesso
