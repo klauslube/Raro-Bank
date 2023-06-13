@@ -28,10 +28,19 @@
             <%= transaction.receiver.user.name %>
           </span>
           <span class='user-list-item-tag'>
-            <%= t("activerecord.attributes.transaction.status_enum.#{transaction.status}") %>
+
+            <% if transaction.status == 'canceled' %>
+              <%= t('users.token_expired') %>
+            <% else %>
+              <%= t("activerecord.attributes.transaction.status_enum.#{transaction.status}") %>
+            <% end %>
+
           </span>
           <% if transaction.status == 'started' %>
             <%= link_to t('.confirm'), edit_transaction_path(transaction), class: 'user-simple-link' %>
+          <% end %>
+          <% if transaction.status == 'canceled' %>
+            <%= link_to t('links.resend'), edit_transaction_path(transaction), class: 'user-simple-link' %>
           <% end %>
         </div>
         <div class='flex items-center gap-10'>

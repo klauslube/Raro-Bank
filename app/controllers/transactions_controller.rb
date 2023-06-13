@@ -26,6 +26,8 @@ class TransactionsController < ApplicationController
       @transaction.sender.save! && @transaction.update(status: 'pending')
 
       @transaction.call_update_balance
+      @transaction.update(status: 'completed')
+      @transaction.notification_completed_transaction
 
       redirect_to transactions_path, notice: t('.success')
     else
@@ -43,7 +45,6 @@ class TransactionsController < ApplicationController
   def token_authenticated?
     token = Token.find_by(code: params[:transaction][:token_code], active: true)
     if @transaction.token.code == token&.code
-      @transaction.authenticated!
       true
     else
       @transaction.errors.add(:token_code, t('.invalid_token'))

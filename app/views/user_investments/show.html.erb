@@ -38,7 +38,7 @@
       </div>
       <div class='user-list-item-with-icon'>
         <%= inline_svg_tag 'icons/outline/user-circle.svg', class: 'w-4 h-4 text-secondary-600' %>
-        <span><%= @user_investment.investment.premium ?  t('users.form.free') :  t('users.form.premium')%></span>
+        <span><%= @user_investment.investment.premium ? t('users.form.premium') : t('users.form.free')%></span>
       </div>
       <%= button_to @user_investment, method: :delete, class: 'users-button-retriever', data: { confirm: t('users.form.delete_confirmation'), turbo_confirm: t('users.form.delete_confirmation') } do %>
         <div class='w-4 h-8'></div>

@@ -12,6 +12,7 @@ pt-BR:
     transfer: 'Transferir'
     extract: 'Extrato'
     new_investment: 'Comece agora!'
+    resend: 'Reenviar token'
   home:
     title: 'Comece a movimentar sua conta'
   article:
@@ -23,6 +24,7 @@ pt-BR:
     contacts: 'Contatos'
     choose_contacts: 'Ou escolha um dos seus contatos: '
     contacts_empty: 'Você ainda não possui contatos'
+    token_expired: 'Token expirado'
     form:
       name_placeholder: 'Digite seu nome'
       cpf_placeholder: 'Digite seu CPF'

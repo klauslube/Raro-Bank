@@ -9,27 +9,24 @@
         </span>
         <span class='text-primary-800'><%= @transaction.receiver.user.name %></span>
         <span class='user-list-item-tag'><%= t("activerecord.attributes.transaction.status_enum.#{@transaction.status}") %></span>
-
       </span>
       <span class='user-list-item-with-icon'>
         <%= inline_svg_tag 'icons/outline/current-dolar.svg', class: 'w-6 h-6 text-primary-600' %>
-        <span class='text-sm font-bold text-primary-600'><%= number_to_currency(@transaction.amount) %></span>
+        <span class='text-base font-bold text-primary-600'><%= number_to_currency(@transaction.amount) %></span>
       </span>
     </div>
-    <div class='flex justify-center mx-2 text-primary-600'>
+    <div class='flex justify-center mx-2 mt-6 text-primary-600 placeholder'>
       <%= t('.legends_edit_transfer') %>
     </div>
     <div>
       <%= form_with(model: @transaction, data: { turbo: false }, class: 'gap-2') do |form| %>
-        <div>
-          <%= form.number_field :token_code, placeholder: t('.placeholder_token_code'), class: 'input-group-transfer' %>
+        <div class='flex flex-col w-full gap-2 mt-6'>
+          <%= form.number_field :token_code, placeholder: t('.placeholder_token_code'), class: 'input-group-transfer text-xl flex justify-center text-center' %>
+          <%= form.submit t('.next'), class: 'button-primary-transfer' %>
         </div>
-        <div class='flex flex-col items-center justify-center w-full p-2' >
-          <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'user-simple-link' %>
-        </div>
-        <%= form.submit t('.next'), class: 'button-primary-transfer' %>
-        <%= link_to t('.back'), transactions_path, class: 'button-primary-transfer' %>
+      <% end %>
+      <div class='flex flex-col items-center justify-center w-full p-2 w-100' >
+        <%= button_to t('.resend_email'), resend_email_transaction_path(@transaction), method: :post, class: 'user-simple-link' %>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>

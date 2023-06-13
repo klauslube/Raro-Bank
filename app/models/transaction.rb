@@ -8,13 +8,11 @@ class Transaction < ApplicationRecord
   validate :check_sender_balance
   validate :check_transfer_yourself
 
-  # Get all transactions that are sent by the users with role admin
   scope :sent_by_admins, -> { joins(:sender).merge(Account.admins) }
 
   after_create :generate_token
   after_create :token_countdown
   after_create :cancel_transfer_countdown
-  after_commit :update_balance
   after_commit :send_confirmation_email, on: :create
   after_commit :send_notification_email, on: :create
 
@@ -84,7 +82,8 @@ class Transaction < ApplicationRecord
 
   def update_balance
     if self.class.within_transfer_hours?
-      Transactions::UpdateBalanceService.new(self).call
+      # Transactions::UpdateBalanceService.new(self).call
+      Transactions::UpdateBalanceJob.perform_now(id)
     else
       Transactions::UpdateBalanceJob.perform_later(id)
     end
